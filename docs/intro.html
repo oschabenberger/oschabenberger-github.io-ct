@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quantitative and Computational Thinking - 1&nbsp; Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./cholera.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative and Computational Thinking</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cholera.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datascience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science—CT + QT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./firstStepsR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intuition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genAI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-intro-ct" id="toc-sec-intro-ct" class="nav-link active" data-scroll-target="#sec-intro-ct"><span class="header-section-number">1.1</span> Computational Thinking (CT)</a>
+  <ul>
+  <li><a href="#elements-of-ct" id="toc-elements-of-ct" class="nav-link" data-scroll-target="#elements-of-ct">Elements of CT</a>
+  <ul class="collapse">
+  <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link" data-scroll-target="#problem-definition">Problem Definition</a></li>
+  <li><a href="#decomposition-factoring" id="toc-decomposition-factoring" class="nav-link" data-scroll-target="#decomposition-factoring">Decomposition (Factoring)</a></li>
+  <li><a href="#pattern-recognition" id="toc-pattern-recognition" class="nav-link" data-scroll-target="#pattern-recognition">Pattern recognition</a></li>
+  <li><a href="#generalization-abstraction" id="toc-generalization-abstraction" class="nav-link" data-scroll-target="#generalization-abstraction">Generalization (Abstraction)</a></li>
+  <li><a href="#algorithm-design" id="toc-algorithm-design" class="nav-link" data-scroll-target="#algorithm-design">Algorithm design</a></li>
+  </ul></li>
+  <li><a href="#making-pumpkin-soup" id="toc-making-pumpkin-soup" class="nav-link" data-scroll-target="#making-pumpkin-soup">Making Pumpkin Soup</a>
+  <ul class="collapse">
+  <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a></li>
+  <li><a href="#pattern-recognition-1" id="toc-pattern-recognition-1" class="nav-link" data-scroll-target="#pattern-recognition-1">Pattern recognition</a></li>
+  <li><a href="#generalization" id="toc-generalization" class="nav-link" data-scroll-target="#generalization">Generalization</a></li>
+  <li><a href="#algorithm-design-1" id="toc-algorithm-design-1" class="nav-link" data-scroll-target="#algorithm-design-1">Algorithm design</a></li>
+  </ul></li>
+  <li><a href="#sec-intro-ct-importance" id="toc-sec-intro-ct-importance" class="nav-link" data-scroll-target="#sec-intro-ct-importance">Importance of CT</a></li>
+  </ul></li>
+  <li><a href="#sec-intro-qt" id="toc-sec-intro-qt" class="nav-link" data-scroll-target="#sec-intro-qt"><span class="header-section-number">1.2</span> Quantitative Thinking (QT)</a>
+  <ul>
+  <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link" data-scroll-target="#uncertainty">Uncertainty</a></li>
+  <li><a href="#benefits-of-quantification" id="toc-benefits-of-quantification" class="nav-link" data-scroll-target="#benefits-of-quantification">Benefits of Quantification</a></li>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data">Types of Data</a></li>
+  <li><a href="#surrogacy" id="toc-surrogacy" class="nav-link" data-scroll-target="#surrogacy">Surrogacy</a>
+  <ul class="collapse">
+  <li><a href="#from-quantification-to-metric" id="toc-from-quantification-to-metric" class="nav-link" data-scroll-target="#from-quantification-to-metric">From quantification to metric</a></li>
+  <li><a href="#managing-the-metric" id="toc-managing-the-metric" class="nav-link" data-scroll-target="#managing-the-metric">Managing the metric</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-intro-ct" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-intro-ct"><span class="header-section-number">1.1</span> Computational Thinking (CT)</h2>
+<p>In the broad sense, <strong>computational thinking</strong> (CT) is a problem-solving methodology that develops solutions for complex problems by breaking them down into individual steps. Well, are not most problems solved this way? Actually, yes. We all apply computational thinking methodology every day. As we will see in the example below, cooking a pot of soup involves computational thinking.</p>
+<p>In the narrow sense, computational thinking is problem solving by expressing the solution in such a way that it can be implemented through a computer—using software and hardware. The term <em>computational</em> in CT derives from the fact that the methodology is based on core principles of computer science. It does not mean that all CT problems are solved through coding. It means to solve problems by thinking like a computer scientists.</p>
+<section id="elements-of-ct" class="level3">
+<h3 class="anchored" data-anchor-id="elements-of-ct">Elements of CT</h3>
+<p>What is that like? The five elements of computational thinking are</p>
+<section id="problem-definition" class="level4">
+<h4 class="anchored" data-anchor-id="problem-definition">Problem Definition</h4>
+<p>This should go without saying, before attempting to build a solution one should know what problem the solution solves. However, we often get things backwards, building solutions first and then looking for what problems to solve with them. The world of technology is littered with solutions looking for a problem.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Solution looking for a problem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution looking for a problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Solutions looking for problems are commonplace. If someone is trying to sell you a new car when there is nothing wrong with your current car, they (salesman) have a solution (new car) but there is no problem (new car is not needed). So they might try to create a problem by selling you on the benefits of the new model.</p>
+<p>On the other hand it is good to innovate and create new solutions even if not all problems the innovation solves are known beforehand. When Karl Benz combined in 1885 a one-cylinder internal combustion engine with a carriage (<a href="#fig-firstcar" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>), he created the first automobile, the Benz Patent-Motorwagen. He probably did not imagine the many future applications of the technology.</p>
+<div id="fig-firstcar" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/FirstAutomobile.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="decomposition-factoring" class="level4">
+<h4 class="anchored" data-anchor-id="decomposition-factoring">Decomposition (Factoring)</h4>
+<p>This element of computational thinking ask to break the complex problem into smaller, manageable parts and by doing so helps to focus the solution on the aspects that matter, eliminating extraneous stuff.</p>
+<p>Smaller problems are easier to solve and can be managed independently. A software developer decomposes a task into several functions, for example, one that takes user input, one that sorts data, one that displays results. These functions can be developed separately and are then combined to produce the solution. Sorting can further be decomposed into subproblems, for example, the choice of data structure (list, tree, etc.), the sort algorithm (heap, quicksort, bubble, …) and so on.</p>
+<p>To understand how something works we can factor it into its parts and study how the individual parts work by themselves. A better understanding of the whole results when we reassemble the components we now understand. For example, to figure out how a bicycle works, decompose it into the frame, seat, handle bars, chain, pedals, crank, derailleurs, brakes, etc.</p>
+</section>
+<section id="pattern-recognition" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-recognition">Pattern recognition</h4>
+<p>Pattern recognition is the process of learning connections and relationships between the parts of the problem. In the bicycle example, once we understand the front and rear derailleurs, we understand how they work together in changing gears. Pattern recognition helps to simplify the problem beyond the decomposition by identifying details that are similar or different.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Carl Friedrich Gauss">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Carl Friedrich Gauss
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Carl Friedrich Gauss (1777–1855) was one of the greatest thinkers of his time and widely considered one of the greatest mathematicians and scientists of all time. Many disciplines, from astronomy, geodesy, mathematics, statistics, and physics list Gauss as a foundational and major contributor.</p>
+<p>In <em>The Prince of Mathematics</em>, <span class="citation" data-cites="Tent2006">Tent (<a href="references.html#ref-Tent2006" role="doc-biblioref">2006</a>)</span> tells the story of an arithmetic assignment at the beginning of Gauss’ third school year in Brunswick, Germany. Carl was ten years old at the time. Herr Büttner, the teacher wanted to keep the kids quiet for a while and asked them to find the sum of the first 100 integers, <span class="math display">\[\sum_{i=1}^{100}i
+\]</span> The students were to work the answer out on their slates and place them on Herr Büttner’s desk when done. Carl thought about the problem for a minute, wrote one number on his slate and placed it on the teacher’s desk. He was the first to turn in a solution and it took his classmates much longer. The slates were placed on top of the previous solutions as students finished. Many of them got the answer wrong, messing up an addition somewhere along the way. Herr Büttner, going through the slates one by one found one wrong answer after another and expected Gauss’ answer also to be wrong, since the boy had come up with it almost instantly. To his surprise–or dismay–Gauss’ slate showed no work, Carl had written on it just one number, 5,050, the correct answer.</p>
+<p>Carl explained</p>
+<blockquote class="blockquote">
+<p><em>Well, sir, I thought about it. I realized that those numbers were all in a row, that they were consecutive, so I figured there must be some pattern. So I added the first and the last number: 1 + 100 = 101. Then I added the second and the next to last numbers: 2 + 99 = 101. […] That meant I would find 50 pairs of numbers that always add up to 101, so the whole sum must be 50 x 101 = 5,050</em></p>
+</blockquote>
+<p>Carl had recognized a pattern that helped him see the connected parts of the problem: a fixed number of partial sums of the same value.</p>
+</div>
+</div>
+</section>
+<section id="generalization-abstraction" class="level4">
+<h4 class="anchored" data-anchor-id="generalization-abstraction">Generalization (Abstraction)</h4>
+<p>Once the problem is decomposed and the patterns are recognized, we should be able to see the relevant details of the problem and how we go about solving the problem. This is where we derive the core logic of the solution, the <strong>rules</strong>. For example, to write a computer program to solve a jigsaw puzzle, you would not want to write code specific to one particular puzzle image. You want code that can solve jigsaw puzzles in general. The specific image someone will use for the jigsaw puzzle is an irrelevant detail.</p>
+<p>A rectangle can be decomposed into a series of squares (<a href="#fig-rectangle-decomp" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>). Calculating the area of a rectangle as width x height is a generalization of the rule to calculate the area of a square as width-squared.</p>
+<div id="fig-rectangle-decomp" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rectangle-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/RectangleDecomposition.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rectangle-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to generalize computation of the area
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="algorithm-design" class="level4">
+<h4 class="anchored" data-anchor-id="algorithm-design">Algorithm design</h4>
+<p>The final element of CT involves another form of thinking, <strong>algorithmic thinking</strong>. Here we define the solution as a series of steps to be executed. Algorithmic thinking does not mean the solution has to be implemented by a computer, although this is the case in the narrow sense of CT. The point of the algorithm is to arrive at a set of repeatable, step-by-step instructions, whether these are implemented by humans, machines, or a computer. Capturing the solution in an algorithm is a step toward <strong>automation</strong>.<br>
+<br>
+<a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> shows an algorithm to produce pumpkin soup, repeatable instructions that lay out the ingredients and how to process them in steos to transform them into soup.</p>
+<div id="fig-soup-recipe" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="making-pumpkin-soup" class="level3">
+<h3 class="anchored" data-anchor-id="making-pumpkin-soup">Making Pumpkin Soup</h3>
+<p>Let’s apply the elements of computational thinking to the problem of making pumpkin soup.</p>
+<section id="decomposition" class="level4">
+<h4 class="anchored" data-anchor-id="decomposition">Decomposition</h4>
+<p>Decomposition is the process of breaking down a complex problem into smaller, more manageable parts. In the case of making pumpkin soup, we can break it down into several steps:</p>
+<ul>
+<li><strong>Ingredients</strong>: Identify the key ingredients required for the soup.
+<ul>
+<li>Pumpkin</li>
+<li>Onion or Leek</li>
+<li>Garlic</li>
+<li>Stock (vegetable or chicken)</li>
+<li>Cream (optional)</li>
+<li>Salt, pepper, and spices (e.g., nutmeg, cinnamon)</li>
+<li>Olive oil or butter for sautéing</li>
+</ul></li>
+<li><strong>Preparation</strong>: Break down the actions involved in preparing the ingredients.
+<ul>
+<li>Peel and chop the pumpkin</li>
+<li>Chop the onion and garlic</li>
+<li>Prepare spices and seasoning</li>
+</ul></li>
+<li><strong>Cooking</strong>: Identify the steps in cooking the soup.
+<ul>
+<li>Sauté the onion and garlic</li>
+<li>Add the pumpkin and cook it</li>
+<li>Add stock and bring to a simmer</li>
+<li>Puree the mixture</li>
+<li>Add cream and season to taste</li>
+</ul></li>
+<li><strong>Final Steps</strong>: Focus on finishing touches.
+<ul>
+<li>Garnish (optional)</li>
+<li>Serve and taste for seasoning adjustments</li>
+</ul></li>
+</ul>
+</section>
+<section id="pattern-recognition-1" class="level4">
+<h4 class="anchored" data-anchor-id="pattern-recognition-1">Pattern recognition</h4>
+<p>What are the similar elements or repeating steps in the problem?</p>
+<ul>
+<li><strong>Common cooking steps</strong>: Many soups follow a similar structure: sautéing vegetables, adding liquid, simmering, and then blending or pureeing.</li>
+<li><strong>Ingredient variations</strong>: While the exact ingredients for pumpkin soup may vary (e.g., adding coconut milk instead of cream), the basic framework of the recipe remains the same.</li>
+<li><strong>Timing patterns</strong>: There’s a pattern to the cooking times: first sautéing for a few minutes, then simmering the soup for about 20-30 minutes, followed by blending.</li>
+</ul>
+</section>
+<section id="generalization" class="level4">
+<h4 class="anchored" data-anchor-id="generalization">Generalization</h4>
+<p>We can generalize (abstract) the process of making pumpkin soup into a more general recipe for making any pureed vegetable soup, regardless of the specific ingredients.</p>
+<ul>
+<li><strong>Essential components</strong>:
+<ul>
+<li>A base (onions, garlic, or other aromatics)</li>
+<li>A main vegetable (in this case, pumpkin)</li>
+<li>Liquid (stock, broth, or water)</li>
+<li>Seasoning and optional cream</li>
+</ul></li>
+<li><strong>General process</strong>:
+<ol type="1">
+<li>Sauté aromatics.</li>
+<li>Add the main vegetable and liquid.</li>
+<li>Simmer until the vegetable is tender.</li>
+<li>Blend until smooth.</li>
+<li>Adjust seasoning and add cream if desired.</li>
+</ol></li>
+</ul>
+</section>
+<section id="algorithm-design-1" class="level4">
+<h4 class="anchored" data-anchor-id="algorithm-design-1">Algorithm design</h4>
+<p>Here is a simple algorithm for making pumpkin soup:</p>
+<ol type="1">
+<li><strong>Prepare ingredients</strong>:
+<ul>
+<li>Peel and chop the pumpkin into cubes.</li>
+<li>Chop the onion and garlic.</li>
+</ul></li>
+<li><strong>Sauté aromatics</strong>:
+<ul>
+<li>In a pot, heat oil or butter over medium heat.</li>
+<li>Add chopped onion and garlic, sauté for 5 minutes until softened.</li>
+</ul></li>
+<li><strong>Cook pumpkin</strong>:
+<ul>
+<li>Add chopped pumpkin to the pot and sauté for 5 minutes.</li>
+<li>Add stock to cover the pumpkin (about 4 cups) and bring to a boil.</li>
+</ul></li>
+<li><strong>Simmer</strong>:
+<ul>
+<li>Lower the heat, cover, and let the soup simmer for 20-30 minutes until the pumpkin is tender.</li>
+</ul></li>
+<li><strong>Blend the soup</strong>:
+<ul>
+<li>Use an immersion blender or transfer the soup to a blender. Puree until smooth.</li>
+</ul></li>
+<li><strong>Add cream and seasoning</strong>:
+<ul>
+<li>Stir in cream (optional) and season with salt, pepper, and spices to taste (e.g., nutmeg or cinnamon).</li>
+</ul></li>
+<li><strong>Serve</strong>:
+<ul>
+<li>Pour into bowls and garnish with optional toppings (e.g., a swirl of cream, roasted seeds, or fresh herbs).</li>
+</ul></li>
+</ol>
+<p><a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> is a specific implementation of the algorithm.</p>
+<p>By applying computational thinking, we decomposed the task of making pumpkin soup into smaller steps, recognized patterns in the cooking process, abstracted the general process for making soups, and designed an algorithm to efficiently make pumpkin soup. This method helps streamline the cooking process, ensures nothing is overlooked and provides a clear, repeatable procedure.</p>
+</section>
+</section>
+<section id="sec-intro-ct-importance" class="level3">
+<h3 class="anchored" data-anchor-id="sec-intro-ct-importance">Importance of CT</h3>
+<p>Computational thinking as a methodology is applied nowadays in almost any domain and to many problems. Decomposing a problem into parts, recognizing patterns, abstracting the problem essentials and capturing them in an algorithm is an effective approach to deal with many problems.</p>
+<p>The rise of computational thinking is also due to the fact that many more problems are solved through software and computing today than in the past. We have become very good at capturing the essential details of processes and phenomena through <strong>models</strong>, which by their very nature are abstractions of the prevailing patterns in those processes. And the implementation of the models frequently involves the design and deployment of algorithms.</p>
+<p>Financial analysts make investment decisions based on mathematical models of market behavior. Banks decide whether to award a loan based on statistical models for the probability of loan default. Insurance premiums are based on risk models. A healthcare provider chooses a treatment plan based on assessment of risk factors and predictions of disease progression, based on medical knowledge and models that describe patient outcomes.</p>
+<p>In 2011, Mark Andreessen of VC firm Andreessen-Horowitz (known as a16z) declared</p>
+<blockquote class="blockquote">
+<p><em>Software is eating the world.</em></p>
+</blockquote>
+<p>Why was this happening? <span class="citation" data-cites="Andreessen_2011">Andreessen (<a href="references.html#ref-Andreessen_2011" role="doc-biblioref">2011</a>)</span> cites several reasons, among them</p>
+<blockquote class="blockquote">
+<p><em>Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.</em></p>
+</blockquote>
+<p>The largest book seller, Amazon, is a software company. Prior to the software revolution, it was brick-and-mortar book stores like Borders. The largest provider of video services, Netflix, is a software company. Previously, you rented physical video cassette tapes at Blockbuster. The music we listen to today is stored digitally as a file, distributed through software, and made audible through software. The best recruiting company, LinkedIn, is a software company. Some of the best movies are created by Pixar, a software company. You get the idea, I’ll stop here.</p>
+<p>While software implementations of problem solving have upended many industries, the way we build and use software, and the types of problems we can solve with it, is itself being upended, thanks to the advances in large-language models (LLMs) like ChatGPT, Claude, Gemini, and others.</p>
+<p>The shift toward computational thinking and the importance of solving problems through software has become most evident in 2024, when Nobel prizes in Physics and Chemistry were awarded not to scientists in those fields, but to computer scientists and artificial intelligence researchers who developed the foundational computational methods that helped to advance Physics and Chemistry (<a href="#fig-nobel-physics" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> and <a href="#fig-nobel-chemistry" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>).</p>
+<div id="fig-nobel-physics" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/NobelPrizePhysics.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: 2024 Nobel Prize winners in Physics
+</figcaption>
+</figure>
+</div>
+<div id="fig-nobel-chemistry" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/NobelPrizeChemistry.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry
+</figcaption>
+</figure>
+</div>
+<p>Demis Hassabis, for example, is the CEO of Google DeepMind, the company behind AI projects such as AlphaGo, the reinforcement-learning trained system that accomplished what was thought impossible for a computer to do: beat the best Go player in the world.</p>
+<p>Geoffrey Hinton is a leading figure in research on artificial neural networks and deep learning. He is often considered the “Godfather of AI”. He is co-author of a 1986 paper that popularized back-propagation, an algorithm that efficiently computes the gradients in a neural network with many layers.</p>
+<p>Breaking with tradition, the Nobel committee awarded these prizes not to scientists who developed grand new theories of how the world works, but to scientist who develop the computational tools that help us develop grand new theories of how the world works.</p>
+</section>
+</section>
+<section id="sec-intro-qt" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-intro-qt"><span class="header-section-number">1.2</span> Quantitative Thinking (QT)</h2>
+<p><strong>Quantitative thinking</strong> (QT) is a problem-solving technique, like computational thinking. It views the world through measurable events, and approaches problems by analyzing quantitative evidence. At the heart of QT lies <strong>quantification</strong>, representing things in measurable quantities. The result is data in its many forms.</p>
+<p>The word quantification is rooted in the Latin word <em>quantus</em>, meaning “how much”. The purpose of quantification is to express things in numbers.</p>
+<p>When dealing with inherently measurable attributes such as height or weight, quantification is simple. We need an agreed-upon method of measuring and a system to express the measurement in. The former might be an electronic scale or an analog scale with counterweights for weight measurement, a ruler, yardstick, or laser device for height measurements. It seems obvious to report weights in metric units of milligrams, grams, pounds (500 grams), kilograms, and tons or in U.S. Customary units of ounces, pounds (16 ounces), and tons. As long as we know which measurement units apply, we can all agree on how heavy something is. And we need to keep in mind that the same word can represent different things: a metric pound is 500 grams, a U.S. pound is 453.6 grams. But wait, there is more: Apothecaries’ weights are slightly different, a pound a.p. is 12 ounces. And in some fields, weights are measured entirely differently, diamonds are measured in carats (0.2 grams). In the International System of Units (SI), weight is measured in Newtons, which is gravitational force on a mass, equivalent to kg * m /s<sup>2</sup>. As long as we know what units are used to report a weight, we can convert it into whatever system we want to use. So we could say that this attribute is easily quantifiable.</p>
+<section id="uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="uncertainty">Uncertainty</h3>
+<p>When I hop on the scales in the bathroom in the morning, I usually take two or three measurements in quick succession. They rarely are identical, differing by a fraction of a pound. Day-to-day variation could be understandable, our weight does change over time. But second-to-second variation, that seems odd. It seems unlikely that I gained or lost a quarter pound over the last 5 seconds.</p>
+<p>Quantifying things is associated with <strong>uncertainty</strong> that is introduced through various forms of <strong>variability</strong>. My weight measurement varies from one measurement to the next because of my posture, movement on the scales, and the performance of the scales mechanism itself. Not because my actual weight differs. This type of variability is called <strong>measurement error</strong>. If we measure the weights of students in a classroom another source of variability is introduced, subject-to-subject variability. If we randomly choose a classroom from the school, the measurements also represent classroom-to-classroom variability, since repeating the process and selecting a different classroom will yield a different number.</p>
+<p>In the presence of uncertainty, quantities are not knowable a priori. But if the uncertainty itself can be quantified, then the quantity of interest is predictable. I am unable to say what the average weight is of a student in a freshman class. But by measuring weights and quantifying uncertainty in the observations I can <strong>predict</strong> with a high level of confidence that the average freshmen students’ weight is between this much and that much (now attach your favorite weight units).</p>
+<p>It is one of humanities’ great advances that we are not only able to represent concepts in numbers, but that we can quantify uncertainty itself. Probability and statistics enable us to learn from uncertain events and measurements. This adds to our vocabulary of lengths, weights, volumes, five-star ratings, and so on, the terms prediction, forecast, likelihood, odds, chance, and probability.</p>
+<p>A meteorologist forecasting a 30% chance of rain tomorrow is quantifying the likelihood of an event. We all know how to operationalize this forecast. The higher the number, the more likely we will need an umbrella the next day. Interestingly, while we have developed intuition about “the chance of rain”, many do not know how to correctly interpret a statement such as “30% chance of rain”. It does not mean that 30% of the area covered by the forecast will see rain. It does not mean that on days like today, 30% of them will have a rain event. Rather, it means that there is a 0.3 probability that <strong>any</strong> point in the forecast area will see a measurable amount of rain (usually 0.01 inches or more).</p>
+<p>Another interpretation flows from the fact that weather forecasts are based on models that simulate weather conditions based on inputs. To account for the inherent uncertainty in measuring the inputs, multiple scenarios (simulations) are run. a 30% chance of rain means that 30% of the simulations predicted rain for the forecast area.</p>
+<hr>
+<p>By applying statistical principles in the analysis of data uncertainty can be reduced. More informed insights about the data are then possible. Suppose we want to measure the average amount of an attribute in a population—say, the average years of postgraduate education. The population is too large to visit with every member so we instead quiz only a smaller number about their education. If we randomly sample one person from the population, we get a statistically valid estimate for the entire population. If they have 2 years of postgraduate education, our best guess for the average amount of post-graduate education in the entire population is 2 years. However, we have not reduced the uncertainty at all, the single measurement is as uncertain as the variability of postgraduate education years in the population. Suppose this variability can be quantified with the amount <span class="math inline">\(X\)</span>. If we repeat the process of randomly sampling persons <span class="math inline">\(n-1\)</span> more times and computing the average across the <span class="math inline">\(n\)</span> measurements—this is called the <strong>sample average</strong>—we get a much better estimate of the average number of years of postgraduate education in the population. It turns out that the sample average so obtained has uncertainty <span class="math inline">\(X/n\)</span>. In other words, we can make our statement about the population quantity of interest arbitrarily precise by sampling a large number of people from the population.</p>
+<p>For attributes with large variability <span class="math inline">\(X\)</span> it will take a larger sample size <span class="math inline">\(n\)</span> to achieve the same level of precision compared to attributes with less variability. If the attribute does not vary at all in the population (<span class="math inline">\(X=0\)</span>), then a single sample is sufficient. In the population of apartment renters there is no variability in the attribute <em>renter</em>, but there is variability in the attribute <em>amount of rent late</em>.</p>
+</section>
+<section id="benefits-of-quantification" class="level3">
+<h3 class="anchored" data-anchor-id="benefits-of-quantification">Benefits of Quantification</h3>
+<p>The first obvious benefit of quantification is to make information amenable to mathematical and statistical operations. When mathematical or statistical calculations are concerned, any type of data will eventually be represented as numbers. A photograph turns into row and column indices of pixels and three-number triplets of red, green, and blue intensities. A sophisticated large language model that processes textual information converts the text into numeric representations, a process called <strong>encoding</strong>.</p>
+<p><span class="citation" data-cites="Huff_1954">Huff (<a href="references.html#ref-Huff_1954" role="doc-biblioref">1954</a>)</span>, in one of the most widely published statistics texts, <em>How to Lie with Statistics</em> states</p>
+<blockquote class="blockquote">
+<p><em>Many a statistic is false on its face. It gets by only because the magic of numbers brings about a suspension of common sense.</em></p>
+</blockquote>
+<p>According to one view, the de-contextualized and value-free mathematical symbols used in statistical analyses assist in achieving objectivity, stability, and fairness in decisions. Quantification is a method of standardization that summarizes and reduces concepts to their essence and allows us to make better decisions.</p>
+<p>Objective metrics by which to measure allows us to establish rank and status. Status of nations can be measured by GDP (Gross Domestic Product). A countries’ portion of global GPD is one of the criteria for G20 membership. Quantified status is a much better solution than determining status by sending soldiers across borders.</p>
+<p>Quantification allows us to express relationships: ranking, ordering, and measuring proximity. As we will see in a later chapter, sorting and searching are fundamental. As an exercise observe how many times a day you encounter sorted lists, rankings, top-ten results, best-of lists, most-preferred lists and other forms of arranging information by a relevance metric. Google search would not be so successful if searching would not be combined with ranking results by relevance.</p>
+<!---
+https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
+--->
+</section>
+<section id="types-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-data">Types of Data</h3>
+</section>
+<section id="surrogacy" class="level3">
+<h3 class="anchored" data-anchor-id="surrogacy">Surrogacy</h3>
+<section id="from-quantification-to-metric" class="level4">
+<h4 class="anchored" data-anchor-id="from-quantification-to-metric">From quantification to metric</h4>
+</section>
+<section id="managing-the-metric" class="level4">
+<h4 class="anchored" data-anchor-id="managing-the-metric">Managing the metric</h4>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;1.4: 2024 Nobel Prize winners in Physics</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Andreessen_2011" class="csl-entry" role="listitem">
+Andreessen, Mark. 2011. <span>“Why Software Is Eating the World.”</span> <a href="https://a16z.com/why-software-is-eating-the-world/">https://a16z.com/why-software-is-eating-the-world/</a>.
+</div>
+<div id="ref-Huff_1954" class="csl-entry" role="listitem">
+Huff, Darrell. 1954. <em>How to Lie with Statistics</em>. W.W. Norton &amp; Company, New York.
+</div>
+<div id="ref-Tent2006" class="csl-entry" role="listitem">
+Tent, M. B. W. 2006. <em>The Prince of Mathematics: Carl Friedrich Gauss</em>. CRC Press, Boca Raton, FL.
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./cholera.html" class="pagination-link" aria-label="Case Study: Cholera in Soho, London, 1854">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Computational Thinking by Oliver Schabenberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

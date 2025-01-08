@@ -1,0 +1,463 @@
+# Introduction {#sec-intro}
+
+
+## Computational Thinking (CT) {#sec-intro-ct}
+
+In the broad sense, **computational thinking** (CT) is a problem-solving methodology
+that develops solutions for complex problems by breaking them down into individual
+steps. Well, are not most problems solved this way? Actually, yes. We all apply
+computational thinking methodology every day. As we will see in the example below, 
+cooking a pot of soup involves computational thinking.
+
+In the narrow sense, computational thinking is problem solving by expressing
+the solution in such a way that it can be implemented through a computer---using
+software and hardware. The term *computational* in CT derives from the fact that
+the methodology is based on core principles of computer science. It does not mean
+that all CT problems are solved through coding. It means to solve problems by
+thinking like a computer scientists. 
+
+### Elements of CT
+
+What is that like? The five elements of computational thinking are
+
+#### Problem Definition
+
+This should go without saying, before attempting to
+build a solution one should know what problem the solution solves. However, we
+often get things backwards, building solutions first and then looking for what
+problems to solve with them. The world of technology is littered with solutions
+looking for a problem. 
+
+:::{.callout-note title="Solution looking for a problem"}
+Solutions looking for problems are commonplace. If someone
+is trying to sell you a new car when there is nothing wrong with your current car,
+they (salesman) have a solution (new car) but there is no problem (new car is
+not needed). So they might try to create a problem by selling you on the benefits
+of the new model.
+
+On the other hand it is good to innovate and create new solutions even if not 
+all problems the innovation solves are known beforehand. When Karl Benz combined
+in 1885 a one-cylinder internal combustion engine with a carriage (@fig-firstcar),
+he created the first automobile, the Benz Patent-Motorwagen. He probably did not 
+imagine the many future applications of the technology.
+
+![Benz Patent-Motorwagen, the first automobile.](images/FirstAutomobile.png){#fig-firstcar fig-align="center" width=50% .lightbox}
+:::
+
+
+#### Decomposition (Factoring)
+
+This element of computational thinking ask to break the 
+complex problem into smaller, manageable parts and by doing so helps to focus the
+solution on the aspects that matter, eliminating extraneous stuff.
+
+Smaller problems are easier to solve and can be managed independently. A software 
+developer decomposes a task into several functions, for example, one that takes user 
+input, one that sorts data, one that displays results. These functions can be developed 
+separately and are then combined to produce the solution. Sorting can further be 
+decomposed into subproblems, for example, the choice of data structure (list, tree, etc.), 
+the sort algorithm (heap, quicksort, bubble, ...) and so on.
+
+To understand how something works we can factor it into its parts and study
+how the individual parts work by themselves. A better understanding of the whole 
+results when we reassemble the components we now understand. For example, to figure
+out how a bicycle works, decompose it into the frame, seat, handle bars, chain, pedals,
+crank, derailleurs, brakes, etc. 
+
+#### Pattern recognition
+
+Pattern recognition is the process of learning 
+connections and relationships between the parts of the problem. In the bicycle
+example, once we understand the front and rear derailleurs, we understand how they 
+work together in changing gears. Pattern recognition helps to simplify the problem
+beyond the decomposition by identifying details that are similar or different.
+
+:::{.callout-note title="Carl Friedrich Gauss"}
+Carl Friedrich Gauss (1777--1855) was one of the greatest thinkers of his time
+and widely considered one of the greatest mathematicians and scientists of all time. 
+Many disciplines, from astronomy, geodesy, mathematics, statistics, and physics list 
+Gauss as a foundational and major contributor. 
+
+In *The Prince of Mathematics*, @Tent2006 tells the story of an arithmetic 
+assignment at the beginning of Gauss' third school year in Brunswick, Germany. Carl
+was ten years  old at the time.
+Herr Büttner, the teacher wanted to keep the kids quiet for a while and asked them 
+to find the sum of the first 100 integers, 
+$$\sum_{i=1}^{100}i
+$$
+The students were
+to work the answer out on their slates and place them on Herr Büttner's desk 
+when done. Carl thought about the problem for a minute, wrote one number on
+his slate and placed it on the teacher's desk. He was the first to turn in a 
+solution and it took his classmates much longer. The slates were placed on top of
+the previous solutions as students finished. Many of them got the answer 
+wrong, messing up an addition somewhere along the way. Herr Büttner, going through
+the slates one by one found one wrong answer after another and expected Gauss' 
+answer also to be wrong, since the boy had come up with it almost instantly. 
+To his surprise--or dismay--Gauss' slate showed no work, Carl had written on it
+just one number, 5,050, the correct answer. 
+
+Carl explained
+
+>*Well, sir, I thought about it. I realized that those numbers were all in a row, that
+they were consecutive, so I figured there must be some pattern. So I added the 
+first and the last number: 1 + 100 = 101. Then I added the second and the next to
+last numbers: 2 + 99 = 101. [...] That meant I would find 50 pairs of numbers that
+always add up to 101, so the whole sum must be 50 x 101 = 5,050*
+
+Carl had recognized a pattern that helped him see the connected parts of the 
+problem: a fixed number of partial sums of the same value.
+:::
+
+#### Generalization (Abstraction)
+
+Once the problem is decomposed and the patterns are recognized,
+we should be able to see the relevant details of the problem and how we go about
+solving the problem. This is where we derive the core logic of the solution, the **rules**. 
+For example, to write a computer program to solve a jigsaw puzzle, you would not 
+want to write code specific to one particular puzzle image. You want code that
+can solve jigsaw puzzles in general. The specific image someone will use for the
+jigsaw puzzle is an irrelevant detail.
+
+A rectangle can be decomposed into a series of squares (@fig-rectangle-decomp).
+Calculating the area of a rectangle as width x height is a generalization of 
+the rule to calculate the area of a square as width-squared.
+
+![Decomposing a 12 x 8 rectangle into six 4 x 4 squares to generalize computation of the area](images/RectangleDecomposition.png){#fig-rectangle-decomp fig-align="center" width=50%}
+
+#### Algorithm design
+
+The final element of CT involves another form of thinking,
+**algorithmic thinking**. Here we define the solution as a series of steps to
+be executed. Algorithmic thinking does not mean the solution has to be implemented
+by a computer, although this is the case in the narrow sense of CT. The point of
+the algorithm is to arrive at a set of repeatable, step-by-step instructions, whether 
+these are implemented by humans, machines, or a computer. Capturing the solution in
+an algorithm is a step toward **automation**.\
+\
+@fig-soup-recipe shows an algorithm to produce pumpkin soup, repeatable instructions
+that lay out the ingredients and how to process them in steos to transform them
+into soup.
+
+![A recipe for pumpkin soup is an algorithm.](images/PumpkinSoupRecipe.png){#fig-soup-recipe fig-align="center" width=75% .lightbox}
+
+### Making Pumpkin Soup
+
+Let's apply the elements of computational thinking to the problem of making
+pumpkin soup. 
+
+#### Decomposition
+Decomposition is the process of breaking down a complex problem into smaller, more manageable parts. In the case of making pumpkin soup, we can break it down into several steps:
+
+- **Ingredients**: Identify the key ingredients required for the soup.
+  - Pumpkin
+  - Onion or Leek
+  - Garlic
+  - Stock (vegetable or chicken)
+  - Cream (optional)
+  - Salt, pepper, and spices (e.g., nutmeg, cinnamon)
+  - Olive oil or butter for sautéing
+- **Preparation**: Break down the actions involved in preparing the ingredients.
+  - Peel and chop the pumpkin
+  - Chop the onion and garlic
+  - Prepare spices and seasoning
+- **Cooking**: Identify the steps in cooking the soup.
+  - Sauté the onion and garlic
+  - Add the pumpkin and cook it
+  - Add stock and bring to a simmer
+  - Puree the mixture
+  - Add cream and season to taste
+- **Final Steps**: Focus on finishing touches.
+  - Garnish (optional)
+  - Serve and taste for seasoning adjustments
+
+#### Pattern recognition
+
+What are the similar elements or repeating steps in the problem?
+
+- **Common cooking steps**: Many soups follow a similar structure: sautéing vegetables, 
+adding liquid, simmering, and then blending or pureeing.
+- **Ingredient variations**: While the exact ingredients for pumpkin soup may vary 
+(e.g., adding coconut milk instead of cream), the basic framework of the recipe 
+remains the same.
+- **Timing patterns**: There’s a pattern to the cooking times: first sautéing for 
+a few minutes, then simmering the soup for about 20-30 minutes, followed by blending.
+
+#### Generalization
+
+We can generalize (abstract) the process of making pumpkin soup into a more 
+general recipe for making any pureed vegetable soup, regardless of the specific
+ingredients.
+
+- **Essential components**: 
+  - A base (onions, garlic, or other aromatics)
+  - A main vegetable (in this case, pumpkin)
+  - Liquid (stock, broth, or water)
+  - Seasoning and optional cream
+
+- **General process**:
+  1. Sauté aromatics.
+  2. Add the main vegetable and liquid.
+  3. Simmer until the vegetable is tender.
+  4. Blend until smooth.
+  5. Adjust seasoning and add cream if desired.
+
+
+#### Algorithm design
+
+Here is a simple algorithm for making pumpkin soup:
+
+1. **Prepare ingredients**:
+   - Peel and chop the pumpkin into cubes.
+   - Chop the onion and garlic.
+2. **Sauté aromatics**:
+   - In a pot, heat oil or butter over medium heat.
+   - Add chopped onion and garlic, sauté for 5 minutes until softened.
+3. **Cook pumpkin**:
+   - Add chopped pumpkin to the pot and sauté for 5 minutes.
+   - Add stock to cover the pumpkin (about 4 cups) and bring to a boil.
+4. **Simmer**:
+   - Lower the heat, cover, and let the soup simmer for 20-30 minutes until the 
+   pumpkin is tender.
+5. **Blend the soup**:
+   - Use an immersion blender or transfer the soup to a blender. Puree until smooth.
+6. **Add cream and seasoning**:
+   - Stir in cream (optional) and season with salt, pepper, and spices to taste 
+   (e.g., nutmeg or cinnamon).
+7. **Serve**:
+   - Pour into bowls and garnish with optional toppings (e.g., a swirl of cream, 
+   roasted seeds, or fresh herbs).
+
+@fig-soup-recipe is a specific implementation of the algorithm.
+
+By applying computational thinking, we decomposed the task of making pumpkin soup 
+into smaller steps, recognized patterns in the cooking process, abstracted the 
+general process for making soups, and designed an algorithm to efficiently make 
+pumpkin soup. This method helps streamline the cooking process, ensures nothing 
+is overlooked and provides a clear, repeatable procedure.
+
+### Importance of CT {#sec-intro-ct-importance}
+
+Computational thinking as a methodology is applied nowadays in almost any domain
+and to many problems. Decomposing a problem into parts, recognizing patterns,
+abstracting the problem essentials and capturing them in an algorithm is an
+effective approach to deal with many problems. 
+
+The rise of computational thinking is also due to the fact that many more problems 
+are solved through software and computing today than in the past. We have become 
+very good at capturing the essential details of processes and phenomena through
+**models**, which by their very nature are abstractions of the prevailing 
+patterns in those processes. And the implementation of the models frequently
+involves the design and deployment of algorithms.
+
+Financial analysts make investment decisions based
+on mathematical models of market behavior. Banks decide whether to award a loan
+based on statistical models for the probability of loan default. Insurance 
+premiums are based on risk models. A healthcare provider chooses a treatment
+plan based on assessment of risk factors and predictions of disease progression,
+based on medical knowledge and models that describe patient outcomes.
+
+In 2011, Mark Andreessen of VC firm Andreessen-Horowitz (known as a16z) declared
+
+>*Software is eating the world.* 
+
+Why was this happening? @Andreessen_2011 cites several reasons, among them
+
+>*Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.*
+
+The largest book seller, Amazon, is a software company. Prior to the software
+revolution, it was brick-and-mortar book stores like Borders. The largest provider
+of video services, Netflix, is a software company. Previously, you rented physical
+video cassette tapes at Blockbuster. The music we listen to today is stored 
+digitally as a file, distributed through software, and made audible through software. 
+The best recruiting company, LinkedIn, is a software company. Some of the best
+movies are created by Pixar, a software company. You get the idea, I'll stop here.
+
+While software implementations of problem solving have upended many industries,
+the way we build and use software, and the types of problems we can solve with
+it, is itself being upended, thanks to the advances in large-language models (LLMs)
+like ChatGPT, Claude, Gemini, and others.
+
+The shift toward computational thinking and the importance of solving problems
+through software has become most evident in 2024, when Nobel prizes in Physics
+and Chemistry were awarded not to scientists in those fields, but to computer
+scientists and artificial intelligence researchers who developed the foundational
+computational methods that helped to advance Physics and Chemistry (@fig-nobel-physics and
+@fig-nobel-chemistry).
+
+![2024 Nobel Prize winners in Physics](images/NobelPrizePhysics.png){#fig-nobel-physics fig-align="center" width=90% .lightbox}
+
+
+![2024 Nobel Prize winners in Chemistry](images/NobelPrizeChemistry.png){#fig-nobel-chemistry fig-align="center" width=90% .lightbox}
+
+Demis Hassabis, for example, is the CEO of Google DeepMind, the company behind
+AI projects such as AlphaGo, the reinforcement-learning trained system that 
+accomplished what was thought impossible for a computer to do: beat the best 
+Go player in the world.
+
+Geoffrey Hinton is a leading figure in research on artificial neural networks and
+deep learning. He is often considered the "Godfather of AI". He is co-author of
+a 1986 paper that popularized back-propagation, an algorithm that efficiently
+computes the gradients in a neural network with many layers. 
+
+Breaking with tradition, the Nobel committee awarded these prizes not to scientists
+who developed grand new theories of how the world works, but to scientist who 
+develop the computational tools that help us develop grand new theories of how 
+the world works.
+
+
+## Quantitative Thinking (QT) {#sec-intro-qt}
+
+**Quantitative thinking** (QT) is a problem-solving technique, like computational
+thinking. It views the world through measurable events, and approaches problems
+by analyzing quantitative evidence. At the heart of QT lies **quantification**,
+representing things in measurable quantities. The result is data in its many 
+forms.
+
+The word quantification is rooted in the Latin word *quantus*, meaning "how much". The
+purpose of quantification is to express things in numbers. 
+
+When dealing with inherently measurable attributes such as height or weight, quantification is 
+simple. We need an agreed-upon method of measuring and a system to express
+the measurement in. The former might be an electronic scale or an analog scale
+with counterweights for weight measurement, a ruler, yardstick, or laser device
+for height measurements. It seems obvious to report weights in metric units of 
+milligrams, grams, pounds (500 grams), kilograms, and tons or in U.S. Customary units of ounces, 
+pounds (16 ounces), and tons. As long as we know which measurement units apply, we can 
+all agree on how heavy something is. And we need to keep in mind that the same
+word can represent different things: a metric pound is 500 grams, a U.S. pound
+is 453.6 grams. But wait, there is more: Apothecaries' weights are slightly 
+different, a pound a.p. is 12 ounces. And in some fields, weights are measured
+entirely differently, diamonds are measured in carats (0.2 grams). In the 
+International System of Units (SI), weight is measured in Newtons, which is 
+gravitational force on a mass, equivalent to kg * m /s^2^.
+As long as we know what units are used to report a weight, we can convert it 
+into whatever system we want to use. So we could say that this attribute is easily
+quantifiable. 
+
+### Uncertainty
+
+When I hop on the scales in the bathroom in the morning, I usually take two or
+three measurements in quick succession. They rarely are identical, differing by
+a fraction of a pound. Day-to-day variation could be understandable, our weight
+does change over time. But second-to-second variation, that seems odd. It seems
+unlikely that I gained or lost a quarter pound over the last 5 seconds. 
+
+Quantifying things is associated with **uncertainty** that is introduced through various
+forms of **variability**. My weight measurement varies from one measurement to the
+next because of my posture, movement on the scales, and the performance of the scales
+mechanism itself. Not because my actual weight differs. This type of variability
+is called **measurement error**. If we measure the weights of students in a classroom
+another source of variability is introduced, subject-to-subject variability. If
+we randomly choose a classroom from the school, the measurements also represent
+classroom-to-classroom variability, since repeating the process and selecting
+a different classroom will yield a different number.
+
+In the presence of uncertainty, quantities are not knowable a priori. But if 
+the uncertainty itself can be quantified, then the quantity of interest is
+predictable. I am unable to say what the average weight is of a student in a freshman 
+class. But by measuring weights and quantifying uncertainty in the observations
+I can **predict** with a high level of confidence that the average freshmen 
+students' weight is between this much and that much (now attach your favorite 
+weight units).
+
+It is one of humanities' great advances that we are not only able to represent
+concepts in numbers, but that we can quantify uncertainty itself. Probability
+and statistics enable us to learn from uncertain events and measurements. This
+adds to our vocabulary of lengths, weights, volumes, five-star ratings, and so on, 
+the terms prediction, forecast, likelihood, odds, chance, and probability.
+
+A meteorologist forecasting a 30% chance of rain tomorrow is quantifying the 
+likelihood of an event. We all know how to operationalize this forecast. The
+higher the number, the more likely we will need an umbrella the next day. 
+Interestingly, while we have developed intuition about "the chance of rain", 
+many do not know how to correctly interpret a statement such as "30% chance of
+rain". It does not mean that 30% of the area covered by the forecast will
+see rain. It does not mean that on days like today, 30% of them will have a rain
+event. Rather, it means that there is a 0.3 probability that **any** point in the
+forecast area will see a measurable amount of rain (usually 0.01 inches or more).
+
+Another interpretation flows from the fact that weather forecasts are based on 
+models that simulate weather conditions based on inputs. To account for the 
+inherent uncertainty in measuring the inputs, multiple scenarios (simulations)
+are run. a 30\% chance of rain means that 30\% of the simulations predicted
+rain for the forecast area.
+
+---
+
+By applying statistical principles in the analysis of data uncertainty can be
+reduced. More informed insights about the data are then possible. Suppose we 
+want to measure the average amount of an attribute in a population---say, the 
+average years of postgraduate education. The population is too large to visit
+with every member so we instead quiz only a smaller number about their education.
+If we randomly sample one person from the population, we get a statistically
+valid estimate for the entire population. If they have 2 years of postgraduate
+education, our best guess for the average amount of post-graduate education in 
+the entire population is 2 years. However, we have not reduced the uncertainty
+at all, the single measurement is as uncertain as the variability of postgraduate
+education years in the population. Suppose this variability can be quantified 
+with the amount $X$. If we repeat the process of randomly sampling persons $n-1$
+more times and computing the average across the $n$ measurements---this is called
+the **sample average**---we get a much better estimate of the average number
+of years of postgraduate education in the population. It turns out that the 
+sample average so obtained has uncertainty $X/n$. In other words, we can make 
+our statement about the population quantity of interest arbitrarily precise by
+sampling a large number of people from the population.
+ 
+For attributes with large variability $X$ it will take a larger sample size $n$
+to achieve the same level of precision compared to attributes with less variability.
+If the attribute does not vary at all in the population ($X=0$), then a single
+sample is sufficient. In the population of apartment renters there is no variability
+in the attribute *renter*, but there is variability in the attribute *amount of rent late*.
+
+### Benefits of Quantification
+
+The first obvious benefit of quantification is to make information amenable to
+mathematical and statistical operations. When mathematical or statistical calculations
+are concerned, any type of data will eventually be represented as numbers. A
+photograph turns into row and column indices of pixels and three-number triplets
+of red, green, and blue intensities. A sophisticated large language model that 
+processes textual information converts the text into numeric representations, 
+a process called **encoding**.
+
+
+@Huff_1954, in one of the most widely published statistics texts, *How to Lie with
+Statistics* states
+
+>*Many a statistic is false on its face. It gets by only because the magic of numbers brings about a suspension of common sense.*
+
+According to one view, the de-contextualized and value-free mathematical symbols 
+used in statistical analyses assist in achieving objectivity, stability, and fairness
+in decisions. Quantification is a method of standardization that summarizes
+and reduces concepts to their essence and allows us to make better decisions.
+
+Objective metrics by which to measure allows us to establish rank and status.
+Status of nations can be measured by GDP (Gross Domestic Product). A countries' 
+portion of global GPD is one of the criteria for G20 membership. Quantified
+status is a much better solution than determining status by sending soldiers 
+across borders. 
+
+Quantification allows us to express relationships: ranking, ordering, and measuring
+proximity. As we will see in a later chapter, sorting and searching are fundamental.
+As an exercise observe how many times a day you encounter sorted lists, rankings,
+top-ten results, best-of lists, most-preferred lists and other forms of arranging
+information by a relevance metric. Google search would not be so successful if
+searching would not be combined with ranking results by relevance.
+
+<!---
+https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
+--->
+
+### Types of Data
+
+
+### Surrogacy
+
+#### From quantification to metric
+
+
+#### Managing the metric
+
+
+
+

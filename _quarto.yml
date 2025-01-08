@@ -1,0 +1,48 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: "Quantitative and Computational Thinking"
+  subtitle: "Data and Algorithms"
+  author: "Oliver Schabenberger"
+  date: "January 8, 2024"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Computational Thinking by Oliver Schabenberger
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  cover-image: QCT_Cover.png
+
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - cholera.qmd
+    - datascience.qmd
+    - firstStepsR.qmd
+    - dataliteracy.qmd
+    - intuition.qmd
+    - predictions.qmd
+    - life_algorithms.qmd
+    - genAI.qmd
+    - references.qmd
+    - notes.qmd
+    
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+        light: [cosmo,customstyle.scss]
+        dark: [slate,customstyle.scss]
+    smooth-scroll: true
+    number-sections: true
+    number-depth: 2
+    toc-depth: 4
+    toc-expand: 2
+    pdf:
+    documentclass: scrreprt
+
+# editor: visual

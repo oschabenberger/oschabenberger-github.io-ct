@@ -1,0 +1,20 @@
+
+```{=html}
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+```
+
+# Data Science---CT + QT {#sec-data-science}
+
+:::{.callout-tip title="Quotes"}
+
+::: {.flushright data-latex=""}
+*It would be nice if we could just plug data into a statistical model, \
+crunch the numbers, and take for granted that it was a good \
+representation of the real world.*\
+Nate Silver, The Signal and the Noise
+:::
+:::

@@ -1,0 +1,147 @@
+
+<!---
+https://www.youtube.com/watch?v=vdXwvFUJRFU
+--->
+
+# Generative AI {#sec-genAI}
+
+
+## A Brief History of AI
+
+Artificial Intelligence (AI) is in every conversation. Everywhere you turn you
+hear "AI this", "AI that", and too many people are now pretending to be AI 
+experts. This has not always been the case. Some decades ago, when you'd tell
+anyone you work in artificial intelligence they would not take you serious. If
+you'd try to get a research grant better not mention the term artificial intelligence.
+This was the time of the *AI winter* that followed a period of overblown expectations
+and hyped predictions what machines would be capable of doing. 
+
+Periods of AI hype (AI summers) and AI disappointment (AI winters) are cyclic,
+currently we are in another AI summer since the arrival of capable foundation models
+and GPT-style technology. Once more you hear voices claiming machines have/are becoming
+sentient and that the era of artificial **general** intelligence, when machines 
+can think for themselves, is just around the corner.
+
+Do we know more about AI then back then? Are we better at predicting the future of 
+technology now than we were back then?
+
+Artificial intelligence (AI) refers to building systems that can perform tasks
+or make decisions that a human can make. The systems are built on various technologies,
+mechanization, robotics, software engineering, among them. Many AI systems today
+are entirely software based, large language models (ChatGPT, Gemini, Claude Sonnet) for 
+text processing or diffusion-based systems for image generation are examples. 
+
+@fig-mech-turk shows an example of a mechanized AI system, called the Mechanical
+Turk. It was an **automaton**, a device made to imitate an human action. The action
+in this case was to play chess.
+
+![Mechanical Turk, a chess-playing automaton in the 18th century.](images/MechanicalTurk.jpeg){#fig-mech-turk fig-align="center" width=50%}
+
+You can imagine that building a purely analog machine that plays chess is difficult.
+To accomplish this in the 18th century is quite remarkable. It was not possible.
+The Mechanical Turk was a hoax. The cabinet concealed an human player who operated the
+chess pieces from below the board.
+
+:::{.callout-note}
+Cynics might say that 2 1/2 centuries removed, we are still operating by the same
+principle. When you ask a large language model to write a poem in the style of
+Edgar Allan Poe, the poet behind the curtain is represented by the volumes of literature 
+used to train the language model so that it can respond in the requested style. 
+:::
+
+Performing human tasks by non-human means is as old as humanity. Goals are increased
+productivity through automation, greater efficiency and strength, elimination of
+mundane, boring, or risky tasks, increasing safety, etc. 
+
+The two major AI winters occurred during the periods 1974--1980 and 1987--2000.
+One was triggered by disappointment with progress in natural language processing,
+in particular **machine translation**. The other was triggered by disappointment
+with **expert systems**. 
+
+During the Cold War the government was interested in
+the automatic, instant translation of documents from Russian to English. Neural
+network architectures were proposed to solve the task. Today, neural network-based
+algorithms can perform language translation very well, it is just one of the
+many text analytics task that is done well by AI today. In the 1950s and 60s 
+progress was hindered by a number of factors:
+
+- lack of computing power to build large, in particular, deep networks
+- lack of large data sets to train the networks well
+- neural networks specifically designed for text data had not been developed 
+
+The expectations for the effort were sky high, however. Computers were described
+as "bilingual" and predictions were made that within the next 20 years essentially
+all human tasks could be done by machines. 
+
+An expert system is a computerized system that solves a problem by reasoning through
+a body of knowledge (called the knowledge base), akin to an expert who uses 
+their insight to find answers based on their expertise. Expert systems were an 
+attempt to create software that "thinks" like a human. The problem is that 
+computers are excellent at processing logic, but not at reasoning. The reasoning
+system, called the inference engine, consisted mainly of rules and conditional
+(if-else) logic. We are still using expert systems today, but a very special kind,
+those that can operate with captured logic rather than having to reason. Tax software
+is an example of such an **handcrafted knowledge system**---a very successful one
+at that. Most taxpayers would not think twice to use software such as TurboTax
+or TaxSlayer to prepare their income tax return.
+
+### Easy for Computers, Easy for Humans
+
+Tax software works well and is a successful AI effort because it performs a task
+that is easy for computers but intellectually difficult for humans. The tax code
+is essentially a big decision tree with many branches and conditions. That is 
+easy to convert into machine instructions--there is no reasoning. If the adjusted 
+gross income is $X, and the deductions are $Y, and the payer is filing jointly
+with their spouse, ..., then the tax is this amount. It is difficult for us to
+memorize the entire logic and execute it without errors.
+
+An expert system that performs logic reasoning is the exact opposite: it performs a task 
+that is easy for us but very difficult to perform for a computer. Imagine to
+create an expert system that can operate a car by converting how a human operator
+drives a car into machine instructions. We instantly recognize an object in the
+road as a deer and plan an evasive action. A machine would need to be taught how
+to recognize a deer in the first place.
+
+Humans excel solving problems that require a large amount of context and knowledge
+about the world. We look at a photo or glance out the window and instantly see
+what is happening. Seeing, sensing, speaking, operating machinery are such problems.
+Unlike the tax code, they are very difficult to describe formally.
+
+The revolution in artificial intelligence since the mid 2000s, what one could
+call the AI spring to the ChatGPT AI summer we are in, launched when our ability
+to solve problems that require knowledge about the world increased by orders of
+magnitude. The key was a new discipline, **deep learning**, which turned out
+to be a renaissance of decade-old ideas.
+
+### Neural Networks--Again
+
+
+
+
+
+## What is Generative AI?
+
+Generative Artificial Intelligence (GenAI) refers to artificial intelligence
+systems that are not explicitly programmed and are capable of producing novel 
+content or data. For example, a genAI system might be prompted with some text
+to produce new text or it might generate an image based on your description of
+the content and style of the image.
+
+The underlying technology of a GenAI system can be a generative adversarial
+network (GAN), a variational autoencoder (VAE), a diffusion-based system for
+image generation, or a generative pre-trained transformer (GPT). Whatever the 
+technology, GenAI systems have some common traits that are relevant for our
+discussion.
+
+
+## Ethical Considerations
+
+### Harm
+
+### Bias
+
+### Hallucinations
+
+### Intellectual Property Rights
+
+### Privacy

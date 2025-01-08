@@ -1,0 +1,287 @@
+
+```{=html}
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+```
+
+# Making Predictions {#sec-predict}
+
+:::{.callout-tip title="Quotes"}
+::: {.flushright data-latex=""}
+*We love to predict things---and we aren't very good at it.*\
+Nate Silver, The Signal and the Noise\
+*It is difficult to predict, especially the future.*\
+Niels Bohr\
+*The best way to predict the future is to create it.*\
+Peter Drucker, often attributed to Abraham Lincoln
+:::
+:::
+
+## Introduction {#sec-predict-intro}
+
+In *The Signal and the Noise*, @Silver2012 [p.52] cites a study at the University of
+Pennsylvania that found when political scientists claim that a political outcome
+had *no* chance of occurring, it happened about 15\% of the time. And of the absolutely
+sure things they proclaimed, 25\% failed to occur. Now we know that
+predictions are themselves uncertain, that is why polling results have a margin
+of error. But when you predict that something has a zero chance of happening,
+then you ought to be pretty confident in that, the margin of error should be 
+small, definitely not more than 15\%.
+
+This is an example of a prediction that is not very good. 
+
+If a plane had a 29\% of crashing, you would consider the 
+risk of flying too high and stay on the ground. In the run-up to the 2016
+presidential election, FiveThirtyEight predicted a 71\% chance for Clinton to
+win the Electoral College and a 29\% chance for Trump to win. This was a much
+higher chance of a Trump victory than the 1\% to 15\% chance many other models 
+produced. As it turned out, the FiveThirtyEight model was much better than the
+models that treated the Clinton victory as a near certainty. 
+
+@Silver2012 points out
+
+>"Most people fail to recognize how much easier it is to understand and event
+after the fact when you have all the evidence at your disposal. [] But making 
+better *first guesses* under conditions of uncertainty is an entirely different
+enterprise than second-guessing."
+
+
+Sometimes we predict things more accurately (small margin of error in the prediction) 
+but we do not believe it or act on it. Predictions that contradict our intuition
+or preferred narrative can be ignored or explained away. Our personal judgment
+is not as good as you might think. We tend to overvalue our own opinion and this
+trend increases the more we know. 80\% of doctors believe they are in the top 20\% of
+their profession. More than half of them are clearly wrong.
+
+So when a prediction does not come true, does the fault lie with the model of the 
+world or the world itself? If there is a 80\% chance of rain tomorrow, then you
+might see sunny skies. If, in fact, the long run ratio of days that have sunny
+skies when the forecast calls for an 80\% chance of rain is 1 in 5, then the 
+forecast model is correct. Compare the scenario to the following:
+
+In the build-up of the the 2008 financial crisis, Standard 
+\& Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, 
+meaning that there is only a 0.12 probability that they would fail to pay out [@Silver2012, p. 20].
+In reality, of the AAA-rated CDOS, 28\% defaulted. Had the world of financial 
+markets drastically changed to bring about such a massive change in default 
+rates (200x!)? Or is it more likely, that the default models of the rating agencies
+were wrong? It was the latter.
+
+---
+
+We predict all the time. On the drive to work we choose this route over that
+route because we predict it has less traffic, fewer red lights, or we are less
+likely to get caught behind a school bus. We probably make this choice instinctively,
+without much deliberation, based on experience, instantaneously processing information
+about the time of day, weather, etc.
+
+You might choose Netflix over Paramount+
+one evening because you think it is more likely that you'll find content that
+interests you. This is also a prediction problem.
+A company offers a customer a discount because it predicts that
+without an incentive the customer might leave for a competitor. Information about
+the weather consists of a status report of current conditions and a **forecast**.
+
+:::{.callout-note title="Prediction and Forecast"}
+Technically, a prediction and a forecast are different things. In statistics,
+a prediction results from the application of a model to data. If the data falls
+outside of the range of observed training data, then it is referred to as a
+forecast, in particular when the prediction is about a future event.
+
+Forecasting is also referred to as planning in the presence of uncertainty,
+taking a systematic, methodological approach. Predicting, on the other hand
+is any proclamation about things we do not know yet. We *predict* the outcome of a 
+football game based on gut feeling or allegiance to a team, but we *forecast* the 
+weather based on meteorological models.
+
+In seismology, the distinction between prediction and forecast is taken very seriously.
+A prediction of an earthquake is a specific statement about when and where it will
+strike. A forecast, on the other hand is a statement of probability: *there is a
+60\% chance of an earthquake in Northern Italy over the next fifty years*. Leaning
+on this distinction, the U.S. Geological Service party line is that earthquakes 
+cannot be predicted.
+
+For the purpose of our discussion here, predicting and forecasting are 
+interchangeable.
+:::
+
+## Supervised and Unsupervised Learning
+
+Making predictions is probably the fundamental task of algorithms that process
+data by training some form of model. Statistical learning techniques can be categorized
+in broad strokes into **supervised** and **unsupervised** methods. The name stems
+from the concept of students learning in the presence of a teacher. In supervised
+learning the teacher knows the correct answer to problems, and can measure the
+discrepancy between truth and a student's answer. In unsupervised learning there
+is no teacher to guide the quality of the answer. Instead, the student is trying
+to find patterns and associations in the data. 
+
+The two primary tasks in supervised learning are predictions and classifications.
+Classification problems involve assigning an observation to one of a set of possible
+outcome categories, for example, whether an animal is healthy or diseased, or 
+choosing a word from a dictionary, or which one of the digits 0--9 a handwriting
+sample represents. Prediction in the sense of supervised learning is making a 
+statement about the average of an attribute, for example, the monthly revenue
+or the weight of an animal.
+
+We go on this detour of supervised/unsupervised learning and of prediction/classification
+to uncover that the process of prediction is fundamental to all these applications.
+Consider you are presented with a handwritten digit and you have trained a classification
+model in digit detection. The algorithm does not actually say which of the ten
+digits it was presented with. The algorithm will compute a vector of 10 quantities
+each between 0 and 1, and subject to the constraint that they sum to 1.
+
+Here is the vector for one observation
+$$
+[0.00000, 0.00001, 0.00001, 0.00003, 0.00000, 0.00000, 0.00000, 0.99994, 0.00000, 0.00001]
+$$
+
+and here is the vector for another observation
+
+$$
+ [0.00056, 0.00002, 0.00000, 0.00001, 0.00424, 0.74695, 0.18760, 0.00001, 0.00616, 0.05446]
+$$
+
+The first element of the vector corresponds to digit 0, the second to digit 1,
+and so on. Considering the first vector, how would you convert the numbers
+into a classification? Since the numbers are between 0 and 1, and sum to 1, it
+is tempting to interpret them as probabilities. The overwhelming evidence 
+points at the 8^th^ position in the vector with a large *probability* of 0.99994.
+The algorithm is almost certain that the digit is a "7". 
+
+In the second case we see more of a spread in the probabilities. Digit "5" is 
+considered most likely (probability 0.74695), but other digits also have a non-zero
+probability ("6" and "9"). Given the large probability for "6" we would probably
+classify the digit as a six.
+
+![Digit classifications.](images/LeNetPredictions.png){#fig-lenet-pred fig-align="center" width=75% .lightbox}
+
+@fig-lenet-pred shows the actual and classified digits for nine data points.
+The vectors shown above correspond to the probabilities for the images in the
+upper left and lower right corners. We are not surprised that the algorithm
+classified the first observation as a "7". We are also not surprised that the 
+sloppy "5" in the lower right corner could be mistaken for a "6" (which had the
+second largest probability).
+
+The point of this example is twofold:
+
+1. The process of classifying something through a statistical algorithm often 
+goes first through a process of predicting a measure of confidence or likelihood 
+associated with the possible outcomes. We then classify the observation into the 
+category that has the highest probability. This is known as the **Bayes Rule** of 
+classification and it can be shown to be optimal in the sense of achieving the 
+greatest accuracy.
+
+2. When making predictions we need to think in terms of probabilities and 
+uncertainties. Ultimately, the classification model will spit out one category 
+and we interpret this as "the model says the digit is a seven". In the case of
+the first observation, there is not much uncertainty with the prediction, as
+the model deems other choices very unlikely. In the second case we should 
+appreciate that the algorithm decided on a "5", but also that there is uncertainty
+in the prediction. We only know that the algorithm got it right  because we 
+know the author of the digit was writing a "5" (the label). As @Silver2012 puts
+it,
+
+>*Our brains, wired to detect patterns, are always looking for a signal, when 
+instead we should appreciate how noisy the data is.*
+
+A common task in unsupervised learning is finding patterns in the data that
+allow us to group the observations. The algorithm finds that observations are
+somehow similar and dissimilar based on their attributes. This process is called
+a **cluster analysis** and the result are a certain number of clusters formed from
+the training data. If a new observation comes along, we can assign it to one of
+the clusters by applying the clustering model. We predict which of the clusters
+the observation is closest to in the sense of the model. Again, prediction is
+the fundamental task by which we draw conclusions about new observations.
+
+---
+
+Predictions are everywhere. We make them, consciously or subconsciously all the 
+time. The human brain is a highly efficient pattern matching machine and we
+constantly make predictions about the world based on the patterns we receive.
+Predictions are at the heart of data processing, whether it is for the purpose
+of forecasting, classifying, or clustering (grouping). 
+
+
+
+## Bad Predictions
+
+@Silver2012 [p.20] summarizes the attributes bad predictions have in common:
+
+* Focus on the signals that tell a story abou the world as we would like it to
+be, not how it really is.
+* Ignore the risks that are most difficult to measure, although they pose the 
+greatest risk to our well-being.
+* Make approximations and assumptions that are much cruder than we realize.
+* Dislike (abhor) uncertainty, even if it is an integral part of the problem.
+
+
+## Predicting versus Measuring
+
+* Destructive tests
+* Expensive tests
+* Future performance
+
+
+## Things that are Notoriously Difficult to Predict
+
+### Noisy Systems, Sparse Data
+
+* Low signal-to-noise ratio
+
+### Chaotic Systems
+
+* Weather
+* Economy
+
+### Complex Systems
+
+Complex systems are those governed by the interaction of many separate individual
+parts. They can seem at once very predictable and very unpredictable. The laws
+governing earth quakes are well understood and the long-term frequency of 
+a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are 
+not very good at predicting earthquake activity.
+
+Complex systems periodically
+undergo violent and highly nonlinear phase changes from orderly to chaotic and 
+back again. Bubbles in the economy and significant weather events such as hurricanes, 
+tornadoes, or tsunamis are examples.
+
+
+* Earthquakes
+
+### Nonlinear or Exponential Growth
+
+* Infectious diseases
+
+### Systems with Feedback Loops
+
+The act of predicting can change the system being predicted. Economic predictions
+can change the way people have and that can affect the outcome of the prediction
+itself. Those changes can make the prediction more accurate or less accurate. 
+
+Self-fulfilling predictions, where the prediction reinforces the outcome,
+are common in political polling. A poll showing a
+candidate surging can cause voters to switch to the candidate from ideologically
+similar candidates. Or it can make undecided voters to finally get off the fence.
+
+Another example of a self-fulfilling prediction is when increased media coverage
+of a medical condition leads to increased diagnosis of the condition. Not just
+because the condition is more prevalent, but because of increased attention people
+are more likely to identify symptoms and are doctors are more likely to diagnose
+them. The rise of autism diagnoses in the U.S. from 1992 to 2008 correlates highly 
+with the media coverage of autism [@Silver2012, p. 218].
+
+When the police increase presence in an area where crime rate is believed to be
+high, they will report more incidences because of their presence and that will
+in turn increase the crime rate. 
+
+A self-cancelling prediction works the opposite way, it undermines itself. When GPS
+systems became more commonplace, drivers were guided to routes which the systems
+thought had less traffic. If the systems cannot adjust in real time to the actual
+traffic density, the guidance can result in more traffic on the suggested routes.
+
+

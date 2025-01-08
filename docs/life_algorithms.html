@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quantitative and Computational Thinking - 8&nbsp; Algorithms to Live By</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./genAI.html" rel="next">
+<link href="./predictions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./life_algorithms.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative and Computational Thinking</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cholera.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datascience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science—CT + QT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./firstStepsR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intuition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genAI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
+  <li><a href="#optimal-stoppingthe-37-rule" id="toc-optimal-stoppingthe-37-rule" class="nav-link" data-scroll-target="#optimal-stoppingthe-37-rule"><span class="header-section-number">8.2</span> Optimal Stopping–The 37% Rule</a>
+  <ul>
+  <li><a href="#the-secretary-problem" id="toc-the-secretary-problem" class="nav-link" data-scroll-target="#the-secretary-problem">The Secretary Problem</a></li>
+  <li><a href="#issues-with-the-optimal-stopping-rule" id="toc-issues-with-the-optimal-stopping-rule" class="nav-link" data-scroll-target="#issues-with-the-optimal-stopping-rule">Issues with the Optimal Stopping Rule</a></li>
+  </ul></li>
+  <li><a href="#searching-and-sortinga-tradeoff" id="toc-searching-and-sortinga-tradeoff" class="nav-link" data-scroll-target="#searching-and-sortinga-tradeoff"><span class="header-section-number">8.3</span> Searching and Sorting—A Tradeoff</a></li>
+  <li><a href="#asymmetric-cryptography" id="toc-asymmetric-cryptography" class="nav-link" data-scroll-target="#asymmetric-cryptography"><span class="header-section-number">8.4</span> Asymmetric Cryptography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-algos-live" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="flushright">
+<p><em>Much as we bemoan the daily rat race, the fact that it’s a race rather than<br>
+a fight is a key part of what sets us apart from the monkeys, the chickens<br>
+—and, for that matter, the rats.</em><br>
+Brian Christian &amp; Tom Griffiths, Algorithms to Live By</p>
+</div>
+</div>
+</div>
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<p>In the introduction we defined an algorithm as a set of repeatable step-by-step instructions to solve a particular problem. Algorithms are not necessarily the machinations of computer scientists and mathematicians—recall making pumpkin soup. We design and apply algorithms in every day life. You probably have a personal algorithm or two for brushing teeth or making the bed.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Getting into bed: a dog's perspective">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Getting into bed: a dog’s perspective
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>My dog has developed an elaborate algorithm for nights when he wants to sleep in the bed. He starts out sleeping in his dog bed on the floor and the algorithm goes something like this:</p>
+<ol type="1">
+<li><p>Get up and pretend there is something outside that needs his attention: a squirrel in a tree, a raccoon on the porch, a deer in the yard, etc.</p></li>
+<li><p>Make sure that I understand the severity of the threat and follow him to the living room. This can involve growling at the door to the deck, running back and forth between living room and bed room.</p></li>
+<li><p>I finally get up, follow him into the living room and open the door to the deck.</p></li>
+<li><p>At this point he pretends to realize that there is no threat after all and we can go back to bed.</p></li>
+<li><p>He follows me into the bedroom, positioning himself next to the bed in the unmistakable posture that says “lift me up on the bed please.”</p></li>
+</ol>
+<p>To his credit, he could jump on the bed by himself and is going through this routine as a means to get permission. The algorithm is complicated, but it is a repeatable step-by-step recipe, and it works every time.</p>
+</div>
+</div>
+</div>
+<p>Algorithms are designed to perform a task in some optimal way. My dog applies the above algorithm to achieve the optimal sleeping arrangement—by his standard. Mathematicians and computer scientists have developed many algorithms to solve certain problems optimally. If you have to put five books on a shelf in order, you might not worry much about the sorting algorithm. When you have to sort 100,000 items choosing between a bubble, quick, or merge sort matters much more.</p>
+<p>Can we apply what mathematicians and computer scientists know about optimal algorithms to solve problems in everyday life? The discussion that follows draws on the book <em>Algorithms to Live By</em> by <span class="citation" data-cites="ChristianGriffiths">Christian and Griffiths (<a href="references.html#ref-ChristianGriffiths" role="doc-biblioref">2017</a>)</span>.</p>
+</section>
+<section id="optimal-stoppingthe-37-rule" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="optimal-stoppingthe-37-rule"><span class="header-section-number">8.2</span> Optimal Stopping–The 37% Rule</h2>
+<p>Suppose you just landed a job at a Silicon-Valley startup company and are locating to San Francisco. Finding an apartment in San Francisco can be a rough experience: there is a lot of demand for a short supply. As a newcomer to town you do not have a good feeling for the market. What do typical apartments in your price range look like? What is available on the market?</p>
+<p>Here is the dilemma: you cannot procrastinate much when you see an available apartment; they go very fast. But if you choose the first available apartment you will miss out on better ones that you have not seen yet. If you pass on the first available apartment there is no guarantee that the next ones will be any better. But you need to look at least at a few of them to get a feeling for what is on the market. How else could you make an informed decision? But if you keep looking at apartments and pass on them you might end up with no apartment at all or you have to choose from what is left on the market. Is looking at 2 apartments enough? 20?</p>
+<p>There are two ways in which you can fail: stop looking at apartments too early and stop looking too late. When you stop too early a better apartment goes undiscovered. If you stop too late you hold out for a better apartment that does not exist, you have passed on the best possible apartment already.</p>
+<p>This is known as an <strong>optimal stopping</strong> problem. How much effort should you spend on <em>looking</em> at choices and when should you <em>leap</em> and make a decision?</p>
+<p>It turns out that there is an answer. The optimal decision rule is to spend 37% of your budget on calibrating and looking at apartments to establish a standard. Then pick the next apartment that beats the standard. If your budget is one month to find an apartment, then you should look and calibrate for 11 days.</p>
+<p>We can thank computer science for having an optimal solution to balance overthinking and impulse decision. No more analysis paralysis if you apply the 37% rule. You can see how the algorithm could be applied to other situations in real life:</p>
+<ul>
+<li>How much time should you spend circling a parking lot before committing to a spot in the hope that a better spot opens up?</li>
+<li>How many offers should you reject before selling the car or house in the hope to get a better offer?</li>
+<li>How long should you be dating before finding the “optimal” partner?</li>
+</ul>
+<p>The 37% rule is not optimal in all decision problems. Situations where the rule applies are characterized by the following:</p>
+<ul>
+<li>You have to choose a singleton (one apartment, one parking spot, one partner).</li>
+<li>There are <span class="math inline">\(n\)</span> possible choices and <span class="math inline">\(n\)</span> is known.</li>
+<li>It is possible to rank all <span class="math inline">\(n\)</span> choices from best to worst.</li>
+<li>The choices appear sequentially in a random order.</li>
+<li>After meeting a choice, a decision is made immediately to reject or accept it.</li>
+<li>A choice cannot be revisited after rejection or acceptance.</li>
+<li>If you come to the final (<span class="math inline">\(n\)</span><sup>th</sup>) choice you have to take it.</li>
+</ul>
+<p>The optimum achieved by the 37% rule is to maximize <strong>the probability</strong> to select the best choice among the <span class="math inline">\(n\)</span> possibilities. The rule does not guarantee that <em>the</em> best choice is made. But no other rule has a higher probability of finding the best choice under the circumstances.</p>
+<section id="the-secretary-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-secretary-problem">The Secretary Problem</h3>
+<p>The optimal stopping problem is also known as the <em>secretary</em> problem, the <em>sultan’s dowry</em> problem, the <em>fussy suitor</em> problem or the <em>marriage</em> problem. In terms of hiring a secretary, it goes as follows.</p>
+<p>You want to hire the best secretary out of <span class="math inline">\(n\)</span> applicants for a position. Applicants are interviewed in a random order one by one. After the interview you decide whether to accept or reject the candidate. If you reject an applicant they take another job and cannot be reconsidered. While interviewing the applicant you gather information that allows you to rank the candidate against those interviewed so far but you do not know the quality of the yet to-be-interviewed candidates.</p>
+<p>The 37% rule states that you should be evaluating the first 37% applicants to create a ranking. That completes the <em>looking</em> phase. Then <em>leap</em> and make an offer to the next applicant that ranks higher than the best applicant interviewed during the looking phase.</p>
+<p>But wait, what if there is only one applicant? Or two?</p>
+<p>With a single applicant you need to hire them, and you are guaranteed to have hired the best of the (single) bunch. With two applicants, if you pass on the first, you have to hire the second. In this case you can flip a coin, either hire the first or pass and be forced to hire the second—you cannot do better than chance. With <span class="math inline">\(n=3\)</span> candidates the optimal rule is to look at the first candidate, then choose the second candidate if they beat the first. This is a 1/3 x 100% = 33.3% rule and has a 50% probability of finding the best candidate.</p>
+<p>As <span class="math inline">\(n\)</span> increases, the optimal rule approaches <span class="math inline">\(1/e \times 100\% = 36.8\%\)</span> and that is also the probability of finding the best candidate. Round that percentage up and you see why it is called the 37% rule.</p>
+<p>You might say that a 37% chance of making the best choice is not very good. In 63% of all cases we are not finding the best candidate. The result is not that bad if you compare it against a pure random chance. If there are 100 candidates for the position, then a random choice has a 1% chance of getting the best candidate. In a pool of 1,000 candidates, random selection has a 0.1% chance of locating the best. However, the odds of finding the best candidate under the optimal stopping rule does not change. The more choices you have, the better optimal stopping performs relative to random selection. But even with only three candidates the likelihood of finding the best candidate has improved from 1 out of 3 to 1 out of 2.</p>
+</section>
+<section id="issues-with-the-optimal-stopping-rule" class="level3">
+<h3 class="anchored" data-anchor-id="issues-with-the-optimal-stopping-rule">Issues with the Optimal Stopping Rule</h3>
+<p>But wait, you say. Pure random selection is not the appropriate benchmark against which to compare the optimal stopping rule. This is not how we hire people in the real world. In other words, the situation where the 37% rule applies does not describe how we do things.</p>
+<p>What are some of the ways in which the optimal stopping setup is unrealistic:</p>
+<ul>
+<li><p>We often do not know <span class="math inline">\(n\)</span>, the number of choices. For example, we might not know how many apartments in San Francisco are on the market. There is a workaround: if <span class="math inline">\(n\)</span> is unknown, we can base the 37% rule on a time interval: we give ourselves one month to find an apartment and enter the leap phase after 10 or 11 days.</p></li>
+<li><p>The choices do not come to us in a random order. In an interview process there are short lists and candidates are screened and filtered. The order in which candidates come to the interview is not completely at random.</p></li>
+<li><p>After rejecting a candidate, we do have the option to go back. If it turns out that none of the other candidates was better than a candidate rejected earlier, then we can go back and reconsider the choice. After rejecting a date, we can ask them on another date—theoretically.</p></li>
+<li><p>In real life, we are not making decisions after seeing a candidate. Instead, applicants are grouped (pre-screening, initial phone interview, on-site interview, …) and choices are made after each batch of candidates.</p></li>
+<li><p>The optimal stopping problem assumes that we do not have a ranking of the candidates. It only assumes that there is an objective method of ranking them and that we rank as we go. Obviously, candidates are evaluated based on many criteria and these are known ahead of time. The look phase of the optimal stopping exists because it is needed to calibrate what good candidates look like. We know this a priori of time, and we can evaluate candidates (somewhat) based on their resumes.</p></li>
+<li><p>We do not only have a sense of which candidate ranks higher or lower, but also by how much. Meeting a candidate that really stands out changes the likelihood of making a decision. If you know that a candidate is in the top 10% of SAT or GRE scores, there is only a 1 in 10 chance that others will be better.</p></li>
+<li><p>The job will be offered to a candidate in the <em>leap</em> phase, not the <em>looking</em> phase. The Human Resources and the Legal departments are probably going to have a conniption if the first 37% of candidates being interviewed have no chance of getting the job. Queue the lawsuits. Your dates might not respond kindly when they find out that you are “just looking”.</p></li>
+</ul>
+<hr>
+<p>The optimal stopping scenario and the 37% rule are useful to construct a mental model of how to go about a decision that involves sequentially evaluating choices and deciding on a particular choice. As with any model, we have to examine the assumptions and conditions under which the model applies. We quickly see that the assumptions do not map cleanly to real-life situations such as hiring, finding a partner, or even circling a parking lot for the best empty space.</p>
+<p>As G.E.P. Box said</p>
+<blockquote class="blockquote">
+<p><em>All models are wrong. Some are useful.</em></p>
+</blockquote>
+<p>The utility of casting real-life decision situations in terms of an optimal stopping problem lies in understanding that under special circumstances there is an optimal way to balance impulse and procrastination and to realize in what ways our decision situation deviates from that scenario. Are we in a <strong>no-information</strong> scenario as in the classical secretary problem where we have no a-priori data about the quality of the applicants or are we in a <strong>full-information</strong> scenario where the quality of all applicants can be quantified a priori? If it is the latter we should come to a decision more quickly than going through at least 37% of the stack.</p>
+<p>A situation where the algorithm applies cleanly to a real-life situation is when we are placing things in order—the task of sorting. The question then is what is the most efficient way to go about it?</p>
+</section>
+</section>
+<section id="searching-and-sortinga-tradeoff" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="searching-and-sortinga-tradeoff"><span class="header-section-number">8.3</span> Searching and Sorting—A Tradeoff</h2>
+<p>Searching means finding things in a collection. Sorting means arranging a collection in order. Both are fundamental tasks in data processing. Sorting was one of the first applications for computers, making sense of the 1890 census. Tallying the previous census by hand took 8 years, just enough to finish the task before the next census <span class="citation" data-cites="ChristianGriffiths">(<a href="references.html#ref-ChristianGriffiths" role="doc-biblioref">Christian and Griffiths 2017</a>)</span>. With growing number of questions asked on every census, something needed to be done, the 1890 census would not be tallied by hand in time for the 1900 census. Enter the Tabulator, a punchcard-based machine invented by Herman Hollerith and adapted for the 1890 census (<a href="#fig-hollerith" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>).</p>
+<div id="fig-hollerith" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hollerith-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/HollerithMachine.CHM.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/HollerithMachine.CHM.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hollerith-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Tabulator with sorting machine invented by Herman Hollerith. Source: <a href="https://en.wikipedia.org/wiki/Tabulating_machine">Wikipedia</a>
+</figcaption>
+</figure>
+</div>
+<p>Sorting was one of the most important tasks for computers. <span class="citation" data-cites="ChristianGriffiths">Christian and Griffiths (<a href="references.html#ref-ChristianGriffiths" role="doc-biblioref">2017</a>)</span> state</p>
+<blockquote class="blockquote">
+<p><em>By the 1960s, one study estimated that more than a quarter of the computing resources of the world were being spent on sorting.</em></p>
+</blockquote>
+<p>and it is still at the heart of many algorithms. Every time you see a ranking, a largest or smallest value, a 95<sup>th</sup> percentile, a leader board or a top-10, a list had to be arranged by value, sorted at least partially.</p>
+<p>As an exercise, can you think of some ways in which you encounter sorted things every day? Here is a start:</p>
+<ul>
+<li><p>Sports teams are ranked by criteria such as number of wins and losses, and displayed from highest to lowest.</p></li>
+<li><p>Music is ranked by popularity, measured as number of downloads, sales, etc.</p></li>
+<li><p>Music is grouped (sorted) by genre.</p></li>
+<li><p>Streaming services recommend things to watch according to an algorithm that ranks shows based on your watch history.</p></li>
+<li><p>Displays of countries are sorted by all kinds of attributes. The medal count in the Olympic Games, gross domestic product (GDP), annual oil production, emissions, etc.</p></li>
+<li><p>A Google search returns the search results sorted according to relevance. The relevance is determined through a number of factors such as Google’s famed <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> algorithm, which sites are sponsored, and so forth. Without sorting the search results you would have to sift through millions of links to determine which ones are most relevant to your search. The ranking is very effective, less than 1% of Google searches scroll to the second page.</p></li>
+<li><p>The email Inbox is sorted by some criteria, read/unread, message thread, time of arrival, etc.</p></li>
+<li><p>On computers, files and folders can be arranged by attributes such as size, time of creation, time of modification, name, etc.</p></li>
+<li><p>The U.S. Postal Service sorts mail by zip code.</p></li>
+<li><p>Social media sites create personalized feeds based on sorting contributions according to their algorithms.</p></li>
+<li><p>Searching for items in an online store you can arrange the results by brand, price, popularity, etc.</p></li>
+<li><p>Books in the library are organized into buckets by call numbers and are sorted alphabetically within buckets.</p></li>
+</ul>
+</section>
+<section id="asymmetric-cryptography" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="asymmetric-cryptography"><span class="header-section-number">8.4</span> Asymmetric Cryptography</h2>
+<!---
+https://medium.com/puzzle-sphere/love-and-locks-a-padlock-puzzle-7d436f97cce9
+
+https://en.wikipedia.org/wiki/Public-key_cryptography
+--->
+<p>Consider the following scenario.</p>
+<p>Bob and Alice are pen pals and are sending letters to each other by snail mail. At one point, Bob wants to send Alice a package that contains a valuable item. Unfortunately, thieves have been breaking open packages and stolen the contents. To prevent that from happening, Bob places the item inside a box and places a lock on it. The problem now is, how can Alice open the lock without having the key to it? One option is for Bob to communicate the lock combination by some other means to Alice. If it is a keyed lock, he could send the key to her in another mailing. In any event, he does not want to include the key in the package itself, that would be pointless. And sending the combination or key separately still comes with risks. The information could be intercepted and when a thief gets their hands on the package with the valuable item they could steal it.</p>
+<p>How can Bob send the item safely to Alice and she is guaranteed to receive it without exchanging information about the lock itself?</p>
+<p>The solution lies in asymmetric cryptography, also called asymmetric encryption. Prior to the invention of asymmetric encryption secrets were sent around that enable recipients to decrypt messages. The obvious problem of symmetric encryption is that if someone gets hold of message and decryption key, they can decipher the message. Everything hinges on keeping the keys safe.</p>
+<p>How could Bob and Alice handle the situation without exchanging secrets (keys) about the box? It involves two keys. When Bob sends the package to Alice, he attaches his lock to the box. Upon receipt, Alice attaches her lock as well and sends the package back to Bob. He recognizes the package came from Alice and removes his lock, then sends it back to Alice.</p>
+<p>Alice now receives the box that contains the valuable item protected with her own lock. She uses her own key to open it and retrieves the item.</p>
+<p>Only the owners of the keys used it to lock and unlock the box. The keys were never exchanged. This came at the expense of sending the package back and forth a few times. This could be optimized in the following way: suppose we use a special (single) lock with two keys: a key anyone can use to lock it, but a key unique to Alice to unlock it. Alice shares the first key with anyone who sends her packages and keeps the key to unlock a secret (shares it with no one). When Bob sends a package to Alice, he locks the box with her public key. When he sends a package to Fred, he secures it with his public key.</p>
+<p>This is essentially how most messages traveling over the internet are secured, based on a pair of related keys.</p>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;8.1: Tabulator with sorting machine invented by Herman Hollerith. Source: <a href="https://en.wikipedia.org/wiki/Tabulating_machine">Wikipedia</a></span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ChristianGriffiths" class="csl-entry" role="listitem">
+Christian, Brian, and Tom Griffiths. 2017. <em>Algorithms to Live by. The Computer Science of Human Decisions</em>. Henry Holt; Company, New York.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./predictions.html" class="pagination-link" aria-label="Making Predictions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./genAI.html" class="pagination-link" aria-label="Generative AI">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Computational Thinking by Oliver Schabenberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

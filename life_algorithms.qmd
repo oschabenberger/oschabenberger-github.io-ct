@@ -1,0 +1,361 @@
+
+
+```{=html}
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+```
+
+# Algorithms to Live By {#sec-algos-live}
+
+:::{.callout-tip title="Quotes"}
+
+::: {.flushright data-latex=""}
+*Much as we bemoan the daily rat race, the fact that it’s a race rather than \
+a fight is a key part of what sets us apart from the monkeys, the chickens\
+---and, for that matter, the rats.*\
+Brian Christian & Tom Griffiths, Algorithms to Live By
+:::
+:::
+
+## Introduction
+
+In the introduction we defined an algorithm as a set of repeatable step-by-step
+instructions to solve a particular problem. Algorithms are not necessarily the 
+machinations of computer scientists and mathematicians---recall making pumpkin soup.
+We design and apply algorithms in every day life. You probably have a personal 
+algorithm or two for brushing teeth or making the bed. 
+
+:::{.callout-note title="Getting into bed: a dog's perspective" collapse=true}
+My dog has developed an elaborate algorithm for nights when he wants to sleep in 
+the bed. He starts out sleeping in his dog bed on the floor and the algorithm 
+goes something like this:
+
+1. Get up and pretend there is something outside that needs his attention: a 
+squirrel in a tree, a raccoon on the porch, a deer in the yard, etc.
+
+2. Make sure that I understand the severity of the threat and follow him to
+the living room. This can involve growling at the door to the deck, running 
+back and forth between living room and bed room.
+
+3. I finally get up, follow him into the living room and open the door to the deck.
+
+4. At this point he pretends to realize that there is no threat after all and 
+we can go back to bed.
+
+5. He follows me into the bedroom, positioning himself next to the bed in the
+unmistakable posture that says "lift me up on the bed please."
+
+To his credit, he could jump on the bed by himself and is going through this
+routine as a means to get permission. The algorithm is complicated, but it is
+a repeatable step-by-step recipe, and it works every time.
+:::
+
+Algorithms are designed to perform a task in some optimal way. My dog applies
+the above algorithm to achieve the optimal sleeping arrangement---by his standard.
+Mathematicians and computer scientists have developed many algorithms to solve 
+certain problems optimally. If you have to put five books on a shelf in order, you 
+might not worry much about the sorting algorithm. When you have to sort 100,000
+items choosing between a bubble, quick, or merge sort matters much more.
+
+Can we apply what mathematicians and computer scientists know about optimal 
+algorithms to solve problems in everyday life? The discussion that follows draws
+on the book *Algorithms to Live By* by @ChristianGriffiths.
+
+
+## Optimal Stopping--The 37% Rule
+
+Suppose you just landed a job at a Silicon-Valley startup company and are locating
+to San Francisco. Finding an apartment in San Francisco can be a rough experience:
+there is a lot of demand for a short supply. As a newcomer to 
+town you do not have a good feeling for the market. What do typical apartments in
+your price range look like? What is available on the market? 
+
+Here is the dilemma: you cannot procrastinate much when you see an available 
+apartment; they go very fast. But if you choose the first available apartment you 
+will miss out on better ones that you have not seen yet. If you pass on the first 
+available apartment there is no guarantee that the next ones will be any better. 
+But you need to look at least at a few of them to get a feeling for what is on the 
+market. How else could you make an informed decision? But if you keep looking at 
+apartments and pass on them you might end up with no apartment at all or you have 
+to choose from what is left on the market. Is looking at 2 apartments enough? 20?
+
+There are two ways in which you can fail: stop looking at apartments too early
+and stop looking too late. When you stop too early a better apartment goes undiscovered.
+If you stop too late you hold out for a better apartment that does not exist, 
+you have passed on the best possible apartment already.
+
+This is known as an **optimal stopping** problem. How much effort should
+you spend on *looking* at choices and when should you *leap* and make a decision?
+
+It turns out that there is an answer. The optimal decision rule is to spend 37\%
+of your budget on calibrating and looking at apartments to establish a standard.
+Then pick the next apartment that beats the standard. If your budget is one month
+to find an apartment, then you should look and calibrate for 11 days.
+
+We can thank computer science for having an optimal solution to balance overthinking
+and impulse decision. No more analysis paralysis if you apply the 37\% rule.
+You can see how the algorithm could be applied to other situations in real life:
+
+- How much time should you spend circling a parking lot before committing to a 
+spot in the hope that a better spot opens up?
+- How many offers should you reject before selling the car or house in the hope
+to get a better offer?
+- How long should you be dating before finding the "optimal" partner?
+
+The 37\% rule is not optimal in all decision problems. Situations where the rule
+applies are characterized by the following:
+
+- You have to choose a singleton (one apartment, one parking spot, one partner).
+- There are $n$ possible choices and $n$ is known.
+- It is possible to rank all $n$ choices from best to worst.
+- The choices appear sequentially in a random order.
+- After meeting a choice, a decision is made immediately to reject or accept it.
+- A choice cannot be revisited after rejection or acceptance.
+- If you come to the final ($n$^th^) choice you have to take it.
+
+The optimum achieved by the 37\% rule is to maximize **the probability** to select
+the best choice among the $n$ possibilities. The rule does not guarantee that
+*the* best choice is made. But no other rule has a higher probability of finding 
+the best choice under the circumstances.
+
+
+### The Secretary Problem
+
+The optimal stopping problem is also known as the *secretary* problem, the
+*sultan's dowry* problem, the *fussy suitor* problem or the *marriage* problem.
+In terms of hiring a secretary, it goes as follows.
+
+You want to hire the best secretary out of $n$ applicants for a position. 
+Applicants are interviewed in a random order one by one. After the interview 
+you decide whether to accept or reject the candidate. If you reject an applicant
+they take another job and cannot be reconsidered. While interviewing the applicant
+you gather information that allows you to rank the candidate against those 
+interviewed so far but you do not know the quality of the yet to-be-interviewed
+candidates.
+
+The 37\% rule states that you should be evaluating the first 37\% applicants to
+create a ranking. That completes the *looking* phase. Then *leap* and make an offer
+to the next applicant that ranks higher than the best applicant interviewed during
+the looking phase.
+
+But wait, what if there is only one applicant? Or two? 
+
+With a single applicant
+you need to hire them, and you are guaranteed to have hired the best of the 
+(single) bunch. With two applicants, if you pass on the first, you have to hire
+the second. In this case you can flip a coin, either hire the first or pass and
+be forced to hire the second---you cannot do better than chance. With $n=3$ candidates
+the optimal rule is to look at the first candidate, then choose the second 
+candidate if they beat the first. This is a 1/3 x 100\% = 33.3\% rule and has
+a 50\% probability of finding the best candidate.
+
+As $n$ increases, the optimal rule approaches $1/e \times 100\% = 36.8\%$ and
+that is also the probability of finding the best candidate. Round that percentage
+up and you see why it is called the 37\% rule.
+
+You might say that a 37\% chance of making the best choice is not very good. In
+63\% of all cases we are not finding the best candidate. The result is not that
+bad if you compare it against a pure random chance. If there are 
+100 candidates for the position, then a random choice has a 1\% chance of getting
+the best candidate. In a pool of 1,000 candidates, random selection has a 0.1\%
+chance of locating the best. However, the odds of finding the best candidate under
+the optimal stopping rule does not change. The more choices you have, the better
+optimal stopping performs relative to random selection. But even with only three
+candidates the likelihood of finding the best candidate has improved from 1 out of 3 to
+1 out of 2.
+
+### Issues with the Optimal Stopping Rule
+
+But wait, you say. Pure random selection is not the appropriate benchmark 
+against which to compare the optimal stopping rule. This is not how we hire
+people in the real world. In other words, the situation where the 37\% rule 
+applies does not describe how we do things. 
+
+What are some of the ways in which the optimal stopping setup is unrealistic:
+
+- We often do not know $n$, the number of choices. For example, we might not know 
+how many apartments in San Francisco are on the market. There is a workaround: 
+if $n$ is unknown, we can 
+base the 37\% rule on a time interval: we give ourselves one month to find an 
+apartment and enter the leap phase after 10 or 11 days.
+
+- The choices do not come to us in a random order. In an interview process there
+are short lists and candidates are screened and filtered. The order in which 
+candidates come to the interview is not completely at random.
+
+- After rejecting a candidate, we do have the option to go back. If it turns out
+that none of the other candidates was better than a candidate rejected earlier, 
+then we can go back and reconsider the choice. After rejecting a date, we
+can ask them on another date---theoretically.
+
+- In real life, we are not making decisions after seeing a candidate. Instead,
+applicants are grouped (pre-screening, initial phone interview, on-site interview, ...)
+and choices are made after each batch of candidates.
+
+- The optimal stopping problem assumes that we do not have a ranking of the
+candidates. It only assumes that there is an objective method of ranking them 
+and that we rank as we go. Obviously, candidates are evaluated based on many criteria and these
+are known ahead of time. The look phase of the optimal stopping exists because
+it is needed to calibrate what good candidates look like. We know this a priori
+of time, and we can evaluate candidates (somewhat) based on their resumes. 
+
+- We do not only have a sense of which candidate ranks higher or lower, but
+also by how much. Meeting a candidate that really stands out changes the 
+likelihood of making a decision. If you know that a candidate is in the top 10\%
+of SAT or GRE scores, there is only a 1 in 10 chance that others will
+be better.
+
+- The job will be offered to a candidate in the *leap* phase, not the *looking* 
+phase. The Human Resources and the Legal departments are probably going to have a 
+conniption if the first 37\% of candidates being interviewed have no chance of
+getting the job. Queue the lawsuits. Your dates might not respond kindly when 
+they find out that you are "just looking".
+
+---
+
+The optimal stopping scenario and the 37\% rule are useful to construct a mental 
+model of how to go about a decision that involves sequentially evaluating choices 
+and deciding on a particular choice. As with any model, we have to examine the
+assumptions and conditions under which the model applies. We quickly see that
+the assumptions do not map cleanly to real-life situations such as hiring, 
+finding a partner, or even circling a parking lot for the best empty space.
+
+As G.E.P. Box said 
+
+>*All models are wrong. Some are useful.*
+
+The utility of casting real-life decision situations in terms of an optimal
+stopping problem lies in understanding that under special circumstances there
+is an optimal way to balance impulse and procrastination and to realize in what
+ways our decision situation deviates from that scenario. Are we in a **no-information**
+scenario as in the classical secretary problem where we have no a-priori data
+about the quality of the applicants or are we in a **full-information** scenario
+where the quality of all applicants can be quantified a priori? If it is the 
+latter we should come to a decision more quickly than going through at least 37\% 
+of the stack.
+
+A situation where the algorithm applies cleanly to a real-life situation is
+when we are placing things in order---the task of sorting. The question then is
+what is the most efficient way to go about it?
+
+## Searching and Sorting---A Tradeoff
+
+Searching means finding things in a collection. Sorting means arranging a collection
+in order. Both are fundamental tasks in data processing. Sorting was one of the 
+first applications for computers, making sense of the 1890 census. Tallying the 
+previous census by hand took 8 years, just enough to finish the task before the next
+census [@ChristianGriffiths]. With growing number of questions asked on every 
+census, something needed to be done, the 1890 census would not be tallied by hand 
+in time for the 1900 census. Enter the Tabulator, a punchcard-based machine
+invented by Herman Hollerith and adapted for the 1890 census (@fig-hollerith).
+
+![Tabulator with sorting machine invented by Herman Hollerith. Source: [Wikipedia](https://en.wikipedia.org/wiki/Tabulating_machine)](images/HollerithMachine.CHM.jpg){#fig-hollerith fig-align="center" width=70% .lightbox}
+
+Sorting was one of the most important tasks for computers. @ChristianGriffiths 
+state
+
+>*By the 1960s, one study estimated that more than a quarter of the computing resources of the world were being spent on sorting.*
+
+and it is still at the heart of many algorithms. Every time you see a ranking,
+a largest or smallest value, a 95^th^ percentile, a leader board or a top-10, 
+a list had to be arranged by value, sorted at least partially.
+
+As an exercise, can you think of some ways in which you encounter sorted things 
+every day? Here is a start:
+
+- Sports teams are ranked by criteria such as number of wins and losses, and
+displayed from highest to lowest.
+
+- Music is ranked by popularity, measured as number of downloads, sales, etc.
+
+- Music is grouped (sorted) by genre.
+
+- Streaming services recommend things to watch according to an algorithm that
+ranks shows based on your watch history.
+
+- Displays of countries are sorted by all kinds of attributes. The  medal count 
+in the Olympic Games, gross domestic product (GDP), annual oil production, 
+emissions, etc.
+
+- A Google search returns the search results sorted according to relevance. The 
+relevance is determined through a number of factors such as Google's famed 
+[PageRank](https://en.wikipedia.org/wiki/PageRank) algorithm, which sites are 
+sponsored, and so forth. Without sorting the search results you would have to 
+sift through millions of links to determine which ones are most relevant to
+your search. The ranking is very effective, less than 1\% of Google searches 
+scroll to the second page.
+
+- The email Inbox is sorted by some criteria, read/unread, message thread, time 
+of arrival, etc.
+
+- On computers, files and folders can be arranged by attributes such as size,
+time of creation, time of modification, name, etc.
+
+- The U.S. Postal Service sorts mail by zip code.
+
+- Social media sites create personalized feeds based on sorting contributions
+according to their algorithms.
+
+- Searching for items in an online store you can arrange the results by 
+brand, price, popularity, etc.
+
+- Books in the library are organized into buckets by call numbers and are sorted
+alphabetically within buckets.
+
+
+## Asymmetric Cryptography
+
+<!---
+https://medium.com/puzzle-sphere/love-and-locks-a-padlock-puzzle-7d436f97cce9
+
+https://en.wikipedia.org/wiki/Public-key_cryptography
+--->
+
+Consider the following scenario. 
+
+Bob and Alice are pen pals and are sending 
+letters to each other by snail mail. At one point, Bob wants to send Alice 
+a package that contains a valuable item. Unfortunately, thieves have been breaking
+open packages and stolen the contents. To prevent that from happening, Bob places
+the item inside a box and places a lock on it. The problem now is, how can 
+Alice open the lock without having the key to it? One option is for Bob to 
+communicate the lock combination by some other means to Alice. If it is a keyed
+lock, he could send the key to her in another mailing. In any event, he does
+not want to include the key in the package itself, that would be pointless. 
+And sending the combination or key separately still comes with risks. The 
+information could be intercepted and when a thief gets their hands on the package
+with the valuable item they could steal it.
+
+How can Bob send the item safely to Alice and she is guaranteed to receive it
+without exchanging information about the lock itself?
+
+The solution lies in asymmetric cryptography, also called asymmetric encryption.
+Prior to the invention of asymmetric encryption secrets were sent around that 
+enable recipients to decrypt messages. The obvious problem of symmetric encryption
+is that if someone gets hold of message and decryption key, they can decipher the 
+message. Everything hinges on keeping the keys safe.
+
+How could Bob and Alice handle the situation without exchanging secrets (keys) 
+about the box? It involves two keys. When Bob sends the package to Alice, he
+attaches his lock to the box. Upon receipt, Alice attaches her lock as well and
+sends the package back to Bob. He recognizes the package came from Alice
+and removes his lock, then sends it back to Alice.
+
+Alice now receives the box that contains the valuable item protected with her 
+own lock. She uses her own key to open it and retrieves the item.
+
+Only the owners of the keys used it to lock and unlock the box. The keys were
+never exchanged. This came at the expense of sending the package back and forth
+a few times. This could be optimized in the following way: suppose we use a 
+special (single) lock with two keys: a key anyone can use to lock it, but a 
+key unique to Alice to unlock it. Alice shares the first key with anyone who 
+sends her packages and keeps the key to unlock a secret (shares it with no one).
+When Bob sends a package to Alice, he locks the box with her public key. When
+he sends a package to Fred, he secures it with his public key.
+
+This is essentially how most messages traveling over the internet are secured, 
+based on a pair of related keys. 
+

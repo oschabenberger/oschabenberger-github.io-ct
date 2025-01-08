@@ -1,0 +1,70 @@
+
+/*-- scss:defaults-- */
+
+/*-- scss:rules --*/
+
+
+.example {
+  margin: 1em 0;
+  border: 2px solid gray;
+  border-left: 10px solid teal; 
+  border-bottom: 10px solid teal; 
+  border-radius: 10px;
+}
+
+.example-header {
+  margin-left: 0em;
+  padding-left: 10px;
+  padding-top:  5px;
+  padding-bottom: 0.1em;
+  color: black;
+  background-color: rgb(123, 173, 173);
+  border-top-right-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  // background-image: url("icons/clip-line-icon.png");
+}
+
+.example-container {
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color: black;
+  background-color: lightgray;
+  border-bottom-right-radius: 10px;
+}
+
+.definition {
+  margin: 1em 0;
+  border: 2px solid gray;
+  border-left: 10px solid rgb(88, 212, 187); 
+  border-bottom: 10px solid rgb(88, 212, 187); 
+  border-radius: 10px;
+}
+
+.definition-header {
+  margin-left: 0em;
+  padding-left: 10px;
+  padding-top:  5px;
+  padding-bottom: 5px; //0.1em; 
+  color: rgb(175, 44, 6); //black;
+  background-color: rgb(88, 212, 187);
+  border-top-right-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+}
+
+.definition-container {
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px; //0.1em; 
+  color: black;
+  background-color: rgb(230,230,230); // lightgray;
+  border-bottom-right-radius: 10px;
+}

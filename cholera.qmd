@@ -1,0 +1,172 @@
+
+# Case Study: Cholera in Soho, London, 1854 {#sec-cholera}
+
+## Two Snows
+
+In 1854, a severe outbreak of cholera occurred near Broad Street in Soho, London,
+killing over 600 people. The outbreak was studied by John Snow, considered one 
+of the founders of modern epidemiology. No, not the Jon Snow you might be thinking 
+of, Lord Commander of the Night Watch (@fig-jon-snow), but the John Snow in
+@fig-john-snow.
+
+::: {#fig-the-snows layout-ncol=2}
+
+![John Snow. Source: [Wikipedia](https://en.wikipedia.org/wiki/John_Snow)](images/John_Snow.jpg){#fig-john-snow fig-align="center"}
+
+![Jon Snow. Source: [Wikipedia](https://en.wikipedia.org/wiki/Jon_Snow_(character))](images/Jon_Snow.png){#fig-jon-snow fig-align="center"}
+
+Famous John/Jon Snows
+:::
+
+## Visualization
+
+@fig-cholera-map shows the map drawn by John Snow, recording the number of
+cholera cases with stacked bars at the location where cholera cases occurred (click on the 
+map to zoom in). Also shown on the map as black circles and annotated as "PUMP" 
+are the public water pumps throughout the city. The high number of cholera cases 
+on Broad Street stands out, and they seem to be clustered near the location of 
+the Broad Street Pump [@Snow1855, p.46].
+
+
+![John Snow's original cholera map from Soho, London in 1854.](images/Snow_cholera_map_1.jpg){#fig-cholera-map fig-align="center" width=90% .lightbox}
+
+Cholera had been a major problem in the city, thousands had died during previous 
+outbreaks. The prevailing theories of the cause of cholera were (i), airborne particles,
+called *miasma* that rose from decomposing organic material and (ii), an as of
+yet unidentified germ. According to the miasma theory, cholera is contracted by
+breathing bad air. John Snow adhered to the germ theory and believed that it
+was transmitted through contaminated water.
+
+## Data Validation
+
+Talking to residents, Snow identified the public water pump on Broad Street to 
+be the source of the outbreak. He failed to identify *the germ* under the microscope
+but came to the conclusion based on the pattern in the data and conversations
+with residents. Investigating on the ground, he found that nearly all deaths 
+were in the vicinity of the Broad Street Pump or by people who had consumed water 
+from the pump [@Snow1855, p.47]:
+
+>*It will be observed that the deaths either very much diminished, or ceased altogether, at every point where it becomes decidedly nearer to send to another pump than to the one in Broad street. It may also be noticed that the deaths are most numerous near to the pump where the water could be more readily obtained.*
+
+He persuaded local authorities to remove the handle from the pump to prevent access
+to the water. The mortality rate declined after that, but it is believed that the
+outbreak was already in decline as people had fled the area. 
+
+:::{.callout-note title="Removing the handle"}
+"Removing the handle" is now a term in epidemiology for the removal of a harmful 
+agent from the environment. When epidemiologists look for simple answers to
+questions about epidemics, they ask "Where is the handle to this pump?" [@CompThinking].
+:::
+
+There were some data points (outliers?) that did not agree with the hypothesis that
+proximity to the Broad Street pump resulted in more cholera incidences. At the
+intersection of Broad Street and New Street was the Lion Brewery; there were no
+cholera cases at the brewery although it used water from the Broad Street pump. It turns
+out that the workers there were protected from cholera by virtue of a daily
+beer allowance. The cholera bacteria is killed in the brewing process making the
+beer safe to drink. Drinking beer instead of the contaminated water saved the 
+workers from cholera. What appears as an outlier to the model actually reinforces
+it.
+
+@CompThinking discuss other data points that appeared initially as anomalies and
+ended up implicating the public pump on Broad Street:
+
+- There were deaths in houses closer to the Rupert Street pump than the Broad Street pump. 
+It was more convenient for those residents to use the Broad Street pump due to 
+the street layout.
+
+- Deaths in houses several blocks away from the Broad Street pump were linked to
+children who drank from the Broad Street pump on their way to school.
+
+- John Snow was initially puzzled by two isolated deaths in the Hampstead area, 
+far from Soho. He learned that the deceased had once lived in Broad Street. 
+Because they liked the taste, they had water from the Broad Street pump delivered
+to Hampstead every day. 
+
+The well accessed by the Broad Street pump was contaminated with fecal bacteria
+that leaked into the well from a nearby cesspit. Sewage from the house of a cholera
+victim had contaminated the well.
+
+## Toward Causality {#sec-cholera-deeper}
+
+The evidence that the contaminated well water at the Broad Street pump caused
+the high rate of cholera in that neighborhood and among those who consumed the
+water is strong. Is it conclusive, however? Have we ruled out any other explanation
+*beyond a reasonable doubt*? 
+
+There could be other explanations for the higher cholera incidence rate in the
+Broad Street neighborhood compared to other areas of London. Maybe the diet is
+different among the residents of that poorer area. Maybe their occupations expose
+them to harmful agents at work. Maybe there is something different in the way
+their houses were constructed. 
+
+While we know today that the bacterium *Vibrio cholerae* causes cholera, that 
+discovery was not made until 1883 and John Snow had failed to identify a "germ"
+when he studied the Broad Street pump water. The prevailing miasma theory of
+infection from airborne particles also did not support Snow's findings. While
+his data, visualization, and analysis showed a strong association between 
+cholera and proximity to the Broad Street pump, a deeper analysis was necessary
+to convince his contemporaries.
+
+To establish cause and effect and prove that a variable causes an outcome, 
+modern science would design and run an experiment, provided it is ethically 
+and technically possible. In such an experiment one would control for all other
+factors except the one hypothesized to cause the outcome. One method of controlling
+these **confounding** factors is by randomly assigning the conditions of interest
+to people and to observe what happens. Exposing folks deliberately to contaminated 
+water that could harm or even kill them is not justified. Fortunately, John Snow
+found a real-life experiment with perfect conditions to establish cause and 
+effect between cholera and water contamination.
+
+He studied the cholera incidences among recipients of water from two water supply
+companies. The Lambeth company used water from the River Thames drawn upriver from 
+sewage discharge and the Southwark \& Vauxhall company drew water below the 
+discharge. Snow also established that for all intents and purposes the households
+receiving water from either company were indistinguishable; in statistical terms
+they were comparable. The only thing that differentiated the two groups was the
+water supplier. @Snow1855 [p. 75] wrote 
+
+>*In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies...As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer.*
+
+@tbl-chol-rate is based on @Snow1855 [p. 80] and covers the period from 
+January 1 to December 12, 1853. The cholera death rate on a 
+per 10,000 house basis is almost 14 times higher in households supplied by 
+Southwark \& Vauxhall compared to those who received their water from Lambeth.
+
+| Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
+|:---:|:---:|:---:|:---:|
+| Southwark \& Vauxhall1 | 40,046 | 286 | 71 |
+| Lambeth | 26,107 | 14 | 5 |
+
+: Cholera incidences and rates for two water supply companies leading up to the 1854 outbreak. {#tbl-chol-rate .striped}
+
+In all of London there were 563 deaths from cholera in the same period. In other
+words, 50\% of the deaths took place among customers of the Southwark \& Vauxhall
+company. Ouch.
+
+For the first seven week period of the 1854 outbreak, @Snow1855 [p. 86] recorded
+the death rates in @tbl-chol-rate2
+
+| Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
+|:---:|:---:|:---:|:---:|
+| Southwark \& Vauxhall1 | 40,046 | 1,263 | 315 |
+| Lambeth | 26,107 | 98 | 37 |
+| Rest of London | 256,423 | 1,422 | $55^*$ |
+
+: Cholera incidences and rates during the first seven weeks of the outbreak. The death rate in the rest of London was reported as 59 in Table IX of @Snow1855, but calculates to 55 deaths per 10,000. {#tbl-chol-rate2 .striped}
+
+
+In statistical terms, such a difference in the death rates is **highly significant**,
+meaning that if there is no difference in the water quality between the suppliers,
+such a discrepancy would virtually never happen. The only reasonable explanation
+for the higher death rate, since differences between the groups receiving the 
+water have been ruled out, is the quality (contamination) of the Southwark \&
+Vauxhall water.
+
+
+
+
+
+
+
+

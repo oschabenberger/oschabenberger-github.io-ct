@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quantitative and Computational Thinking - 6&nbsp; Quantitative Intuition and Problem Solving</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./predictions.html" rel="next">
+<link href="./dataliteracy.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intuition.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative and Computational Thinking</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cholera.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datascience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science—CT + QT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./firstStepsR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intuition.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genAI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-prisoners-dilemma" id="toc-the-prisoners-dilemma" class="nav-link active" data-scroll-target="#the-prisoners-dilemma"><span class="header-section-number">6.1</span> The Prisoner’s Dilemma</a>
+  <ul>
+  <li><a href="#nash-equilibrium" id="toc-nash-equilibrium" class="nav-link" data-scroll-target="#nash-equilibrium">Nash Equilibrium</a></li>
+  </ul></li>
+  <li><a href="#guarding-criminals" id="toc-guarding-criminals" class="nav-link" data-scroll-target="#guarding-criminals"><span class="header-section-number">6.2</span> Guarding Criminals</a></li>
+  <li><a href="#three-jars" id="toc-three-jars" class="nav-link" data-scroll-target="#three-jars"><span class="header-section-number">6.3</span> Three Jars</a></li>
+  <li><a href="#pattern-recognition-1" id="toc-pattern-recognition-1" class="nav-link" data-scroll-target="#pattern-recognition-1"><span class="header-section-number">6.4</span> Pattern Recognition #1</a></li>
+  <li><a href="#pattern-recognition-2" id="toc-pattern-recognition-2" class="nav-link" data-scroll-target="#pattern-recognition-2"><span class="header-section-number">6.5</span> Pattern Recognition #2</a></li>
+  <li><a href="#birthday-problem" id="toc-birthday-problem" class="nav-link" data-scroll-target="#birthday-problem"><span class="header-section-number">6.6</span> Birthday Problem</a></li>
+  <li><a href="#minimum-cuts" id="toc-minimum-cuts" class="nav-link" data-scroll-target="#minimum-cuts"><span class="header-section-number">6.7</span> Minimum Cuts</a></li>
+  <li><a href="#when-to-choose-the-ticket" id="toc-when-to-choose-the-ticket" class="nav-link" data-scroll-target="#when-to-choose-the-ticket"><span class="header-section-number">6.8</span> When to Choose the Ticket</a></li>
+  <li><a href="#how-many-squares-on-a-chessboard" id="toc-how-many-squares-on-a-chessboard" class="nav-link" data-scroll-target="#how-many-squares-on-a-chessboard"><span class="header-section-number">6.9</span> How Many Squares on a Chessboard</a></li>
+  <li><a href="#book-sorting" id="toc-book-sorting" class="nav-link" data-scroll-target="#book-sorting"><span class="header-section-number">6.10</span> Book Sorting</a></li>
+  <li><a href="#inverted-triangle" id="toc-inverted-triangle" class="nav-link" data-scroll-target="#inverted-triangle"><span class="header-section-number">6.11</span> Inverted Triangle</a></li>
+  <li><a href="#the-spare-tire" id="toc-the-spare-tire" class="nav-link" data-scroll-target="#the-spare-tire"><span class="header-section-number">6.12</span> The Spare Tire</a></li>
+  <li><a href="#robot-triangle" id="toc-robot-triangle" class="nav-link" data-scroll-target="#robot-triangle"><span class="header-section-number">6.13</span> Robot Triangle</a></li>
+  <li><a href="#truth-telling" id="toc-truth-telling" class="nav-link" data-scroll-target="#truth-telling"><span class="header-section-number">6.14</span> Truth Telling</a></li>
+  <li><a href="#clock-made-with-matches" id="toc-clock-made-with-matches" class="nav-link" data-scroll-target="#clock-made-with-matches"><span class="header-section-number">6.15</span> Clock Made With Matches</a></li>
+  <li><a href="#two-stacks-of-cards" id="toc-two-stacks-of-cards" class="nav-link" data-scroll-target="#two-stacks-of-cards"><span class="header-section-number">6.16</span> Two Stacks of Cards</a></li>
+  <li><a href="#rapid-fire" id="toc-rapid-fire" class="nav-link" data-scroll-target="#rapid-fire"><span class="header-section-number">6.17</span> Rapid Fire</a></li>
+  <li><a href="#crossing-the-river" id="toc-crossing-the-river" class="nav-link" data-scroll-target="#crossing-the-river"><span class="header-section-number">6.18</span> Crossing the River</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-intuition" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this module you are presented with puzzles and problems to flex your analytic and quantitative thinking muscles. Most of these are well-known problems that you might run into during a job interview that is testing your problem-solving skills and your analytical thinking. In fact, several problems were culled from interview questions for quantitative and analytic positions. Others are testing your intuition about likelihoods and probability.</p>
+<section id="the-prisoners-dilemma" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-prisoners-dilemma"><span class="header-section-number">6.1</span> The Prisoner’s Dilemma</h2>
+<p>Suppose that Andy and Brie are arrested as members of a criminal gang and held separately by the police. They cannot communicate. There is enough evidence to convict them on a lesser charge, but not on the principal charge. The police offers the following deal:</p>
+<ul>
+<li>If they both remain silent, they will each serve one year in prison.</li>
+<li>If one testifies against the other, but the other one does not, the one who testified will be set free while the other serves three years in prison.</li>
+<li>If Andy and Brie both testify against each other, they will each serve two years.</li>
+</ul>
+<p>How should Andy and Brie behave to optimize their positions, that is, look out after their own interest?</p>
+<p>The result of such a game is typically displayed in a payoff matrix that shows in each cell the payoff for the two players.</p>
+<div id="tbl-prisoner" class="striped quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prisoner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Expected payoffs in prisoner dilemma
+</figcaption>
+<div aria-describedby="tbl-prisoner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><strong>Brie remains silent</strong></th>
+<th style="text-align: center;"><strong>Brie testifies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Andy remains silent</strong></td>
+<td style="text-align: center;"><span class="math inline">\((-1, -1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-3, 0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Andy testifies</strong></td>
+<td style="text-align: center;"><span class="math inline">\((0, -3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-2, -2)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The “payoffs” are shown in the matrix as negative numbers, as they represent a penalty, years of imprisonment. The goal is to maximize the payoff, a number as large as possible.</p>
+<p>The best situation for Andy is to testify when Brie remains silent. He would go free in this case (and does not mind Brie spending three years behind bars). Similarly, the best situation for Brie is to testify when Andy remains silent. These are the two diagonal cells in <a href="#tbl-prisoner" class="quarto-xref">Table&nbsp;<span>6.1</span></a>.</p>
+<p>The situation does not play out as well for them if one testifies and the other also testifies. What is the best strategy?</p>
+<section id="nash-equilibrium" class="level3">
+<h3 class="anchored" data-anchor-id="nash-equilibrium">Nash Equilibrium</h3>
+<p>The Nash equilibrium is a concept in game theory. It applies to non-cooperative games where players compete against each other. In the equilibrium state, no player can gain an advantage by changing their strategy. This assumes that the other player’s strategies do not change.</p>
+<p>Suppose players Andy and Brie have chosen strategies A and B, respectively. In the Nash equilibrium, there is no other strategy available to Andy that would increase his expected payoff if Brie stays with strategy B. Similarly, there is no other strategy available to Brie that would increase her expected payoff from the game if Andy stays with strategy A.</p>
+<p>The Nash equilibrium tells us not to consider player’s action in isolation. Instead, we need to take into account what other players are expected to do in evaluating a player’s choices.</p>
+<hr>
+<p>The best <strong>outcome</strong> for either Andy and Brie would be to go free. But they do not know how the other one will behave. So what is the best <strong>strategy</strong> to play this game? Let’s rephrase testifying and remaining silent in terms of <strong>defecting</strong> and <strong>collaborating</strong> players of a game.</p>
+<div id="tbl-prisoner2" class="striped quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prisoner2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Expected payoffs in prisoner dilemma
+</figcaption>
+<div aria-describedby="tbl-prisoner2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><strong>Brie collaborates</strong></th>
+<th style="text-align: center;"><strong>Brie defects</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Andy collaborates</strong></td>
+<td style="text-align: center;"><span class="math inline">\((-1, -1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-3, 0)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Andy defects</strong></td>
+<td style="text-align: center;"><span class="math inline">\((0, -3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-2, -2)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>If Andy defects, his penalty will be less, regardless of whether Brie is collaborative or not (0 or 2 years compared to 1 or 3 years). The same applies to Brie, if she defects her penalty will be less regardless of what Andy does. The Nash equilibrium is that both players defect although they suffer worse penalties than if they had both cooperated.</p>
+</section>
+</section>
+<section id="guarding-criminals" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="guarding-criminals"><span class="header-section-number">6.2</span> Guarding Criminals</h2>
+<p>Suppose you are guarding <span class="math inline">\(n\)</span> criminals in an open field. You have one gun with a single bullet. You are a good shot and being fired at means death—the criminals know that. Their behavior is governed by the following rules:</p>
+<ul>
+<li>If any of them has a non-zero probability of surviving, they will attempt to escape.</li>
+<li>If a criminal is certain of death, they will not attempt to escape.</li>
+</ul>
+<p>How do you guard the criminals and stop them from escaping?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Imagine there is only a single criminal, <span class="math inline">\(n=1\)</span>. Since he/she would definitely be shot at during an escape, they would face certain death and not escape.</p>
+<p>What happens if there are two criminals? If they both try to escape, there is a 50:50 chance to survive, hence they will both try to escape. To prevent that from happening you would tell one of the two (you do not need to tell both!) that you would shoot them, should they both attempt to escape. That criminal now faces certain death and will not escape. That brings you back to the situation with a single criminal.</p>
+<p>How does this generalize to larger groups of criminals? Assign a number from 1 to <span class="math inline">\(n\)</span> to the criminals and tell them that should any subgroup of them try to escape, the one with the highest number in the group will be shot.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="three-jars" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="three-jars"><span class="header-section-number">6.3</span> Three Jars</h2>
+<p>Three opaque jars are sitting on a table. The jars are labeled “Apples”, “Oranges”, and “Apples &amp; Oranges”. Unfortunately, all three are labeled incorrectly.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ThreeJars.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Three opaque jars.</figcaption>
+</figure>
+</div>
+<p>Your task is to assign the labels correctly to the jars. What is the smallest number of fruit you have to choose in order to correctly label the three jars?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You choose one fruit from the jar that is labeled incorrectly as “Apples &amp; Oranges”. If you pull an apple, you know this is the jar with the apples, otherwise it is the jar with the oranges. Now you have two jars left whose labels just need to be flipped since you were told that all three jars are labeled incorrectly.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pattern-recognition-1" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="pattern-recognition-1"><span class="header-section-number">6.4</span> Pattern Recognition #1</h2>
+<p><a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows a logic reasoning puzzle. The first row makes sense if the strange operator is addition, but that does not work for the next rows. You have to find the meaning of that operator, then apply the pattern to solve the last equation.</p>
+<div id="fig-math-puzzle1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-math-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/LogicPuzzle1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-math-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Can you solve this?
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We need to find a pattern that expresses the operations in terms of familiar algebra. If the operator in <a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> is interpreted as multiplication then we get 4, 10, 18, all smaller than the values on the right hand side. How much smaller? Exactly by the left-most number. The pattern that seems to apply to the first three rows is</p>
+<ul>
+<li>multiply the two numbers</li>
+<li>then add the number on the left</li>
+</ul>
+<p>Applying this pattern to the last row yields 96 as the solution (<a href="#fig-math-puzzle2" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>).</p>
+<div id="fig-math-puzzle2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-math-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/LogicPuzzle1Solution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-math-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: A solution.
+</figcaption>
+</figure>
+</div>
+<p>This, by the way, is not the only solution. There are other patterns that will lead to a different result for the last row. Those patterns are equally valid. Can you find another pattern that yields a solution?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pattern-recognition-2" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="pattern-recognition-2"><span class="header-section-number">6.5</span> Pattern Recognition #2</h2>
+<p>Here is a sequence of numbers.</p>
+<p><span class="math display">\[
+\begin{array}{c}
+1 \\
+11 \\
+21 \\
+1211 \\
+111221 \\
+312211 \\
+??
+\end{array}
+\]</span></p>
+<p>What is the next number in the sequence?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>What is the pattern in the sequence of numbers?</p>
+<ul>
+<li>The first row is the number 1, it is also “one one”.</li>
+<li>The second row is the number 11, it is also “two ones”.</li>
+<li>The third row is the number 21, it is also “one two and one one”.</li>
+</ul>
+<p>The pattern is that the numbers for the following row are obtained by spelling out the numbers in the current row, then replacing the words with the numbers they represent. For example, take 1211 in the fourth row. Spelling it out gives “one one one two two ones”. Now replace the words with numbers: “111221”.</p>
+<p>The missing entry at the end of the sequence is thus <span class="math display">\[
+13112221
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="birthday-problem" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="birthday-problem"><span class="header-section-number">6.6</span> Birthday Problem</h2>
+<p>This is a classical problem in probability, and a popular one because it is relatable yet somewhat counterintuitive. The probability is higher than what most people expect. It goes like this:</p>
+<blockquote class="blockquote">
+<p>What is the probability that in a group of <span class="math inline">\(n\)</span> randomly chosen people, at least two share the same birthday?</p>
+</blockquote>
+<p>“Birthday” is meant as one of 365 days of the year, not adjusting for leap years. Also, we are not taking the birth year into account. A birthday for the purpose of this problem is April 10, or August 15, etc.</p>
+<p>The standard version of the problem uses <span class="math inline">\(n=23\)</span>, because you can imagine yourself in a group of that size—a classroom, for example—and the probability of at least two shared birthdays is also relatable.</p>
+<p>How likely do you think at least two people share a birthday in a group of 23?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The probability of at least two shared birthdays in a group of 23 is about 0.5; it is 0.05073, to be more exact. How do you interpret that? If you were to assemble groups of 23 randomly chosen people, than half of those groups would have at least two shared birthdays. Pretty high, eh?</p>
+<p>What happens to the probability of a shared birthday when the groups get larger? How about in a group of 35 people? The probability of a shared birthday increases to 0.814. In a group of 50 people, the probability is 0.97. In a group of 100, it is virtually certain that there are at least two identical birthdays, <span class="math inline">\(p=0.999999\)</span>. With only 10 people in a group, it would be surprising to have identical birthdays, but it is not a rare event, <span class="math inline">\(p=0.117\)</span>.</p>
+<hr>
+<p>For those interested, how do you calculate those probabilities? First, whenever you see the expression “at least” in a probability statement, it is probably easier to calculate the probability of the complement event and subtract that from 1. <span class="math display">\[
+\Pr(\text{at least two identical birthdays}) = 1 - \Pr(\text{no matching birthdays})
+\]</span></p>
+<p>What is the probability that no birthdays match in a group of <span class="math inline">\(n\)</span>? You can compute this by considering the possible choices as people enter the group. The birthday of the first person can be chosen from 365 days, but the birthday for the second person has only 364 choices, otherwise we would have a match. Since the members of the group are chosen at random, the birthdays are independent and the probability of no matches is the product <span class="math display">\[
+\Pr(\text{no matches}) = \frac{365}{365} \times \frac{364}{365} \times \cdots \times \frac{365-n+1}{365}
+\]</span></p>
+<p>You can write this in terms of factorials as <span class="math display">\[
+\Pr(\text{no matches}) = \frac{1}{365^n} \frac{365!}{(365-n)!}
+\]</span> Finally, the probability of at least two shared birthdays is <span class="math display">\[
+\Pr(\text{at least two shared birthdays}) = 1 - \frac{1}{365^n} \frac{365!}{(365-n)!}
+\]</span></p>
+<p>If you were to compute this, you’d run into problems because the factorials are larger than what a finite precision computer can represent. The following <code>R</code> function uses two tricks to compute the birthday probability efficiently:</p>
+<ol type="1">
+<li>Compute the probability on the logarithmic scale, then exponentiate at the end</li>
+<li>Use the fact that for an integer <span class="math inline">\(k\)</span>, <span class="math inline">\(k!\)</span> is <span class="math inline">\(\Gamma(k+1)\)</span>, where <span class="math inline">\(\Gamma()\)</span> is the Gamma function.</li>
+</ol>
+<p>The <code>lgamma</code> function in <code>R</code> computes the log of the Gamma function, and that gives us access to an efficient way to compute the components of the probability on the log scale.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>birthday_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   log_p <span class="ot">&lt;-</span> <span class="fu">lgamma</span>(<span class="dv">365</span><span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> <span class="fu">lgamma</span>(<span class="dv">365</span><span class="sc">-</span>n<span class="sc">+</span><span class="dv">1</span>) <span class="sc">-</span> n<span class="sc">*</span><span class="fu">log</span>(<span class="dv">365</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span> (<span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(log_p))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1169482</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">23</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5072972</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8143832</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9703736</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">birthday_prob</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9999997</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="minimum-cuts" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="minimum-cuts"><span class="header-section-number">6.7</span> Minimum Cuts</h2>
+<p>Imagine that you hire a consultant to work for you for five days. At the end of each day you need to pay them 1/5th of a gold bar. You have a single gold bar (worth 5 fifths) and need to cut it up so you can pay the consultant at the end of each day.</p>
+<div id="fig-gold-bar" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gold-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GoldBar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gold-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: A gold bar that needs to be cut up.
+</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>What is the minimum number of cuts that allow you to pay the consultant every day?</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You need only two cuts to cut the gold bar into three pieces of sizes 1/5, 1/5, and 3/5.</p>
+<div id="fig-gold-bar-solution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gold-bar-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GoldBarSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gold-bar-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: No more than two cuts are needed.
+</figcaption>
+</figure>
+</div>
+<p>Then you pay the consultant as follows:</p>
+<ul>
+<li>Day 1: give them a 1/5 gold bar</li>
+<li>Day 2: give them the second 1/5 gold bar</li>
+<li>Day 3: take back the two 1/5 bars and hand them the 3/5 bar</li>
+<li>Day 4: give them a 1/5 gold bar</li>
+<li>Day 5: give them the second 1/5 gold bar</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="when-to-choose-the-ticket" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="when-to-choose-the-ticket"><span class="header-section-number">6.8</span> When to Choose the Ticket</h2>
+<p>An airline has a single seat open on a flight, but <span class="math inline">\(n=100\)</span> standby passengers hoping to get on the flight. You are one of the passengers on standby. To be fair to all standby passengers, the airline decides to drop 100 equal-sized pieces of paper into a bucket. 99 of them are blank, one says “Last Seat”. The papers are folded and shuffled in the bucket.</p>
+<p>The standby passengers queue and each passenger gets to pick one piece of paper without replacement—that is, they keep the slip and do not return it to the bucket. Also they cannot unfold and look at the slip until all of them re drawn. After the last slip is drawn the standby passengers announce who is the lucky person that drew the “Last Seat” by checking their slip.</p>
+<p>Here is the question: if you have your choice to pick first, second, last, or at any particular position in the queue, which position would you choose?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It does not matter when you draw the paper if the pieces were properly shuffled. This is a completely random sample even if the sampling is done sequentially. Your chance of drawing the “Last Seat” slip is 1/100, whether you draw first, last, or at any other position in the queue.</p>
+<p>Note that this would be different if passengers would announce the result of their draws before the next draw. The conditional probability of choosing the “Last Seat” slip on the next draw increases with every bank slip that preceded.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="how-many-squares-on-a-chessboard" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="how-many-squares-on-a-chessboard"><span class="header-section-number">6.9</span> How Many Squares on a Chessboard</h2>
+<p>A chess board is made up of eight rows and columns of black and white positions (<a href="#fig-chessboard" class="quarto-xref">Figure&nbsp;<span>6.5</span></a>). How many squares are on a board?</p>
+<div id="fig-chessboard" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chessboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Chessboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chessboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: Chess board.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The quick answer is <span class="math inline">\(8 \times 8 = 64\)</span> squares. However, that is only part of the story. The entire board is a single square as well, made up of the 64 individual squares. And we could place all kinds of <span class="math inline">\(2 \times 2\)</span> squares inside the larger frame.</p>
+<p>If you think about it for a bit there are <span class="math inline">\(8^2\)</span> squares of size <span class="math inline">\(1 \times 1\)</span>, <span class="math inline">\(7^2\)</span> squares of size <span class="math inline">\(2 \times 2\)</span>, <span class="math inline">\(6^2\)</span> squares of size <span class="math inline">\(3 \times 3\)</span> and so on. The total number of squares on a chess board is</p>
+<p><span class="math display">\[
+8^2 + 7^2 + 6^2 + 5^2 + 4^2 + 3^2 + 2^2 + 1^2 = 204
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="book-sorting" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="book-sorting"><span class="header-section-number">6.10</span> Book Sorting</h2>
+<p>Suppose you are working in a library and are sorting books from a box that contains 32 fiction (F) and 17 non-fiction (NF) books. A steady supply of new books is available to add to the box. Your sorting algorithm goes as follows:</p>
+<ul>
+<li><p>You randomly choose 2 books from the box.</p></li>
+<li><p>Based on the types of books chosen you add another book from the supply to the box:</p>
+<ol type="1">
+<li>if you choose two fiction books (F,F) you add a new fiction book to the box</li>
+<li>if you choose two non-fiction books (NF, NF) you also add a fiction book to the box</li>
+<li>if you choose one fiction and one non-fiction book (F,NF or NF,F) then you add a non-fiction book to the box.</li>
+</ol></li>
+</ul>
+<p>The entire procedure is depicted in <a href="#fig-book-sorting" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>.</p>
+<div id="fig-book-sorting" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-book-sorting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/BookSorting.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-book-sorting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.6: Book sorting routine. <a href="https://medium.com/puzzle-sphere/book-sorting-interview-puzzle-math-logic-google-amazon-microsoft-faang-quantitative-aptitude-probability-124b5917e059">Source</a>
+</figcaption>
+</figure>
+</div>
+<p>Since you add only one book to the box for every two books you remove, the box will eventually be empty. What is the type of the last book in the box? Is it a fiction or a non-fiction book?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The number of books in the bin goes down by one with each cycle: two books are removed from the bin, one book is added. How does this affect the number of fiction and non-fiction books that remain?</p>
+<p>Let’s see how the number of non-fiction books in the bin changes in cases 1.–3. In the first case, there is no change. In the second case, the number of non-fiction books goes down by 2. In the third case, the number of non-fiction books also does not change: one is removed, one is added.</p>
+<p>Since the number of NF books initially is an odd number, 17, we can conclude that after each cycle the number of NF books remains an odd number. It can never be an even number. Which leads to the conclusion that if there is only one book left in the bin it must be a non-fiction book.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="inverted-triangle" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="inverted-triangle"><span class="header-section-number">6.11</span> Inverted Triangle</h2>
+<p><a href="#fig-coin-triangle" class="quarto-xref">Figure&nbsp;<span>6.7</span></a> shows a triangle made from 10 coins. Can you change this into an upside-down triangle by moving only 3 coins?</p>
+<div id="fig-coin-triangle" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/CoinTrianglePuzzle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.7: Inverting the coin triangle.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The solution is shown in <a href="#fig-coin-solution" class="quarto-xref">Figure&nbsp;<span>6.8</span></a>. First, focus on the seven coins in the center of the triangle. The original and the inverted triangle share these; they do not need to move at all. We can focus on the three coins at the edges.</p>
+<div id="fig-coin-solution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coin-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/CoinTrianglePuzzleSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.8: Moving the three coins.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-spare-tire" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="the-spare-tire"><span class="header-section-number">6.12</span> The Spare Tire</h2>
+<p>Your car has four tires mounted to the wheels and a spare tire (S). That gives you five tires to work with. Each of the tires lasts at most 30,000 miles. If you can exchange tires among the five as many times as you wish, what is the furthest distance you can travel before you need to purchase a new tire?</p>
+<p><a href="#fig-tire-solution1" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> depicts the initial tire life prior to driving the first mile. All tires, including the spare (S) have the same life expectancy of 30,000 miles.</p>
+<div id="fig-tire-solution1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tire-solution1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/TirePuzzleSolution1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tire-solution1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.9: Tire life before driving the first mile.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The maximum total distance the five tires could travel before they are all worn out is 30,000 x 5 = 150,000 miles. The minimum distance of travel before you have to buy at least one new tire is 30,000 miles; it is achieved if you do not use the spare tire and run down the four tires currently mounted.</p>
+<p>By optimizing how you use the spare tire, there must be an achievable distance between 30,000 and 150,000 miles. The optimal strategy is to wear all tires equally and to use the spare tire as much as possible. But we cannot use the spare for more than 30,000 miles, same as with the other four tires.</p>
+<p>If the four tires on the car are equally worn, we can go at most 150,000/4 = 37,500 miles. The strategy is to get 30,000 miles from each of the tires on the car and 4 times 7,500 = 30,000 miles from the spare tire. In other words, the spare will have to give each of the four tires a 7,500 mile break.</p>
+<p><a href="#fig-tire-solution2" class="quarto-xref">Figure&nbsp;<span>6.10</span></a> shows how the spare tire is rotated for another tire after each leg of 7,500 miles. The right rear tire comes off after the fourth leg, it is worn out. The other tires still have 7,500 miles of life to go.</p>
+<div id="fig-tire-solution2" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tire-solution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/TirePuzzleSolution2.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/TirePuzzleSolution2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tire-solution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.10: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="robot-triangle" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="robot-triangle"><span class="header-section-number">6.13</span> Robot Triangle</h2>
+<p>There are many versions of this basic puzzle, using ants, camels, and other animals. We use robots here, the puzzle goes like this. Three robots are placed at the corners of a triangle. A robot can choose to move along either side of the triangle that meet at its corner (<a href="#fig-robot-triangle" class="quarto-xref">Figure&nbsp;<span>6.11</span></a>). What is the probability that any two robots will collide?</p>
+<div id="fig-robot-triangle" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-robot-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/RobotTrianglePuzzle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robot-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.11: Robot triangle.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each robot has two possible movements, so there are a total of 2 x 2 x 2 = 8 possible moves on the triangle. There are two ways in which there won’t be any collisions, if all choose to go clockwise or counter-clockwise. In those cases they will follow each other around the triangle (<a href="#fig-robot-solution" class="quarto-xref">Figure&nbsp;<span>6.12</span></a>).</p>
+<div id="fig-robot-solution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-robot-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/RobotPuzzleSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robot-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.12: Robots moving without running into each other.
+</figcaption>
+</figure>
+</div>
+<p>Any other choice of movements will result in at least one collision. So the probability of any collision if the robots choose their movements at random is 6/8 = 3/4. There is a 75% chance that any two robots will collide.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="truth-telling" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="truth-telling"><span class="header-section-number">6.14</span> Truth Telling</h2>
+<p>This puzzle is about logic reasoning and not about probability. Surprisingly, it is related to the previous robot movement puzzle.</p>
+<p>Consider the following three statements:</p>
+<ol type="1">
+<li>Gavin says that Brian is a liar.</li>
+<li>Brian says that Jenn is a liar.</li>
+<li>Jenn says that both Gavin and Brian are liars.</li>
+</ol>
+<p>Who is telling the truth and who is lying?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This puzzle is related to the robot movement in that there are <span class="math inline">\(2^3 = 8\)</span> possible choices, each of the three characters could either be truthful or lying. It is different from the robot movement in that it is not a question of probability. While robots choose one of the two directions at random, our characters are either lying or telling the truth. We have to reason which one it is.</p>
+<p>With 8 possible choices you can go about it by finding combinations that are inconsistent, a process of elimination.</p>
+<p>Suppose that Jenn tells the truth. Then Gavin and Brian are liars. According to Gavin’s statement, that would mean Brian is telling the truth. But Brian’s statement contradicts the assumption that Jenn tells the truth. Jenn must be a liar.</p>
+<p>If Jenn is not telling the truth, there are three possibilities:</p>
+<ol type="1">
+<li>Gavin is truthful and Brian is not</li>
+<li>Gavin is a liar and Brian is truthful</li>
+<li>Both are truthful.</li>
+</ol>
+<p>Let’s look at the first option. If Gavin tells the truth than Brian is lying, which means Jenn would be truthful. We already ruled out this possibility. But if Gavin is not truthful, then 3. cannot be the case either.</p>
+<p>We are down to the second option: Brian speaks the truth and the other two are liars. Let’s see if everything makes sense in this scenario: If Gavin does not speak the truth, then Brian is not a liar. Brian’s statement that Jenn is a liar is consistent with what we already found.</p>
+<p>Conclusion: Only Brian is truthful.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="clock-made-with-matches" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="clock-made-with-matches"><span class="header-section-number">6.15</span> Clock Made With Matches</h2>
+<p>You have two wooden sticks and a box of matches. When a sticks is lit it will burn completely in exactly one hour. How do you use these ingredients to measure exactly 45 minutes?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Light the first stick on one end and light the second stick on both ends. Since an entire stick burns in one hour, the stick lit on both ends will burn down in 30 minutes (<a href="#fig-stick-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.13</span></a>).</p>
+<div id="fig-stick-puzzle1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stick-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/StickPuzzle1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stick-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.13: Initial lighting of sticks.
+</figcaption>
+</figure>
+</div>
+<p>At that point light the first stick on the other end. This will double the speed with which that stick, now reduced to 30 minutes burn time, will burn.</p>
+<p>When the first stick is completely burned down, 45 minutes will have passed (<a href="#fig-stick-puzzle2" class="quarto-xref">Figure&nbsp;<span>6.14</span></a>).</p>
+<div id="fig-stick-puzzle2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stick-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/StickPuzzle2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stick-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.14: After 30 minutes, light the other end of the first stick.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stacks-of-cards" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="two-stacks-of-cards"><span class="header-section-number">6.16</span> Two Stacks of Cards</h2>
+<p>You have two stacks of cards. The first is a regular 52-card deck. The second stack contains two regular 52-card decks, thus has 104 cards. Both stacks are shuffled well. You choose two cards in sequence and you win if they are both red. Would you prefer to choose from the 52-card stack or the 104-card stack?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You want to choose from the larger stack. The probability to draw two red cards in sequence from a stack of <span class="math inline">\(n\)</span> cards (with <span class="math inline">\(n/2\)</span> red ones) is <span class="math display">\[
+\frac{n/2}{n} \times \frac{n/2-1}{n-1}
+\]</span> For the first draw the probabilities are identical: <span class="math inline">\(26/52\)</span> and <span class="math inline">\(52/104\)</span>. But for the second draw the probabilities are <span class="math display">\[
+\frac{51}{103}=0.495 &gt; \frac{25}{51}=0.49
+\]</span></p>
+<p>There is a slightly higher chance to draw two red cards from the larger stack.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="rapid-fire" class="level2" data-number="6.17">
+<h2 data-number="6.17" class="anchored" data-anchor-id="rapid-fire"><span class="header-section-number">6.17</span> Rapid Fire</h2>
+<p>Cowboy Billy carries a Colt single action 6 shooter revolver. When he fires all 6 shots in a row, the time between the first bullet and the last is 60 seconds. How long would it take him to fire 3 shots?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It will take him 24 seconds to fire three shots. Wait, what?</p>
+<p>The relevant pattern here is about the time elapsed between shots. If the shots are fired at regular intervals, then Billy will take 12 seconds between the six shots. 12 seconds after the first shot he fires the second bullet, 12 seconds after that he fires the third bullet.</p>
+<p>Another way of thinking about this is the distance at which fence posts are placed. In a fence with six posts, the first one is at 0/5<sup>th</sup> total distance, the second post is located 1/5<sup>th</sup> of the total distance, and so on.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="crossing-the-river" class="level2" data-number="6.18">
+<h2 data-number="6.18" class="anchored" data-anchor-id="crossing-the-river"><span class="header-section-number">6.18</span> Crossing the River</h2>
+<p>A farmer is on his way back from the market, with him he has a fox, a chicken and some grain. To get home he needs to cross a river using a small boat that can accommodate only him and one of the other items. Unfortunately, if the fox is left alone with the chicken it will eat it. If the chicken is left alone with the grain, it will eat it. How can the farmer cross the river and bring home the fox, the chicken, and the grain?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solution">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This will take several trips across the river:</p>
+<ol type="1">
+<li>He takes the chicken across the river.</li>
+<li>He returns in an empty boat and picks up the fox.</li>
+<li>He takes the fox across the river and picks up the chicken.</li>
+<li>He returns with the chicken in the boat and deposits it while picking up the grain.</li>
+<li>He takes the grain across the river. Now he has the chicken on the near side of the river and the fox and the grain on the far side.</li>
+<li>He returns in an empty boat and picks up the chicken.</li>
+<li>He takes the chicken across the river, now all three items have crossed.</li>
+</ol>
+<p>The trick is to take one item—here, the chicken—back and forth to make sure it is not alone with the item it would destroy.</p>
+</div>
+</div>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.10: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles</span>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./dataliteracy.html" class="pagination-link" aria-label="Data Literacy">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./predictions.html" class="pagination-link" aria-label="Making Predictions">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Computational Thinking by Oliver Schabenberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
