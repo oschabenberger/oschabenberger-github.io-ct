@@ -2,6 +2,39 @@
 /*-- scss:defaults-- */
 
 /*-- scss:rules --*/
+.assignment {
+  margin: 1em 0;
+  border: 2px solid gray;
+  border-left: 10px solid indigo; 
+  border-bottom: 10px solid indigo; 
+  border-radius: 10px;
+}
+
+.assignment-header {
+  margin-left: 0em;
+  padding-left: 10px;
+  padding-top:  5px;
+  padding-bottom: 0.1em;
+  color: GhostWhite;
+  background-color: indigo;
+  border-top-right-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  // background-image: url("icons/clip-line-icon.png");
+}
+
+.assignment-container {
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color: black;
+  font-size: 0.9em;
+  background-color: lavender;
+  border-bottom-right-radius: 10px;
+}
 
 
 .example {
@@ -33,6 +66,7 @@
   padding-left: 10px;
   padding-bottom: 5px;
   color: black;
+  font-size: 0.9em;
   background-color: lightgray;
   border-bottom-right-radius: 10px;
 }
@@ -65,6 +99,7 @@
   padding-left: 10px;
   padding-bottom: 5px; //0.1em; 
   color: black;
+  font-size: 0.9em;
   background-color: rgb(230,230,230); // lightgray;
   border-bottom-right-radius: 10px;
 }

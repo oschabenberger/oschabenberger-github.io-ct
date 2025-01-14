@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantitative and Computational Thinking - 1&nbsp; Introduction</title>
+<title>Computational and Quantitative Thinking - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Quantitative and Computational Thinking</a> 
+      <a href="./">Computational and Quantitative Thinking</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -184,7 +184,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cholera.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: 1854 Cholera Outbreak in Soho, London</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,12 +235,6 @@ window.Quarto = {
  <span class="menu-text">References</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -272,13 +266,14 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-intro-qt" id="toc-sec-intro-qt" class="nav-link" data-scroll-target="#sec-intro-qt"><span class="header-section-number">1.2</span> Quantitative Thinking (QT)</a>
   <ul>
+  <li><a href="#indicators" id="toc-indicators" class="nav-link" data-scroll-target="#indicators">Indicators</a></li>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data">Types of Data</a></li>
   <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link" data-scroll-target="#uncertainty">Uncertainty</a></li>
   <li><a href="#benefits-of-quantification" id="toc-benefits-of-quantification" class="nav-link" data-scroll-target="#benefits-of-quantification">Benefits of Quantification</a></li>
-  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data">Types of Data</a></li>
   <li><a href="#surrogacy" id="toc-surrogacy" class="nav-link" data-scroll-target="#surrogacy">Surrogacy</a>
   <ul class="collapse">
-  <li><a href="#from-quantification-to-metric" id="toc-from-quantification-to-metric" class="nav-link" data-scroll-target="#from-quantification-to-metric">From quantification to metric</a></li>
-  <li><a href="#managing-the-metric" id="toc-managing-the-metric" class="nav-link" data-scroll-target="#managing-the-metric">Managing the metric</a></li>
+  <li><a href="#surrogation" id="toc-surrogation" class="nav-link" data-scroll-target="#surrogation">Surrogation</a></li>
+  <li><a href="#predictions-as-surrogates" id="toc-predictions-as-surrogates" class="nav-link" data-scroll-target="#predictions-as-surrogates">Predictions as surrogates</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -554,9 +549,119 @@ Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry
 </section>
 <section id="sec-intro-qt" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="sec-intro-qt"><span class="header-section-number">1.2</span> Quantitative Thinking (QT)</h2>
-<p><strong>Quantitative thinking</strong> (QT) is a problem-solving technique, like computational thinking. It views the world through measurable events, and approaches problems by analyzing quantitative evidence. At the heart of QT lies <strong>quantification</strong>, representing things in measurable quantities. The result is data in its many forms.</p>
-<p>The word quantification is rooted in the Latin word <em>quantus</em>, meaning “how much”. The purpose of quantification is to express things in numbers.</p>
+<p><strong>Quantitative thinking</strong> (QT) is a problem-solving technique, like computational thinking. It views the world through measurable events, and approaches problems by analyzing quantitative evidence. At the heart of QT lies <strong>quantification</strong>, representing things in measurable quantities. The word quantification is rooted in the Latin word <em>quantus</em>, meaning “how much”. The purpose of quantification is to express things in numbers. The result is data in its many forms.</p>
 <p>When dealing with inherently measurable attributes such as height or weight, quantification is simple. We need an agreed-upon method of measuring and a system to express the measurement in. The former might be an electronic scale or an analog scale with counterweights for weight measurement, a ruler, yardstick, or laser device for height measurements. It seems obvious to report weights in metric units of milligrams, grams, pounds (500 grams), kilograms, and tons or in U.S. Customary units of ounces, pounds (16 ounces), and tons. As long as we know which measurement units apply, we can all agree on how heavy something is. And we need to keep in mind that the same word can represent different things: a metric pound is 500 grams, a U.S. pound is 453.6 grams. But wait, there is more: Apothecaries’ weights are slightly different, a pound a.p. is 12 ounces. And in some fields, weights are measured entirely differently, diamonds are measured in carats (0.2 grams). In the International System of Units (SI), weight is measured in Newtons, which is gravitational force on a mass, equivalent to kg * m /s<sup>2</sup>. As long as we know what units are used to report a weight, we can convert it into whatever system we want to use. So we could say that this attribute is easily quantifiable.</p>
+<p>Other attributes are difficult to quantify. How do you measure happiness? Finland has been declared the <a href="https://www.bbc.com/reel/video/p0hmcc91/why-is-finland-the-happiest-country-in-the-world-">happiest country</a> on earth for seven years running. This must involve some form of quantification otherwise we could not rank countries and declare one as “best”. How did they come up with that? The purpose of the <a href="https://worldhappiness.report/ed/2020/social-environments-for-world-happiness/">World Happiness Report</a> is to review the science of measuring well-being and to use survey measures of life satisfaction across 150 countries. <em>Happiness</em> according to the World Happiness Report is a combination of many other measurements. For example, a rating of one’s overall life satisfaction, the ability to own a home, the availability of public transportation, etc. Clearly, there is a subjective element in choosing the measurable attributes that are supposed to allow inference about the difficult to measure attribute <em>happiness</em>. Not all attributes weigh equally in the determination of happiness, the weighing scheme itself is part of the quantification. Norms and values also must play a role. The availability of public transportation affects quality of life differently in rural Arkansas and in downtown London. In short, the process of quantifying a difficult-to-measure attribute should be part of the conversation.</p>
+<p>This is a common problem in the social sciences: what we are interested in measuring is difficult to quantify and the process of quantification is full of assumptions. Instead of getting at the phenomenon directly, we use other quantities to inform about all or parts of what we are really interested in. These <strong>surrogates</strong> are known by different names: we call them an indicator, an index (such as the consumer price index), a metric, a score, and so on.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Net Promoter Score (NPS)</p>
+</div>
+<div class="example-container">
+<p>Building on the theme of “happiness”, a frequent question asked by companies that sell products or services is “are my customers satisfied and are they loyal?”</p>
+<p>Rather than an extensive survey with many questions as in the World Happiness Report, the question of customer satisfaction and loyalty is often distilled into a single metric in the business world, the Net Promoter Score (NPS). NPS is considered by many the gold standard customer experience metric. It rests on a single question: “How likely are you to recommend the companies products or services?”</p>
+<p>The calculation of NPS is as follows (<a href="#fig-nps" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>):</p>
+<ul>
+<li>Customers answer the question on a scale of 0–10, with 0 being not at all likely to recommend and 10 being extremely likely to recommend.</li>
+<li>Based on their response, customers are categorized as promoters, passives, or detractors. A detractor is someone whose answer was between 0 and 6. A promoter is someone whose answer is 9 or 10. The others, which responded with a 7 or 8 are passives.</li>
+<li>The NPS is calculated by subtracting the percentage of detractors from the percentage of promoters.</li>
+</ul>
+<p>The NPS ranges from -100 to 100, higher scores imply more promoters. A NPS of 100 is achieved if everyone scores 9 or 10. A score of -100 is achieved if everyone scores 6 or below.</p>
+<div id="fig-nps" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/NetPromoterScore.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.6: Net promoter score
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="assignment">
+<div class="assignment-header">
+<p>Exercise: Net Promoter Score</p>
+</div>
+<div class="assignment-container">
+<ol type="1">
+<li><p>What are the assumptions in the NPS calculation?</p></li>
+<li><p>Company Foo improved its NPS from 30 to 40 over the last year. Explain how that can happen.</p></li>
+<li><p>What does NPS tell you about a company that has many products and/or services?</p></li>
+<li><p>What impact could cultural differences and societal norms and traditions have on NPS values around the world?</p></li>
+<li><p>What do you think is a great net promoter score? Does it depend on the industry?</p></li>
+<li><p>Companies are applying NPS in other contexts, not just to measure customer satisfaction. For example, the employee NPS (eNPS) uses NPS methodology and the question “How likely are you to recommend company X as a place of work?” What do you think about that?</p></li>
+<li><p>If you plot NPS by age, what would that look like? In other words, do you expect younger or older consumers to have higher/lower NPS?</p></li>
+<li><p>List reasons why NPS is (might be) a troubling indicator. <!---
+For some answers see here:
+https://www.qualtrics.com/experience-management/customer/net-promoter-score/
+https://hbr.org/2019/10/where-net-promoter-score-goes-wrong
+
+Important: cultural differences, someone cannot be detractor and promoter at the
+same time, division of range is arbitrary, tries to distill a complex relationship
+in a single number, depends on how and who you ask among the customers.
+
+Whether you recommend something or detract from something depends on who you
+are talking to. You might recommend a product to a peer but not to your parents.
+
+Fewer than those designated as promoters have actually promoted the brand.
+It measures intention, not behavior
+
+NPS does not explain why someone would recommend a product: ease of use,
+price, customer service, availability, ... It also does not explain why someone
+detracts from a product. How are you going to fix things?
+---></p></li>
+</ol>
+</div>
+</div>
+<p>The NPS has many detractors, pun intended. Some describe it as “management snake oil”. Management touts it when the NPS goes up, nobody reports it when it goes down. It continues to be widely used. <a href="https://www.forbes.com/sites/ronshevlin/2019/05/21/its-time-to-retire-the-net-promoter-score/">Forbes</a> reported that in 50 earnings calls of S&amp;P 500 companies NPS was mentioned 150 times in 2018.</p>
+<section id="indicators" class="level3">
+<h3 class="anchored" data-anchor-id="indicators">Indicators</h3>
+<p>An indicator is a quantitative or qualitative factor or variable that offers a direct, simple, unique and reliable signal or means to measure achievements.</p>
+<p>The economy is a complex system for the distribution of goods and services. Such a complex system defies quantification by a single number. Instead, we use thousands of indicators to give us insight into a particular aspect of the economy: inflation rates, consumer price indices, unemployment numbers, gross domestic product, economic activity, etc.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Exercise: Quantifying the Economy</p>
+</div>
+<div class="assignment-container">
+<p>Find at least two indicators in each of the following aspects:</p>
+<ol type="1">
+<li>International trade</li>
+<li>Housing and construction</li>
+<li>Consumer spending</li>
+<li>Manufacturing</li>
+<li>Climate</li>
+<li>Labor markets</li>
+</ol>
+<p>What are the indicators used for–that is, what do they indicate?</p>
+</div>
+</div>
+<p>An indicator is called <strong>leading</strong> if it is predictive, informing us about what might happen in the future. The job satisfaction in an employee survey is a leading indicator of employee attrition in the future. Unhappy employees are more likely to quit and to move on to other jobs. A <strong>lagging</strong> indicator is descriptive, it looks at what has happened in the past. Last month’s resignation rate is a lagging indicator for the human resources department.</p>
+</section>
+<section id="types-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-data">Types of Data</h3>
+<p>Data, the result of quantification, can be classified in a number of ways. The first distinction of quantified variables is by <strong>data type</strong>.</p>
+<ul>
+<li><p><strong>Continuous</strong>: the number of possible values of the variable is not countable. Examples are physical measurements such as weight, height, length, pressure, temperature.</p></li>
+<li><p><strong>Discrete</strong>: the number of possible values is countable. Even if the number of possible values is infinite, the variable is still discrete. The number of fish caught per day does not have a theoretical upper limit, although it is highly unlikely that a weekend warrior will catch 1,000 fish. A commercial fishing vessel might.<br>
+<br>
+Discrete variables are further divided into the following groups:</p>
+<ul>
+<li><p><strong>Count Variables</strong>: the values are true counts, obtained by enumeration. There are two types of counts:</p>
+<ul>
+<li><p><strong>Counts per unit</strong>: the count relates to a unit of measurement, e.g., the number of fish caught per day, the number of customer complaints per quarter, the number of chocolate chips per cookie, the number of cancer incidences per 100,000.</p></li>
+<li><p><strong>Proportions (Counts out of a total)</strong>: the count can be converted to a proportion by dividing it with a maximum value. Examples are the number of heads out of 10 coin tosses, the number of larvae out of 20 succumbing to an insecticide,</p></li>
+</ul></li>
+<li><p><strong>Categorical Variables</strong>: the values consist of labels, even if numbers are used for labeling.</p>
+<ul>
+<li><p><strong>Nominal variables</strong>: The labels are unordered, for example the variable “fruit” takes on the values “apple”, “peach”, “tomato” (yes, tomatoes are fruit but do not belong in fruit salad).</p></li>
+<li><p><strong>Ordinal variables</strong>: the category labels can be arranged in a natural order in a lesser-greater sense. Examples are 1—5 star reviews or ratings of severity (“mild”, “modest”, “severe”).</p></li>
+<li><p><strong>Binary variables</strong>: take on exactly two values (dead/alive, Yes/No, 1/0, fraud/not fraud, diseased/not diseased)</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Categorical variables are also called <strong>qualitative</strong> variables. They encode a quality, namely to belong to one of the categories. All other variables are also called <strong>quantitative</strong> variables. Note that quantifying something through numbers does not imply it is a quantitative variable. Highway exits might have numbers that are simple identifiers not related to distances. The number of stars on a 5-star rating scale indicates the category, not a quantified amount. The numeric values of quantitative variables, on the other hand, can be used to calculate meaningful differences and ratios. 40 kg is twice as much as 20 kg, but a 4-star review is not twice as much as a 2-star review—it is simply higher than a 2-star review.</p>
+</section>
 <section id="uncertainty" class="level3">
 <h3 class="anchored" data-anchor-id="uncertainty">Uncertainty</h3>
 <p>When I hop on the scales in the bathroom in the morning, I usually take two or three measurements in quick succession. They rarely are identical, differing by a fraction of a pound. Day-to-day variation could be understandable, our weight does change over time. But second-to-second variation, that seems odd. It seems unlikely that I gained or lost a quarter pound over the last 5 seconds.</p>
@@ -583,16 +688,117 @@ Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry
 https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
 --->
 </section>
-<section id="types-of-data" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-data">Types of Data</h3>
-</section>
 <section id="surrogacy" class="level3">
 <h3 class="anchored" data-anchor-id="surrogacy">Surrogacy</h3>
-<section id="from-quantification-to-metric" class="level4">
-<h4 class="anchored" data-anchor-id="from-quantification-to-metric">From quantification to metric</h4>
+<p>A <strong>surrogate</strong> metric is one that is used in the place of another. We have seen earlier how economic indicators are used to describe aspects of the economy:</p>
+<ul>
+<li>The consumer price index is a surrogate metric for consumer behavior, for example.</li>
+<li>The net promoter score is a surrogate metric for customer loyalty.</li>
+</ul>
+<p>When quantifying a variable of interest is difficult, time consuming, expensive, or destructive, and a surrogate variable is easy to quantify, the surrogate can take the place of the variable of interest.</p>
+<p>Here are some examples of surrogacy:</p>
+<ul>
+<li><p>Cardiovascular health: directly measuring cardiovascular health is difficult. Cholesterol levels are used as a proxy for heart health.</p></li>
+<li><p>Education:</p>
+<ul>
+<li>Standardized test scores as surrogates for student achievement.</li>
+<li>Graduation rates as a proxy for work force preparation.</li>
+</ul></li>
+<li><p>Economy: Gross domestic product as a surrogate for societal well-being.</p></li>
+<li><p>Environmental science:</p>
+<ul>
+<li>CO2 levels as proxy for climate change.</li>
+<li>Tree canopy cover as a proxy for biodiversity.</li>
+</ul></li>
+<li><p>Employment: Measuring employee productivity by number of hours worked or by number of days in the office (vs.&nbsp;WFH).</p></li>
+<li><p>Technology:</p>
+<ul>
+<li>Number of downloads of an app as a measure of market share.</li>
+<li>Likes and shares as a measure of social media engagement</li>
+</ul></li>
+<li><p>Academia: Citation count as a surrogate for research impact.</p></li>
+</ul>
+<div class="assignment">
+<div class="assignment-header">
+<p>Exercise: Surrogate Metrics</p>
+</div>
+<div class="assignment-container">
+<p>Find ten more examples of surrogate metrics you encounter in daily life.</p>
+</div>
+</div>
+<p>Surrogate measurements are very often necessary, but they are not without issues:</p>
+<ul>
+<li>They might not capture all factors influencing the attribute of interest.</li>
+<li>They can lead to oversimplification and misinterpretation.</li>
+<li>The surrogate might not measure what is most relevant. For example, standardized test scores do not measure critical thinking.</li>
+<li>They can lead to <strong>surrogation</strong>.</li>
+</ul>
+<section id="surrogation" class="level4">
+<h4 class="anchored" data-anchor-id="surrogation">Surrogation</h4>
+<p><strong>Surrogation</strong> occurs when people or organizations substitute a metric for the underlying concept or goal that the metric is intended to represent. Instead of treating the metric as a proxy or tool to measure progress, they treat it as the ultimate goal itself. The metric has become the goal.</p>
+<p>When standardized test scores are a surrogate for student achievement, surrogation means to focus on driving up the test scores rather than focusing on driving actual student achievement.</p>
+<p>Surrogation of net promoter scores occurs when companies focus on driving up NPS by only asking customers that repeatedly buy their product. The goal is to increase customer satisfaction and loyalty, the NPS should increase as a result. Surrogation focuses on the NPS, not the actual customer satisfaction. The first mistake in surrogation is to assume that the surrogate is exactly what it is a proxy for. To assume that the net promoter score is a proxy for customer satisfaction it is not customer satisfaction.</p>
+<p>Sales people are often incentivized on number of deals or deal volume (revenue). The underlying goal is to drive success for the company. Surrogation can lead to closing of deals that are bad for the company (losing money on the deal) but work in favor of the sales person’s metric to hit a revenue target.</p>
+<hr>
+<p>When metrics are tied to performance evaluation, resource assignment, advancement, surrogation is common. It leads to distorted priorities and bad behavior (gaming the system): people try to meet the metric without achieving the underlying goal.</p>
+<p>Another aspect of surrogation is to prioritize the simple fixes and quick wins instead of the deeper but more expensive and difficult corrections. A hospital might focus on amenities or quick ER service rather than improving health outcomes for its patients. A social media content creator generates click bait in order to increase clicks rather than focusing on meaningful engagement.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Exercise: Find Examples of Surrogation</p>
+</div>
+<div class="assignment-container">
+<p>Find a few additional real life examples of surrogation, where chasing the metric has become more important than achieving the underlying goal the metric represents.</p>
+</div>
+</div>
 </section>
-<section id="managing-the-metric" class="level4">
-<h4 class="anchored" data-anchor-id="managing-the-metric">Managing the metric</h4>
+<section id="predictions-as-surrogates" class="level4">
+<h4 class="anchored" data-anchor-id="predictions-as-surrogates">Predictions as surrogates</h4>
+<p>The predictions of a statistical model are often used as surrogates for values that are difficult or impossible to observe or when the method of observing the value destroys the object itself.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Measuring Fitness</p>
+</div>
+<div class="example-container">
+<p>One method for quantifying the aerobic fitness of athletes is through testing their aerobic capacity under stress (<a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>). These measurements are time consuming and expensive.</p>
+<div id="fig-aerobic-fit" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/AerobicCapacity.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.7: Measuring aerobic capacity.
+</figcaption>
+</figure>
+</div>
+<p>Imagine that you conduct a study in which a number of athletes are subjected to aerobic capacity tests on a machine similar to that shown in <a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>. In addition to measuring their aerobic capacity, you also measure simple-to-obtain attributes such as heart rate, rest pulse, run pulse, distance run, etc.</p>
+<p>Then, you develop a model that can predict aerobic capacity from the easy-to-measure attributes. If that model works well, you can predict the aerobic capacity of an athlete by obtaining their heart rate, pulse, rest pulse, etc. The prediction from that model is a surrogate for the unobserved aerobic fitness measurement.</p>
+<p>This is an example of a <strong>regression model</strong>.</p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example: Nail Pull Test</p>
+</div>
+<div class="example-container">
+<p>The force required to pull a nail out of a gypsum board (dry wall) is a measure of the board quality. Unfortunately, the test is destructive and the tested board cannot be used. To circumvent the problem and have more boards to sell, a regression model can be built to predict the nail pull strength from other attributes such as the dry wall material, the thickness of the wall, the method of construction, humidity, temperature, etc.</p>
+<p>These attributes are easy to measure and non-destructive. When the regression model works well—that is, it explains a sufficient degree of variation in nail pull strengths across gypsum boards—the prediction from the model can be used as surrogate for the actual board nail pull strength.</p>
+</div>
+</div>
+<div class="assignment">
+<div class="assignment-header">
+<p>Reading Assignment: Chapter 3 in WMD</p>
+</div>
+<div class="assignment-container">
+<p>Read Chapter 3, “Arms Race” in <span class="citation" data-cites="ONeil2017">O’Neil (<a href="references.html#ref-ONeil2017" role="doc-biblioref">2017, 50–62</a>)</span>.</p>
+<ol type="1">
+<li>What is the goal and what is the (surrogate) metric in the U.S. News &amp; World Report?</li>
+<li>How did surrogation affect the response of universities to the rankings?</li>
+<li>Did the proxies chosen for educational excellence make sense?</li>
+<li>What is the effect of leaving tuition and fees out of the ranking model?</li>
+<li>What is the similarity of the model for educational excellence that underlies the college rankings and the regression models for aerobic fitness and the nail pull test?</li>
+</ol>
+</div>
+</div>
 
 
 <div class="hidden" aria-hidden="true">
@@ -607,6 +813,9 @@ Andreessen, Mark. 2011. <span>“Why Software Is Eating the World.”</span> <a 
 </div>
 <div id="ref-Huff_1954" class="csl-entry" role="listitem">
 Huff, Darrell. 1954. <em>How to Lie with Statistics</em>. W.W. Norton &amp; Company, New York.
+</div>
+<div id="ref-ONeil2017" class="csl-entry" role="listitem">
+O’Neil, Cathy. 2017. <em>Weapons of Math Destruction. How Big Data Increases Inequality and Threatens Democracy</em>. Crown, New York.
 </div>
 <div id="ref-Tent2006" class="csl-entry" role="listitem">
 Tent, M. B. W. 2006. <em>The Prince of Mathematics: Carl Friedrich Gauss</em>. CRC Press, Boca Raton, FL.
@@ -1177,8 +1386,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cholera.html" class="pagination-link" aria-label="Case Study: Cholera in Soho, London, 1854">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cholera.html" class="pagination-link" aria-label="Case Study: 1854 Cholera Outbreak in Soho, London">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: 1854 Cholera Outbreak in Soho, London</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1196,7 +1405,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantitative and Computational Thinking - 5&nbsp; Data Literacy</title>
+<title>Computational and Quantitative Thinking - 5&nbsp; Data Literacy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Quantitative and Computational Thinking</a> 
+      <a href="./">Computational and Quantitative Thinking</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -184,7 +184,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cholera.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: 1854 Cholera Outbreak in Soho, London</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,12 +233,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
   </div>
 </li>
     </ul>
@@ -368,7 +362,7 @@ Figure&nbsp;5.1: Theophylline concentration over time in two groups of patients.
 <img src="images/Figure11_4_Silver.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market?
+Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market data?
 </figcaption>
 </figure>
 </div>
@@ -533,6 +527,31 @@ Figure&nbsp;5.8: Storks and babies.
 <p>How one goes about accounting for confounding factors depends on the domain. The first question is whether the factors are controllable in some form. If so, we can use <strong>experimentation</strong> to set up controlled environments in which the only thing that can reasonably explain the effects we are seeing are the factors we deliberately manipulate. This is the area of <strong>experimental design</strong>.</p>
 <p>If you cannot manipulate and control factors in an experiment, maybe you are lucky to find data where the confounding factors have already been controlled for you. Sometimes real life runs these quasi-experiments for us and eliminates the confounding factors. Although the data is observational rather than experimental (see below), it can go a long way toward establishing causality. In <a href="cholera.html#sec-cholera-deeper" class="quarto-xref"><span>Section 2.4</span></a> we discussed a second, deeper analysis John Snow conducted in which he compared cases between customers of the Lambeth and the Southward &amp; Vauxhall water companies. For all intents and purposes the groups serviced by the two companies were identical except for the source of the water. Lambeth’s water was drawn upriver from sewage discharge into the River Thames and was cleaner than the water from Southwark &amp; Vauxhall, which drew water below the sewage discharge. The much higher cholera incidence in the group supplied by Southwark &amp; Vauxhall was sufficient evidence to implicate the water.</p>
 <p>In domains and applications where experimentation is not possible and confounding factors are present, we try to establish causation by a process called <a href="https://en.wikipedia.org/wiki/Causal_inference"><strong>causal inference</strong></a>. By studying which variables act on each other, causality can be inferred.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Fluoride Exposure and IQ</p>
+</div>
+<div class="assignment-container">
+<p>The National Toxicology Program of the U.S. Department of Health and Human Services conducted a <strong>meta-analysis</strong> of the relationship between fluoride intake and IQ.</p>
+<p>Among the findings of the analysis, the article states (emphasis in original):</p>
+<blockquote class="blockquote">
+<p><em>The NTP monograph concluded, with moderate confidence, that higher levels of fluoride exposure, such as drinking water containing more than 1.5 milligrams of fluoride per liter, are associated with lower IQ in children. The NTP review was designed to evaluate total fluoride exposure from all sources and was not designed to evaluate the health effects of fluoridated drinking water alone. <strong>It is important to note that there were insufficient data to determine if the low fluoride level of 0.7 mg/L currently recommended for U.S. community water supplies has a negative effect on children’s IQ.</strong> The NTP found no evidence that fluoride exposure had adverse effects on adult cognition.<br>
+<br>
+…<br>
+<br>
+The determination about lower IQs in children was based primarily on epidemiology studies in non-U.S. countries such as Canada, China, India, Iran, Pakistan, and Mexico where some pregnant women, infants, and children received total fluoride exposure amounts higher than 1.5 mg fluoride/L of drinking water. </em></p>
+</blockquote>
+<p>Please read the full article from the National Toxicology Program <a href="https://ntp.niehs.nih.gov/whatwestudy/assessments/noncancer/completed/fluoride">here</a> and answer the following questions:</p>
+<ol type="1">
+<li>Did the study establish correlation or causation between fluoride intake and children’s IQ?</li>
+<li>Does the article make it clear whether to take the results as an indication of causation or correlation?</li>
+<li>What is meta-analysis?</li>
+<li>How do you interpret the fact that the study did not analyze data from the U.S.? Does that affect whether the results are applicable to U.S. children?</li>
+<li>Can you think of confounding factors that limit transfer of the results to the U.S?</li>
+<li>Are you surprised that there is no evidence of adverse effects on adults?</li>
+</ol>
+</div>
+</div>
 <section id="observational-and-experimental-data" class="level4">
 <h4 class="anchored" data-anchor-id="observational-and-experimental-data">Observational and experimental data</h4>
 </section>
@@ -1181,7 +1200,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

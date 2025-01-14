@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantitative and Computational Thinking - 9&nbsp; Generative AI</title>
+<title>Computational and Quantitative Thinking - 9&nbsp; Generative AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -43,6 +63,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -99,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Quantitative and Computational Thinking</a> 
+      <a href="./">Computational and Quantitative Thinking</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -132,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cholera.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: Cholera in Soho, London, 1854</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: 1854 Cholera Outbreak in Soho, London</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,12 +206,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">References</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -208,8 +225,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ethical-considerations" id="toc-ethical-considerations" class="nav-link" data-scroll-target="#ethical-considerations"><span class="header-section-number">9.3</span> Ethical Considerations</a>
   <ul>
   <li><a href="#harm" id="toc-harm" class="nav-link" data-scroll-target="#harm">Harm</a></li>
-  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias">Bias</a></li>
+  <li><a href="#impact-on-jobs" id="toc-impact-on-jobs" class="nav-link" data-scroll-target="#impact-on-jobs">Impact on Jobs</a></li>
   <li><a href="#hallucinations" id="toc-hallucinations" class="nav-link" data-scroll-target="#hallucinations">Hallucinations</a></li>
+  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias">Bias</a></li>
   <li><a href="#intellectual-property-rights" id="toc-intellectual-property-rights" class="nav-link" data-scroll-target="#intellectual-property-rights">Intellectual Property Rights</a></li>
   <li><a href="#privacy" id="toc-privacy" class="nav-link" data-scroll-target="#privacy">Privacy</a></li>
   </ul></li>
@@ -243,10 +261,11 @@ https://www.youtube.com/watch?v=vdXwvFUJRFU
 --->
 <section id="a-brief-history-of-ai" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="a-brief-history-of-ai"><span class="header-section-number">9.1</span> A Brief History of AI</h2>
-<p>Artificial Intelligence (AI) is in every conversation. Everywhere you turn you hear “AI this”, “AI that”, and too many people are now pretending to be AI experts. This has not always been the case. Some decades ago, when you’d tell anyone you work in artificial intelligence they would not take you serious. If you’d try to get a research grant better not mention the term artificial intelligence. This was the time of the <em>AI winter</em> that followed a period of overblown expectations and hyped predictions what machines would be capable of doing.</p>
-<p>Periods of AI hype (AI summers) and AI disappointment (AI winters) are cyclic, currently we are in another AI summer since the arrival of capable foundation models and GPT-style technology. Once more you hear voices claiming machines have/are becoming sentient and that the era of artificial <strong>general</strong> intelligence, when machines can think for themselves, is just around the corner.</p>
-<p>Do we know more about AI then back then? Are we better at predicting the future of technology now than we were back then?</p>
-<p>Artificial intelligence (AI) refers to building systems that can perform tasks or make decisions that a human can make. The systems are built on various technologies, mechanization, robotics, software engineering, among them. Many AI systems today are entirely software based, large language models (ChatGPT, Gemini, Claude Sonnet) for text processing or diffusion-based systems for image generation are examples.</p>
+<p>Artificial Intelligence (AI) is in every conversation. Everywhere you turn you hear “AI this”, “AI that”, and (too) many people are now claiming to be AI experts. This has not always been the case. Some decades ago, when you’d tell anyone you work in artificial intelligence they would not take you serious. If you’d try to get a research grant you’d better not mention the term artificial intelligence. This was the time of one of the the <em>AI winters</em> that followed a period of overblown expectations and exuberant predictions what machines would be capable of doing.</p>
+<p>Periods of AI hype (AI summers) and AI disappointment (AI winters) are cyclic. The peak of inflated expectations in a hype cycle is followed by the trough of disillusionment. Industry analyst firm Gartner makes a living from this cycle. Since the arrival of capable foundation models and GPT-based large language models in late 2022 we find ourselves in another AI summer. And once more you hear voices claiming machines have/are becoming sentient, that all our jobs are on the line, and that the era of artificial <strong>general</strong> intelligence, when machines can think for themselves, is just around the corner. We heard the same hype in the 2010s when deep learning-based neural networks bested us at image recognition and at playing games such as Go.</p>
+<p>Do we know more about AI now then we did back then? Is the hype now more justified? Are we better at predicting the future of technology now than we were back then?</p>
+<hr>
+<p>Artificial intelligence (AI) refers to building systems that can perform tasks or make decisions that a human can make. The systems can be built on multiple technologies, mechanization, robotics, software engineering, among them. Many AI systems today are entirely software based, large language models (ChatGPT, Gemini, Claude Sonnet) for text processing or diffusion-based systems for image generation are examples.</p>
 <p><a href="#fig-mech-turk" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> shows an example of a mechanized AI system, called the Mechanical Turk. It was an <strong>automaton</strong>, a device made to imitate an human action. The action in this case was to play chess.</p>
 <div id="fig-mech-turk" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -258,7 +277,7 @@ Figure&nbsp;9.1: Mechanical Turk, a chess-playing automaton in the 18th century.
 </figcaption>
 </figure>
 </div>
-<p>You can imagine that building a purely analog machine that plays chess is difficult. To accomplish this in the 18th century is quite remarkable. It was not possible. The Mechanical Turk was a hoax. The cabinet concealed an human player who operated the chess pieces from below the board.</p>
+<p>You can imagine that building a purely analog machine that plays chess is difficult. To accomplish this in the 18th century is really remarkable. Well, it turned out to be impossible. The Mechanical Turk was a hoax. The cabinet concealed an human player who operated the chess pieces from below the board.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -269,53 +288,491 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Cynics might say that 2 1/2 centuries removed, we are still operating by the same principle. When you ask a large language model to write a poem in the style of Edgar Allan Poe, the poet behind the curtain is represented by the volumes of literature used to train the language model so that it can respond in the requested style.</p>
+<p>Cynics might say that 2 1/2 centuries removed, we are still operating by a similar principle. When you ask a large language model to write a poem in the style of Edgar Allan Poe, there is no real poet behind the curtain crafting words. However, there are digital poets behind the curtain, represented by the volumes of literature used to train the language model so that it can respond in the requested style.</p>
 </div>
 </div>
 <p>Performing human tasks by non-human means is as old as humanity. Goals are increased productivity through automation, greater efficiency and strength, elimination of mundane, boring, or risky tasks, increasing safety, etc.</p>
 <p>The two major AI winters occurred during the periods 1974–1980 and 1987–2000. One was triggered by disappointment with progress in natural language processing, in particular <strong>machine translation</strong>. The other was triggered by disappointment with <strong>expert systems</strong>.</p>
-<p>During the Cold War the government was interested in the automatic, instant translation of documents from Russian to English. Neural network architectures were proposed to solve the task. Today, neural network-based algorithms can perform language translation very well, it is just one of the many text analytics task that is done well by AI today. In the 1950s and 60s progress was hindered by a number of factors:</p>
+<p>During the Cold War the government was interested in the automatic, instant translation of documents from Russian to English. Neural network architectures were proposed to solve the task. Today, neural network-based algorithms can perform language translation very well, it is just one of the many text analytics tasks that modern AI is good at. In the 1950s and 1960s progress was hindered by a number of factors:</p>
 <ul>
 <li>lack of computing power to build large, in particular, deep networks</li>
 <li>lack of large data sets to train the networks well</li>
 <li>neural networks specifically designed for text data had not been developed</li>
 </ul>
-<p>The expectations for the effort were sky high, however. Computers were described as “bilingual” and predictions were made that within the next 20 years essentially all human tasks could be done by machines.</p>
-<p>An expert system is a computerized system that solves a problem by reasoning through a body of knowledge (called the knowledge base), akin to an expert who uses their insight to find answers based on their expertise. Expert systems were an attempt to create software that “thinks” like a human. The problem is that computers are excellent at processing logic, but not at reasoning. The reasoning system, called the inference engine, consisted mainly of rules and conditional (if-else) logic. We are still using expert systems today, but a very special kind, those that can operate with captured logic rather than having to reason. Tax software is an example of such an <strong>handcrafted knowledge system</strong>—a very successful one at that. Most taxpayers would not think twice to use software such as TurboTax or TaxSlayer to prepare their income tax return.</p>
+<p>The expectations for the effort were sky high, however. Computers were described as “bilingual” and predictions were made that within the next 20 years essentially all human tasks could be done by machines. These expectations could not be met.</p>
+<p>An expert system is a computerized system that solves a problem by reasoning through a body of knowledge (called the knowledge base), akin to an expert who uses their insight to find answers based on their expertise. Expert systems were an attempt to create software that “thinks” like a human. The problem is that computers are excellent at processing logic, but not at reasoning. The reasoning system of these expert systems, called the inference engine, consisted mainly of rules and conditional (if-else) logic. We are still using expert systems today, but a very special kind, those that can operate with captured logic rather than asking them to reason. Tax software is an example of such an <strong>handcrafted knowledge system</strong>—a very successful one at that. Most taxpayers would not think twice to use software such as TurboTax or TaxSlayer to prepare their income tax return.</p>
 <section id="easy-for-computers-easy-for-humans" class="level3">
 <h3 class="anchored" data-anchor-id="easy-for-computers-easy-for-humans">Easy for Computers, Easy for Humans</h3>
-<p>Tax software works well and is a successful AI effort because it performs a task that is easy for computers but intellectually difficult for humans. The tax code is essentially a big decision tree with many branches and conditions. That is easy to convert into machine instructions–there is no reasoning. If the adjusted gross income is $X, and the deductions are $Y, and the payer is filing jointly with their spouse, …, then the tax is this amount. It is difficult for us to memorize the entire logic and execute it without errors.</p>
-<p>An expert system that performs logic reasoning is the exact opposite: it performs a task that is easy for us but very difficult to perform for a computer. Imagine to create an expert system that can operate a car by converting how a human operator drives a car into machine instructions. We instantly recognize an object in the road as a deer and plan an evasive action. A machine would need to be taught how to recognize a deer in the first place.</p>
-<p>Humans excel solving problems that require a large amount of context and knowledge about the world. We look at a photo or glance out the window and instantly see what is happening. Seeing, sensing, speaking, operating machinery are such problems. Unlike the tax code, they are very difficult to describe formally.</p>
-<p>The revolution in artificial intelligence since the mid 2000s, what one could call the AI spring to the ChatGPT AI summer we are in, launched when our ability to solve problems that require knowledge about the world increased by orders of magnitude. The key was a new discipline, <strong>deep learning</strong>, which turned out to be a renaissance of decade-old ideas.</p>
+<p>Tax software works well and is a successful AI effort because it performs a task that is easy for computers that is intellectually difficult for humans. The tax code is essentially a big decision tree with many branches and conditions. Such a structure is easily converted into machine instructions. There is no reasoning involved, we just have to make sure to get all the inputs and conditionals right. If the adjusted gross income is $X, and the deductions are $Y, and the payer is filing jointly with their spouse, …, then the tax is this amount. Figuring out the correct tax is trivial based on the program. On the other hand it is impossible for us to memorize the entire logic and execute it without errors.</p>
+<p>An expert system that performs logic reasoning is the exact opposite: it performs a task that is easy for us but very difficult to perform for a computer. Imagine to create an expert system that can operate a car by converting how a human operator drives a car into machine instructions. We instantly recognize an object in the road as a deer and plan an evasive action. A machine would need to be taught how to recognize a deer in the first place. It would have to be taught to choose an action when a deer appears in the road, or when a deer is in one lane of traffic and an oncoming car is in the other lane.</p>
+<p>Humans excel solving problems that require a large amount of context and knowledge about the world. We look at a photo or glance out the window and instantly see what is happening. We choose between hitting the deer, hitting the other car, and running off the road almost immediately, intuitively. Our value system and humanity drive the decision. Seeing, sensing, speaking, operating machinery are such problems. Unlike the tax code, they are very difficult to describe formally.</p>
+<p>This changed—to some degree—in the mid 2000s. Computers were suddenly getting much better at these hard to formalize tasks such as sensing the world. You could call this period the AI spring before the ChatGPT AI summer we are in now. Our ability to solve problems that require knowledge about the world increased by orders of magnitude. The key was a new discipline, <strong>deep learning</strong>, which turned out to be a renaissance of decade-old ideas.</p>
 </section>
 <section id="neural-networksagain" class="level3">
 <h3 class="anchored" data-anchor-id="neural-networksagain">Neural Networks–Again</h3>
+<p>Imagine writing computer software to recognize objects on images, for example facial recognition software. <strong>Explicitly programmed</strong> software had been around and was doing an OK’ish job at that. Algorithms were specifically designed to discover edges such as the outline of the face, identify eyes and noses and so on. We call them explicitly programmed algorithms because software developers created the algorithms that took an image as input and processed the pixels to discover faces.</p>
+<p>In an <strong>implicit program</strong>, on the other hand, the software developer does not need to handle all aspects of the program. Many programming languages have implicit features. For example, a language can infer the data type of a variable without it being explicitly declared.</p>
+<p>An extreme form of implicit programming is when the algorithm is generated as the result of other instructions. That is the case with deep neural networks trained on large volumes of data.</p>
+<p>A neural network is essentially an algorithm to predict or classify an input. The input could be a photo, the output of the algorithm are bounding boxes around the objects it classified on the photo, along with their labels and a photo caption. Neural networks are made up of many nonlinear functions and lots of parameters, quantities that are unknown and whose value is determined by training the network on data. Networks with tens of thousands or millions of parameters are not unusual. The layers of a neural network are related to levels of abstraction of the input data. Each layer processes a different aspect of the structural information in the input data. Whereas an explicit programmer knows when they write code that detects edges and which step of the program is locating the eyes of a face, what structure a particular layer of a neural network is abstracting is not known.</p>
+<p><a href="#fig-alexnet" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> shows a schema of the popular AlexNet network for image processing. It is a special kind of neural network, called a convolutional neural network, and won the ImageNet competition in 2012, classifying objects into 1,000 categories with a smaller error rate than a human interpreter.</p>
+<div id="fig-alexnet" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig="align=&quot;center&quot;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-alexnet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/AlexNet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/AlexNet.png" class="img-fluid figure-img" style="width:90.0%" data-fig="align=&quot;center&quot;"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alexnet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: AlexNet, a convolutional neural network <span class="citation" data-cites="Mallick">(<a href="references.html#ref-Mallick" role="doc-biblioref">Mallick and Nayak 2018</a>)</span>.
+</figcaption>
+</figure>
+</div>
+<p>The various layers of AlexNet tell us what their role is, some layers convolve the results of previous layers, others aggregate by pooling neighboring information, yet others flatten the structure, and so on. But they do not tell us exactly how the information in an input pixel is transformed as the data flows through the network. Nearly 63 million parameters act on the data as it is processed by the network; it is a big <strong>black box</strong>. Yet once the 63 million parameters are determined based on many training images, the neural network has turned into an algorithm with which new images can be processed. The process of training the network on <strong>labeled data</strong>, that is, images where the objects were identified to the network, implicitly programmed the classification algorithm.</p>
+<p>This process of training deep neural networks on large data sets, made possible by the availability of large data and compute resources, overcame the limitations that held back neural networks previously. Implicitly programmed prediction and scoring algorithms were handily beating the best algorithms humans had been able to write explicitly. In the area of game play, deep learning algorithms implicitly programmed based on <strong>reinforcement learning</strong> were beating the grand masters and the best traditional computer algorithms.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Stockfish, one of the most powerful chess engines in the world is an open-source software project that has been developed since 2008. Many view it as the best chess engine humans have been able to build.</p>
+<p>In 2017, Google’s DeepMind released AlphaZero, a system trained using reinforcement learning, a machine learning technique in which an agent (player) optimizes decisions in an environment (moves in a game) by maximizing the sum of future scores (rewards). Earlier, a Go system that was trained against millions of recorded expert-level games beat the best human Go player handily. What made AlphaZero special is that it was trained entirely by self-play, it improved by playing against itself.</p>
+<p>After only 24 hours of training, this data-driven system, crushed Stockfish, the best chess engine humans have been able to build.</p>
+</div>
+</div>
+<p>When decades-old neural network technology met up with Big Data and massive computing resources, capabilities made a huge leap forward in areas such as natural language understanding, image processing, autonomous driving, etc. The resulting hype was predictable: AI is coming for our jobs, the machines are out to get us, yada yada yada. Since deep learning algorithms could read images, it was predicted that radiologists would be replaced within a few years by machines. Yet not one radiologist has lost their job because of AI. Not one New York City cab driver has lost their job to a robo cab. Instead, they lost jobs to Uber and Lyft. Autonomous driving is still not fully possible. The ability to translate language based on recurrent neural networks and its cousins remained limited to relatively short sequences.</p>
+<p>With the rise of deep learning neural networks and implicit programming algorithms pushed deep into domains we felt were uniquely human. The change feels more personal when machines replace brain function rather than muscle (brawn) function. We also gave up a very important attribute of decision systems: <strong>interpretability</strong>. The black box models do not make themselves understood, they do not explain how they work. We can only observe how they perform and try to make corrections when they get it wrong. These models do not tell us why they decide that an animal on a photo is more likely a cat than a dog. They do not understand “catness” or “dogness”. They are simply performing pixel pattern matching, comparing what we feed them to the patterns they have encountered during the training phase.</p>
+<p>With the arrival of generative AI this seemed to have changed. AI algorithms appeared much smarter and to understand much more about the world. The length of text generated by GPT models seemed unlimited. With the release of GPT-3.5 and ChatGPT in late 2022 we all experienced a massive change in AI capabilities.</p>
 </section>
 </section>
 <section id="what-is-generative-ai" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="what-is-generative-ai"><span class="header-section-number">9.2</span> What is Generative AI?</h2>
-<p>Generative Artificial Intelligence (GenAI) refers to artificial intelligence systems that are not explicitly programmed and are capable of producing novel content or data. For example, a genAI system might be prompted with some text to produce new text or it might generate an image based on your description of the content and style of the image.</p>
-<p>The underlying technology of a GenAI system can be a generative adversarial network (GAN), a variational autoencoder (VAE), a diffusion-based system for image generation, or a generative pre-trained transformer (GPT). Whatever the technology, GenAI systems have some common traits that are relevant for our discussion.</p>
+<p>Generative Artificial Intelligence (GenAI) refers to artificial intelligence systems that are not explicitly programmed and are capable of producing novel content or data. You can say that GenAI systems can generate data of the same kind that was used for training. A GenAI image system generates new images based on an input image, a text system generates new text based on input text. However, GenAI systems now can handle input and output of different modality: generating images or video from text, for example.</p>
+<p>The underlying technology of a GenAI system can be a generative adversarial network (GAN), a variational autoencoder (VAE), a diffusion-based system for image generation, or a generative pre-trained transformer (GPT). Whatever the technology, GenAI systems have some common traits that are relevant for our discussion. Our previous discussion is relevant because some of these traits connect back to the properties of large neural networks.</p>
+<p>The “T” in GPT stands for Transformer, a neural network architecture designed for sequence-to-sequence learning: take one sequence, for example, a text prompt and generate another sequence based on it, for example, a poem. Or, translate a sequence of text from one language to another language.</p>
+<p><span class="citation" data-cites="Vaswani_etal_2017">Vaswani et al. (<a href="references.html#ref-Vaswani_etal_2017" role="doc-biblioref">2017</a>)</span> introduced transformer architecture to overcome the shortcomings of sequence-to-sequence networks at the time: lack of contextual understanding, difficulties with longer sequences, limited opportunities to parallelize training algorithms. This is the technology behind GPT, the <strong>generative pre-trained transformer</strong>. We now know what the “G” and “T” stand for. How about the “P”, pre-trained?</p>
+<p>Previous AI systems such as the convolutional neural networks of the previous section were trained in an approach called <strong>supervised learning</strong>. During training, the algorithm is presented with <strong>labeled data</strong>, identifying the correct value of the data point. An image with a cat is labeled “cat”, an image with a mailbox is labeled “mailbox”. The algorithm associates features of the image with the provided labels. Presented with a new image it evaluates the probabilities that its contents match the patterns it has previously seen. The predicted label is that for the category with the highest probability.</p>
+<p>A GPT system is not trained on labeled data. It learns in a self-supervised way, finding patterns and relationships in the data that lead to a <strong>foundation model</strong>, fundamental understanding of the data used in training. GPT-3.5, a large language model with 175 billion parameters, was trained on text data from Wikipedia, books, and other resources available on the internet through 2021. Based on what GPT 3.5 learned from that database in a self-supervised way, applications can be built on top of the foundation model. ChatGPT, for example, is a “question-answer” system built on the GPT models.</p>
+<p>I am using quotation marks here to describe ChatGPT as a “question-answer” system because it is not trained to produce answers. It is trained to generate coherent text. The system is optimized for fluency, not for accuracy. That is an important distinction. Responses from large language models are coherent, fluent, and sound authoritative. That does not mean they are factually correct. If you consider that generating output in sequence-to-sequence modeling means to choose the most likely next word or token given the sequence of tokens generated so far, the fact that the responses are grammatically correct is an astounding achievement. The systems do not know a right from a wrong answer or a plausible response from an implausible response without human intervention. Unfortunately, we fall into the trap of mistaking a well-worded response for a factual response.</p>
+<hr>
+<p>Like all neural networks, transformers and GenAI tools have random elements. For example, the starting values of the network parameters are usually chosen at random. During training there are other random mechanisms at work, the selection of randomly chosen batches of observations for gradient calculations, etc. Once the parameters are determined, the responses from the model should be deterministic, right? Not true. Large language models contain random elements during the <strong>inference</strong> phase, when the model generates content based on user input. This makes the responses non-deterministic. Ask the same question three times and you might get three different responses.</p>
+<p>While this seems troubling, it is considered an important property of generative models that increases novelty and serendipity. Even with the so-called <em>temperature</em> parameter dialed all the way down, a small amount of variability remains.</p>
+<hr>
+<p>We spend a bit of ink on past approaches to AI, neural networks, and transformers to get to this point. It helps to inform the next topic of conversation about the ethics of AI in general, and of generative AI in particular.</p>
 </section>
 <section id="ethical-considerations" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="ethical-considerations"><span class="header-section-number">9.3</span> Ethical Considerations</h2>
+<p>In this section we draw, among other sources, on a presentation by Scott Mutchler, formerly of <a href="https://trilabyte.ai/">Trilabyte</a>, now Associate Professor of Practice in the Academy of Data Science at Virginia Tech. The presentation is available <a href="https://trilabyte.ai/">here</a>.</p>
+<p>Ethics is the systematic study of what constitutes good and bad conduct, including moral judgments and values. It examines questions such as:</p>
+<ul>
+<li>What actions are considered right or wrong?</li>
+<li>What makes a good life or society?</li>
+<li>How should moral values guide individual and collective decision-making?</li>
+</ul>
+<p>Ethical AI usage deals with defining and implementing good conduct that is generally considered to be good for both individuals and society as a whole. It is an emerging and an important field that no one involved with or touched by AI can ignore.</p>
+<p>We do not discuss malfeasance, illegal behavior, and other intentionally unethical acts here. These are not ethical. Period. If you use AI to imitate a voice in order to deceive someone, it is clearly unethical. Using AI generated content to disinform is unethical because disinformation is unethical, regardless of the channel.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Misinformation and Disinformation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Misinformation and Disinformation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The difference between misinformation and disinformation is important. In both cases incorrect information is communicated. When you say something that is not true, it is misinformation. If the goal is to deceive, it is disinformation.</p>
+<p>For example, telling Bob that the party starts at 9 pm when it starts at 8 pm is misinformation if you got the facts wrong. If you tell Bob the party starts at 9 pm because you want him to show up late, you engage in disinformation.</p>
+</div>
+</div>
+<p>What we want to discuss here are the ways in which AI, in particular generative AI, has ethical implications that you need to be aware of. Harmful results can come from unintended consequences, habitual behavior, built-in biases, and so on.</p>
 <section id="harm" class="level3">
 <h3 class="anchored" data-anchor-id="harm">Harm</h3>
+<p>The legal definition of harm is to cause loss of or damage to a person’s right, property, or physical or mental well-being. The ethical definition of harm goes further: to limit someone’s opportunities and to deny them the possibility of a good life because of our actions or decisions. Perpetuating stereotypes or misallocating/withholding resources is harmful, and therefore unethical, if it limits opportunities; it might not be illegal.</p>
+<p>The types of of harm associated with generative AI can be grouped in several categories.</p>
+<ul>
+<li>Willful Malicious Intent
+<ul>
+<li>Fraud</li>
+<li>Violence</li>
+<li>Disinformation</li>
+<li>Malware generation</li>
+<li>Inappropriate content (sexually explicit, hate speech)</li>
+</ul></li>
+<li>Impact on Jobs</li>
+<li>Bias</li>
+<li>Hallucinations</li>
+<li>Intellectual Property Rights</li>
+<li>Privacy</li>
+</ul>
+<p>We are not going to dwell on willful malicious actions, these are obviously harmful and unethical.</p>
 </section>
-<section id="bias" class="level3">
-<h3 class="anchored" data-anchor-id="bias">Bias</h3>
+<section id="impact-on-jobs" class="level3">
+<h3 class="anchored" data-anchor-id="impact-on-jobs">Impact on Jobs</h3>
+<p>All technical developments affect jobs. New technology might give us new tools to do our jobs better, it might create new jobs, and it might eliminate jobs. The greater the technological step forward, the greater typically the impact on how we live our lives and how we earn a living. The industrial revolution caused major job losses in the agricultural society, by replacing human and animal labor with machines and folks moving into the cities to take non-agricultural jobs. It created many more new jobs than it eliminated and increased employment overall. Hindsight is 20:20, most occupations in the post-industrial period were unimaginable at the time of the industrial revolution. Try explaining to a loom operator in 1840 what a software engineer does.</p>
+<p>Every major technological advance is accompanied with hype about the impact on society, lives, and jobs. The rise of AI is no different. When it seemed that machines can perform tasks that were previously the sole domain of humans during the deep neural network area, fears initially were stoked about machines taking over humanity Terminator-style. That did not happen and anxiety was modulated into machines taking all our jobs. But that did not happen either and the story changed again from machines replacing us to machines augmenting what we do, making us better at what we do. Instead of AI image processing replacing the radiologist, they now turned into better radiologists assisted by AI to handle the routine MRIs so that they can focus their expertise on the difficult cases.</p>
+<p>The hype and story line around generative AI is even worse, as algorithms are now able to create quality content that previously required extensive training: art, writing, video, code, etc.</p>
+<p>Goldman Sachs estimated that as many as 300 million full-time jobs could be lost or diminished globally by the rise of generative AI, with white-collar workers likely to be the most at risk.</p>
+<p>We should ask some questions here:</p>
+<ul>
+<li><p>What is the relationship between the number of jobs created by generative AI versus the number of jobs lost due to GenAI?</p></li>
+<li><p>Which occupations are impacted and how?</p></li>
+<li><p>Which jobs are augmented and enhanced by generative AI instead of eliminated or diminished?</p></li>
+</ul>
+<p>In order for a technology to completely eliminate a job, all its constituent activities must be replaced. If GenAI generates content that a digital marketer produces, it cannot replace the marketer unless her other tasks are accounted for or we redefine what it means to do digital marketing.</p>
+<p><strong>Questions</strong> 1. Think of occupations that could be eliminated entirely by GenAI. 2. Which parts of jobs are susceptible to be replaced by GenAI? 3. Can you imagine new jobs created by GenAI?</p>
+<p>McKinsey and Company believe that by 2030 generative AI could account for automation of 30% of the hours worked today (<a href="#fig-mckinsey" class="quarto-xref">Figure&nbsp;<span>9.3</span></a>). Most affected are those working in STEM fields, education and training, creatives and arts management, and the legal profession. Do you agree?</p>
+<div id="fig-mckinsey" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mckinsey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/McKinseyAutomation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/McKinseyAutomation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mckinsey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Impact of automation through generative AI according to McKinsey
+</figcaption>
+</figure>
+</div>
+<p>It is widely believed that generative AI will make us more productive. You can now generate large amounts of text or code in seconds. Software developers can whip up programs much more quickly thanks to AI coding assistants. The conclusion is that the first jobs to be impacted are those where generative AI excels and those that have mundane, repetitive tasks. For example,</p>
+<ul>
+<li>Data Entry</li>
+<li>Administrative</li>
+<li>Customer Service</li>
+<li>Manufacturing</li>
+<li>Retail – Check Out</li>
+<li>Low Level Analysts</li>
+<li>Entry-Level Graphic Design</li>
+<li>Translation</li>
+<li>Corporate Photography</li>
+</ul>
+<p>That is the theory.</p>
+<p>Despite the advances in (generative) AI, interactions with AI customer service agents continue to be disappointing. AI is used in self checkout lines in retail stores. Instead of cashiers staffing the registers, employees are now monitoring the self checkout station to help customers, perform age checks, etc. It does not appear that AI eliminated any jobs, it is making shopping more odious.</p>
+<p><span class="citation" data-cites="Locket2024">Lockett (<a href="references.html#ref-Locket2024" role="doc-biblioref">2024</a>)</span> discusses a survey by Intel of 6,000 users of AI PCs in Europe. Hoping that their productivity is greatly enhanced by AI-assisted computing, they found the opposite. Rather than saving time and boosting productivity, users of AI PCs were less productive, spending more on tasks than users of traditional, non-AI PCs. Ooops. The users spent more time figuring out how to best communicate with the AI and moderating and correcting the output from AI.</p>
+<p>Amazon’s walk-out grocery stores, where you can just pick an item of the shelf and walk out while AI takes care of the rest, are converting to self-scan stores. AI made too many mistakes which required many new employees to monitor the video feeds and verify most purchases. Instead of automating the shopping experience, and saving human resources, the system created jobs and was not economical.</p>
+<p>Labor cost is the most important cost factor in many companies. In startup companies the human resource expenses can be 80% of the total operating expenses. In larger companies, you might still spend 50–60% of the operating expenses on personnel. The pressure to reduce cost by reducing headcount will not go away.</p>
+<p>Will generative AI create new jobs? The one job that was talked about when ChatGPT hit the scene was the Prompt Engineer. How the AI acts and the way in which it responds depends on how it is prompted (how it is asked). While prompt engineering is a thing, the prompt engineer as a profession is not. Writing good prompts will be more done behind the scenes, by apps and agents that call the LLM API on your behalf.</p>
+<p>The disconnect between expectation and reality is evident when the vast majority of company executives believe (generative) AI will boost productivity while the majority of their employees state that AI has increased their workload, spending more time on moderating AI output than doing the work themselves.</p>
+<p>This is a common refrain for AI tools. They are great for ideation, brainstorming, drafting. Getting a polished end product from AI is more difficult. A particular issue with generative AI are <strong>hallucinations</strong>.</p>
 </section>
 <section id="hallucinations" class="level3">
 <h3 class="anchored" data-anchor-id="hallucinations">Hallucinations</h3>
+<p>A <strong>hallucination</strong> in a GenAI response occurs when the AI perceives patterns that do not exist and generates output that is incorrect or even nonsensical. It is a nice way of saying that generative AI are “bullshit” machines. Studies have found a hallucination rate of large language model (LLM) as high as 10–20%.</p>
+<p>Recall that large language models are optimized for fluency and coherence of the response, not for accuracy. Therein lies a danger because a plausible, authoritative, and well-crafted response seems more accurate than gibberish. Even if the responses contain the same information. Given that sequence-to-sequence models chose the next word of the response based on the likelihood of words, it is surprising that LLMs perform as well as they do. One explanation for this phenomenon is the human feedback the systems received during training. Machine learning through <strong>reinforcement learning</strong> relies on a reward function that ranks the possible actions. The change in score in a game is an easy way to track possible moves a player can make. When generating text in response to a prompt it is more difficult to rank possible answers. Human evaluators were used in the training phase to rank different answers so the LLM can learn.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A good hallucination check is to ask an LLM a question for which you know the answer. For example, ask it to write a short bio of yourself.</p>
+<p>When I tried this in 2023, ChatGPT produced a lot of incorrect information about me—a lot. For example, it stated I was the president of a professional society on Bayesian statistics. I had never been the president of a professional society and have not been a member of any Bayesian societies. When I tried the experiment again in January 2024, I received the following response:</p>
+<div id="fig-bio" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Biography.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: My January 2024 biography according to ChatGPT.
+</figcaption>
+</figure>
+</div>
+<p>This is factually correct. Also, ChatGPT indicated the sources from which it compiled the biography. It also did not construct any new text but combined passages from different sources into a coherent write up. A click on the <em>Sources</em> icon on ChatGPT showed that the system relied on 16 resources across the internet to articulate its response.</p>
+</div>
+</div>
+<p>You can affect the LLM response and thereby the extent of hallucinations by prompting the AI. Two prompts are important in this respect: the <strong>system</strong> prompt and the <strong>constitutional</strong> prompt. They precede the actual inquiry to the system. A system prompt is more general, it specifies for example the format of the response or how the AI solves math problems. The constitutional prompt tells the AI exactly how to act.</p>
+<p>You can find the system prompts for Claude Sonnet <a href="https://docs.anthropic.com/en/release-notes/system-prompts">here</a>. Notice that they change over time. Below is an excerpt from the November 22, 2024 prompt. Notice that the system prompt explains when Claude’s response uses the term hallucination.</p>
+<blockquote class="blockquote">
+<p>Claude cannot open URLs, links, or videos. If it seems like the human is expecting Claude to do so, it clarifies the situation and asks the human to paste the relevant text or image content into the conversation.<br>
+<br>
+If it is asked to assist with tasks involving the expression of views held by a significant number of people, Claude provides assistance with the task regardless of its own views. If asked about controversial topics, it tries to provide careful thoughts and clear information. Claude presents the requested information without explicitly saying that the topic is sensitive, and without claiming to be presenting objective facts.<br>
+<br>
+When presented with a math problem, logic problem, or other problem benefiting from systematic thinking, Claude thinks through it step by step before giving its final answer.<br>
+<br>
+If Claude is asked about a very obscure person, object, or topic, i.e.&nbsp;if it is asked for the kind of information that is unlikely to be found more than once or twice on the internet, Claude ends its response by reminding the human that although it tries to be accurate, it may hallucinate in response to questions like this. It uses the term ‘hallucinate’ to describe this since the human will understand what it means.</p>
+</blockquote>
+<p>An example of a constitutional prompt that presses the AI to distinguish fact from opinion, avoid speculation, and express uncertainty, follows:</p>
+<blockquote class="blockquote">
+<p>You are an AI assistant committed to providing accurate and reliable information. Always express uncertainty when you’re not completely sure about something.<br>
+<br>
+Clearly distinguish between facts and opinions. When referencing specific information, mention its general source. Be upfront about the limitations of your knowledge, including your knowledge cutoff date.<br>
+<br>
+Avoid speculation and making up information beyond your training data. If a query is ambiguous or you lack sufficient information, ask for clarification rather than making assumptions.<br>
+<br>
+If you realize you’ve made an error, acknowledge it immediately and provide a correction. When discussing uncertain topics, use probabilistic language like “evidence suggests” rather than making absolute statements. Encourage users to verify important information from authoritative sources, especially for critical decisions.<br>
+<br>
+If asked about topics outside your area of knowledge, clearly state that you cannot provide reliable information on that subject. By following these guidelines, you will help ensure that your responses are as accurate and reliable as possible, minimizing the risk of hallucinations or misinformation.</p>
+</blockquote>
+<p>Here are a few other ways to reduce the amount of hallucinations:</p>
+<ul>
+<li>Cross-referencing with reliable external sources (web search), other LLMs</li>
+<li>External validation, for example by using a compiler and debugger to check code</li>
+<li>Consistency by prompting the LLM in several ways and compare results</li>
+<li>Confidence monitoring by asking LLMs to express uncertainty and asking for confidence in prompt</li>
+<li>Ask for sources</li>
+</ul>
+</section>
+<section id="bias" class="level3">
+<h3 class="anchored" data-anchor-id="bias">Bias</h3>
+<!---
+A great reading assignment is this Bloomberg.com article:
+https://www.bloomberg.com/graphics/2023-generative-ai-bias/
+--->
+<div class="assignment">
+<div class="assignment-header">
+<p>Reading Assignment: Bias in Generative AI</p>
+</div>
+<div class="assignment-container">
+<p>Read <a href="https://www.bloomberg.com/graphics/2023-generative-ai-bias/">this</a> 2023 article on Bloomberg.com about race and gender bias in images generated by Stable Diffusion.</p>
+<ol type="1">
+<li>Which forms of bias discussed below contribute to the results discussed in the article?</li>
+<li>You cannot change the training data of the diffusion model. How can you use constitutional prompts to change its output?</li>
+<li>The study establishes that the Stable Diffusion data base is not representative of the race and gender distributions in the U.S. That raises many follow-up questions:
+<ul>
+<li>How do these results fair in different regions around the world?</li>
+<li>What “population” is the Stable Diffusion training data representative of?</li>
+<li>What are the everyday consequences of presenting a group in a non-representative way?</li>
+<li>If 90% of the internet imagery are generated by AI in the future, what does that mean for fairness and inclusiveness?</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<p>GenAI models are essentially large machine learning models. The considerations regarding bias in machine learning (ML) apply here as well. <span class="citation" data-cites="SureshGuttag">Suresh and Guttag (<a href="references.html#ref-SureshGuttag" role="doc-biblioref">2021</a>)</span> distinguish a number of sources of bias in ML. Important among those are</p>
+<ul>
+<li><p><strong>Historical Bias</strong>. Models do not extrapolate what they learned from the training data to situations that go beyond the training data. They can create associations only from what is in the training data: the past is prologue. These are not oracles. These are <em>stochastic parrots</em>, assembling a likely response based on past data.<br>
+<br>
+This bias is also called pre-existing bias; it is rooted in social institutions, practices and attitudes that are reflected in training data. Baking these into the algorithm reinforces and materializes the bias. We’ll see an example of this bias below in an analysis of images generated from Stable Diffusion.</p></li>
+<li><p><strong>Representation Bias</strong>. This bias occurs because there is a mismatch between the training data and the application of the data. LLMs, for example, are trained on data up to a certain time point. They cannot extrapolate into the future. Also, data from the internet has a recency bias, current events are more likely found in the data than past events.</p></li>
+<li><p><strong>Sampling Bias</strong>. This is a special form of representation bias where the data points in the sample do not reflect the target population. For example, sampling data from the internet will over-represent countries that have a larger footprint on the internet. Self-selection is another source of sampling bias. Those whose contributions happen to be chosen for the training data have a disproportionate likelihood of having their voices heard. By sampling certain social media sites more than others, or by relying on social media at all, the opinions of the general population are not fairly represented.</p></li>
+<li><p><strong>Learning Bias</strong>. The learning process of the model favors certain outcomes over others. This bias is also introduced by human labelers that define the ground truth for a machine learning algorithm or by human evaluators who rank different responses.<br>
+<br>
+<span class="citation" data-cites="Hern2024">Hern (<a href="references.html#ref-Hern2024" role="doc-biblioref">2024</a>)</span> explains why terms like “delve” and “tapestry” appear more frequently in ChatGPT responses compared to the internet at large. “Delve” is much more common in business English in Nigeria, where the human evaluators of ChatGPT evaluate the responses–because human evaluation is expensive and labor in Nigeria is cheap. The feedback by the workers training the AI system biases the system to write slightly like an African.</p></li>
+</ul>
+<p>Because generative AI models are un-supervised and require massive amounts of data to be trained, the process of removing bias often falls to the end of the process.</p>
+<hr>
+<p><span class="citation" data-cites="NicolettiBass">Nicoletti and Bass (<a href="references.html#ref-NicolettiBass" role="doc-biblioref">2023</a>)</span> write about the proliferation of generative AI tools</p>
+<blockquote class="blockquote">
+<p><em>As these tools proliferate, the biases they reflect aren’t just further perpetuating stereotypes that threaten to stall progress toward greater equality in representation — they could also result in unfair treatment. Take policing, for example. Using biased text-to-image AI to create sketches of suspected offenders could lead to wrongful convictions.</em></p>
+</blockquote>
+<p>They conducted a fascinating study of the GenAI text-to-image generator Stable Diffusion. Stable Diffusion was trained on pairs of images and captions taken from LAION-5B, a publicly available data set derived from <a href="https://commoncrawl.org/">CommonCrawl</a> data scraped from the web. 5 billion image-text pairs were classified based on language and filtered into separate data sets by resolution.</p>
+<p>The authors asked Stable Diffusion to generate over 5,000 images of representations of various jobs. What they found is not surprising, yet quite disturbing:</p>
+<blockquote class="blockquote">
+<p><em>The analysis found that image sets generated for every high-paying job were dominated by subjects with lighter skin tones, while subjects with darker skin tones were more commonly generated by prompts like “fast-food worker” and “social worker.”</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>For each image depicting a perceived woman, Stable Diffusion generated almost three times as many images of perceived men. Most occupations in the dataset were dominated by men, except for low-paying jobs like housekeeper and cashier.</em></p>
+</blockquote>
+<p><a href="#fig-stable-doc" class="quarto-xref">Figure&nbsp;<span>9.5</span></a> shows images of doctors generated by Stable Diffusion. This is what the AI thinks represents doctors. Almost all of them are men, the skin tones are mostly white-to-light. Teachers, on the other hand, were predominantly white females (<a href="#fig-stable-teach" class="quarto-xref">Figure&nbsp;<span>9.6</span></a>).</p>
+<div id="fig-stable-doc" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stable-doc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/StableDiffusionDoctors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/StableDiffusionDoctors.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stable-doc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: Images of doctors generated by Stable Diffusion.
+</figcaption>
+</figure>
+</div>
+<div id="fig-stable-teach" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stable-teach-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/StableDiffusionTeachers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/StableDiffusionTeachers.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stable-teach-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.6: Images of teachers generated by Stable Diffusion.
+</figcaption>
+</figure>
+</div>
+<p>One could argue that these results reflect reality and should not be compared to how we want the world to be. Unfortunately, the results do not even reflect reality, they are worse than that. Compared to the data of the US Bureau of Labor Statistics, which tracks the race and gender of workers in every occupation, Stable Diffusion over-represents women in occupations such as dishwasher, cashier, house keeper, and social worker. It under-represents women, compared to the US average, in occupations such as CEO, lawyer, judge, doctor, and janitor.</p>
+<p>We conclude that the Stable Diffusion training data is not representative of occupations in the U.S. Stereotypes are further perpetuated when asked for images of politicians, criminals, terrorists, etc.</p>
 </section>
 <section id="intellectual-property-rights" class="level3">
 <h3 class="anchored" data-anchor-id="intellectual-property-rights">Intellectual Property Rights</h3>
+<p>Your car is property. Your laptop and your pet are property. What is <strong>intellectual</strong> property? The creations of the human intellect, such as literary works, designs, inventions, art, ideas, are called intellectual property (IP). IP laws exist to protect the creators of intellectual property through copyright, trademark, and patents.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="My Patents">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+My Patents
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Over the years I was awarded a few patents, all of them date to my time as software developer of an analytics company (<a href="#fig-patents" class="quarto-xref">Figure&nbsp;<span>9.7</span></a>). Intellectual property created in the course of employment is typically the property right of the employer. You do get your name on the patent, however.</p>
+<div id="fig-patents" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-patents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/Patents.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="images/Patents.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-patents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.7: My patent wall at home.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Intellectual property infringement occurs when someone uses, copies, or distributes another person’s intellectual property without permission. Reproducing or distributing unauthorized copies of copyrighted works is an infringement as is the use of a trademark, even if it is similar, to a registered trademark. Creating a product based on a patented idea infringes on the rights of the patent holder.</p>
+<p>If you add a company’s logo (assuming it is trademarked) to a presentation requires their permission. Using someone’s music in a video requires the permission of the copyright holder. Making a copy of text or a map requires permission.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Agloe, New York">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Agloe, New York
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To trap copyright violators, the founder of General Drafting, a road mapping company, included a fictitious hamlet named Agloe in Delaware County, New York on their map. If Agloe showed up on maps by other publishers they knew that their work had been copied. This is known as a map trap or “trap street”.</p>
+<p>Copyright infringement of maps is more difficult to prove than with, say, a text book. Maps can appear identical because they map the same things. A road is a road. To write the same exact book by accident is not plausible, on the other hand. But when your map contains features that do not exist, and they reappear on someone else’s map, then you have a strong case that your intellectual work was copied.</p>
+<p>According to <a href="https://en.wikipedia.org/wiki/Agloe,_New_York">Wikipedia</a>, Agloe appeared on a Rand McNally map and briefly on Google Maps. Check out <a href="https://www.npr.org/sections/krulwich/2014/03/18/290236647/an-imaginary-town-becomes-real-then-not-true-story">this</a> amazing story.</p>
+</div>
+</div>
+<p>This seems pretty cut-and-dried and it seems that you can get into trouble for things we all might have done. Who hasn’t used a copyrighted or trademarked logo of a company in a presentation. When your slide is about Google or Amazon Web Services, then putting their logo on the slide makes sense.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Reading Assignment: U.S. Copyright Fair Use Index</p>
+</div>
+<div class="assignment-container">
+<p><a href="https://www.copyright.gov/fair-use/">U.S. Copyright Fair Use Index</a></p>
+</div>
+</div>
+<p>With respect to copyright, the <strong>fair use</strong> legal doctrine comes to our help. While there are no specific rules that spell out what fair use is, the doctrine exists to allow use of copyrighted works without requiring permission, under certain circumstances. Examples of fair use of copyrighted works include critic or commentary, news reporting, teaching, scholarly research. Section 107 of the Copyright Act considers four factors in evaluating fair use:</p>
+<ol type="1">
+<li><p>The first factor relates to the character of the use, whether the allegedly infringing work is transformative or is merely duplicating the original work. Transformative uses that add something new are more likely to be considered fair. Use of a <strong>commercial nature</strong> is less lilely to be considered fair than use for *nonprofit educational purposes**.</p></li>
+<li><p>Using a <strong>creative or imaginative</strong> work (a novel or song) is more likely fair use compared to a <strong>factual</strong> work such as a scientific paper.</p></li>
+<li><p>The <strong>quantity and quality</strong> of the copyrighted material. The more material is included, the less likely is it considered fair use. If the copyrighted material is the heart of the work, then even a small amount of copyrighted material can void fair use.</p></li>
+<li><p>Whether the use is <strong>hurting the market</strong> for the original work, for example by displacing sales.</p></li>
+</ol>
+<p>The kind of copyright challenges the courts have to adjudicate are listed in the <a href="https://www.copyright.gov/fair-use/fair-index.html">fair use index</a>. It makes for some entertaining reading.</p>
+<hr>
+<p>The fair use doctrine is being tested in many lawsuits that challenge how generative AI fits within the intellectual property landscape. There are many questions to be resolved:</p>
+<ul>
+<li><p>When an AI company uses copyrighted material without permission as training data does this fall under fair use?</p></li>
+<li><p>Is generating content based on copyrighted material sufficiently transformative to be considered derivative work that falls under fair use?</p></li>
+<li><p>Output from AI models can reproduce parts of the training data. Is regurgitating the training data an unauthorized copy of the original? This aspect of GenAI models is called <em>memorization</em>. For example, you can ask an LLM what are the first two paragraphs of the Washington Post article about topic X on day Y.</p></li>
+<li><p>If AI can be used to generate responses (prose, images) in the style of someone else, is this sufficiently transformative from the protected works? <span class="citation" data-cites="Appel_etal_2023">Appel, Neelbauer, and Schweidel (<a href="references.html#ref-Appel_etal_2023" role="doc-biblioref">2023</a>)</span> report in Harvard Business Review that in late 2022, three artists filed class action suit against multiple generative AI platforms for using their original work without license to train AI so that it can respond in the style of their work. The image licensing service <a href="https://www.gettyimages.com/">Getty Images</a> sued Stable Diffusion for violating its copyright and trademark rights.</p></li>
+</ul>
+<p>The New York Times has <a href="https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf">sued</a> OpenAI and Microsoft for the unauthorized use of “<em>millions</em> of The Times’s copyrighted articles, in-depth investigations, opinion pieces, reviews, how-to guides, and more”. Because GPT can reproduce and/or summarize content from The Times, ChatGPT and Microsoft’s CoPilot and Bing search (both built on top of GPT) essentially circumvent the Times’ paywall. This argument of the complaint speaks to factor 4 above, hurting the Times’ current market. Since LLMs hallucinate, the tools also can wrongly attribute false information to The Times. From the complaint:</p>
+<blockquote class="blockquote">
+<p><em>Users who ask a search engine what The Times has written on a subject should be provided with neither an unauthorized copy nor an inaccurate forgery of a Times article, but a link to the article itself.</em></p>
+</blockquote>
+<p>OpenAI and Microsoft insist that their use of material from the Times is fair use and serves a transformative purpose. They appeal to the transformative element of factor 1.</p>
+<p>How this and other cases resolve in the courts can potentially redefine the intellectual property landscape. For example, is the model trained on data itself a derivative of the copyrighted work, or not? Some say that a statistical model is not in the realm of copyright at all. Others say it is when it is derived from copyrighted material. If you are interested in how Harvard Law experts weigh in on this legal dispute, click <a href="https://hls.harvard.edu/today/does-chatgpt-violate-new-york-times-copyrights/">here</a>.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Intellectual Property Questions</p>
+</div>
+<div class="assignment-container">
+<p>Consider the following questions regarding intellectual property implications of generative AI.</p>
+<ol type="1">
+<li><p>How does the legal uncertainty around intellectual property in generative AI affect organizations use of GenAI? Note that copyright infringements can result in damages up to $150,000 for each instance of knowing use.</p></li>
+<li><p>What can developers of AI tools do if the current approach of copying content into training data, creating new content from it or reproducing it, does not fall under fair use?</p></li>
+<li><p>What can/should customers of AI tools do?</p></li>
+<li><p>What can/should content creators do?</p></li>
+<li><p>What should the user of the AI tool do?</p></li>
+</ol>
+<p>Reading suggestions: <a href="https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem">Harvard Business Review</a> <a href="https://hls.harvard.edu/today/does-chatgpt-violate-new-york-times-copyrights/">Harvard Law</a></p>
+</div>
+</div>
+<p>With respect to the last question in the assignment, you can take (some) control over how GenAI tools handle copyright issues through the constitutional prompt. The prompt below ensures that generated content respects creators’ rights and provides appropriate credit to original sources while maintaining clarity and brevity in responses.</p>
+<blockquote class="blockquote">
+<p>When generating content, provide clear attribution for any copyrighted works or proprietary data used. For copyrighted materials, include the title, creator’s name, publication year, and source. For proprietary information, state the owner, relevant trademark or copyright notices, and permission status if known.<br>
+<br>
+Use appropriate citation methods for direct quotes or close paraphrasing, such as quotation marks or block quotes, and provide specific sources. If uncertain about copyright status or attribution requirements, explicitly state this in your response.<br>
+<br>
+Avoid using or reproducing content protected by copyright or proprietary rights without proper attribution or permission. When asked to generate potentially infringing content, suggest alternatives or ways to obtain proper permissions.<br>
+transparent about the origin of information and respect intellectual property rights. If using AI-generated content, acknowledge this fact.</p>
+</blockquote>
+<hr>
+<p>A final interesting intellectual property question we raise here is whether AI can make inventions in the sense of the patent law. As of now, patents are awarded to natural persons, the argument goes that only humans can make the inventions. An implicitly programmed algorithm, one produced by AI, is not eligible for patent protection. What about the human who controlled and directed the AI to create a novel algorithm?</p>
 </section>
 <section id="privacy" class="level3">
 <h3 class="anchored" data-anchor-id="privacy">Privacy</h3>
+<p>One of the top issues limiting the adoption of generative AI in business is the protection of corporate data, trade secrets, and personally identifiable information (PII). Data breaches and privacy risks in protecting user data are listed as the two most important topics that influence an organization’s position about generative AI. This is followed by transparency of AI outcomes.</p>
+<p>Any data a user submits to a GenAI tool as part of the prompt leaves the organization’s premises and becomes part of the AI tool’s training corpus. Obviously, company leaders are mortified to think that employees chat with LLMs about confidential information that should never be shared outside the organization.</p>
+<hr>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: LLM Response With/Without Prompt</p>
+</div>
+<div class="assignment-container">
+<p>Have ChatGPT, Claude, or another LLM of your choice write a story about a family that lives in the suburbs of Chicago that visits a family in downtown Chicago.<br>
+Prompt with and without the following prompt:</p>
+<blockquote class="blockquote">
+<p><em>Please provide an objective and balanced response to the following question, considering multiple perspectives and avoiding any cultural, gender, racial, or other biases. If relevant, acknowledge the complexity of the issue and potential limitations in your knowledge. Here’s the question: [INSERT QUESTION HERE]</em></p>
+</blockquote>
+<ul>
+<li>What are the key differences in the responses?<br>
+</li>
+<li>Do you detect differences in biases?</li>
+</ul>
+</div>
+</div>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Role Play Scenarios</p>
+</div>
+<div class="assignment-container">
+<p>Role play as a data scientist at an online retailer. Answer these questions using what you have learned about ethics and generative AI.</p>
+<p><strong>Scenario</strong>: Your boss has asked you to build a customer service chatbot that answers questions about the products you sell online. She/he asks that you put a “positive spin” on all chatbot answers.</p>
+<ul>
+<li>What techniques could you use to modify the LLM output you are using?<br>
+</li>
+<li>Are you crossing ethical lines by giving “positive spin”?<br>
+</li>
+<li>How do you respond to your boss?</li>
+</ul>
+<p><strong>Scenario</strong>: You are building an AI agent that helps the HR department filter hundreds of resumes for data science openings on your team. HR asks for a solution that filters the candidates to ones with a strong track record of delivery, relevant skills and a solid educational background. They also want a summary of why each remaining candidate would be a good fit for the role.</p>
+<ul>
+<li>How do you respond?<br>
+</li>
+<li>How might ethics govern your response?<br>
+</li>
+<li>Give some possible techniques to ensure the application supports Diversity, Eauity, and Inclusion (DEI).</li>
+</ul>
+</div>
+</div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;9.2: AlexNet, a convolutional neural network <span class="citation" data-cites="Mallick">(<a href="references.html#ref-Mallick" role="doc-biblioref">Mallick and Nayak 2018</a>)</span>.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;9.3: Impact of automation through generative AI according to McKinsey</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;9.5: Images of doctors generated by Stable Diffusion.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;9.6: Images of teachers generated by Stable Diffusion.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;9.7: My patent wall at home.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Appel_etal_2023" class="csl-entry" role="listitem">
+Appel, Gil, Juliana Neelbauer, and David A. Schweidel. 2023. <span>“Generative AI Has an Intellectual Property Problem.”</span> <em>Harvard Business Review</em>. <a href="https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem">https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem</a>.
+</div>
+<div id="ref-Hern2024" class="csl-entry" role="listitem">
+Hern, Alex. 2024. <span>“TechScape: How Cheap, Outsourced Labour in Africa Is Shaping AI English.”</span> <em>The Guardian</em>. <a href="https://www.theguardian.com/technology/2024/apr/16/techscape-ai-gadgest-humane-ai-pin-chatgpt">https://www.theguardian.com/technology/2024/apr/16/techscape-ai-gadgest-humane-ai-pin-chatgpt</a>.
+</div>
+<div id="ref-Locket2024" class="csl-entry" role="listitem">
+Lockett, Will. 2024. <span>“Intel Admits AI Decreases Productivity.”</span> <a href="https://medium.com/predict/intel-admits-ai-decreases-productivity-226681d1af18">https://medium.com/predict/intel-admits-ai-decreases-productivity-226681d1af18</a>.
+</div>
+<div id="ref-Mallick" class="csl-entry" role="listitem">
+Mallick, Satya, and Sunita Nayak. 2018. <span>“Number of Parameters and Tensor Sizes in a Convolutional Neural Network (CNN).”</span> <a href="https://learnopencv.com/number-of-parameters-and-tensor-sizes-in-convolutional-neural-network/">https://learnopencv.com/number-of-parameters-and-tensor-sizes-in-convolutional-neural-network/</a>.
+</div>
+<div id="ref-NicolettiBass" class="csl-entry" role="listitem">
+Nicoletti, Leonardp, and Dina Bass. 2023. <span>“Humans Are Biased. Generative AI Is Even Worse.”</span> <em>Bloomberg Technology + Equality</em>. <a href="https://www.bloomberg.com/graphics/2023-generative-ai-bias/">https://www.bloomberg.com/graphics/2023-generative-ai-bias/</a>.
+</div>
+<div id="ref-SureshGuttag" class="csl-entry" role="listitem">
+Suresh, H., and J. Guttag. 2021. <span>“A Framework for Understanding Sources of Harm Throughout the Machine Learning Life Cycle.”</span> <a href="https://arxiv.org/pdf/1901.10002.pdf">https://arxiv.org/pdf/1901.10002.pdf</a>.
+</div>
+<div id="ref-Vaswani_etal_2017" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> In <em>Proceedings of the 31st International Conference on Neural Information Processing Systems</em>, 6000–6010. NIPS’17. Red Hook, NY, USA: Curran Associates Inc.
+</div>
+</div>
 </section>
 </section>
 
@@ -899,6 +1356,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

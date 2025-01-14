@@ -1,5 +1,5 @@
 
-# Case Study: Cholera in Soho, London, 1854 {#sec-cholera}
+# Case Study: 1854 Cholera Outbreak in Soho, London {#sec-cholera}
 
 ## Two Snows
 
@@ -18,7 +18,7 @@ of, Lord Commander of the Night Watch (@fig-jon-snow), but the John Snow in
 Famous John/Jon Snows
 :::
 
-## Visualization
+## Visualization {#sec-cholera-viz}
 
 @fig-cholera-map shows the map drawn by John Snow, recording the number of
 cholera cases with stacked bars at the location where cholera cases occurred (click on the 
@@ -37,7 +37,7 @@ yet unidentified germ. According to the miasma theory, cholera is contracted by
 breathing bad air. John Snow adhered to the germ theory and believed that it
 was transmitted through contaminated water.
 
-## Data Validation
+## Data Validation {#sec-cholera-data}
 
 Talking to residents, Snow identified the public water pump on Broad Street to 
 be the source of the outbreak. He failed to identify *the germ* under the microscope
@@ -155,18 +155,11 @@ the death rates in @tbl-chol-rate2
 
 : Cholera incidences and rates during the first seven weeks of the outbreak. The death rate in the rest of London was reported as 59 in Table IX of @Snow1855, but calculates to 55 deaths per 10,000. {#tbl-chol-rate2 .striped}
 
-
 In statistical terms, such a difference in the death rates is **highly significant**,
 meaning that if there is no difference in the water quality between the suppliers,
 such a discrepancy would virtually never happen. The only reasonable explanation
 for the higher death rate, since differences between the groups receiving the 
 water have been ruled out, is the quality (contamination) of the Southwark \&
 Vauxhall water.
-
-
-
-
-
-
 
 

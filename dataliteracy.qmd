@@ -135,7 +135,7 @@ of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days o
 noise?
 
 
-![Figure 11-4 from @Silver2012, Random walk or stock market?](images/Figure11_4_Silver.png){#fig-random-walk fig-align="center" width=80%}
+![Figure 11-4 from @Silver2012, Random walk or stock market data?](images/Figure11_4_Silver.png){#fig-random-walk fig-align="center" width=80%}
 
 What do we learn from this?
 
@@ -473,9 +473,48 @@ incidence in the group supplied by Southwark \& Vauxhall was sufficient evidence
 to implicate the water.
 
 In domains and applications where experimentation is not possible and confounding
-factors are present, we try to establish causation by a process called [**causal inference**](https://en.wikipedia.org/wiki/Causal_inference). By studying which 
-variables act on each other, causality can be inferred.
+factors are present, we try to establish causation by a process called [**causal inference**](https://en.wikipedia.org/wiki/Causal_inference). By studying which variables act on each other, causality can be inferred.
 
+:::{.assignment}
+::::{.assignment-header}
+Assignment: Fluoride Exposure and IQ
+::::
+::::{.assignment-container}
+The National Toxicology Program of the U.S. Department of Health and Human Services
+conducted a **meta-analysis** of the relationship between fluoride intake and IQ.
+
+Among the findings of the analysis, the article states (emphasis in original):
+
+>*The NTP monograph concluded, with moderate confidence, that higher levels of 
+fluoride exposure, such as drinking water containing more than 1.5 milligrams of 
+fluoride per liter, are associated with lower IQ in children. The NTP review was 
+designed to evaluate total fluoride exposure from all sources and was not designed 
+to evaluate the health effects of fluoridated drinking water alone. 
+**It is important to note that there were insufficient data to determine if the 
+low fluoride level of 0.7 mg/L currently recommended for U.S. community water 
+supplies has a negative effect on children’s IQ.** The NTP found no evidence that 
+fluoride exposure had adverse effects on adult cognition.\
+\
+...\
+\
+The determination about lower IQs in children was based primarily on epidemiology 
+studies in non-U.S. countries such as Canada, China, India, Iran, Pakistan, and Mexico 
+where some pregnant women, infants, and children received total fluoride exposure 
+amounts higher than 1.5 mg fluoride/L of drinking water. *
+
+Please read the full article from the National Toxicology Program [here](https://ntp.niehs.nih.gov/whatwestudy/assessments/noncancer/completed/fluoride)
+and answer the following questions:
+
+1. Did the study establish correlation or causation between fluoride intake and children's IQ?
+2. Does the article make it clear whether to take the results as an indication of causation
+or correlation?
+3. What is meta-analysis?
+4. How do you interpret the fact that the study did not analyze data from the U.S.?
+Does that affect whether the results are applicable to U.S. children?
+5. Can you think of confounding factors that limit transfer of the results to the U.S?
+6. Are you surprised that there is no evidence of adverse effects on adults?
+::::
+:::
 
 #### Observational and experimental data
 

@@ -308,14 +308,13 @@ the world works.
 
 ## Quantitative Thinking (QT) {#sec-intro-qt}
 
+
 **Quantitative thinking** (QT) is a problem-solving technique, like computational
 thinking. It views the world through measurable events, and approaches problems
 by analyzing quantitative evidence. At the heart of QT lies **quantification**,
-representing things in measurable quantities. The result is data in its many 
-forms.
-
-The word quantification is rooted in the Latin word *quantus*, meaning "how much". The
-purpose of quantification is to express things in numbers. 
+representing things in measurable quantities. The word quantification is rooted 
+in the Latin word *quantus*, meaning "how much". The purpose of quantification is 
+to express things in numbers. The result is data in its many forms.
 
 When dealing with inherently measurable attributes such as height or weight, quantification is 
 simple. We need an agreed-upon method of measuring and a system to express
@@ -334,6 +333,202 @@ gravitational force on a mass, equivalent to kg * m /s^2^.
 As long as we know what units are used to report a weight, we can convert it 
 into whatever system we want to use. So we could say that this attribute is easily
 quantifiable. 
+
+Other attributes are difficult to quantify. How do you measure happiness? Finland
+has been declared the [happiest country](https://www.bbc.com/reel/video/p0hmcc91/why-is-finland-the-happiest-country-in-the-world-) 
+on earth for seven years running. This must involve some form of quantification
+otherwise we could not rank countries and declare one as "best". 
+How did they come up with that? The purpose of the [World Happiness Report](https://worldhappiness.report/ed/2020/social-environments-for-world-happiness/)
+is to review the science of measuring well-being and to use survey measures of 
+life satisfaction across 150 countries. *Happiness* according to the World Happiness
+Report is a combination of many other measurements. For example, a rating of
+one's overall life satisfaction, the ability to own a home, the availability of
+public transportation, etc. Clearly, there is a subjective element in choosing
+the measurable attributes that are supposed to allow inference about the 
+difficult to measure attribute *happiness*. Not all attributes weigh equally in
+the determination of happiness, the weighing scheme itself is part of the quantification.
+Norms and values also must play a role. The availability of public transportation
+affects quality of life differently in rural Arkansas and in downtown London. 
+In short, the process of quantifying a difficult-to-measure attribute should be
+part of the conversation.
+
+This is a common problem in the social sciences: what we are interested in measuring
+is difficult to quantify and the process of quantification is full of assumptions.
+Instead of getting at the phenomenon directly, we use
+other quantities to inform about all or parts of what we are really interested
+in. These **surrogates** are known by different names: we call them an indicator, 
+an index (such as the consumer price index), a metric, a score, and so on. 
+
+:::{.example}
+::::{.example-header}
+Example: Net Promoter Score (NPS)
+::::
+::::{.example-container}
+Building on the theme of "happiness", a frequent question asked by companies that
+sell products or services is "are my customers satisfied and are they loyal?"
+
+Rather than an extensive survey with many questions as in the World Happiness
+Report, the question of customer satisfaction and loyalty is often distilled into 
+a single metric in the business world, the Net Promoter Score (NPS).
+NPS is considered by many the gold standard customer experience metric. It 
+rests on a single question: "How likely are you to recommend the companies
+products or services?"
+
+The calculation of NPS is as follows (@fig-nps):
+
+- Customers answer the question on a scale of 0–10, with 0 being not at all likely 
+to recommend and 10 being extremely likely to recommend.
+- Based on their response, customers are categorized as promoters, passives, or 
+detractors. A detractor is someone whose answer was between 0 and 6. A promoter
+is someone whose answer is 9 or 10. The others, which responded with a 7 or 8 are
+passives.
+- The NPS is calculated by subtracting the percentage of detractors from the 
+percentage of promoters. 
+
+The NPS ranges from -100 to 100, higher scores imply more promoters. A NPS of
+100 is achieved if everyone scores 9 or 10. A score of -100 is achieved if
+everyone scores 6 or below.
+
+![Net promoter score](images/NetPromoterScore.png){#fig-nps fig-align="center" width=75%}
+::::
+:::
+
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Net Promoter Score
+::::
+::::{.assignment-container}
+1. What are the assumptions in the NPS calculation?
+2. Company Foo improved its NPS from 30 to 40 over the last year. Explain how
+that can happen.
+3. What does NPS tell you about a company that has many products and/or services?
+4. What impact could cultural differences and societal norms and traditions have
+on NPS values around the world?
+5. What do you think is a great net promoter score? Does it depend on the industry?
+6. Companies are applying NPS in other contexts, not just to measure
+customer satisfaction. For example, the employee NPS (eNPS) uses NPS methodology
+and the question "How likely are you to recommend company X as a place of work?" 
+What do you think about that?
+7. If you plot NPS by age, what would that look like? In other words, do you expect
+younger or older consumers to have higher/lower NPS?
+
+8. List reasons why NPS is (might be) a troubling indicator.
+<!---
+For some answers see here:
+https://www.qualtrics.com/experience-management/customer/net-promoter-score/
+https://hbr.org/2019/10/where-net-promoter-score-goes-wrong
+
+Important: cultural differences, someone cannot be detractor and promoter at the
+same time, division of range is arbitrary, tries to distill a complex relationship
+in a single number, depends on how and who you ask among the customers.
+
+Whether you recommend something or detract from something depends on who you
+are talking to. You might recommend a product to a peer but not to your parents.
+
+Fewer than those designated as promoters have actually promoted the brand.
+It measures intention, not behavior
+
+NPS does not explain why someone would recommend a product: ease of use,
+price, customer service, availability, ... It also does not explain why someone
+detracts from a product. How are you going to fix things?
+--->
+::::
+:::
+
+The NPS has many detractors, pun intended. Some describe it as "management 
+snake oil". Management touts it when the NPS goes up, nobody reports it when
+it goes down. It continues to be widely used. [Forbes](https://www.forbes.com/sites/ronshevlin/2019/05/21/its-time-to-retire-the-net-promoter-score/) reported that in 50 earnings calls of S&P 500 companies NPS was mentioned 150 
+times in 2018.
+
+### Indicators
+
+An indicator is a quantitative or qualitative factor or variable that offers a 
+direct, simple, unique and reliable signal or means to measure achievements.
+
+The economy is a complex system for the distribution of  goods and services. 
+Such a complex system defies quantification by a single number.
+Instead, we use thousands of indicators to give us insight into a particular
+aspect of the economy: inflation rates, consumer price indices, unemployment 
+numbers, gross domestic product, economic activity, etc.
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Quantifying the Economy
+::::
+::::{.assignment-container}
+Find at least two indicators in each of the following aspects:
+
+1. International trade
+2. Housing and construction
+3. Consumer spending
+4. Manufacturing
+5. Climate
+6. Labor markets
+
+What are the indicators used for--that is, what do they indicate?
+::::
+:::
+
+An indicator is called **leading** if it is predictive, informing us about what
+might happen in the future. The job satisfaction in an employee survey is a 
+leading indicator of employee attrition in the future. Unhappy employees are
+more likely to quit and to move on to other jobs. A **lagging** indicator is
+descriptive, it looks at what has happened in the past. Last month's resignation
+rate is a lagging indicator for the human resources department.
+
+### Types of Data
+
+Data, the result of quantification, can be classified in a number of ways. The
+first distinction of quantified variables is by **data type**. 
+
+- **Continuous**: the number of possible values of the variable is not countable. 
+Examples are physical measurements such as weight, height, length, pressure, temperature. 
+
+- **Discrete**: the number of possible values is countable. Even if the number 
+of possible values is infinite, the variable is still discrete. The number of fish 
+caught per day does not have a theoretical upper limit, although it is highly 
+unlikely that a weekend warrior will catch 1,000 fish. A commercial fishing vessel 
+might.\
+\
+Discrete variables are further divided into the following groups:
+    - **Count Variables**: the values are true counts, obtained by enumeration. 
+    There are two types of counts:
+
+        - **Counts per unit**: the count relates to a unit of measurement, e.g., 
+        the number of fish caught per day, the number of customer complaints per 
+        quarter, the number of chocolate chips per cookie, the number of cancer 
+        incidences per 100,000.
+
+        - **Proportions (Counts out of a total)**: the count can be converted 
+        to a proportion by dividing it with a maximum value. Examples are the 
+        number of heads out of 10 coin tosses, the number of larvae out of 20 
+        succumbing to an insecticide,
+
+    - **Categorical Variables**: the values consist of labels, even if numbers 
+    are used for labeling.
+
+        - **Nominal variables**: The labels are unordered, for example the 
+        variable "fruit" takes on the values "apple", "peach", "tomato" 
+        (yes, tomatoes are fruit but do not belong in fruit salad).
+
+        - **Ordinal variables**: the category labels can be arranged in a natural 
+        order in a lesser-greater sense. Examples are 1---5 star reviews or ratings 
+        of severity ("mild", "modest", "severe").
+
+        - **Binary variables**: take on exactly two values (dead/alive, Yes/No, 
+        1/0, fraud/not fraud, diseased/not diseased)
+
+Categorical variables are also called **qualitative** variables. They encode a
+quality, namely to belong to one of the categories. All other variables are also
+called **quantitative** variables. Note that quantifying something through numbers
+does not imply it is a quantitative variable. Highway exits might have numbers that
+are simple identifiers not related to distances. The number of stars on a 5-star
+rating scale indicates the category, not a quantified amount. The numeric values
+of quantitative variables, on the other hand, can be used to calculate meaningful
+differences and ratios. 40 kg is twice as much as 20 kg, but a 4-star review is 
+not twice as much as a 2-star review---it is simply higher than a 2-star review.
+
 
 ### Uncertainty
 
@@ -448,16 +643,172 @@ searching would not be combined with ranking results by relevance.
 https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
 --->
 
-### Types of Data
-
-
 ### Surrogacy
 
-#### From quantification to metric
+A **surrogate** metric is one that is used in the place of another. We have seen 
+earlier how economic indicators are used to describe aspects of the economy:
+
+- The consumer price index is a surrogate metric for consumer behavior, for example.
+- The net promoter score is a surrogate metric for customer loyalty. 
+
+When quantifying a variable of interest is difficult, time consuming, expensive, 
+or destructive, and a surrogate variable is easy to quantify, the surrogate can 
+take the place of the variable of interest.
+
+Here are some examples of surrogacy:
+
+- Cardiovascular health: directly measuring cardiovascular health is difficult. 
+Cholesterol levels are used as a proxy for heart health.
+
+- Education: 
+    - Standardized test scores as surrogates for student achievement.
+    - Graduation rates as a proxy for work force preparation.
+
+- Economy: Gross domestic product as a surrogate for societal well-being.
+
+- Environmental science: 
+    - CO2 levels as proxy for climate change.
+    - Tree canopy cover as a proxy for biodiversity.
+
+- Employment: Measuring employee productivity by number of hours worked or 
+by number of days in the office (vs. WFH).
+
+- Technology: 
+    - Number of downloads of an app as a measure of market share.
+    - Likes and shares as a measure of social media engagement
+
+- Academia: Citation count as a surrogate for research impact. 
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Surrogate Metrics
+::::
+::::{.assignment-container}
+Find ten more examples of surrogate metrics you encounter in daily life.
+
+::::
+:::
+
+Surrogate measurements are very often necessary, but they are not without issues:
+
+- They might not capture all factors influencing the attribute of interest.
+- They can lead to oversimplification and misinterpretation.
+- The surrogate might not measure what is most relevant. For example, standardized
+test scores do not measure critical thinking.
+- They can lead to **surrogation**.
 
 
-#### Managing the metric
+#### Surrogation
+
+**Surrogation** occurs when people or organizations substitute a metric for the 
+underlying concept or goal that the metric is intended to represent. Instead of 
+treating the metric as a proxy or tool to measure progress, they treat it as the 
+ultimate goal itself. The metric has become the goal.
+
+When standardized test scores are a surrogate for student achievement, surrogation
+means to focus on driving up the test scores rather than focusing on driving
+actual student achievement. 
+
+Surrogation of net promoter scores occurs when 
+companies focus on driving up NPS by only asking customers that repeatedly 
+buy their product. The goal is to increase customer satisfaction and loyalty, the
+NPS should increase as a result. Surrogation focuses on the NPS, not the actual
+customer satisfaction. The first mistake in surrogation is to assume that the 
+surrogate is exactly what it is a proxy for. To assume that the net promoter 
+score is a proxy for customer satisfaction it is not customer satisfaction.
+
+Sales people are often incentivized on number of deals or deal volume (revenue).
+The underlying goal is to drive success for the company. Surrogation can lead 
+to closing of deals that are bad for the company (losing money on the deal) but
+work in favor of the sales person's metric to hit a revenue target.
+
+---
+
+When metrics are tied to performance evaluation, resource assignment, advancement, 
+surrogation is common. It leads to distorted priorities and bad behavior (gaming
+the system): people try to meet the metric without achieving the underlying goal.
+
+Another aspect of surrogation is to prioritize the simple fixes and quick wins
+instead of the deeper but more expensive and difficult corrections. A hospital
+might focus on amenities or quick ER service rather than improving health outcomes
+for its patients. A social media content creator generates click bait in order
+to increase clicks rather than focusing on meaningful engagement.
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Find Examples of Surrogation
+::::
+::::{.assignment-container}
+Find a few additional real life examples of surrogation, where chasing the metric has become 
+more important than achieving the underlying goal the metric represents.
+::::
+:::
+
+#### Predictions as surrogates
+
+The predictions of a statistical model are often used as surrogates for values 
+that are difficult or impossible to observe or when the method of observing the
+value destroys the object itself.
+
+:::{.example}
+::::{.example-header}
+Example: Measuring Fitness
+::::
+::::{.example-container}
+One method for quantifying the aerobic fitness of athletes is through testing
+their aerobic capacity under stress (@fig-aerobic-fit). These measurements are
+time consuming and expensive.
+
+![Measuring aerobic capacity.](images/AerobicCapacity.jpeg){#fig-aerobic-fit fig-align="center" width=75%}
+
+Imagine that you conduct a study in which a number of athletes are subjected to
+aerobic capacity tests on a machine similar to that shown in @fig-aerobic-fit. In 
+addition to measuring their aerobic capacity, you also measure simple-to-obtain
+attributes such as heart rate, rest pulse, run pulse, distance run, etc.
+
+Then, you develop a model that can predict aerobic capacity from the easy-to-measure
+attributes. If that model works well, you can predict the aerobic capacity of
+an athlete by obtaining their heart rate, pulse, rest pulse, etc. The prediction
+from that model is a surrogate for the unobserved aerobic fitness measurement.
+
+This is an example of a **regression model**.
+::::
+:::
+
+:::{.example}
+::::{.example-header}
+Example: Nail Pull Test
+::::
+::::{.example-container}
+The force required to pull a nail out of a gypsum board (dry wall) is a measure
+of the board quality. Unfortunately, the test is destructive and the tested 
+board cannot be used. To circumvent the problem and have more boards to sell,
+a regression model can be built to predict the nail pull strength from other
+attributes such as the dry wall material, the thickness of the wall, the method
+of construction, humidity, temperature, etc.
+
+These attributes are easy to measure and non-destructive. When the regression
+model works well---that is, it explains a sufficient degree of variation in 
+nail pull strengths across gypsum boards---the prediction from the model can 
+be used as surrogate for the actual board nail pull strength.
+::::
+:::
 
 
+:::{.assignment}
+::::{.assignment-header}
+Reading Assignment: Chapter 3 in WMD
+::::
+::::{.assignment-container}
+Read Chapter 3, "Arms Race" in @ONeil2017 [pp.50--62].
 
-
+1. What is the goal and what is the (surrogate) metric in the U.S. News &
+World Report?
+2. How did surrogation affect the response of universities to the rankings?
+3. Did the proxies chosen for educational excellence make sense?
+4. What is the effect of leaving tuition and fees out of the ranking model?
+5. What is the similarity of the model for educational excellence that underlies
+the college rankings and the regression models for aerobic fitness and the nail
+pull test?
+::::
+:::

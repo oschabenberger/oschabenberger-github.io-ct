@@ -3,7 +3,7 @@ project:
   output-dir: docs
   
 book:
-  title: "Quantitative and Computational Thinking"
+  title: "Computational and Quantitative Thinking"
   subtitle: "Data and Algorithms"
   author: "Oliver Schabenberger"
   date: "January 8, 2024"
@@ -28,7 +28,7 @@ book:
     - life_algorithms.qmd
     - genAI.qmd
     - references.qmd
-    - notes.qmd
+  #  - notes.qmd
     
 bibliography: references.bib
 
