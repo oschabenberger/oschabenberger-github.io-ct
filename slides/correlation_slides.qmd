@@ -1,0 +1,575 @@
+---
+title: "Correlation and Causation"
+subtitle: "Computational and Quantitative Thinking"
+author: "Oliver Schabenberger"
+institute: "Academy of Data Science, Virginia Tech"
+date: "03/19/2025"
+date-format: long
+format: 
+  revealjs:
+      embed-resources: true
+      title-slide-attributes:
+        data-background-image: ../images/Burruss-1920x1080.png
+        data-background-size: contain  
+        data-background-opacity: "1"
+      smaller: true
+      fig-align: center
+      fig-cap-location: bottom
+      scrollable: false
+      slide-number: true
+      auto-stretch: false
+      preview-links: true
+      theme: [default, slides_custom.scss] # moon
+      logo: ../slides_images/VTBanner.png
+      footer: "UH 2514: Correlation and Causation"
+      css: slides_styles.css
+      execute:
+        echo: false
+        warning: false      
+---
+
+
+# Correlation and Causation
+
+:::{.centered}
+Correlation describes the relationship (association) between things.
+A persons weight is correlated with their height; taller people tend to be heavier.
+\
+\
+Causation is the situation when one factor is the result of another.
+Smoking causes an increase in the risk of lung cancer. The gravitational pull
+of the moon on earth's oceans causes the tides. An accident causes a traffic jam.
+:::
+
+## Correlation is not Causation
+
+:::{.quote .absolute top=20%}
+Just because two variables have a statistical relationship with each other does not mean 
+that one is responsible for the other.  For instance, ice cream sales and forest fires 
+are correlated because both occur more often in the summer heat.  But there is no 
+causation; you don't light a patch of the Montana brush on fire when you buy a
+pint of Häagan-Dazs.
+
+[Nate Silver. 2020. The Signal and the Noise, p. 187]{style="font-size: 0.8em; color: #01364C;"}
+:::
+
+## Lemon Imports and Highway Fatalities
+
+<br/>
+<br/>
+
+![Relationship between highway fatalities and lemon imports from Mexico.](../images/spurious1.png){#fig-lemon-acc  width=50%}
+
+## Nobel Laureates and Chocolate Consumption
+
+![Chocolate consumption and number of Nobel laureates. Source: Messerli. 2012. Chocolate Consumption, Cognitive Function, and Nobel Laureates. *New England Journal of Medicine*, Vol 367, 1562--1564.](../images/Chocolate.png){#fig-chocolate-corr fig-align="center" width=50% .lightbox}
+
+
+## Positive Correlation
+
+When variables are continuous, we can show the association between two variables
+as a point cloud (scatter plot).
+
+![Positive correlation.](../images/CorrelationPositive.png){#fig-corr-pos fig-align="center" width=50% .lightbox}
+
+## Negative Correlation
+<br/>
+<br/>
+
+![Negative correlation.](../images/CorrelationNegative.png){#fig-corr-neg fig-align="center" width=50% .lightbox}
+
+
+
+## Strength of Correlation
+
+:::{.maroon}
+The strength of the linear correlation between continuous attributes is measured by the
+correlation coefficient. It ranges from -1 to 1. A coefficient of 0 means no
+(linear) correlation.
+:::
+
+![Correlations of different strength and directions. The numbers above the point clouds indicate the strength and direction of the correlation](../images/different_correlations.png){#fig-correlations fig-align="center" width=60%}
+
+
+## Perfect Correlation
+
+:::{.maroon}
+All data points fall on a line. For example, conversion between degree C and Fahrenheit.
+:::
+
+$$
+^\circ F = {^\circ C} \times \frac{9}{5}  + 32
+$$
+
+```{r, echo=FALSE, fig.align='center', out.width="35%", fig.asp=1}
+#| fig.cap: Linear relationship between $^\circ F$ and $^\circ C$.
+#| label: fig-fahrenheit
+#| 
+degC <- seq(-10,40,1)
+degF <- degC * 9/5 + 32
+plot(degC,degF,las=1,bty="l",type="l",lwd=2,
+     cex.lab=1.5,
+     cex.axis=1.5,
+     xlab="Centigrade",
+     ylab="Fahrenheit")
+lines(x=c(0,0),y=c(10,32), lty="dashed")
+lines(x=c(-12,0),y=c(32,32),lty="dashed")
+```
+
+## Association between Qualitative Attributes
+
+
+:::{.example}
+::::{.example-header}
+Example: Rater Agreement
+::::
+::::{.example-container}
+@tbl-rater-agree shows the results of a study where insect 
+damage on 236 agricultural fields was classified into
+5 damage categories by two different inspectors.
+
+| **Rater 2** | 1 | 2 | 3 | 4 | 5 | **Total** |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1** | 10 |  6 |  4 |  2 |  2 | 24 |
+| **2** | 12 | 20 | 16 |  7 |  2 | 57 |
+| **3** |  1 | 12 | 30 | 20 |  6 | 69 |
+| **4** |  4 |  5 | 10 | 25 | 12 | 56 |
+| **5** |  1 |  3 |  3 |  8 | 15 | 30 |
+| **Total**| 28 | 46 | 63 | 62 | 37 | 236 |
+
+: Results of rating 236 experimental units by 2 raters {#tbl-rater-agree .striped}
+
+For example, 16 experimental units were assigned to damage category 3 by rater 1
+and to damage category 2 by rater 2. There is relatively strong association 
+between the ratings, the majority of the counts fall on the diagonal of the 
+table and in the cells immediately off the diagonal (where the raters disagree
+by one damage category).
+::::
+:::
+
+## Association between Qualitative Attributes
+
+<br/>
+<br/>
+
+| Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
+|:---:|:---:|:---:|:---:|
+| Southwark \& Vauxhall | 40,046 | 1,263 | 315 |
+| Lambeth | 26,107 | 98 | 37 |
+| Rest of London | 256,423 | 1,422 | 55|
+
+: Cholera incidences and rates during the first seven weeks of the outbreak. The death rate in the rest of London was reported as 59 in Table IX of @Snow1855, but calculates to 55 deaths per 10,000. {.striped}
+
+
+## Correlation Coefficient is about Linear Relationships
+
+:::{.maroon}
+You can have definite relationships but the linear correlation coefficient is
+near zero.
+:::
+
+```{r, echo=FALSE, fig.align='center', out.width="50%"}
+#| fig.cap: Strong nonlinear relationship with small (linear) correlation coefficient.
+#| label: fig-corr-nonlin
+#| 
+set.seed(234)
+x <- runif(100,min=-2,max=2)
+y <- 0.9 * x^2 + rnorm(100,0,0.1)
+r <- cor(x,y)
+
+plot(x,y,las=1,bty="l",
+     cex=1.5,
+     cex.lab=1.5)
+text(x=-0.8,y=3,labels=paste("Correlation coefficient:",round(r,4)),cex=1.5)
+```
+
+## Spurious Correlations
+
+* [Two variables appear related, but they are not really dependent on each other]{.maroon}
+
+* [The correlation is introduced by some other mechanism]{.maroon}
+
+    * Coincidence
+    * Latent Variables
+    * Induced
+
+## Coincidence
+
+:::{.incremental .highlight-last}
+* [Economics]{.maroon}
+<br/>Only eleven economic recessions since World War II
+<br/>45,000 economic statistics reported by government each year
+<br/>By coincidence, some statistics will go up and down together
+
+* [Super Bowl and Economic Performance]{.maroon}
+<br/>1967--1997: team from the original NFL won, the stock market went up by 14\%. 
+<br/>1967--1997: team from the original AFL won, the stock market decreased by almost 10\%. 
+<br/>Through 1997, the Super Bowl winner "predicted" correctly the direction of the stock market in 28 out of 31 years.
+
+* [Paul, the Octopus]{.maroon}
+<br/>Predicted the winner in 2008--2010 international soccer matches 12 out of 14 times.
+<br/>Determined that Paul the octopus has divine powers. 
+<br/>When Paul got it wrong calling Germany vs Spain, German fans called for him to be eaten.
+:::
+
+## Latent Variables
+
+* [A is correlated with (or caused by) B]{.maroon} 
+
+* [C is correlated (or caused by) B]{.maroon}
+
+* [Plotting A versus C indicates a correlation due to the latent variable B]{.maroon}
+
+![Spurious correlation. What is the latent variable?](../images/spurious3.jpg){#fig-spurious-corr  width=50%}
+
+## Induced Correlation
+
+:::{.maroon}
+Correlations can also be induced by introducing mathematical dependence.
+:::
+
+![Storks and Babies](../images/Stork.png){#fig-stork-baby fig-align="center" width=35%}
+
+## Storks and Babies---The Myth
+
+:::{.incremental .highlight-last}
+* [The Myth]{.maroon}
+<br/>A persistent myth in central Europe is that storks bring babies.
+
+* [Origin (possibly)]{.maroon}
+<br/>Goes back to medieval days 
+<br/>Conception more common in mid-summer during the celebration of the 
+summer solstice. 
+<br/>Summer solstice is also a pagan holiday of marriage and fertility. 
+<br/>White stork is a migratory bird that flies to Africa in the fall and returns to 
+Europe nine months later. 
+<br/>Connection made!
+
+* [Debunked]{.maroon}
+<br/>Do we need to discuss??
+:::
+
+## Storks and Babies---The Data
+
+Neyman (1952) published data on 54 counties that comprises the following attributes
+
+- $W$: Number of women of child-bearing age in the county (in 10,000)
+- $S$: Number of storks in the county
+- $B$: Number of babies born in the county
+
+[Analysis variables:]{.maroon}
+
+* $Y = B/W$: birth rate per 10,000 women
+* $X = S/W$: density of storks per 10,000 women
+
+
+## Storks and Babies---The Data
+
+![Storks and babies.](../images/Storks_and_Babies.png){#fig-stork-trend width=50%}
+
+## Establishing Causality
+
+
+## Why is Establishing Causality Difficult?
+
+:::{.incremental .highlight-last}
+* [Causation is not Deterministic]{.maroon}
+<br/>Not every smoker gets lung cancer, not every lung cancer is due to smoking
+<br/>There is variability in the population
+<br/>The cause does not trigger an effect every time, it increases the likelihood
+that an effect occurs
+
+* [Confounding Factors]{.maroon}
+<br/>affect both the factor and the effect
+<br/>can mask or distort the effect of variables
+
+* [Experimentation often not possible]{.maroon}
+<br/>Some systems cannot be manipulated (weather, economy)
+<br/>Ethical considerations in applying harmful treatments or withholding promising ones
+:::
+
+## Dealing with Confounding Variables
+
+* [Adjustments]{.maroon}
+<br/>Include the confounding variables in models that capture the relationship
+between target and factors of interest
+<br/>
+
+* [Stratification]{.maroon}
+<br/>When the confounding variable is categorical (e.g., age group) perform
+analysis separately for each age group
+<br/>
+
+* [Randomization]{.maroon}
+<br/>Allow random selection or assignment to balance out the effects of
+the confounding variables.
+
+## Dealing with Confounders--Adjustment
+
+
+## Dealing with Confounders--Stratification
+
+
+## Simpson's Paradox
+
+:::{.maroon}
+The apparent contradiction of conclusions drawn when analyzing data as a whole
+and analyzing it in groups.
+:::
+<br/>
+
+. . .
+
+:::{.columns}
+::::{.column width=50%}
+![The overall trend between X and Y.](../images/SimpsonAll.png){#fig-simp-all fig-align=left width=75%}
+::::
+::::{.column width=50%}
+![The groupwise trends between X and Y.](../images/SimpsonGroup.png){#fig-simp-all fig-align=left width=75%}
+::::
+:::
+
+
+## Simpson's Paradox
+
+:::{.maroon}
+Application and acceptance rates at Cambridge in 1996 in STEM disciplines
+for men and women. The first table shows overall numbers and rates, the second
+table shows data by STEM discipline
+:::
+
+
+|        | Women     |            |         | Men | | | 
+|--------|---:|---:|---:|---:|---:|---:|
+|        |**Applied**| **Accepted**| **\%** | **Applied** | **Accepted** | **\%**|
+| Total  | 1,184 | 274 | [23\%]{.orange} | 2,740 | 584 | [24\%]{.maroon}
+
+. . .
+ 
+<br/>
+
+|        | Women     |            |         | Men | | | 
+|--------|---:|---:|---:|---:|---:|---:|
+|        |**Applied**| **Accepted**| **\%** | **Applied** | **Accepted** | **\%**|
+| Computer Science    |  26 |  7 | [27\%]{.maroon} | 228 |  58 | [25\%]{.orange} |
+| Economics           | 240 | 63 | [26\%]{.maroon} | 512 | 112 | [22\%]{.orange} |
+| Engineering         | 164 | 52 | [32\%]{.maroon} | 972 | 252 | [26\%]{.orange} |
+| Medicine            | 416 | 99 | [24\%]{.maroon} | 578 | 140 | [24\%]{.maroon} |
+| Veterinary Medicine | 338 | 53 | [16\%]{.maroon} | 180 |  22 | [12\%]{.orange}|
+
+
+
+## Assignment
+
+:::{.assignment}
+::::{.assignment-header}
+Fluoride Exposure and IQ
+::::
+::::{.assignment-container}
+The National Toxicology Program of the U.S. Department of Health and Human Services
+conducted a **meta-analysis** of the relationship between fluoride intake and IQ.
+
+Read the full [article from the National Toxicology Program here](https://ntp.niehs.nih.gov/whatwestudy/assessments/noncancer/completed/fluoride)
+and answer the following questions:
+
+1. Did the study establish correlation or causation between fluoride intake and children's IQ?
+2. Does the article make it clear whether to take the results as an indication of causation
+or correlation?
+3. What is meta-analysis?
+4. How do you interpret the fact that the study did not analyze data from the U.S.?
+Does that affect whether the results are applicable to U.S. children?
+5. Can you think of confounding factors that limit transfer of the results to the U.S?
+6. Are you surprised that there is no evidence of adverse effects on adults?
+::::
+:::
+
+
+## Randomization
+
+* [Creates probabilistic equivalence in data]{.maroon}
+<br/>
+
+* [Random selection]{.maroon}
+<br/>Not haphazard and arbitrary
+<br/>Follows probability distributions
+<br/>Balancing property ensures data in sample represents population
+<br/>Prevents [selection bias]{.maroon}
+</br>
+
+* [Random assignment]{.maroon}
+<br/>A condition (treatment) is assigned to a subject
+<br/>Assignment is done at random
+<br/>Balancing property for unaccounted confounding and lurking factors
+
+## Experimentation--The Randomized Controlled Trial (RCT)
+
+
+## Example: Randomized Complete Block Design (RCBD)
+
+:::{.maroon}
+Poppy experiment: Six fertilizer treatments in four blocks.\
+:::
+
+Conditions that affect poppy growth:
+
+1. Conditions we manipulate (treatments)
+2. Conditions we do not manipulate but know about
+3. Conditions we do not know about (lurking factors)
+
+![Experimental layout for poppy experiment.](../images/RandomizedBlocks.png){#fig-rcbd-poppies fig-align="center" width=50% .lightbox}
+
+## Experiments in Social Sciences
+
+[Study of the Therapeutic Effects of Intercessory Prayer (STEP)]{.maroon} 
+
+Does being prayed for improve the recovery of patients after coronary artery bypass graft surgery?
+
+[Methods]{.maroon}
+
+*  Patients at 6 US hospitals were randomly assigned to 1 of 3 groups: 
+    * Group 1 (604): intercessory prayer after being told they may or may not receive prayer
+    * Group 2 (597): did not receive intercessory prayer after being told that they may or 
+may not receive prayer
+    * Group 3 (601): intercessory prayer after being informed they would receive prayer
+    * Intercessory prayer was provided for 14 days, starting the night before surgery. 
+    * Outcome was presence of any complication within 30 days of surgery
+
+. . .
+
+[Conclusion]{.maroon}
+
+:::{.quote}
+Intercessory prayer itself had no effect on complication-free recovery from CABG, 
+but certainty of receiving intercessory prayer was associated with a higher 
+incidence of complications.
+:::
+
+## Experiments in Technology
+
+* [A/B Testing]{.maroon}
+<br/>Compare two conditions (A and B) of a product or web site 
+<br/>Deploy both products/websites
+<br/>Randomly assign customers to experience either A or B
+<br/>Measure outcomes of interest (time on page, click-through rate, purchases, ...)
+<br/>
+
+* [Google]{.maroon}
+<br/>Said to run 10,000 A/B experiments per year
+<br/>That is about 30 experiments **every day**
+<br/>We are all part of randomized experiments!
+
+
+## When Experiments are Not Possible
+
+:::{.maroon}
+Experimentation with random treatment assignment is the gold standard.
+What do we do if this is not possible?
+:::
+<br/>
+
+* [Reasons why experimentation might be not possible]{.maroon}
+
+:::{.incremental}
+ - Systems that cannot be manipulated (weather, earthquakes)
+ - Systems that are altered by manipulation (chemistry, economy)
+ - Need to let something happen (epidemiology)
+ - Not ethical to assign harmful conditions (smoking, head injury)
+ - Not ethical to withhold potential benefits (cancer)
+:::
+
+. . .
+
+* [We then have to rely on observational data]{.maroon}
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Why Do Old Men Have Big Ears?
+::::
+::::{.assignment-container}
+This question cannot be answered with a randomized controlled trial, we cannot assign ear lengths. 
+It is what it is. But the subject has been studied. The figure below appeared in Heathcote (1995).
+
+* The study concluded that the regression trend was significant. 
+* The slope of the line is 0.22mm per year with a 95\% confidence interval of [0.17, 0.27] 
+mm per year. 
+
+![Ear length. From Heathcote (1995)](../images/EarLength.jpg){#fig-ear-length fig-align="center" width=35% .lightbox}
+
+1. What are possible explanations for larger ears in older men?
+
+2. If you were to conduct a follow-up study to test the explanations in 1., 
+what would the study look like? What kind of data would you collect? What
+kind of men would you recruit for the study?
+::::
+:::
+
+## Quasi-experiments
+
+* [Nature runs an experiment for us]{.maroon}
+
+* [Confounding factors are controlled for us]{.maroon}
+
+* [Example: John Snow's "Experiment"]{.maroon}
+
+![](../slides_images/snow_map2.jpg){width=50% fig-align=center .lightbox}
+
+## Hill's Criteria
+
+* [After Sir Author Bradford Hill]{.maroon}
+<br/>Part of the research team that linked smoking to lung cancer
+<br/>Established nine criteria to establish causality involving environmental exposure.
+
+:::{.absolute left=60}
+1. **Strength**: stronger association is stronger evidence of causality.
+2. **Consistency**: similar studies by others give consistent findings.
+3. **Specificity**: the more specific the association between a factor and an
+effect, the more likely we are dealing with cause and effect. The association
+is specific when the cause leads to only one outcome and the outcome can only come from
+the one cause.
+4. **Temporarlity**: the effect comes after the cause. 
+5. **Gradient**: a dose-response curve exists.
+6. **Plausibility**: the association makes sense based on known scientific facts.
+7. **Coherence**: Interpretation of the data does not conflict with what is already known.
+8. **Experimentation**: if experimentation is possible, it provides results in 
+support of the causal hypothesis (provides strong evidence).
+9. **Analogy**: Scientists can use prior knowledge and patterns to infer similar causal associations.
+:::
+
+## Assignment 
+
+:::{.assignment}
+::::{.assignment-header}
+Causal Link between RHI and CTE
+::::
+::::{.assignment-container}
+Read the article by Nowinski et al. about the causal relationship between
+repeated head impacts (RHI) and chronic traumatic encephalopathy (CTE) at 
+[this link](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.938163/full)
+
+It appears that the causal link between the two was settled throughout the 20^th^ 
+century and later questioned again.
+
+1. What reasons were given by some of the organizations involved in the debate 
+(like CISG) to resist declaring a causal link between RHI and CTE?
+
+2. What do you believe was their motivation to do so?
+
+3. In the section *Understanding Causation*, the article examines each of 
+Hill's nine criteria. Cite one argument from the article in support of each criterion.
+
+4. Per the *Discussion* section of the article, what are valid reasons why 
+scientists might remain skeptical of a causal link between RHI and CTE?
+
+5. What language did the authors use in the *Conclusion* to indicate a causal
+relationship between RHI and CTE?
+
+6. Based on the evidence provided, should the conclusions drawn from data
+about adult athletes be applied to children? Argue for or against and why or 
+why not?
+::::
+:::
+
+
+

@@ -1,4 +1,4 @@
-# Introduction {#sec-intro}
+# Computational & Quantitative Thinking {#sec-intro}
 
 
 ## Computational Thinking (CT) {#sec-intro-ct}
@@ -316,8 +316,48 @@ representing things in measurable quantities. The word quantification is rooted
 in the Latin word *quantus*, meaning "how much". The purpose of quantification is 
 to express things in numbers. The result is data in its many forms.
 
-When dealing with inherently measurable attributes such as height or weight, quantification is 
-simple. We need an agreed-upon method of measuring and a system to express
+### Benefits of Quantification
+
+The first obvious benefit of quantification is to make information amenable to
+mathematical and statistical operations. When mathematical or statistical calculations
+are concerned, any type of data will eventually be represented as numbers. A
+photograph turns into row and column indices of pixels and three-number triplets
+of red, green, and blue intensities. A sophisticated large language model that 
+processes textual information converts the text into numeric representations, 
+a process called **encoding**.
+
+
+@Huff_1954, in one of the most widely published statistics texts, *How to Lie with
+Statistics* states
+
+>*Many a statistic is false on its face. It gets by only because the magic of numbers brings about a suspension of common sense.*
+
+According to one view, the de-contextualized and value-free mathematical symbols 
+used in statistical analyses assist in achieving objectivity, stability, and fairness
+in decisions. Quantification is a method of standardization that summarizes
+and reduces concepts to their essence and allows us to make better decisions.
+
+Objective metrics by which to measure allows us to establish rank and status.
+Status of nations can be measured by GDP (Gross Domestic Product). A countries' 
+portion of global GPD is one of the criteria for G20 membership. Quantified
+status is a much better solution than determining status by sending soldiers 
+across borders. 
+
+Quantification allows us to express relationships: ranking, ordering, and measuring
+proximity. As we will see in a later chapter, sorting and searching are fundamental.
+As an exercise observe how many times a day you encounter sorted lists, rankings,
+top-ten results, best-of lists, most-preferred lists and other forms of arranging
+information by a relevance metric. Google search would not be so successful if
+searching would not be combined with ranking results by relevance.
+
+<!---
+https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
+--->
+
+### Easy and Difficult to Quantify
+
+When dealing with inherently measurable attributes such as height or weight, 
+quantification is simple. We need an agreed-upon method of measuring and a system to express
 the measurement in. The former might be an electronic scale or an analog scale
 with counterweights for weight measurement, a ruler, yardstick, or laser device
 for height measurements. It seems obvious to report weights in metric units of 
@@ -338,7 +378,7 @@ Other attributes are difficult to quantify. How do you measure happiness? Finlan
 has been declared the [happiest country](https://www.bbc.com/reel/video/p0hmcc91/why-is-finland-the-happiest-country-in-the-world-) 
 on earth for seven years running. This must involve some form of quantification
 otherwise we could not rank countries and declare one as "best". 
-How did they come up with that? The purpose of the [World Happiness Report](https://worldhappiness.report/ed/2020/social-environments-for-world-happiness/)
+How did they come up with that? The purpose of the [World Happiness Report](https://worldhappiness.report/ed/2024/happiness-of-the-younger-the-older-and-those-in-between/)
 is to review the science of measuring well-being and to use survey measures of 
 life satisfaction across 150 countries. *Happiness* according to the World Happiness
 Report is a combination of many other measurements. For example, a rating of
@@ -349,12 +389,92 @@ difficult to measure attribute *happiness*. Not all attributes weigh equally in
 the determination of happiness, the weighing scheme itself is part of the quantification.
 Norms and values also must play a role. The availability of public transportation
 affects quality of life differently in rural Arkansas and in downtown London. 
-In short, the process of quantifying a difficult-to-measure attribute should be
+In short, the process of how we quantify a difficult-to-measure attribute should be
 part of the conversation.
 
-This is a common problem in the social sciences: what we are interested in measuring
-is difficult to quantify and the process of quantification is full of assumptions.
-Instead of getting at the phenomenon directly, we use
+:::{.assignment}
+::::{.assignment-header}
+Assignment: World Happiness Report
+::::
+::::{.assignment-container}
+Read the section *Measuring and Explaining National Differences in Life Evaluations*
+in the [2024 World Happiness Report](https://worldhappiness.report/ed/2024/happiness-of-the-younger-the-older-and-those-in-between)
+
+- Which variables is the ranking of happiness based on?
+- How many citizens of each country participate in the survey?
+- Does WHR collect its own data or does it rely on someone else's survey?
+- The data includes three indicators for well-being. Are they all used in 
+determining the happiness rankings?
+- In the discussion of the methods, can you determine whether the happiness 
+rankings involve some form of modeling, where survey responses are tied to 
+other variables? If so, what are the variables? Are these reflected in Table 2.1?
+::::
+:::
+
+Variables are difficult to quantify for various reasons:
+
+- Inconsistent views about what they mean---how do you measure freedom?
+- Difficult to define---what is trust?
+- Subjectivity---introversion
+- Abstract concepts---creativity, natural beauty, etc. 
+
+Here is a short list of difficult-to-quantify concepts from different areas:
+
+1. **Personal and Psychological Attributes**
+ - **Emotions**: Happiness, sadness, or anxiety levels can be challenging to 
+ measure as they are subjective and context-dependent.
+ - **Personality traits**: Attributes like openness, conscientiousness, or 
+ introversion often rely on self-reporting and are hard to measure precisely.
+ - **Self-esteem**: The internal sense of self-worth varies across situations 
+ and over time.
+ - **Empathy**: Understanding the emotions of others is influenced by individual 
+ perception.
+ - **Intelligence**: there are different forms of intelligence (emotional, spatial,
+ linguistic, musical, etc.). IQ tests provide incomplete pictures.
+
+2. **Social and Cultural Variables**
+ - **Social cohesion**: The sense of community and connection within a group.
+ - **Cultural values**: Abstract beliefs such as collectivism or individualism 
+ differ across societies.
+ - **Trust**: The degree of confidence people have in others or institutions 
+ can be highly context-sensitive.
+ - **Social norms**: Expectations about behavior that are implicit and vary 
+ among groups.
+
+3. **Ethical and Moral Attributes**
+ - **Fairness**: What is considered "fair" depends on personal, cultural, and contextual factors.
+ - **Integrity**
+ - **Justice**: Varied interpretations of what constitutes equitable treatment or outcomes.
+
+4. **Creative and Artistic Variables**
+ - **Creativity**: Measuring originality and innovation is inherently subjective.
+ - **Aesthetic appeal**: People's appreciation of beauty is highly personal and 
+ culturally influenced.
+ - **Talent**
+
+5. **Environmental and Ecological Factors**
+ - **Biodiversity value**: The intrinsic worth of maintaining species diversity 
+  is challenging to calculate in monetary or ecological terms.
+ - **Ecosystem health**: Assessing overall resilience, productivity, or 
+  stability of ecosystems involves many interdependent variables.
+ - **Natural beauty**
+
+6. **Economic and Market Variables**
+ - **Brand loyalty** is an emotional attachment to a product or service.
+ - **Consumer satisfaction**: Highly subjective and influenced by expectations 
+ and individual preferences.
+Innovation potential: The likelihood that a new product or idea will succeed in the market.
+
+7. **Abstract Concepts**
+ - **Freedom**: The degree to which individuals or groups are free can depend on legal, social, and personal dimensions.
+ - **Happiness**: The overall well-being of a population is a composite of 
+ subjective factors.
+ - **Potential**: The latent ability for growth or success in individuals or systems.
+
+You can easily grow the list and find examples of difficult-to-quantify variables
+from many fields. It is a common problem in many sciences: what we are interested 
+in measuring is difficult to quantify and the process of quantification is full of 
+assumptions. Instead of getting at the phenomenon directly, we use
 other quantities to inform about all or parts of what we are really interested
 in. These **surrogates** are known by different names: we call them an indicator, 
 an index (such as the consumer price index), a metric, a score, and so on. 
@@ -441,12 +561,12 @@ snake oil". Management touts it when the NPS goes up, nobody reports it when
 it goes down. It continues to be widely used. [Forbes](https://www.forbes.com/sites/ronshevlin/2019/05/21/its-time-to-retire-the-net-promoter-score/) reported that in 50 earnings calls of S&P 500 companies NPS was mentioned 150 
 times in 2018.
 
-### Indicators
+### Indicator and Index
 
-An indicator is a quantitative or qualitative factor or variable that offers a 
+An **indicator** is a quantitative or qualitative factor or variable that offers a 
 direct, simple, unique and reliable signal or means to measure achievements.
 
-The economy is a complex system for the distribution of  goods and services. 
+The economy is a complex system for the distribution of goods and services. 
 Such a complex system defies quantification by a single number.
 Instead, we use thousands of indicators to give us insight into a particular
 aspect of the economy: inflation rates, consumer price indices, unemployment 
@@ -477,7 +597,120 @@ more likely to quit and to move on to other jobs. A **lagging** indicator is
 descriptive, it looks at what has happened in the past. Last month's resignation
 rate is a lagging indicator for the human resources department.
 
-### Types of Data
+---
+
+When multiple indicators are combined, we sometimes call it an **index**, although
+the distinction is not sharp. Indicators can also be the result of aggregation
+so that the distinction between indicator and index becomes one of degree of
+combining information (with an index being more aggregated or combining more
+individual pieces of information). In some domains, the word index is simply
+used more frequently than indicators, and vice versa.
+
+:::{.example}
+::::{.example-header}
+Example: Body Mass Index (BMI)
+::::
+::::{.example-container}
+The Body Mass Index (BMI) is a medical screening tool for certain health conditions.
+Colloquially, it is understood as a measure of "fatness". That is not quite correct,
+in most people, BMI  only **correlates** with body fat. We will learn more about 
+the concept of correlation (association) later. BMI has become the standard indicator
+for obesity.
+
+The calculation of BMI involves two variables (two indicators): a person's weight
+in kilograms (kg) and their height in meters (m):
+$$
+\text{BMI} = \frac{\text{Weight in kg}}{(\text{Height in m})^2}
+$$
+
+ Notice that the height is squared in the denominator. If you prefer to work in
+ U.S. pounds and inches, the calculation is
+ $$
+ \text{BMI} = \frac{\text{Weight in lbs} \times 703}{(\text{Height in inches})^2}
+  $$
+ 
+In my case (6'3" tall, 208 lbs), the BMI is (208 \times 703)/(75^2) = 25.9.
+According to BMI charts such as [this one](https://my.clevelandclinic.org/health/articles/9464-body-mass-index-bmi) 
+at the Cleveland Clinic, I am in the overweight range.
+
+BMI is used widely by medical professionals. People with low values might be at
+risk for developing anemia, osteoporosis, infertility, malnutrition, and a 
+weakened immune system. High values can indicate a higher risk for heart disease,
+high blood pressure, type 2 diabetes, gallstones, osteoarthritis, sleep apenea,
+depression, and certain cancers. 
+
+Geez. It seems that unless you are in the optimal BMI range you are either bound
+for osteoporosis or osteoarthritis. No wonder folks are obsessing over their BMI.
+
+The [Cleveland Clinic](https://my.clevelandclinic.org/health/articles/9464-body-mass-index-bmi) 
+is quick to point out:
+
+>*It’s important to remember that you could have any of the above health conditions without having a high BMI. Similarly, you could have a high BMI without having any of these conditions.\
+...\
+It’s important to remember that body fatness isn’t the only determiner of overall health. Several other factors, such as genetics, activity level, smoking cigarettes or using tobacco, drinking alcohol and mental health conditions all affect your overall health and your likelihood of developing certain medical conditions.
+*
+
+And 
+
+>*The standard BMI chart has limitations for various reasons. Because of this, 
+it’s important to not put too much emphasis on your BMI.*
+
+People who are muscular can have a high BMI and still have very low fat mass. The 
+BMI does not distinguish between lean body mass and fat body mass. BMI charts do
+not distinguish between males and females, although females tend to have more
+body fat (says the Cleveland Clinic!). People today are taller than when the BMI
+was developed. The BMI charts do not apply to athletes, children, pregnant 
+people, or the elderly.
+
+>*Even though the BMI chart can be inaccurate for certain people, healthcare providers 
+still use it because it’s the quickest tool for assessing a person’s estimated 
+body fat amount.*
+
+Ah, so it is used because it is easy to calculate, not because it is particularly
+useful or accurate.
+
+A January 2025 article in the medical journal *The Lancet* states [@Rubino2025]
+
+>*Current BMI-based measures of obesity can both underestimate and overestimate
+adiposity and provide inadequate information about health at the individual level, 
+which undermines medically-sound approaches to health care and policy.*
+
+Based on this article, 
+[Business Insider](https://www.businessinsider.com/bmi-is-bogus-best-way-to-tell-if-youre-a-healthy-weight-2016-9) 
+went a step further, calling BMI **bogus**. Having "obesity" according to the 
+BMI scale does not mean a person is unhealthy. In fact, BMI does not tell you
+anything about the health of a person. 
+
+It is worthwhile to examine how BMI came 
+about. The comment above about the increasing height of people suggests that BMI 
+was developed some time ago. Indeed. It was invented for an entirely different
+reason, to describe a population average man in Western Europe in the 19^th^ century. 
+
+To make this connection we need to introduce Adolphe Quetelet (1796--1847), 
+who invented the BMI to quantify a population according to its person's weight. 
+It was initially called the *Quetelet index*.
+Quetelet was a Belgian astronomer, statistician, and mathematician---not a
+medical professional. He studied the distribution of physical attributes
+in populations of French and Scottish people. Quetelet determined that the *normal*,
+the most representative value of an attribute, is its average. Prior to Quetelet, 
+the idea of "norm" and "normality" was associated with carpentry and construction. 
+The carpenter square is also called the norm and in normal construction everything
+is at right angles. The classical notion of ideal as an unattainable beauty up 
+to this time was reflected in great works of art.
+
+Quetelet focused on the middle of the distribution as the
+"new normal" and saw *l’homme moyen*, the average man, as the ideal [@GrueHeiberg].
+
+There is no association with health, and there is no association with the individual.
+The BMI as developed by Quetelet was supposed to describe the average in a 
+population, not obesity of the individual. The population it was intended to 
+describe is French and Scottish of the 19^th^ century. Going from there to a
+near universal measure of obesity since the 1970s is quite the stretch.
+::::
+:::
+
+
+### Types of Data {#sec-data-types}
 
 Data, the result of quantification, can be classified in a number of ways. The
 first distinction of quantified variables is by **data type**. 
@@ -528,6 +761,34 @@ rating scale indicates the category, not a quantified amount. The numeric values
 of quantitative variables, on the other hand, can be used to calculate meaningful
 differences and ratios. 40 kg is twice as much as 20 kg, but a 4-star review is 
 not twice as much as a 2-star review---it is simply higher than a 2-star review.
+
+:::{.assignment}
+::::{.assignment-header}
+Types of Variables
+::::
+::::{.assignment-container}
+:::{.incremental}
+1. Give examples for the following types of variables:
+    - Nominal 
+    - Ordinal
+    - Counts per unit
+    - Binary 
+    - Continuous 
+
+2. What are the data types of the following:
+    - number of meals served in the cafeteria
+    - number of meals served in the cafeteria per day
+    - proportion of meals not finished
+    - marital status
+    - tensile strength of a material
+    - percentage of patients who show side effects
+    - percentage of income spent on food and housing
+    
+3. Return to the World Happiness Report from an earlier assignment in this module.
+What type of data is the *Cantril Ladder* mentioned in that report?
+:::
+::::
+:::
 
 
 ### Uncertainty
@@ -605,43 +866,6 @@ If the attribute does not vary at all in the population ($X=0$), then a single
 sample is sufficient. In the population of apartment renters there is no variability
 in the attribute *renter*, but there is variability in the attribute *amount of rent late*.
 
-### Benefits of Quantification
-
-The first obvious benefit of quantification is to make information amenable to
-mathematical and statistical operations. When mathematical or statistical calculations
-are concerned, any type of data will eventually be represented as numbers. A
-photograph turns into row and column indices of pixels and three-number triplets
-of red, green, and blue intensities. A sophisticated large language model that 
-processes textual information converts the text into numeric representations, 
-a process called **encoding**.
-
-
-@Huff_1954, in one of the most widely published statistics texts, *How to Lie with
-Statistics* states
-
->*Many a statistic is false on its face. It gets by only because the magic of numbers brings about a suspension of common sense.*
-
-According to one view, the de-contextualized and value-free mathematical symbols 
-used in statistical analyses assist in achieving objectivity, stability, and fairness
-in decisions. Quantification is a method of standardization that summarizes
-and reduces concepts to their essence and allows us to make better decisions.
-
-Objective metrics by which to measure allows us to establish rank and status.
-Status of nations can be measured by GDP (Gross Domestic Product). A countries' 
-portion of global GPD is one of the criteria for G20 membership. Quantified
-status is a much better solution than determining status by sending soldiers 
-across borders. 
-
-Quantification allows us to express relationships: ranking, ordering, and measuring
-proximity. As we will see in a later chapter, sorting and searching are fundamental.
-As an exercise observe how many times a day you encounter sorted lists, rankings,
-top-ten results, best-of lists, most-preferred lists and other forms of arranging
-information by a relevance metric. Google search would not be so successful if
-searching would not be combined with ranking results by relevance.
-
-<!---
-https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
---->
 
 ### Surrogacy
 
@@ -657,27 +881,29 @@ take the place of the variable of interest.
 
 Here are some examples of surrogacy:
 
-- Cardiovascular health: directly measuring cardiovascular health is difficult. 
-Cholesterol levels are used as a proxy for heart health.
+- **Healthcare** 
+    - Cholesterol levels as a proxy for heart health.
 
-- Education: 
+- **Education**
     - Standardized test scores as surrogates for student achievement.
     - Graduation rates as a proxy for work force preparation.
 
-- Economy: Gross domestic product as a surrogate for societal well-being.
+- **Economy** Gross domestic product as a surrogate for societal well-being.
 
-- Environmental science: 
+- **Environmental Science**
     - CO2 levels as proxy for climate change.
     - Tree canopy cover as a proxy for biodiversity.
 
-- Employment: Measuring employee productivity by number of hours worked or 
-by number of days in the office (vs. WFH).
+- **Human Resources** 
+    - Measuring employee productivity by number of hours worked.
+    - Employee attrition as a surrogate for employee satisfaction.
 
-- Technology: 
+- **Technology**
     - Number of downloads of an app as a measure of market share.
     - Likes and shares as a measure of social media engagement
 
-- Academia: Citation count as a surrogate for research impact. 
+- **Academia**
+    - Citation count as a surrogate for research impact. 
 
 :::{.assignment}
 ::::{.assignment-header}
@@ -708,6 +934,9 @@ ultimate goal itself. The metric has become the goal.
 When standardized test scores are a surrogate for student achievement, surrogation
 means to focus on driving up the test scores rather than focusing on driving
 actual student achievement. 
+
+Someone can obsess over BMI (body mass index), trying to improve their BMI but not
+getting any healthier. 
 
 Surrogation of net promoter scores occurs when 
 companies focus on driving up NPS by only asking customers that repeatedly 

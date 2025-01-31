@@ -18,3 +18,16 @@ representation of the real world.*\
 Nate Silver, The Signal and the Noise
 :::
 :::
+
+
+:::{.definition}
+::::{.definition-header}
+Definition: Data Science
+::::
+::::{.definition-container
+At the intersection of the foundation disciplines statistics, mathematics, and 
+computer science, performing data science means drawing conclusions from data 
+about real-world problems using computation and automation in the presence of uncertainty.
+::::
+:::
+

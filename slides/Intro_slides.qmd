@@ -1,0 +1,636 @@
+---
+title: "Introduction"
+subtitle: "Computational and Quantitative Thinking"
+author: "Oliver Schabenberger"
+institute: "Academy of Data Science, Virginia Tech"
+date: "03/17/2025"
+date-format: long
+format: 
+  revealjs:
+      embed-resources: true
+      css: slides_styles.css
+      title-slide-attributes:
+        data-background-image: ../images/Burruss-1920x1080.png
+        data-background-size: contain  
+        data-background-opacity: "1.0"
+      smaller: true
+      fig-align: center
+      fig-cap-location: bottom
+      scrollable: false
+      slide-number: true
+      auto-stretch: false
+      preview-links: true
+      theme: [default, slides_custom.scss] 
+      logo: ../slides_images/VTBanner.png
+      footer: "UH 2514: Introduction"
+      execute:
+        echo: false
+        warning: false      
+---
+
+# Computational Thinking (CT)
+<br/>
+
+:::{.centered}
+**Computational thinking** (CT) is a problem-solving methodology
+that develops solutions for complex problems by breaking them down into individual
+steps.
+:::
+
+## Elements of Computational Thinking {.incremental}
+
+::: {.incremental .highlight-last}
+-  [Problem Definition]{.maroon}
+<br/>What problem are we solving?
+
+- [Decomposition (Factoring)]{.maroon}
+<br/>Break problem into smaller parts
+
+- [Pattern Recognition]{.maroon}
+<br/>Learn connections and relationships
+
+- [Generalization]{.maroon}
+<br/>See relevant details
+
+- [Algorithm Design]{.maroon}
+<br/>Step by step repeatable instructions
+:::
+
+## Step 1. Problem Definition 
+
+- [What problem are we solving?]{.maroon}
+
+Difference between solving a problem and building a solution looking for a problem.
+
+![Benz Patent-Motorwagen, the first automobile.](../images/FirstAutomobile.png){#fig-benz width=30%}
+
+## Step 2. Decomposition (Factoring) {.scrollable}
+
+- [Break a complex problem into smaller, manageable parts]{.maroon} 
+- [Focus the solution on the aspects that matter]{.maroon}
+- [Eliminate extraneous stuff]{.maroon}
+
+. . .
+
+![Decompose a bicycle.](../slides_images/Bicycle.jpeg){#fig-bicycle width=50%}
+
+::: {.incremental}
+- Frame, seat, handle bars, chain, pedals, crank, derailleurs, brakes, etc. 
+:::
+
+## Step 3. Pattern Recognition
+
+- Learning connections and relationships between the parts of the problem. 
+- Bicycle: front and rear derailleurs work together to change gears.
+
+. . .
+
+- [Can you solve this like 10 yr old Carl Friedrich?]{.maroon}
+
+:::: {.columns}
+:::{.column width=50%}
+$$
+\sum_{i=1}^{100} i = ??
+$$
+:::
+
+:::{.column width=25%}
+![Carl Friedrich Gauss (1777--1855)](../slides_images/CarlFriedrichGauss.jpg){#fig-cfg width=50%}
+:::
+::::
+
+Gauss immediately recognized the solution was 5,050. How did he do it?
+
+. . .
+
+$$
+\sum_{i=1}^{100} i = (1 + 100) + (2 + 99) + ... + (50 + 51) = 5,050
+$$
+
+There are 50 partial sums, each has a value of 101. 50 x 101 = 5,050.
+
+
+## Step 4. Generalization (Abstraction) {.scrollable}
+
+- [Seeing relevant details of the problem]{.maroon}
+<br/>How are we going about solving it?
+<br/>What are the **rules**, what is the core logic?
+
+- [Examples]{.maroon}
+    - Software to solve jigsaw puzzle
+    - Decomposing a rectangle into squares to compute area (@fig-rectangle-decomp).
+
+![Decomposing a 12 x 8 rectangle into six 4 x 4 squares to generalize computation of the area](../images/RectangleDecomposition.png){#fig-rectangle-decomp fig-align="center" width=25%}
+
+
+## Step 5. Algorithm Design
+
+- [Algorithmic thinking]{.maroon}
+
+<br/>Solution is as a series of repeatable step-by-step instructions. 
+<br/>Does not mean the solution has to be implemented by a computer.
+
+
+## Making Pumpkin Soup {.scrollable}
+:::: {.columns}
+
+::: {.column width="30%"}
+Apply computational thinking to the problem of making pumpkin soup.
+:::
+
+::: {.column width="70%"}
+![A recipe for pumpkin soup.](../images/PumpkinSoupRecipe.png){#fig-soup-recipe fig-align=left width=50% .lightbox}
+:::
+::::
+
+## Making Pumpkin Soup {.scrollable .smaller}
+
+::: panel-tabset
+### Problem
+
+We have a hankering for pumpkin soup. 
+
+We have ingredients and a stove but have never prepared this kind of soup before.
+
+### Decomposition
+
+What are the manageable parts of the problem?
+
+- [Ingredients]{.maroon}: Identify the key ingredients required for the soup.
+<br/>
+  Pumpkin\
+  Onion or Leek\
+  Garlic\
+  Stock (vegetable or chicken)\
+  Cream (optional)\
+  Salt, pepper, and spices (e.g., nutmeg, cinnamon)\
+  Olive oil or butter for sautéing
+
+- [Preparation]{.maroon}: Break down the actions involved in preparing the ingredients.
+  Peel and chop the pumpkin\
+  Chop the onion and garlic\
+  Prepare spices and seasoning
+
+- [Cooking]{.maroon}: Identify the steps in cooking the soup.
+  Sauté the onion and garlic\
+  Add the pumpkin and cook it\
+  Add stock and bring to a simmer\
+  Puree the mixture\
+  Add cream and season to taste\
+
+- [Final Steps]{.maroon}: Focus on finishing touches.
+  Garnish (optional)\
+  Serve and taste for seasoning adjustments
+
+### Pattern
+
+What are the similar elements or repeating steps in the problem?
+
+- [Common cooking steps]{.maroon}
+<br/>Many soups follow a similar structure: sautéing vegetables, 
+adding liquid, simmering, and then blending or pureeing.
+
+- [Ingredient variations]{.maroon}
+<br/>While the exact ingredients for pumpkin soup may vary 
+(e.g., adding coconut milk instead of cream), the basic framework of the recipe 
+remains the same.
+
+- [Timing patterns]{.maroon}
+<br/>There’s a pattern to the cooking times: first sautéing for 
+a few minutes, then simmering the soup for about 20-30 minutes, followed by blending.
+
+### Generalization
+
+We can generalize (abstract) the process of making pumpkin soup into a more 
+general recipe for making any pureed vegetable soup, regardless of the specific
+ingredients.
+
+- [Essential components]{.maroon}\
+  A base (onions, garlic, or other aromatics)\
+  A main vegetable (in this case, pumpkin)\
+  Liquid (stock, broth, or water)\
+  Seasoning and optional cream
+
+- [General process]{.maroon}
+  1. Sauté aromatics.
+  2. Add the main vegetable and liquid.
+  3. Simmer until the vegetable is tender.
+  4. Blend until smooth.
+  5. Adjust seasoning and add cream if desired.
+
+### Algorithm
+
+The step-by-step instructions
+
+1. [Prepare ingredients]{.orange}\
+   Peel and chop the pumpkin into cubes.\
+   Chop the onion and garlic.
+   
+2. [Sauté aromatics]{.orange}\
+   In a pot, heat oil or butter over medium heat.\
+   Add chopped onion and garlic, sauté for 5 minutes until softened.
+
+3. [Cook pumpkin]{.orange}\
+   Add chopped pumpkin to the pot and sauté for 5 minutes.\
+   Add stock to cover the pumpkin (about 4 cups) and bring to a boil.
+
+4. [Simmer]{.orange}\
+   Lower the heat, cover, and let the soup simmer for 20-30 minutes until the 
+   pumpkin is tender.
+
+5. [Blend the soup]{.orange}\
+   Use an immersion blender or transfer the soup to a blender. Puree until smooth.
+
+6. [Add cream and seasoning]{.orange}\
+   Stir in cream (optional) and season with salt, pepper, and spices to taste 
+   (e.g., nutmeg or cinnamon).
+
+7. [Serve]{.orange}\
+   Pour into bowls and garnish with optional toppings (e.g., a swirl of cream, 
+   roasted seeds, or fresh herbs).
+:::
+
+
+## Importance of CT {#sec-intro-ct-importance}
+
+- [Computational Thinking in any domain]{.maroon}
+<br/>An effective way of problem solving
+<br/>More problems today solved through software and computing  
+
+- [Proliferation of models]{.maroon}
+<br/>Abstractions by nature
+<br/>Implementation involves design of computer algorithms  
+
+- [Examples]{.maroon}
+<br/>Financial analysts make investment decisions based on models of market behavior. 
+<br/>Banks decide whether to award a loan based on modeling the probability of loan default. 
+<br/>Insurance premiums are based on risk models. 
+<br/>Physician chooses treatment based on medical knowledge and models that describe patient outcomes.  
+\
+Can you think of other examples?
+
+## Software is Eating the World
+
+::: {.quote}
+"Six decades into the computer revolution, four decades since the invention \
+of the microprocessor, and two decades into the rise of the modern Internet, \
+all of the technology required to transform industries through software \
+finally works and can be widely delivered at global scale."
+\
+[Mark Andreessen of VC firm Andreessen-Horowitz (2011)]{style="font-size: 0.8em; color: #01364C;"}
+:::
+
+
+- The largest book seller is a software company (Amazon)
+
+- The largest provider of video services is a software company (Netflix)
+
+- The most important recruiting company is a software company (LinkedIn)
+
+- Some of the best movies are created by a software company (Pixar)
+
+- Music is recorded, stored, distributed, and made audible through software
+
+- Other examples of software replacing analog/physical things....
+
+
+## 2024 Nobel Prizes (Physics & Chemistry) 
+
+:::{.maroonc}
+Breaking with tradition, the Nobel committee awarded these prizes not to scientists
+who developed grand new theories of how the world works, but to scientist who 
+develop the computational tools that help us develop grand new theories of how 
+the world works.
+:::
+
+![2024 Nobel Prize winners in Physics](../images/NobelPrizePhysics.png){#fig-nobel-physics fig-align="center" width=90% .lightbox}
+
+## 2024 Nobel Prizes (Physics & Chemistry) 
+
+![2024 Nobel Prize winners in Chemistry](../images/NobelPrizeChemistry.png){#fig-nobel-chemistry fig-align="center" width=90% .lightbox}
+
+
+# Quantitative Thinking (QT)
+</br>
+
+:::{.centered}
+**Quantitative Thinking** is a problem-solving technique that views the world 
+through measurable events, and approaches problems by analyzing quantitative evidence. 
+
+At the heart of QT lies **quantification**,
+representing things in measurable quantities. 
+
+The word quantification is rooted in the Latin word *quantus*, meaning "how much". 
+:::
+
+<br/>
+The [purpose]{style="color: Maroon; font-weight: bold;"} of quantification is to express things in numbers. 
+
+The [result]{style="color: Maroon; font-weight: bold;"} is data in its many forms.
+
+
+## Easy/Difficult To Quantify
+
+- [Easy to Quantify]{.maroon}
+
+    - Attributes that are inherently measurable (height, weight, volume, length, ...)
+    - Things that can be counted 
+    - Variables that can be classified in few categories (alive/dead, employed/unemployed)
+
+    - There are still lots of wrinkles 
+ 
+        - Units of measurement (metric grams vs U.S. Customary ounces )
+        - Metric pound is not the same as U.S. Customary pound
+        - Apothecary pound is 12 ounces rather than 16 ounces  
+
+. . .
+
+- [Difficult to Quantify]{.maroon}
+
+    - Attributes that escape precise measurements (happiness)
+    - Difficult to define (trust)
+    - Inconsistent views, context-dependent
+    - Subjective attributes (introversion)
+    - Abstract concepts (individualism)
+
+ 
+## Difficult to Quantify {.scrollable}
+ 
+ - [Personal and Psychological Attributes]{.maroon}\
+ **Emotions**: Happiness, anxiety, sadness\
+ **Traits**: Introversion, openness\
+ **Other examples**:  
+ 
+ . . .
+ 
+ - [Social and Cultural Variables]{.maroon}\
+ **Social Norms**: expectations about behavior\
+ **Trust**\
+ **Cultural Values**: individualism, freedom\
+ **Other examples**:  
+ 
+ . . .
+ 
+ - [Ethics and Morality]{.maroon}\
+ **Fairness**\
+ **Integrity**\
+ **Justice**  
+ 
+ . . .
+ 
+ - [Economic and Market Variables]{.maroon}\
+ **Brand loyalty**\
+ **Customer satisfaction**\
+ **Economic health**\
+ **Other examples**:  
+ 
+ . . .
+ 
+ - [Environmental and Ecological Factors]{.maroon}\
+ **Biodiversity**\
+ **Ecosystem health**\
+ **Natural beauty**\
+ **Recreational value**\
+ **Other examples**:  
+ 
+## Example {.scrollable}
+ 
+:::{.example}
+::::{.example-header}
+Net Promoter Score (NPS): Are my customers satisfied and are they loyal?
+::::
+::::{.example-container}
+NPS is considered by many **the gold standard** customer experience metric.
+It rests on a single question:\
+
+:::{.maroonc}
+"How likely are you to recommend the company products or services?"
+:::
+
+NPS calculation (@fig-nps):
+
+- Response on a scale of 0–10 (0 = not at all likely to recommend, 10 = extremely likely to recommend).
+- Respondents are categorized as promoters (9--10), passives (7--8), or 
+detractors (0--6).
+- NPS = %Promoters - %Detractors
+
+![Net promoter score](../images/NetPromoterScore.png){#fig-nps fig-align="center" width=35%}
+::::
+:::
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Net Promoter Score
+::::
+::::{.assignment-container}
+1. What are the assumptions in the NPS calculation?
+2. Company Foo improved its NPS from 30 to 40 over the last year. Explain how
+that can happen.
+3. What does NPS tell you about a company that has many products and/or services?
+4. What impact could cultural differences and societal norms and traditions have
+on NPS values around the world?
+5. What do you think is a great net promoter score? Does it depend on the industry?
+6. Companies are applying NPS in other contexts, not just to measure
+customer satisfaction. For example, the employee NPS (eNPS) uses NPS methodology
+and the question "How likely are you to recommend company X as a place of work?" 
+What do you think about that?
+7. If you plot NPS by age, what would that look like? In other words, do you expect
+younger or older consumers to have higher/lower NPS?
+
+8. List reasons why NPS is (might be) a troubling indicator.
+::::
+:::
+
+## Assignment
+
+:::{.assignment}
+::::{.assignment-header}
+World Happiness Report
+::::
+::::{.assignment-container}
+Read the section *Measuring and Explaining National Differences in Life Evaluations*
+in the [2024 World Happiness Report](https://worldhappiness.report/ed/2024/happiness-of-the-younger-the-older-and-those-in-between)
+
+- Which variables is the ranking of happiness based on?
+- How many citizens of each country participate in the survey?
+- Does WHR collect its own data or does it rely on someone else's survey?
+- The data includes three indicators for well-being. Are they all used in 
+determining the happiness rankings?
+- In the discussion of the methods, can you determine whether the happiness 
+rankings involve some form of modeling, where survey responses are tied to 
+other variables? If so, what are the variables? Are these reflected in Table 2.1?
+::::
+:::
+
+
+## Indicators
+
+- When dealing with complex systems that depend on many factors
+
+- Cannot capture the system in a single number
+
+- We use indicators to capture parts of the system
+
+- **Leading indicator**: predictive, informing us about what
+might happen in the future. 
+
+- **Lagging indicator**: descriptive, it looks at what has happened in the past.
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Quantifying the Economy
+::::
+::::{.assignment-container}
+Find at least two indicators in each of the following aspects:
+
+1. International trade
+2. Housing and construction
+3. Consumer spending
+4. Manufacturing
+5. Climate
+6. Labor markets
+
+What are the indicators used for--that is, what do they indicate?
+
+Which indicators are lagging, which are leading?
+::::
+:::
+
+
+
+## Surrogates {.scrollable}
+
+Instead of measuring an attribute directly, we use surrogates to infer a 
+difficult-to-measure attribute.
+
+- [Education]{.maroon}
+    - Standardized test scores as surrogates for student achievement.
+    - Graduation rates as a proxy for work force preparation.
+
+- [Economy]{.maroon}
+    - Gross domestic product as a surrogate for societal well-being.
+    - Unemployment rate as a surrogate for economic health
+
+- [Environmental science]{.maroon}
+    - CO2 levels as proxy for climate change.
+    - Tree canopy cover as a proxy for biodiversity.
+
+- [Employment]{.maroon}
+    - Number of hours worked to measure employee productivity
+    - Attrition rate as a measure of employee satisfaction
+
+- [Technology]{.maroon}
+    - Number of downloads of an app as a measure of market share.
+    - Likes and shares as a measure of social media engagement
+
+- [Academia]{.maroon}
+    - Citation count as a surrogate for research impact. 
+
+
+## Issues with Surrogates
+
+- They might not capture all factors influencing the attribute of interest.
+
+- They can lead to oversimplification and misinterpretation.
+
+- The surrogate might not measure what is most relevant. For example, standardized
+test scores do not measure critical thinking.
+
+- [Can lead to surrogation]{.maroon}
+<br/>**Surrogation** occurs when people or organizations substitute a metric for the 
+underlying concept or goal that the metric is intended to represent. Instead of 
+treating the metric as a proxy or tool to measure progress, they treat it as the 
+ultimate goal itself. The metric has become the goal.
+
+- [Examples of surrogation]{.maroon}
+    - Standardized test scores are a surrogate for student achievement, surrogation
+means to focus on driving up the test scores rather than focusing on driving
+actual student achievement.  
+    - Surrogation of net promoter scores occurs when 
+companies focus on driving up NPS by only asking customers who repeatedly 
+buy their product
+    - Sales people are incentivized on number of deals or deal volume (revenue).
+The real goal is to drive success for the company. The incentives lead to deals
+that are good for the sales people ("making their number") and bad for the company.
+
+## Types of Data
+
+- [Continuous]{.maroon}\
+The number of possible values of the variable is not countable. \
+Examples: physical measurements such as weight, height, length, pressure, temperature. 
+
+- [Discrete]{.maroon}\
+The number of possible values is countable, even if infinite.
+
+    - Count Variables
+    
+    - Categorical Variables\
+     also called **qualitative** variables
+    
+## Discrete Variables
+
+- [Count Variables]{.maroon}
+<br/>The values are true counts, obtained by enumeration. There are two types of counts:
+
+    - **Counts per unit**\
+    The count relates to a unit of measurement, e.g., 
+    the number of fish caught per day, the number of customer complaints per 
+    quarter, the number of chocolate chips per cookie, the number of cancer 
+    incidences per 100,000.
+
+    - **Proportions (Counts out of a total)**\
+    The count can be converted to a proportion by dividing it with a maximum value. 
+    Examples are the number of heads out of 10 coin tosses, the number of rats
+    out of 20 developing cancer.
+
+- [Categorical Variables]{.maroon}
+<br/>The values consist of **labels**, even if numbers are used for labeling.
+
+    - **Nominal variables**\
+    The labels are unordered, for example the 
+    variable "fruit" takes on the values "apple", "peach", "tomato" 
+    (yes, tomatoes are fruit but do not belong in fruit salad).
+
+    - **Ordinal variables**\
+    The category labels can be arranged in a natural 
+    order in a lesser-greater sense. Examples are 1---5 star reviews or ratings 
+    of severity ("mild", "modest", "severe").
+
+    - **Binary variables**\
+    Take on exactly two values (dead/alive, Yes/No, 1/0, fraud/not fraud, 
+    diseased/not diseased)
+
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Types of Variables
+::::
+::::{.assignment-container}
+:::{.incremental}
+1. Give examples for the following types of variables:
+    - Nominal 
+    - Ordinal
+    - Counts per unit
+    - Binary 
+    - Continuous 
+
+2. What are the data types of the following:
+    - number of meals served in the cafeteria
+    - number of meals served in the cafeteria per day
+    - proportion of meals not finished
+    - marital status
+    - tensile strength of a material
+    - percentage of patients who show side effects
+    - percentage of income spent on food and housing
+:::
+::::
+:::
+
+
+ 

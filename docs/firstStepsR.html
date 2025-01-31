@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./dataliteracy.html" rel="next">
+<link href="./correlation.html" rel="next">
 <link href="./datascience.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -43,6 +97,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +129,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -126,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational &amp; Quantitative Thinking</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -149,32 +235,38 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./genAI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,7 +281,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-getting-started-R" id="toc-sec-getting-started-R" class="nav-link active" data-scroll-target="#sec-getting-started-R"><span class="header-section-number">4.1</span> Getting Started with R</a>
+  <ul>
+  <li><a href="#posit-cloud" id="toc-posit-cloud" class="nav-link" data-scroll-target="#posit-cloud">Posit Cloud</a></li>
+  <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><code>R</code> and RStudio</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing Packages</a></li>
+  </ul></li>
+  <li><a href="#regression-trees" id="toc-regression-trees" class="nav-link" data-scroll-target="#regression-trees"><span class="header-section-number">4.2</span> Regression Trees</a>
+  <ul>
+  <li><a href="#basic-construction" id="toc-basic-construction" class="nav-link" data-scroll-target="#basic-construction">Basic Construction</a></li>
+  <li><a href="#tree-summary" id="toc-tree-summary" class="nav-link" data-scroll-target="#tree-summary">Tree Summary</a></li>
+  <li><a href="#rules" id="toc-rules" class="nav-link" data-scroll-target="#rules">Rules</a></li>
+  <li><a href="#cross-validation-and-pruning" id="toc-cross-validation-and-pruning" class="nav-link" data-scroll-target="#cross-validation-and-pruning">Cross-validation and Pruning</a></li>
+  <li><a href="#controlling-the-tree" id="toc-controlling-the-tree" class="nav-link" data-scroll-target="#controlling-the-tree">Controlling the Tree</a>
+  <ul class="collapse">
+  <li><a href="#fitting-stumps" id="toc-fitting-stumps" class="nav-link" data-scroll-target="#fitting-stumps">Fitting stumps</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees"><span class="header-section-number">4.3</span> Classification Trees</a>
+  <ul>
+  <li><a href="#binary-classification" id="toc-binary-classification" class="nav-link" data-scroll-target="#binary-classification">Binary Classification</a></li>
+  <li><a href="#r-resources" id="toc-r-resources" class="nav-link" data-scroll-target="#r-resources">R Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -213,8 +332,682 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="sec-getting-started-R" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-getting-started-R"><span class="header-section-number">4.1</span> Getting Started with R</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="TL;DR What you Need">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TL;DR What you Need
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To work with <code>R</code> in this course, you need to be able to run <code>R</code> code, mix it with text in a notebook-style environment, and turn program and output into pdf and html files. To accomplish this you will need</p>
+<ul>
+<li><strong><code>R</code></strong>. Download from <a href="https://cran.rstudio.com/">CRAN</a></li>
+<li><strong>RStudio</strong>. Download RStudio Desktop from <a href="https://posit.co/downloads/">Posit</a></li>
+</ul>
+<p>You can skip <code>R</code> and RStudio installs if you do the work in a <a href="https://posit.cloud/">Posit Cloud</a> account. These are available for free <a href="https://posit.cloud/plans/free">here</a>.</p>
+</div>
+</div>
+</div>
+<p>To get started with <code>R</code> as a statistical programming language you need access to <code>R</code> itself and a development environment from which to submit <code>R</code> code.</p>
+<p>Download <code>R</code> for your operating system from the <a href="https://cran.rstudio.com/">CRAN</a> site. CRAN is the “Comprehensive R Archive Network” and also serves as the package management system to add new packages to your installation.</p>
+<p>If you use VS Code as a development environment, add the “R Extension for Visual Studio” to your environment. We are focusing on RStudio as a development environment here.</p>
+<section id="posit-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="posit-cloud">Posit Cloud</h3>
+<p>In today’s cloud world, you can get both through <a href="https://posit.cloud/">Posit Cloud</a>. Posit is the company behind RStudio, Quarto, and other cool tools. Their cloud offering gives you access to an RStudio instance in the cloud. You can sign up for a free account <a href="https://posit.cloud/plans/free">here</a>. The only drawback of the free account is its limitations in terms of RAM, CPU, execution time, etc. For the work you will be doing in this course, and probably many other courses, you will not exceed the limitations of the free account.</p>
+<p>Once you have created an account, the work space is organized the same way as an RStudio session on your desktop.</p>
+</section>
+<section id="r-and-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="r-and-rstudio"><code>R</code> and RStudio</h3>
+<p>RStudio is an integrated development environment (IDE) for <code>R</code>, but supports other languages as well. For example, using Quarto in RStudio, you can mix <code>R</code>, Python, and other code within the same document.</p>
+<p>Download Rstudio Desktop <a href="https://posit.co/downloads/">here</a>.</p>
+<p>The RStudio IDE is organized in panes, each pane can have multiple tabs (<a href="#fig-rstudio-ide" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). The important panes are</p>
+<ul>
+<li><p><strong>Source</strong>. The files you edit. These can be R files (.R), Rmarkdown (.Rmd), Quarto (.qmd), or any other text files.</p></li>
+<li><p><strong>Console</strong>. Here you can enter <code>R</code> commands directly at the command prompt “&gt;”. This pane also has a <code>Terminal</code> tab for an OS terminal and a <code>Background Jobs</code> tab. The latter is important when you knit documents into pdf or html format.</p></li>
+<li><p><strong>Environment</strong>. Displays information about the objects created in the <code>R</code> session. You can click on an object for a more detailed look at it in the <code>Viewer</code>.</p></li>
+<li><p><strong>Help</strong>. This pane contains many useful tabs, such as a File browse, package information, access to the documentation and help system. Plots generated from the <code>Console</code> or from an <code>R</code> script are displayed in the <code>Plots</code> tab of this pane.</p></li>
+</ul>
+<div id="fig-rstudio-ide" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rstudio-ide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/RStudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-ide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: RStudio IDE
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="installing-packages" class="level3">
+<h3 class="anchored" data-anchor-id="installing-packages">Installing Packages</h3>
+<p>The <code>R</code> installation comes with attached base packages, you do not need to install or load those. To access capabilities in other packages you need to go through a two-step process:</p>
+<ol type="1">
+<li>Install the package</li>
+<li>Load the package in your <code>R</code> session with the <code>library()</code> command.</li>
+</ol>
+<p>Installing the package is done once, this step adds the package to your system. Loading the library associated with the package is done in every <code>R</code> session that needs to use the functionality of the package.</p>
+<p>A <strong>standard</strong> <code>R</code> package is made available through the <a href="https://cran.r-project.org/">CRAN</a> (Comprehensive R Archive Network) repositories. For the analytic work in this module we need to install three packages from CRAN: <code>ISLR2</code>, <code>rpart</code> and <code>rpart.plot</code>.</p>
+<p>Copy the following line of code to the console in <code>RStudio</code> and hit <return>.</return></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rpart"</span>,<span class="st">"rpart.plot"</span>,<span class="st">"ISLR2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>ISLR2</code> library provides data sets that are used in <span class="citation" data-cites="James2013_ISLR2">James et al. (<a href="references.html#ref-James2013_ISLR2" role="doc-biblioref">2021</a>)</span>. <code>rpart</code> is a popular library for training decision trees on data and <code>rpart.plot</code> produces nice-looking visualizations of decision trees.</p>
+</section>
+</section>
+<section id="regression-trees" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="regression-trees"><span class="header-section-number">4.2</span> Regression Trees</h2>
+<section id="basic-construction" class="level3">
+<h3 class="anchored" data-anchor-id="basic-construction">Basic Construction</h3>
+<p>For this application we use the <code>Hitters</code> data on performance and salaries of baseball players in the 1986/1987 seasons, the data are provided in the ISLR2 library. Because the salaries are highly skewed a log transformation is applied prior to constructing the tree (<a href="#fig-hitters-salary" class="quarto-xref">Figure&nbsp;<span>4.2</span></a>). We will examine later the effect of the log-transformation on the tree.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Hitters)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fu">na.omit</span>(Hitters<span class="sc">$</span>Salary)), <span class="at">main=</span><span class="st">"Salary"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fu">na.omit</span>(<span class="fu">log</span>(Hitters<span class="sc">$</span>Salary))), <span class="at">main=</span><span class="st">"log(Salary)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-hitters-salary" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hitters-salary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="firstStepsR_files/figure-html/fig-hitters-salary-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hitters-salary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Salaries and log(Salaries) for the Hitters data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The following statements load the <code>rpart</code> library and request a decision tree according to the model formula. Note that not all variables specified in the model are necessarily used in constructing the tree. <code>method="anova"</code> requests a regression tree, the complexity criterion is the residual sum of squares. Since the target variable is continuous, <code>rpart</code> defaults to a regression tree in this case and the <code>method=</code> specification is not necessary. However, because <code>rpart</code> has several tree-building methods to choose from, it is not a bad idea to state explicitly what is intended.</p>
+<p>Note that a random number seed is set prior to the call to <code>rpart</code> since the function performs 10-fold cross-validation by default. While the tree returned by <code>rpart</code> is not affected by the seed, the evaluations of the complexity (penalty) parameter during cross-validation depend on the random number stream.</p>
+</section>
+<section id="tree-summary" class="level3">
+<h3 class="anchored" data-anchor-id="tree-summary">Tree Summary</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">87654</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">rpart</span>(<span class="fu">log</span>(Salary) <span class="sc">~</span> Years <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(t1, <span class="at">cp=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+rpart(formula = log(Salary) ~ Years + Hits + RBI + Walks + Runs + 
+    HmRun + PutOuts + AtBat + Errors, data = Hitters)
+  n=263 (59 observations deleted due to missingness)
+
+          CP nsplit rel error    xerror       xstd
+1 0.44457445      0 1.0000000 1.0024572 0.06529349
+2 0.11454550      1 0.5554255 0.5936326 0.06177974
+3 0.04446021      2 0.4408800 0.5190135 0.06426742
+4 0.01831268      3 0.3964198 0.4639453 0.06373984
+5 0.01806689      4 0.3781072 0.4734726 0.06728376
+6 0.01678632      6 0.3419734 0.4776621 0.06718932
+7 0.01617738      7 0.3251871 0.4679886 0.06739159
+8 0.01000000      8 0.3090097 0.4570960 0.06731152
+
+Variable importance
+  Years    Hits    Runs   AtBat     RBI   Walks   HmRun PutOuts 
+     38      13      12      10      10      10       5       4 
+
+Node number 1: 263 observations,    complexity param=0.4445745
+  mean=5.927222, MSE=0.7876568 
+  left son=2 (90 obs) right son=3 (173 obs)
+  Primary splits:
+      Years &lt; 4.5   to the left,  improve=0.4445745, (0 missing)
+      Hits  &lt; 117.5 to the left,  improve=0.2229369, (0 missing)
+      RBI   &lt; 43.5  to the left,  improve=0.2161883, (0 missing)
+      AtBat &lt; 472.5 to the left,  improve=0.1865249, (0 missing)
+      Walks &lt; 34.5  to the left,  improve=0.1678353, (0 missing)
+  Surrogate splits:
+      HmRun &lt; 1.5   to the left,  agree=0.696, adj=0.111, (0 split)
+      RBI   &lt; 24.5  to the left,  agree=0.688, adj=0.089, (0 split)
+      Walks &lt; 11.5  to the left,  agree=0.681, adj=0.067, (0 split)
+      Runs  &lt; 13.5  to the left,  agree=0.673, adj=0.044, (0 split)
+      Hits  &lt; 29.5  to the left,  agree=0.669, adj=0.033, (0 split)
+
+Node number 2: 90 observations
+  mean=5.10679, MSE=0.4705907 
+
+Node number 3: 173 observations
+  mean=6.354036, MSE=0.4202619 </code></pre>
+</div>
+</div>
+<p>The <code>summary</code> function produces a lengthy listing of the tree. The <code>cp=</code> option is used here to specify a cutoff value for displaying nodes that fall below the value of the complexity parameter, simply to limit the amount of output. The <code>cp=</code> option on the <code>summary</code> call prunes the output, it does not prune the tree.</p>
+<p>The first table lists the result of 10-fold cross-validation of the cost-complexity parameter, more on this below. The variable importance listing ranks variables by a combination measure that accounts for the quality of split where the variable was the primary split variable, and an adjustment for splits where the variable was a surrogate. The sum of the variable importance measures is 100, but due to rounding it might sum to a slightly different value. A variable that has a relative high variable importance might not get used in the final tree, due to pruning.</p>
+<p>The first node at the trunk of the tree contains 263 observation. The best split variable at this level is <code>Years</code> with split value of 4.5. Using this variable and split point leads to the largest improvement in the complexity criterion. <code>rpart</code> also constructs a list of the surrogate variables should the primary split variable be missing. For this node a missing value in <code>Years</code> would be split on <code>HmRun</code>. The numbers in parentheses tell you how many observations actually had missing values and which split variables were used as surrogates. For these data, only the target variable contains missing values.</p>
+<p><code>rpart</code> removes observations with missing values from the analysis if the target is missing or if all inputs are missing. The missing values in this data set occur only in the target variable, which means that surrogates were not used in training the model.</p>
+<p>A more concise listing of the tree is obtained with the <code>print</code> method.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n=263 (59 observations deleted due to missingness)
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+ 1) root 263 207.153700 5.927222  
+   2) Years&lt; 4.5 90  42.353170 5.106790  
+     4) Years&lt; 3.5 62  23.008670 4.891812  
+       8) Hits&lt; 114 43  17.145680 4.727386 *
+       9) Hits&gt;=114 19   2.069451 5.263932 *
+     5) Years&gt;=3.5 28  10.134390 5.582812  
+      10) Runs&lt; 74.5 21   4.229230 5.379350 *
+      11) Runs&gt;=74.5 7   2.427815 6.193200 *
+   3) Years&gt;=4.5 173  72.705310 6.354036  
+     6) Hits&lt; 117.5 90  28.093710 5.998380  
+      12) Walks&lt; 21.5 26   5.001884 5.687706 *
+      13) Walks&gt;=21.5 64  19.562870 6.124591  
+        26) Years&lt; 6.5 18   6.411418 5.727128 *
+        27) Years&gt;=6.5 46   9.195161 6.280120 *
+     7) Hits&gt;=117.5 83  20.883070 6.739687  
+      14) Walks&lt; 60.5 50  10.225000 6.576444 *
+      15) Walks&gt;=60.5 33   7.306869 6.987024 *</code></pre>
+</div>
+</div>
+<p>There are a total of 15 nodes in the tree and 9 terminal nodes (leaves) as indicated by asterisks. For each node, the listing shows the split variable and split point, the number of observations, the residual sum of squares, and the representative value for the node. For example, at the root node (trunk) of the tree there are 263 observations, the sum of squares <span class="math inline">\(\sum (y-\overline{y})^2 = 207.153\)</span> and the average log salary is 5.9272. Ninety observations are split off to the left at the first split on <code>Years</code> with split value of 4.5. The sum of squares of those ninety observations is 42.353 and their average is 5.1067.</p>
+<hr>
+<p>The easiest way to consume the results of constructing a tree is by visualizing the tree. The <code>rpart.plot</code> function in the <code>rpart.plot</code> package creates good-looking trees and has many options to affect the rendering. <a href="#fig-tree-hitter1" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> displays the regression tree for the Hitters data built so far.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(t1,<span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-hitter1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-hitter1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-hitter1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="firstStepsR_files/figure-html/fig-tree-hitter1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-hitter1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Default regression tree for log(salary) constructed by <code>rpart</code> for Hitters data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The boxes annotating the nodes display the representative (predicted) value for the node and the percent of observations that fall into the node. The intensity of the node color is proportional to the value predicted at the node.</p>
+<p>If we were to choose a “stump”—that is, a tree with a single split, we would predict a log salary of 6.4 for players who have been in the league for more than 4.5 years and a salary for 5.1 for the players with less tenure. For a player with 7 years experience, 100 hits and 30 walks in 1986 we would predict a log salary of 6.3.</p>
+<p>Note that not all variables in the model are used in constructing the tree. Variables that do not improve a tree at any split in a meaningful way do not show up. For example, the number of RBIs or errors in 1986 are not used as primary split variables. This does not mean that these variables are unrelated to the target, they can enter the model indirectly through correlation with other variables. They might also be used as surrogate split variables, which the figure does not convey.</p>
+<p>Also note that variables can be <em>reused</em>. A variable that serves as the primary split variable can later be used again as a split variable. For example, <code>Years</code> is the first split variable and is used again on both sides of the tree. The number of <code>Walks</code> in 1986 separates observations differently for longer-tenured players that have less than 118 <code>Hits</code> and those who have more.</p>
+<hr>
+<p>What would the tree look like if we had not transformed the target variable by taking logarithms?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Salary <span class="sc">~</span> Years <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">method=</span><span class="st">"anova"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(t2,<span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-hitter2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-hitter2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-hitter2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="firstStepsR_files/figure-html/fig-tree-hitter2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-hitter2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Default regression tree for salary constructed by <code>rpart</code> for Hitters data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Clearly, <a href="#fig-tree-hitter2" class="quarto-xref">Figure&nbsp;<span>4.4</span></a> is not the same tree as shown in <a href="#fig-tree-hitter1" class="quarto-xref">Figure&nbsp;<span>4.3</span></a>. Although the log transformation is monotonic for the positive salary values, it affects the distribution of the target variable and its relationship to the inputs.</p>
+<p>However, if we apply a monotone transformation to inputs, the constructed tree does not change. The following code fits the initial tree but uses log(years) instead of years. Only the values for the split variable change, but not the tree (<a href="#fig-tree-hitter3" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>). Compare this to <a href="#fig-tree-hitter1" class="quarto-xref">Figure&nbsp;<span>4.3</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> <span class="fu">rpart</span>(<span class="fu">log</span>(Salary) <span class="sc">~</span> <span class="fu">log</span>(Years) <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">method=</span><span class="st">"anova"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(t3,<span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-hitter3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-hitter3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-hitter3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="firstStepsR_files/figure-html/fig-tree-hitter3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-hitter3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Default regression tree for log(salary) with log-transformed year as input.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Changing in the model from years to log(years) does not impact the splits or split values for any of the other inputs. This is fundamentally different from a linear regression model where transforming one input variable affects the coefficients of other inputs unless they are completely uncorrelated. Compare the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(<span class="fu">log</span>(Salary) <span class="sc">~</span> Years <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters)<span class="sc">$</span>coefficients,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)       Years        Hits         RBI       Walks        Runs 
+     4.3797      0.0933      0.0128      0.0004      0.0066      0.0014 
+      HmRun     PutOuts       AtBat      Errors 
+     0.0033      0.0003     -0.0025     -0.0029 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(<span class="fu">log</span>(Salary) <span class="sc">~</span> <span class="fu">log</span>(Years) <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters)<span class="sc">$</span>coefficients,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  log(Years)        Hits         RBI       Walks        Runs 
+     3.9394      0.6952      0.0108     -0.0002      0.0059      0.0024 
+      HmRun     PutOuts       AtBat      Errors 
+     0.0057      0.0004     -0.0023      0.0000 </code></pre>
+</div>
+</div>
+</section>
+<section id="rules" class="level3">
+<h3 class="anchored" data-anchor-id="rules">Rules</h3>
+<p>A very helpful extension of <code>rpart</code> in <code>rpart.plot</code> is the <code>rpart.rules</code> function. It expresses the decisions captured in an <code>rpart</code> model as a set of text rules. The variables are listed in the order of frequency in the rules. A variable that appears in more rules is listed first. Adding the <code>cover=TRUE</code> option also displays the percentage of cases covered by each rule. For the initial tree constructed above, this yields:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.rules</span>(t1, <span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> log(Salary)                                                                  
+         4.7 when Years &lt;  3.5        &amp; Hits &lt;  114                           
+         5.3 when Years &lt;  3.5        &amp; Hits &gt;= 114                           
+         5.4 when Years is 3.5 to 4.5                             &amp; Runs &lt;  75
+         5.7 when Years &gt;=        4.5 &amp; Hits &lt;  118 &amp; Walks &lt;  22             
+         5.7 when Years is 4.5 to 6.5 &amp; Hits &lt;  118 &amp; Walks &gt;= 22             
+         6.2 when Years is 3.5 to 4.5                             &amp; Runs &gt;= 75
+         6.3 when Years &gt;=        6.5 &amp; Hits &lt;  118 &amp; Walks &gt;= 22             
+         6.6 when Years &gt;=        4.5 &amp; Hits &gt;= 118 &amp; Walks &lt;  61             
+         7.0 when Years &gt;=        4.5 &amp; Hits &gt;= 118 &amp; Walks &gt;= 61             </code></pre>
+</div>
+</div>
+<p>The information displayed in the rules can be affected through options, for example,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.rules</span>(t1, <span class="at">cover=</span><span class="cn">TRUE</span>, <span class="at">style=</span><span class="st">"tallw"</span>, <span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>log(Salary) is 4.7 with cover 16% when
+                   Years &lt; 3.5
+                   Hits &lt; 114
+
+log(Salary) is 5.3 with cover 7% when
+                   Years &lt; 3.5
+                   Hits &gt;= 114
+
+log(Salary) is 5.4 with cover 8% when
+                   Years is 3.5 to 4.5
+                   Runs &lt; 75
+
+log(Salary) is 5.7 with cover 10% when
+                   Years &gt;= 4.5
+                   Hits &lt; 118
+                   Walks &lt; 22
+
+log(Salary) is 5.7 with cover 7% when
+                   Years is 4.5 to 6.5
+                   Hits &lt; 118
+                   Walks &gt;= 22
+
+log(Salary) is 6.2 with cover 3% when
+                   Years is 3.5 to 4.5
+                   Runs &gt;= 75
+
+log(Salary) is 6.3 with cover 17% when
+                   Years &gt;= 6.5
+                   Hits &lt; 118
+                   Walks &gt;= 22
+
+log(Salary) is 6.6 with cover 19% when
+                   Years &gt;= 4.5
+                   Hits &gt;= 118
+                   Walks &lt; 61
+
+log(Salary) is 7.0 with cover 13% when
+                   Years &gt;= 4.5
+                   Hits &gt;= 118
+                   Walks &gt;= 61</code></pre>
+</div>
+</div>
+</section>
+<section id="cross-validation-and-pruning" class="level3">
+<h3 class="anchored" data-anchor-id="cross-validation-and-pruning">Cross-validation and Pruning</h3>
+<p>As mentioned earlier, <code>rpart</code> performs cross-validation for cost complexity values as part of the tree construction. This is the origin of the CP table that appears at the top of the <code>summary.rpart</code> output. You can print this information by itself with the <code>printcp</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cp <span class="ot">&lt;-</span> <span class="fu">printcp</span>(t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regression tree:
+rpart(formula = log(Salary) ~ Years + Hits + RBI + Walks + Runs + 
+    HmRun + PutOuts + AtBat + Errors, data = Hitters)
+
+Variables actually used in tree construction:
+[1] Hits  Runs  Walks Years
+
+Root node error: 207.15/263 = 0.78766
+
+n=263 (59 observations deleted due to missingness)
+
+        CP nsplit rel error  xerror     xstd
+1 0.444574      0   1.00000 1.00246 0.065293
+2 0.114545      1   0.55543 0.59363 0.061780
+3 0.044460      2   0.44088 0.51901 0.064267
+4 0.018313      3   0.39642 0.46395 0.063740
+5 0.018067      4   0.37811 0.47347 0.067284
+6 0.016786      6   0.34197 0.47766 0.067189
+7 0.016177      7   0.32519 0.46799 0.067392
+8 0.010000      8   0.30901 0.45710 0.067312</code></pre>
+</div>
+</div>
+<p>The complexity table lists trees in order of the complexity criterion, smaller trees are on top (larger <code>CP</code> value), larger trees at the bottom. The number of (internal) nodes in the tree is <code>nsplit</code> plus one. The error columns are reported relative to the error at the first node. <code>xerror</code> is the error from cross-validation and <code>xstd</code> is the standard error. Scanning the <code>xerror</code> column we see that the error is minimized at 3 splits (4 nodes). The standard error is useful to determine the best number of split points by taking in the uncertainty in the error estimate and the fact that there is often a neighborhood of similar values. The 1-SE rule says to consider all values within one standard error of the achieved minimum. Those are essentially equivalent and we choose the simplest model. In <a href="#fig-tree-cp" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> this is a tree of size 4 (3 splits). The horizontal line is drawn 1 standard error above the smallest cross-validated error.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(t1, <span class="at">upper=</span><span class="st">"size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-cp" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-cp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-cp-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="firstStepsR_files/figure-html/fig-tree-cp-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-cp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Complexity parameter plot for Hitters data. The size of the tree refers to the number of nodes (number of splits + 1).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To produce the final tree, apply the <code>prune</code> function with the selected value of the complexity parameter (<a href="#fig-tree-final" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t_final <span class="ot">&lt;-</span> <span class="fu">prune</span>(t1,<span class="at">cp=</span>cp[cp[,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">3</span>,<span class="dv">1</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(t_final,<span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-final" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-final-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="firstStepsR_files/figure-html/fig-tree-final-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Final tree for Hitters data after pruning and cross-validation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="controlling-the-tree" class="level3">
+<h3 class="anchored" data-anchor-id="controlling-the-tree">Controlling the Tree</h3>
+<p>Many parameters and setting affect the construction of the tree. The split criterion, cost function, minimum number of observations before attempting a split or in terminal nodes, the use of surrogate variables, the maximum depth, cross-validation settings, and so on.</p>
+<p>Changing tree control parameters affects primarily the depth of the tree and the computational requirements. For example, <code>rpart</code> computes by default up to 5 surrogate split variables. Unless you have missing values in input variables, surrogate splits will not be used. If you are sure that you also do not have missing values in non-training data, then you can skip the determination of the surrogates. Approximately half of the computing time during tree construction is used to find surrogate splits.</p>
+<p>In <code>rpart</code>, parameters that determine the tree construction are passed as a <code>rpart.control</code> structure to the <code>control=</code> parameter. The most important parameters that determine the <strong>depth</strong> of the tree are</p>
+<ul>
+<li><p><code>minsplit</code>: The minimum number of observations in a node for which a split is even attempted, default 20. Setting this to a small number will save computation time since nodes that have fewer than <code>minsplit</code> observations will not be split and are likely chopped off during pruning.<br>
+</p></li>
+<li><p><code>minbucket</code>: The minimum number of observations in terminal nodes (leaves). The default is <code>minsplit/3</code>.</p></li>
+<li><p><code>cp</code>: Threshold for the complexity parameter. The complexity of the tree is measured during pruning as <span class="math display">\[
+C_\alpha(T) = Q(T) + \alpha|T|
+\]</span> where <span class="math inline">\(Q(T)\)</span> is the cost criterion by which tree <span class="math inline">\(T\)</span> is evaluated, <span class="math inline">\(|T|\)</span> is the number of terminal nodes in <span class="math inline">\(T\)</span>, and <span class="math inline">\(\alpha\)</span> is the penalty parameter. The <code>rpart</code> version of this is <span class="math display">\[
+C_\alpha(T) = Q(T) + cp|T|\, Q(T_1)
+\]</span> where <span class="math inline">\(Q(T_1)\)</span> is a tree with no splits. A split that does not improve the fit by at least the <code>cp=</code> threshold value will not be attempted. Setting <code>cp=1</code> results in a tree with no splits. The default is <code>cp=0.01</code>. During cost-complexity pruning <code>rpart</code> evaluates trees for values that are larger than the threshold parameter. Setting <code>cp=0</code> asks <code>rpart</code> to evaluate very deep trees, subject to the other parameters such as <code>minsplit</code>, <code>minbucket</code>, and <code>maxdepth</code>.</p></li>
+<li><p><code>maxdepth</code>: the maximum depth of the final tree, with the root node counting as depth zero. For example, <code>maxdepth=1</code> results in a single split, also known as a “stump”. (Technically, a stump would have no splits.)</p></li>
+</ul>
+<p>Important parameters that control the memory and computational requirements beyond computing trees at various depths are</p>
+<ul>
+<li><p><code>maxsurrogate</code>: the number of surrogate splits, default is 5. Set it to 0 to prevent the search for surrogate split variables.</p></li>
+<li><p><code>xval</code>: the number of cross-validations, default is 10.</p></li>
+<li><p><code>cp</code>: The complexity parameter threshold also affects the computing requirements as splits that do not improve the overall fit by at least that value will not be attempted.</p></li>
+</ul>
+<section id="fitting-stumps" class="level4">
+<h4 class="anchored" data-anchor-id="fitting-stumps">Fitting stumps</h4>
+<p>A special application of controlling the construction of decision trees are trees with a single split, also called “stumps”. In most scenarios such trees will underfit the data. However, in <strong>adaptive boosting</strong>, we fit a large number of trees where subsequent trees are weighing observations according to the level of misclassification, those trees focus on observations poorly classified so far. The individual trees are not deep trees, relying only on the most important variables. The use of stumps is common in adaptive boosting.</p>
+<p>The following code fits a stump to the <code>Hitters</code> data. <code>minsplit=2</code> specifies that a split will not be attempted unless at least two observations are present. This guarantees that at least one split occurs (setting <code>minsplit=0</code> as recommended in some places does not seem to always work in guaranteeing a single split). Setting the threshold for the complexity parameter to -1 essentially turns off checking whether the split improves the overall fit. <code>maxdepth=1</code> sets the maximum depth of the tree to two nodes; zero depth refers to the root node. Finally, <code>xval=0</code> turns off the cross-validation.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>stump <span class="ot">&lt;-</span> <span class="fu">rpart</span>(<span class="fu">log</span>(Salary) <span class="sc">~</span> Years <span class="sc">+</span> Hits <span class="sc">+</span> RBI <span class="sc">+</span> Walks <span class="sc">+</span> Runs <span class="sc">+</span> HmRun <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                PutOuts <span class="sc">+</span> AtBat <span class="sc">+</span> Errors, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>Hitters,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">control=</span><span class="fu">rpart.control</span>(<span class="at">maxdepth =</span> <span class="dv">1</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">cp       =</span><span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">minsplit =</span> <span class="dv">2</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">xval     =</span> <span class="dv">0</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">method=</span><span class="st">"anova"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>stump</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n=263 (59 observations deleted due to missingness)
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+1) root 263 207.15370 5.927222  
+  2) Years&lt; 4.5 90  42.35317 5.106790 *
+  3) Years&gt;=4.5 173  72.70531 6.354036 *</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(stump,<span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-stump" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-stump-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-stump-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="firstStepsR_files/figure-html/fig-tree-stump-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-stump-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: A stump fit to the Hitters data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The result of the stump fit are as expected based on the previous analysis. The number of years in the league is the most important variable and the basis of the first split (<a href="#fig-tree-stump" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>).</p>
+</section>
+</section>
+</section>
+<section id="classification-trees" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="classification-trees"><span class="header-section-number">4.3</span> Classification Trees</h2>
+<p>Fitting a classification tree in <code>rpart</code> is simple, when the target variable is a factor the software defaults to building a classification tree. Choosing <code>method=class</code> makes that explicit.</p>
+<section id="binary-classification" class="level3">
+<h3 class="anchored" data-anchor-id="binary-classification">Binary Classification</h3>
+<p>For this example we use the <code>stagec</code> data frame that ships with the <code>rpart</code> package. It contains data on 146 patients with stage C prostate cancer from a study on the prognostic value of flow cytometry.</p>
+<p>Input variables include</p>
+<ul>
+<li><code>age</code>: age of patient in years</li>
+<li><code>eet</code>: a binary variable indicating early endocrine therapy (1=no, 2=yes)</li>
+<li><code>g2</code>: percent of cells in G2 phase as determined by flow cytometry</li>
+<li><code>grade</code>: the grade of the tumor according to the Farrow system</li>
+<li><code>gleason</code>: the Gleason score of the tumor, higher values indicate a more aggressive cancer</li>
+<li><code>ploidy</code>: a three-level factor that indicates the tumor status according to flow cytometry as diplioid, tetraploid, or aneuploid.</li>
+</ul>
+<p>The outcome (target) variable for this classification is <code>pgstat</code>, a binary variable that indicates progression of the cancer (<code>pgstat=1</code>). The variable is recoded as a factor for a nicer display on the tree. Similarly, the <code>eet</code> variable is recoded as a factor.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(stagec)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stagec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  pgtime pgstat age eet    g2 grade gleason     ploidy
+1    6.1      0  64   2 10.26     2       4    diploid
+2    9.4      0  62   1    NA     3       8  aneuploid
+3    5.2      1  59   2  9.99     3       7    diploid
+4    3.2      1  62   2  3.57     2       4    diploid
+5    1.9      1  64   2 22.56     4       8 tetraploid
+6    4.8      0  69   1  6.14     3       7    diploid</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>progstat <span class="ot">&lt;-</span> <span class="fu">factor</span>(stagec<span class="sc">$</span>pgstat, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Prog"</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>eetfac <span class="ot">&lt;-</span> <span class="fu">factor</span>(stagec<span class="sc">$</span>eet, <span class="at">levels=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"No, Yes"</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">543</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>cfit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(progstat <span class="sc">~</span> age <span class="sc">+</span> eetfac <span class="sc">+</span> g2 <span class="sc">+</span> grade <span class="sc">+</span> gleason <span class="sc">+</span> ploidy,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> stagec, </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">'class'</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n= 146 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 146 54 No (0.6301370 0.3698630)  
+   2) grade&lt; 2.5 61  9 No (0.8524590 0.1475410) *
+   3) grade&gt;=2.5 85 40 Prog (0.4705882 0.5294118)  
+     6) g2&lt; 13.2 40 17 No (0.5750000 0.4250000)  
+      12) ploidy=diploid,tetraploid 31 11 No (0.6451613 0.3548387)  
+        24) g2&gt;=11.845 7  1 No (0.8571429 0.1428571) *
+        25) g2&lt; 11.845 24 10 No (0.5833333 0.4166667)  
+          50) g2&lt; 11.005 17  5 No (0.7058824 0.2941176) *
+          51) g2&gt;=11.005 7  2 Prog (0.2857143 0.7142857) *
+      13) ploidy=aneuploid 9  3 Prog (0.3333333 0.6666667) *
+     7) g2&gt;=13.2 45 17 Prog (0.3777778 0.6222222)  
+      14) g2&gt;=17.91 22  8 No (0.6363636 0.3636364)  
+        28) age&gt;=62.5 15  4 No (0.7333333 0.2666667) *
+        29) age&lt; 62.5 7  3 Prog (0.4285714 0.5714286) *
+      15) g2&lt; 17.91 23  3 Prog (0.1304348 0.8695652) *</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cfit, <span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-stagec-full" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-stagec-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-stagec-full-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="firstStepsR_files/figure-html/fig-tree-stagec-full-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-stagec-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Classification tree for stagec data prior to pruning.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-tree-stagec-full" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> shows the full tree fit to the data prior to pruning. The initial split is on the <code>grade</code> variable. Note that on the right hand side of the tree, at depth 2, the qualitative input variable <code>ploidy</code> is split into two groups: the left branch contains levels diploid and tetraploid, the right branch aneuploid. This confirms DNA ploidy as a major predictor variable in this study. From the <code>rpart</code> longintro vignette:</p>
+<blockquote class="blockquote">
+<p><em>For diploid and tetraploid tumors, the flow cytometry method was also able to estimate the percent of tumor cells in a G2 (growth) stage of their cell cycle; G2% is systematically missing for most aneuploid tumors.</em></p>
+</blockquote>
+<p>The boxes annotating the nodes contain three pieces of information:</p>
+<ul>
+<li><p>The representative value (majority vote) in the node; this is the predicted category for the node. For example, there are 92 patients who did not progress and 54 patients who progressed. The majority vote in the root node would be no progression.</p></li>
+<li><p>The proportion of events in the node. For example, in the first node that proportion is 54/146 = 0.37. There are 61 observations where <code>grade &lt; 2.5</code>, 9 of these progressed. That leads to the terminal node on the far left of the tree: its majority vote is no progression, 9/61 = 0.15 and 42% of the observations fall into this node.</p></li>
+<li><p>The percentage of observations covered by the node.</p></li>
+</ul>
+<p>This numeric breakdown can be seen easily from the printed tree:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cfit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n= 146 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 146 54 No (0.6301370 0.3698630)  
+   2) grade&lt; 2.5 61  9 No (0.8524590 0.1475410) *
+   3) grade&gt;=2.5 85 40 Prog (0.4705882 0.5294118)  
+     6) g2&lt; 13.2 40 17 No (0.5750000 0.4250000)  
+      12) ploidy=diploid,tetraploid 31 11 No (0.6451613 0.3548387)  
+        24) g2&gt;=11.845 7  1 No (0.8571429 0.1428571) *
+        25) g2&lt; 11.845 24 10 No (0.5833333 0.4166667)  
+          50) g2&lt; 11.005 17  5 No (0.7058824 0.2941176) *
+          51) g2&gt;=11.005 7  2 Prog (0.2857143 0.7142857) *
+      13) ploidy=aneuploid 9  3 Prog (0.3333333 0.6666667) *
+     7) g2&gt;=13.2 45 17 Prog (0.3777778 0.6222222)  
+      14) g2&gt;=17.91 22  8 No (0.6363636 0.3636364)  
+        28) age&gt;=62.5 15  4 No (0.7333333 0.2666667) *
+        29) age&lt; 62.5 7  3 Prog (0.4285714 0.5714286) *
+      15) g2&lt; 17.91 23  3 Prog (0.1304348 0.8695652) *</code></pre>
+</div>
+</div>
+<p>To prune the tree we print the CP table and plot the results including the 1-SE reference line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">printcp</span>(cfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Classification tree:
+rpart(formula = progstat ~ age + eetfac + g2 + grade + gleason + 
+    ploidy, data = stagec, method = "class")
+
+Variables actually used in tree construction:
+[1] age    g2     grade  ploidy
+
+Root node error: 54/146 = 0.36986
+
+n= 146 
+
+        CP nsplit rel error  xerror    xstd
+1 0.104938      0   1.00000 1.00000 0.10802
+2 0.055556      3   0.68519 0.98148 0.10760
+3 0.027778      4   0.62963 0.87037 0.10454
+4 0.018519      6   0.57407 0.87037 0.10454
+5 0.010000      7   0.55556 0.88889 0.10511</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(cfit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="firstStepsR_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The optimal tree is a tree with 5 nodes (4 splits). A tree with 6 splits has the same cross-validation error and standard error. We choose the simpler tree (<a href="#fig-tree-stagec-pruned" class="quarto-xref">Figure&nbsp;<span>4.10</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(<span class="fu">prune</span>(cfit,<span class="at">cp=</span><span class="fl">0.027778</span>), <span class="at">roundint=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tree-stagec-pruned" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-stagec-pruned-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="firstStepsR_files/figure-html/fig-tree-stagec-pruned-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="firstStepsR_files/figure-html/fig-tree-stagec-pruned-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-stagec-pruned-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Classification tree for stagec data after pruning.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="r-resources" class="level3">
+<h3 class="anchored" data-anchor-id="r-resources">R Resources</h3>
+<ul>
+<li><p><a href="https://r4ds.hadley.nz/">R for Data Science, 2nd ed.</a> <span class="citation" data-cites="Wickham_RDS">(<a href="references.html#ref-Wickham_RDS" role="doc-biblioref">Wickham, Cetinkaya-Rundel, and Grolemund 2023</a>)</span>.</p></li>
+<li><p><a href="http://adv-r.had.co.nz/">Advanced R</a> <span class="citation" data-cites="Wickham_AdvR">(<a href="references.html#ref-Wickham_AdvR" role="doc-biblioref">Wickham 2019</a>)</span>.</p></li>
+<li><p><a href="https://mdsr-book.github.io/mdsr3e/">Modern Data Science with R, 2nd ed.</a> <span class="citation" data-cites="Baumer_etal">(<a href="references.html#ref-Baumer_etal" role="doc-biblioref">Baumer, Kaplan, and Horton 2021</a>)</span>.</p></li>
+<li><p><a href="https://r-graphics.org/">R Graphics Cookbook: Practical Recipes for Visualizing Data, 2nd ed.</a> <span class="citation" data-cites="Chang_2018">(<a href="references.html#ref-Chang_2018" role="doc-biblioref">Chang 2018</a>)</span></p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definite Guide</a> <span class="citation" data-cites="Xie_etal">(<a href="references.html#ref-Xie_etal" role="doc-biblioref">Xie, Allaire, and Grolemund 2019</a>)</span></p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a> <span class="citation" data-cites="Xie_Cookbook">(<a href="references.html#ref-Xie_Cookbook" role="doc-biblioref">Xie, Dervieux, and Riederer 2021</a>)</span></p></li>
+<li><p><a href="https://bookdown.org/rdpeng/RProgDA/">Mastering Software Development in R</a> <span class="citation" data-cites="Pengetal2020">(<a href="references.html#ref-Pengetal2020" role="doc-biblioref">Peng, Kross, and Anderson 2020</a>)</span></p></li>
+</ul>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;4.1: RStudio IDE</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;4.3: Default regression tree for log(salary) constructed by <code>rpart</code> for Hitters data.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;4.4: Default regression tree for salary constructed by <code>rpart</code> for Hitters data.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;4.5: Default regression tree for log(salary) with log-transformed year as input.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;4.6: Complexity parameter plot for Hitters data. The size of the tree refers to the number of nodes (number of splits + 1).</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;4.7: Final tree for Hitters data after pruning and cross-validation.</span>
+<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;4.8: A stump fit to the Hitters data.</span>
+<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;4.9: Classification tree for stagec data prior to pruning.</span>
+<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;4.10: Classification tree for stagec data after pruning.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Baumer_etal" class="csl-entry" role="listitem">
+Baumer, Benjamin S., Kaplan. Daniel T., and Nicholas J. Horton. 2021. <em>Modern Data Science with r, 2nd Ed.</em> Chapman &amp; Hall/CRC Press. <a href="https://mdsr-book.github.io/mdsr3e/">https://mdsr-book.github.io/mdsr3e/</a>.
+</div>
+<div id="ref-Chang_2018" class="csl-entry" role="listitem">
+Chang, Winston. 2018. <em>R Graphics Cookbook: Practical Recipes for Visualizing Data, 2nd Ed.</em> O’Reilly Media. <a href="https://r-graphics.org/">https://r-graphics.org/</a>.
+</div>
+<div id="ref-James2013_ISLR2" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r, 2nd Ed.</em> Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
+</div>
+<div id="ref-Pengetal2020" class="csl-entry" role="listitem">
+Peng, Roger D., Sean Kross, and Brooke Anderson. 2020. <em>Mastering Software Development in r</em>. <a href="https://bookdown.org/rdpeng/RProgDA/">https://bookdown.org/rdpeng/RProgDA/</a>.
+</div>
+<div id="ref-Wickham_AdvR" class="csl-entry" role="listitem">
+Wickham, H. 2019. <em>Advanced r, 2nd Ed.</em> Chapman &amp; Hall/CRC Press. <a href="http://adv-r.had.co.nz/">http://adv-r.had.co.nz/</a>.
+</div>
+<div id="ref-Wickham_RDS" class="csl-entry" role="listitem">
+Wickham, H., M. Cetinkaya-Rundel, and G. Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Ed.</em> O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-Xie_etal" class="csl-entry" role="listitem">
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2019. <em>R Markdown: The Definite Guide</em>. Chapman &amp; Hall/CRC Press. <a href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a>.
+</div>
+<div id="ref-Xie_Cookbook" class="csl-entry" role="listitem">
+Xie, Yihui, Dervieux Christophe, and Emily Riederer. 2021. <em>R Markdown Cookbook</em>. Chapman &amp; Hall/CRC Press. <a href="https://bookdown.org/yihui/rmarkdown-cookbook/">https://bookdown.org/yihui/rmarkdown-cookbook/</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -777,8 +1570,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dataliteracy.html" class="pagination-link" aria-label="Data Literacy">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation and Causation">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -796,6 +1589,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

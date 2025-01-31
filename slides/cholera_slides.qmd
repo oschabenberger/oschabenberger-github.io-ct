@@ -1,0 +1,311 @@
+---
+title: "Case Study: 1854 Cholera Outbreak"
+subtitle: "Computational and Quantitative Thinking"
+author: "Oliver Schabenberger"
+institute: "Academy of Data Science, Virginia Tech"
+date: "03/17/2025"
+date-format: long
+format: 
+  revealjs:
+      embed-resources: true
+      title-slide-attributes:
+        data-background-image: ../images/Burruss-1920x1080.png
+        data-background-size: contain  
+        data-background-opacity: "1"
+      smaller: true
+      fig-align: center
+      fig-cap-location: bottom
+      scrollable: false
+      slide-number: true
+      auto-stretch: false
+      preview-links: true
+      theme: [default, slides_custom.scss] # moon
+      logo: ../slides_images/VTBanner.png
+      footer: "UH 2514: Case Study: 1854 Cholera Outbreak"
+      css: slides_styles.css
+      execute:
+        echo: false
+        warning: false      
+---
+
+# Soho, London, 1854
+
+:::{.centered}
+A severe outbreak of cholera occurred near Broad Street of Soho, London
+kills over 600 people. 
+
+The prevailing theory was that cholera was transmitted
+through *miasma*, airborne particles that rise from biological material. 
+
+The bacterium *Vibrio cholerae* will not be identified as the cause of cholera until 1883.
+:::
+
+<br/>
+This is where our story begins...
+
+## Famous John/Jon Snows
+
+::::{.columns}
+
+:::{.column width=50%}
+![John Snow. Source: [Wikipedia](https://en.wikipedia.org/wiki/John_Snow)](../images/John_Snow.jpg){#fig-john-snow width=60% fig-align=left}
+:::
+
+:::{.column width=50%}
+![Jon Snow. Source: [Wikipedia](https://en.wikipedia.org/wiki/Jon_Snow_(character))](../images/Jon_Snow.png){#fig-jon-snow width=60% fig-align=left}
+:::
+
+::::
+
+
+## Data Visualization {.scrollable}
+
+![John Snow's original cholera map from Soho, London in 1854.](../images/Snow_cholera_map_1.jpg){#fig-cholera-map width=75% .lightbox}
+
+
+## Two Theories
+
+- [Miasma Theory]{.maroon}
+    - Cholera is caused by airborne particles, a form of noxious bad air
+called *miasma*, that rise from decomposing organic material.
+    - The miasma theory was the prevailing theory until late in the 19th century.  
+
+![Cholera depicted as a skeleton emanating a black cloud. Source: [Wikipedia](https://en.wikipedia.org/wiki/Miasma_theory)](../slides_images/CholeraMiasma.jpg){width=50% fig-align=left}
+
+## Two Theories
+
+- [Germ Theory]{.maroon}
+    - John Snow was a proponent of the germ theory.
+    - Cholera is caused by a **germ**.
+    - The cholera-causing germ had not been identified.
+    - The bacterium was found in the same year by Filippo Pacini...
+    - but it would take another 3 decades to prove that *Vibrio cholerae* causes cholera.
+
+## Data Validation
+
+- [John Snow investigated]{.maroon}
+
+    - Talking to residents on the ground
+    - Nearly all deaths were in the vicinity of the Broad Street Pump
+    - Other deaths by people who consumed water from the pump
+    - "The germ" could not be found under the microscope
+
+
+:::{.quote}
+"It will be observed that the deaths either very much diminished, \
+or ceased altogether, at every point where it becomes decidedly\
+nearer to send to another pump than to the one in Broad street. \
+It may also be noticed that the deaths are most numerous \
+near to the pump where the water could be more readily obtained."
+\
+[Snow, John. 1855. On the Mode of Communication of Cholera, 2nd. ed., p. 47]{style="font-size: 0.8em; color: #01364C;"}
+:::
+
+## How Can John Snow Explain the Outliers?
+
+:::{.definition}
+::::{.definition-header}
+Definition: Outlier
+::::
+::::{.definition-container}
+An **outlier** is an observation that is unusual compared to the rest of the observation.\
+An outlier does not conform with a model that applies to the majority of the data points.
+::::
+:::
+
+## How Can John Snow Explain the Outliers?
+
+- [Lion Brewery had no cases of cholera]{.maroon}
+
+:::{.fragment .fade-in}
+The workers had a daily beer allowance. The cholera bacteria is killed in the brewing process making the
+beer safe to drink.
+:::
+
+- [Deaths in houses closer to Rupert Street pump]{.maroon}
+
+:::{.fragment .fade-in}
+It was more convenient for those residents to use the Broad Street pump due to 
+the street layout.
+:::
+
+- [Deaths in houses several blocks from Broad Street pump]{.maroon}
+
+:::{.fragment .fade-in}
+Linked to children who drank from the Broad Street pump on their way to school.
+:::
+
+- [Isolated deaths in the Hampstead area, far from Soho]{.maroon}
+
+:::{.fragment .fade-in}
+The deceased had once lived in Broad Street. Because they liked the taste, 
+they had water from the Broad Street pump delivered to Hampstead every day. 
+:::
+
+## Removing the Handle
+
+- [Outliers were not really outliers]{.maroon}
+    - The observations reinforced the theory
+    - The water from the Broad Street pump made people sick
+    - John Snow convinced local authorities to **remove the pump handle**
+    - Mortality rate declined (it was already on the decline)
+    
+:::{.callout-note title="Removing the handle"}
+"Removing the handle" is now a term in epidemiology for the removal of a harmful 
+agent from the environment. When epidemiologists look for simple answers to
+questions about epidemics, they ask "Where is the handle to this pump?"
+:::
+
+. . .
+
+- [Source of Contamination]{.maroon} 
+    - The well reached by the pump was close to a cesspit
+    - Clothing from a cholera patient was discarded into the pit
+    - Material from the cesspit had leaked into the well
+
+
+## Toward Causality
+
+- [Strong Evidence for the following statement]{.maroon}
+
+:::{.centered}
+The contaminated well water at the Broad Street pump caused
+the high rate of cholera in that neighborhood and among those who consumed the
+water. 
+:::
+
+. . .
+
+- [Is it conclusive beyond a reasonable doubt?]{.maroon}
+    - Miasma theory did not support John Snow's findings!
+    - He could not isolate the germ that supposedly caused cholera.  
+    - Are other explanations possible for the high rate of cholera near the pump?
+        - Diet? 
+        - House construction? 
+        - Occupations?
+        - What else could you think of?
+
+
+## Cause and Effect
+
+- [The holy grail in science]{.maroon}
+    - If you do **this**, then **that** happens
+    - Cause and effect is different from correlation (association)  
+
+- [Confounding Factors]{.maroon}
+     - Variables that can mask or distort the effect of other variables. 
+     - Example:
+        - In the 1960s coffee was implicated as a cause of lung cancer.
+        - Coffee drinkers did show a higher rate of the cancer.
+        - Confounding factor: smoking. Coffee drinkers were more likely to also smoke.
+        - Association: Coffee drinking was associated with lung cancer but does not cause it.
+        
+:::{.centered}
+<br/>
+In order to establish a causal link between two variables, the confounding\
+factors must be accounted for---at least beyond a reasonable doubt. \
+Otherwise there will always be some reason to believe another mechanism was at work.
+:::
+        
+## Accounting for Confounding Factors
+
+- [Experimentation]{.maroon}
+    - If the factors can be controlled (manipulated)
+    - Set up controlled environments so that the only reason why we are seeing
+    effects is our manipulation of factors
+    - **Experimental design** controls factors through **randomization**
+
+. . .
+
+- [Causal Inference]{.maroon}
+    - In domains where experimentation is not possible (ethics, expense, ...)
+    - In applications where factors cannot be manipulated (economy)
+    
+. . .
+
+- [Real life "experiments"]{.maroon}
+    - Identify situations where confounding factors have been controlled
+    - Quasi-experiments with **observational** data
+    
+
+## John Snow's "Experiment"
+
+::::{.columns}
+:::{.column width=35%}
+- Studied the cholera incidences among recipients of water from two water supply
+companies.  
+<br/>
+
+- The **Lambeth** company used water drawn upriver from 
+sewage discharge into the Thames \
+(not contaminated with sewage).  
+<br/>
+
+- The **Southwark \& Vauxhall** company drew water below the 
+discharge\
+(contaminated with sewage).   
+<br/>
+
+- Established that for all intents and purposes the households
+receiving water from either company were indistinguishable.
+:::
+
+:::{.column width=65%}
+![](../slides_images/snow_map2.jpg){width=85% fig-align=right .lightbox}
+:::
+
+::::
+
+## John Snow's "Experiment"
+
+<br/>
+<br/>
+
+:::{.quote}
+"In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies\
+[...]
+\
+As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer."
+\
+[Snow, John. 1855. On the Mode of Communication of Cholera, 2nd. ed., p. 75]{style="font-size: 0.8em; color: #01364C;"}
+:::
+
+## What Did He Find?
+
+[Cholera incidences and rates for two water supply companies during the period from January 1 to December 12, 1853 (leading up to the 1854 outbreak).]{.maroon}
+
+| Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
+|:---:|:---:|:---:|:---:|
+| Southwark \& Vauxhall | 40,046 | 286 | 71 |
+| Lambeth | 26,107 | 14 | 5 |
+
+-  The cholera death rate on a per 10,000 house basis is 14 times higher in households supplied by 
+Southwark \& Vauxhall compared to those who received their water from Lambeth.
+- In all of London there were 322,576 houses and 563 deaths during that period.
+
+## What Did He Find?
+
+[Cholera incidences and rates during the first seven weeks of the 1854 outbreak. ]{.maroon}
+
+| Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
+|:---:|:---:|:---:|:---:|
+| Southwark \& Vauxhall | 40,046 | 1,263 | 315 |
+| Lambeth | 26,107 | 98 | 37 |
+| Rest of London | 256,423 | 1,422 | 55 |
+
+## Conclusion
+
+<br/>
+<br/>
+[In statistical terms, such a difference in the death rates is **highly significant**.\
+\
+If there is no difference in the water quality between the suppliers,
+such a discrepancy would virtually never happen. \
+\
+The only reasonable explanation
+for the higher death rate, since differences between the groups receiving the 
+water have been ruled out, is the quality (contamination) of the Southwark \&
+Vauxhall water.]{.maroon}
+
+<br/>
+[Case Closed]{.orange}

@@ -1,0 +1,329 @@
+---
+title: "Quantitative Intuition and Problem Solving"
+subtitle: "Computational and Quantitative Thinking"
+author: "Oliver Schabenberger"
+institute: "Academy of Data Science, Virginia Tech"
+date: "03/17/2025"
+date-format: long
+format: 
+  revealjs:
+      embed-resources: true
+      title-slide-attributes:
+        data-background-image: ../images/Burruss-1920x1080.png
+        data-background-size: contain  
+        data-background-opacity: "1"
+      smaller: true
+      fig-align: center
+      fig-cap-location: bottom
+      scrollable: false
+      slide-number: true
+      auto-stretch: false
+      preview-links: true
+      theme: [default, slides_custom.scss] # moon
+      logo: ../slides_images/VTBanner.png
+      footer: "UH 2514: Intuition & Problem Solving"
+      css: slides_styles.css
+      execute:
+        echo: false
+        warning: false      
+---
+
+# Quantitative Intuition and Problem Solving 
+
+<br/>
+
+:::{.centered}
+In this module you are presented with puzzles and problems to flex your \
+analytic and quantitative thinking muscles. \
+\
+Most of these are well-known problems  that you might run into during \
+job interviews that test problem-solving skills and analytical thinking. 
+:::
+
+## The Prisoner's Dilemma
+
+:::{style="font-size: 1.2em;"}
+<br/>
+Suppose that Andy and Brie are arrested as members of a criminal gang and held 
+separately by the police. They cannot communicate. There is enough evidence to
+convict them on a lesser charge, but not on the principal charge. The police
+offers the following deal:
+
+- If they both remain silent, they will each serve one year in prison.
+- If one testifies against the other, but the other one does not, the one who
+testified will be set free while the other serves three years in prison.
+- If Andy and Brie both testify against each other, they will each serve two years.
+
+How should Andy and Brie behave to optimize their positions, that is, look out
+after their own interest?
+:::
+
+## Guarding Criminals 
+
+:::{style="font-size: 1.2em;"}
+<br/>
+Suppose you are guarding $n$ criminals in an open field. You have one gun with
+a single bullet. You are a good shot and being fired at means death---the criminals
+know that. Their behavior is governed by the following rules: 
+
+- If any of them has a non-zero probability of surviving, they will attempt to escape.
+- If a criminal is certain of death, they will not attempt to escape.
+
+How do you guard the criminals and stop them from escaping?
+:::
+
+## Three Jars
+:::{style="font-size: 1.2em;"}
+<br/>
+Three opaque jars are sitting on a table. The jars are labeled "Apples", "Oranges",
+and "Apples & Oranges". Unfortunately, all three are labeled incorrectly.
+
+![](../images/ThreeJars.png){fig-align=center width=30%}
+
+Your task is to assign the labels correctly to the jars. 
+What is the smallest number of fruit you have to choose in order to correctly
+label the three jars?
+:::
+
+## Pattern Recognition \#1
+
+:::{style="font-size: 1.2em;"}
+<br/>
+@fig-math-puzzle1 shows a logic reasoning puzzle. The first row makes sense if 
+the strange operator is addition, but that does not work for the next rows.
+You have to find the meaning of that operator, then apply the pattern to solve
+the last equation.
+
+![Can you solve this?](../images/LogicPuzzle1.png){#fig-math-puzzle1 width=35%}
+:::
+
+
+## Pattern Recognition \#2
+
+:::{style="font-size: 1.2em;"}
+<br/>
+Here is a sequence of numbers.
+
+$$
+\begin{array}{c}
+1 \\
+11 \\
+21 \\
+1211 \\
+111221 \\
+312211 \\
+??
+\end{array}
+$$
+
+What is the next number in the sequence?
+:::
+
+
+## Birthday Problem {.scrollable}
+
+:::{style="font-size: 1.2em;"}
+<br/>
+This is a classical problem in probability, and a popular one because it is 
+relatable yet somewhat counterintuitive. The probability is higher than what 
+most people expect. It goes like this: 
+
+>What is the probability that in a group of $n$ randomly chosen people, at least two share the same birthday?
+
+"Birthday" is meant as one of 365 days of the year, not adjusting for leap years.
+Also, we are not taking the birth year into account. A birthday for the purpose
+of this problem is April 10, or August 15, etc.
+
+The standard version of the problem uses $n=23$, because you can imagine yourself
+in a group of that size---a classroom, for example---and the probability of at
+least two shared birthdays is also relatable.
+
+How likely do you think at least two people share a birthday in a group of 23?
+:::
+
+
+## Minimum Cuts
+
+:::{style="font-size: 1.2em;"}
+<br/>
+Imagine that you hire a consultant to work for you for five days. At the end of 
+each day you need to pay them 1/5th of a gold bar. You have a single gold bar
+(worth 5 fifths) and need to cut it up so you can pay the consultant at the 
+end of each day.
+
+![A gold bar that needs to be cut up.](../images/GoldBar.png){#fig-gold-bar fig-align="center" width=25%}
+
+What is the minimum number of cuts that allow you to pay the consultant every day?
+:::
+
+
+## When to Choose the Ticket
+
+:::{style="font-size: 1.2em;"}
+<br/>
+An airline has a single seat open on a flight, but $n=100$ standby passengers 
+hoping to get on the flight. You are one of the passengers on standby.
+To be fair to all standby passengers, the airline decides to drop 100 equal-sized
+pieces of paper into a bucket. 99 of them are blank, one says "Last Seat".
+The papers are folded and shuffled in the bucket.
+
+The standby passengers queue and each passenger gets to pick one piece of paper
+without replacement---that is, they keep the slip and do not return it to the 
+bucket. Also they cannot unfold and look at the slip until all of them re drawn.
+After the last slip is drawn the standby passengers announce who is the lucky 
+person that drew the "Last Seat" by checking their slip.
+
+Here is the question: if you have your choice to pick first, second, last, or 
+at any particular position in the queue, which position would you choose?
+:::
+
+
+## How Many Squares on a Chessboard
+
+:::{style="font-size: 1.2em;"}
+<br/>
+A chess board is made up of eight rows and columns of black and white positions
+(@fig-chessboard). \
+How many squares are on a board?
+
+![Chess board.](../images/Chessboard.png){#fig-chessboard fig-align="center" width=35%}
+:::
+
+
+## Book Sorting {.scrollable}
+
+:::{style="font-size: 0.9em;"}
+<br/>
+You are working in a library and are sorting books from a box that 
+contains 32 fiction (F) and 17 non-fiction (NF) books. A steady supply of new
+books is available to add to the box. Your sorting algorithm goes as follows:
+
+- You randomly choose 2 books from the box. 
+- Based on the types of books chosen you add another book from the supply to the box:
+
+  1. if you choose two fiction books (F,F) you add a new fiction book to the box
+  2. if you choose two non-fiction books (NF, NF) you also add a fiction book to the box
+  3. if you choose one fiction and one non-fiction book (F,NF or NF,F) then you add
+  a non-fiction book to the box.
+
+Since you add only one book to the box for every two books you remove, the box
+will eventually be empty. What is the type of the last book in the box? Is it 
+a fiction or a non-fiction book?  
+
+![Book sorting routine. [Source](https://medium.com/puzzle-sphere/book-sorting-interview-puzzle-math-logic-google-amazon-microsoft-faang-quantitative-aptitude-probability-124b5917e059)](../images/BookSorting.webp){width=25%}
+:::
+
+
+## Inverted Triangle
+
+:::{style="font-size: 1.2em;"}
+<br/>
+@fig-coin-triangle shows a triangle made from 10 coins. Can you change this into
+an upside-down triangle by moving only 3 coins?
+
+![Inverting the coin triangle.](../images/CoinTrianglePuzzle.png){#fig-coin-triangle fig-align="center" width=75%}
+:::
+
+
+## The Spare Tire
+
+:::{style="font-size: 1em;"}
+<br/>
+Your car has four tires mounted to the wheels and a spare tire (S). That gives you
+five tires to work with. Each of the tires lasts at most 30,000 miles. If you can 
+exchange tires among the five as many times as you wish, what is the furthest 
+distance you can travel before you need to purchase a new tire?
+
+@fig-tire-solution1 depicts the initial tire life prior to driving the first mile.
+All tires, including the spare (S) have the same life expectancy of 30,000 miles.
+
+![Tire life before driving the first mile. LF is left-front tire, and so forth.](../images/TirePuzzleSolution1.png){#fig-tire-solution1 fig-align="center" width=35%}
+:::
+
+
+
+## Robot Triangle
+
+:::{style="font-size: 1.2em;"}
+<br/>
+There are many versions of this basic puzzle, using ants, camels, and other
+animals. We use robots here, the puzzle goes like this. \
+\
+Three robots are placed
+at the corners of a triangle. A robot can choose to move along either side of
+the triangle that meet at its corner (@fig-robot-triangle). \
+\
+What is the probability that any two robots will collide?
+
+![Robot triangle.](../images/RobotTrianglePuzzle.png){#fig-robot-triangle fig-align="center" width=35%}
+:::
+
+
+## Truth Telling
+
+:::{style="font-size: 1.2em;"}
+<br/>
+This puzzle is about logic reasoning and not about probability. Surprisingly,
+it is related to the previous robot movement puzzle.
+
+Consider the following three statements:
+
+1. Gavin says that Brian is a liar.
+2. Brian says that Jenn is a liar.
+3. Jenn says that both Gavin and Brian are liars.
+
+Who is telling the truth and who is lying?
+:::
+
+
+## Clock Made With Matches
+
+:::{style="font-size: 1.2em;"}
+<br/>
+You have two wooden sticks and a box of matches. When a sticks is lit it 
+will burn completely in exactly one hour.\
+\
+How do you use these ingredients to measure exactly 45 minutes?
+:::
+
+
+## Two Stacks of Cards
+
+
+:::{style="font-size: 1.2em;"}
+<br/>
+You have two stacks of cards. The first is a regular 52-card deck. The 
+second stack contains two regular 52-card decks, thus has 104 cards.
+Both stacks are shuffled well. You choose two cards in sequence and you win if 
+they are both red. \
+\
+Would you prefer to choose from the 52-card stack or the 104-card stack?
+:::
+
+
+
+## Rapid Fire
+
+:::{style="font-size: 1.2em;"}
+<br/>
+Cowboy Billy carries a Colt single action 6 shooter revolver. When he fires all 
+6 shots in a row, the time between the first bullet and the last is 60 seconds.\
+\
+How long would it take him to fire 3 shots?
+:::
+
+
+## Crossing the River
+
+:::{style="font-size: 1.2em;"}
+<br/>
+A farmer is on his way back from the market, with him he has a fox, a chicken 
+and some grain. To get home he needs to cross a river using a small boat that can
+accommodate only him and one of the other items. Unfortunately, if the fox is 
+left alone with the chicken it will eat it. If the chicken is left alone with 
+the grain, it will eat it. \
+\
+How can the farmer cross the river and bring home the fox, the chicken, and the grain?
+:::
+
+

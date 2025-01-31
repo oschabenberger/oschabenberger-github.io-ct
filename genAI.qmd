@@ -370,6 +370,7 @@ categories.
   - Inappropriate content (sexually explicit, hate speech)
 
 - Impact on Jobs
+- Impact on the Environment
 - Bias
 - Hallucinations
 - Intellectual Property Rights
@@ -494,6 +495,75 @@ spending more time on moderating AI output than doing the work themselves.
 This is a common refrain for AI tools. They are great for ideation, brainstorming,
 drafting. Getting a polished end product from AI is more difficult. A particular
 issue with generative AI are **hallucinations**.
+
+### Impact on the Environment
+
+The impacts of generative AI on the environment are positive and negative. Proponents
+of GenAI cite greater efficiency and productivity due to AI which allows 
+organizations to run better and that saves resources. In a cost-benefit analysis
+it seems that these perceived resource savings due to efficiency gains are far
+outweighed by the negative impact of GenAI on the environment. 
+
+The enthusiasm around GenAI is due to its *potential* benefits, many of them have
+not been realized as organizations are struggling to implement GenAI solutions. 
+Concerns such as hallucinations, bias, and others discussed in this chapter are
+contributing factors. The negative impacts on the environment are very real, 
+however.
+
+@Bashir2024Climate point out this imbalance between perceived potential good and real 
+downsides:
+
+>*This incomplete cost calculation promotes unchecked growth and a risk of unjustified techno-optimism with potential environmental consequences, including expanding demand for computing power, larger carbon footprints, shifts in patterns of electricity demand, and an accelerated depletion of natural resources. *
+
+What are the reasons for the environmental impact of GenAI? Training these models
+requires immense compute resources. The models have billions of parameters and 
+training is an iterative process during which the performance of the model slowly
+improves over iterations. In fact, parameters such as the **learning rate** are
+managed during the training process to make sure that the model does not learn 
+too fast. 
+
+Until the rise of artificial neural network in the 2010s, training statistical 
+and machine learning models relied primarily on traditional CPU-style chip 
+architectures. The prevalent calculations in neural networks are operations on
+vectors of numerical data not unlike those encountered in processing graphical 
+images. Graphical processing units (GPUs) were quickly adopted by the AI community
+to speed up the training and inference of neural networks. GPUs provide much 
+greater levels of parallelism than CPU technology. 
+
+This created a massive demand for GPUs, one that propelled GPU maker NVIDIA into
+the position of one of the most valuable companies in the world. GPUs require
+a lot of electricity and they generate a lot of heat. Even a high-end personal 
+computers equipped with many GPUs might require water cooling instead of fans to keep the machine from overheating. Data centers consume a lot of power and require a lot 
+of water for cooling. The rise of GenAI has increased the demand for data 
+centers and will make these trends only worse. 
+
+Based on calculations of annual use of water for cooling systems, it is estimated 
+that a session of questions and answers with GPT-3 (roughly 10 t0 50 responses) 
+drives the consumption of a half-liter of fresh water [@Berreby2024].
+
+Scientists have estimated that the power requirements of data centers in North America increased from 2,688 megawatts at the end of 2022 to 5,341 megawatts at the end of 2023, partly driven by the demands of generative AI [@Zewe2025]. Note that this increase
+coincides with the release of GPT-3 at the end of 2022.
+Data centers are  among the top 10 electricity consumers in the world, consuming more than entire nations. By 2026, data centers are expected to rank 5^th^ in the world in 
+electricity consumption, between Russia and Japan. Experts agree that it will not
+be possible to generate that much power from green technology, increasing demand
+for fossil fuel. Some large technology companies are considering nuclear energy
+to power their data centers.
+
+A 2019 study estimated the carbon footprint of training a transformer AI model
+(as in GPT) as 626,000 lbs of CO2. Not that this predates the large GPT models
+like GPT-3 and GPT-4. We can only assume that their carbon footprint is much 
+greater. The 2019 number alone is
+staggering when compared to the carbon footprint of a mid-size car. Training
+one transformer model is equivalent to the carbon footprint of 5 cars over their
+entire lifetime.
+
+This is just the training of the model. The usage of the models also requires 
+large amounts of computing resources. A single ChatGPT query has been estimated 
+to consume about five times more electricity than a simple web search [@Zewe2025].
+
+The casual user sending prompts to ChatGPT is not aware of the environmental 
+costs of their queries. 
+
 
 ### Hallucinations
 

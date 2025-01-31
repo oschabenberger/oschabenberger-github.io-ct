@@ -115,7 +115,7 @@ the one with the highest number in the group will be shot.
 Three opaque jars are sitting on a table. The jars are labeled "Apples", "Oranges",
 and "Apples & Oranges". Unfortunately, all three are labeled incorrectly.
 
-![Three opaque jars.](images/ThreeJars.png){#file-three-jars fig-align="center" width=75%}
+![Three opaque jars.](images/ThreeJars.png){#fig-three-jars fig-align="center" width=75%}
 
 Your task is to assign the labels correctly to the jars. 
 What is the smallest number of fruit you have to choose in order to correctly

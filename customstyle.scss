@@ -1,7 +1,37 @@
 
 /*-- scss:defaults-- */
 
+/* ------------------------------------------------------ */
+/* The Virginia Tech primary and secondary color palettes */
+$col-vt-maroon: #861F41;       /* Chicago Maroon */
+$col-vt-orange: #E5751F;       /* Burnt Orange */
+$col-vt-white: #FFFFFF;        /* Yardline White */
+$col-vt-hokieStone: #75787b;   /* Hokie Stone */
+$col-vt-purple: #642667;       /* Pylon Purple */
+$col-vt-pink: #CE0058;         /* Boundless Pink */
+$col-vt-yellow: #F7EA48;       /* Triumphant Yellow */
+$col-vt-peal: #508590;         /* Sustainable Teal */
+$col-vt-turquoise: #2CD5C4;    /* Vibrant Turquoise */
+$col-vt-grey: #D7D2CB;         /* Land Grant Grey */
+$col-vt-smoke: #E5E1E6;        /* Skipper Smoke */
+$col-vt-impactOrange: #CA4F00; /* Impact Orange */
+$col-vt-black: black;
+/* ------------------------------------------------------ */
+
 /*-- scss:rules --*/
+
+.flushright {
+   text-align: right;
+}
+
+.quote {
+    color: $col-vt-maroon;
+    font-size: 1em;
+    text-align: center;
+    font-weight: 600;
+    font-style: italic;
+    
+}
 .assignment {
   margin: 1em 0;
   border: 2px solid gray;

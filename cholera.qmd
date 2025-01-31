@@ -89,6 +89,8 @@ victim had contaminated the well.
 
 ## Toward Causality {#sec-cholera-deeper}
 
+### Beyond a Reasonable Doubt?
+
 The evidence that the contaminated well water at the Broad Street pump caused
 the high rate of cholera in that neighborhood and among those who consumed the
 water is strong. Is it conclusive, however? Have we ruled out any other explanation
@@ -118,6 +120,8 @@ water that could harm or even kill them is not justified. Fortunately, John Snow
 found a real-life experiment with perfect conditions to establish cause and 
 effect between cholera and water contamination.
 
+### John Snow's "Experiment"
+
 He studied the cholera incidences among recipients of water from two water supply
 companies. The Lambeth company used water from the River Thames drawn upriver from 
 sewage discharge and the Southwark \& Vauxhall company drew water below the 
@@ -135,7 +139,7 @@ Southwark \& Vauxhall compared to those who received their water from Lambeth.
 
 | Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
 |:---:|:---:|:---:|:---:|
-| Southwark \& Vauxhall1 | 40,046 | 286 | 71 |
+| Southwark \& Vauxhall | 40,046 | 286 | 71 |
 | Lambeth | 26,107 | 14 | 5 |
 
 : Cholera incidences and rates for two water supply companies leading up to the 1854 outbreak. {#tbl-chol-rate .striped}
@@ -149,7 +153,7 @@ the death rates in @tbl-chol-rate2
 
 | Water Supplier | No. of Houses | Cholera Deaths | Deaths per 10,000 Houses |
 |:---:|:---:|:---:|:---:|
-| Southwark \& Vauxhall1 | 40,046 | 1,263 | 315 |
+| Southwark \& Vauxhall | 40,046 | 1,263 | 315 |
 | Lambeth | 26,107 | 98 | 37 |
 | Rest of London | 256,423 | 1,422 | $55^*$ |
 
@@ -161,5 +165,6 @@ such a discrepancy would virtually never happen. The only reasonable explanation
 for the higher death rate, since differences between the groups receiving the 
 water have been ruled out, is the quality (contamination) of the Southwark \&
 Vauxhall water.
+
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Computational and Quantitative Thinking - 6&nbsp; Quantitative Intuition and Problem Solving</title>
+<title>Computational and Quantitative Thinking - 7&nbsp; Quantitative Intuition and Problem Solving</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intuition.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intuition.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -192,7 +192,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational &amp; Quantitative Thinking</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,32 +215,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./genAI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,27 +265,27 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-prisoners-dilemma" id="toc-the-prisoners-dilemma" class="nav-link active" data-scroll-target="#the-prisoners-dilemma"><span class="header-section-number">6.1</span> The Prisoner’s Dilemma</a>
+  <li><a href="#the-prisoners-dilemma" id="toc-the-prisoners-dilemma" class="nav-link active" data-scroll-target="#the-prisoners-dilemma"><span class="header-section-number">7.1</span> The Prisoner’s Dilemma</a>
   <ul>
   <li><a href="#nash-equilibrium" id="toc-nash-equilibrium" class="nav-link" data-scroll-target="#nash-equilibrium">Nash Equilibrium</a></li>
   </ul></li>
-  <li><a href="#guarding-criminals" id="toc-guarding-criminals" class="nav-link" data-scroll-target="#guarding-criminals"><span class="header-section-number">6.2</span> Guarding Criminals</a></li>
-  <li><a href="#three-jars" id="toc-three-jars" class="nav-link" data-scroll-target="#three-jars"><span class="header-section-number">6.3</span> Three Jars</a></li>
-  <li><a href="#pattern-recognition-1" id="toc-pattern-recognition-1" class="nav-link" data-scroll-target="#pattern-recognition-1"><span class="header-section-number">6.4</span> Pattern Recognition #1</a></li>
-  <li><a href="#pattern-recognition-2" id="toc-pattern-recognition-2" class="nav-link" data-scroll-target="#pattern-recognition-2"><span class="header-section-number">6.5</span> Pattern Recognition #2</a></li>
-  <li><a href="#birthday-problem" id="toc-birthday-problem" class="nav-link" data-scroll-target="#birthday-problem"><span class="header-section-number">6.6</span> Birthday Problem</a></li>
-  <li><a href="#minimum-cuts" id="toc-minimum-cuts" class="nav-link" data-scroll-target="#minimum-cuts"><span class="header-section-number">6.7</span> Minimum Cuts</a></li>
-  <li><a href="#when-to-choose-the-ticket" id="toc-when-to-choose-the-ticket" class="nav-link" data-scroll-target="#when-to-choose-the-ticket"><span class="header-section-number">6.8</span> When to Choose the Ticket</a></li>
-  <li><a href="#how-many-squares-on-a-chessboard" id="toc-how-many-squares-on-a-chessboard" class="nav-link" data-scroll-target="#how-many-squares-on-a-chessboard"><span class="header-section-number">6.9</span> How Many Squares on a Chessboard</a></li>
-  <li><a href="#book-sorting" id="toc-book-sorting" class="nav-link" data-scroll-target="#book-sorting"><span class="header-section-number">6.10</span> Book Sorting</a></li>
-  <li><a href="#inverted-triangle" id="toc-inverted-triangle" class="nav-link" data-scroll-target="#inverted-triangle"><span class="header-section-number">6.11</span> Inverted Triangle</a></li>
-  <li><a href="#the-spare-tire" id="toc-the-spare-tire" class="nav-link" data-scroll-target="#the-spare-tire"><span class="header-section-number">6.12</span> The Spare Tire</a></li>
-  <li><a href="#robot-triangle" id="toc-robot-triangle" class="nav-link" data-scroll-target="#robot-triangle"><span class="header-section-number">6.13</span> Robot Triangle</a></li>
-  <li><a href="#truth-telling" id="toc-truth-telling" class="nav-link" data-scroll-target="#truth-telling"><span class="header-section-number">6.14</span> Truth Telling</a></li>
-  <li><a href="#clock-made-with-matches" id="toc-clock-made-with-matches" class="nav-link" data-scroll-target="#clock-made-with-matches"><span class="header-section-number">6.15</span> Clock Made With Matches</a></li>
-  <li><a href="#two-stacks-of-cards" id="toc-two-stacks-of-cards" class="nav-link" data-scroll-target="#two-stacks-of-cards"><span class="header-section-number">6.16</span> Two Stacks of Cards</a></li>
-  <li><a href="#rapid-fire" id="toc-rapid-fire" class="nav-link" data-scroll-target="#rapid-fire"><span class="header-section-number">6.17</span> Rapid Fire</a></li>
-  <li><a href="#crossing-the-river" id="toc-crossing-the-river" class="nav-link" data-scroll-target="#crossing-the-river"><span class="header-section-number">6.18</span> Crossing the River</a></li>
+  <li><a href="#guarding-criminals" id="toc-guarding-criminals" class="nav-link" data-scroll-target="#guarding-criminals"><span class="header-section-number">7.2</span> Guarding Criminals</a></li>
+  <li><a href="#three-jars" id="toc-three-jars" class="nav-link" data-scroll-target="#three-jars"><span class="header-section-number">7.3</span> Three Jars</a></li>
+  <li><a href="#pattern-recognition-1" id="toc-pattern-recognition-1" class="nav-link" data-scroll-target="#pattern-recognition-1"><span class="header-section-number">7.4</span> Pattern Recognition #1</a></li>
+  <li><a href="#pattern-recognition-2" id="toc-pattern-recognition-2" class="nav-link" data-scroll-target="#pattern-recognition-2"><span class="header-section-number">7.5</span> Pattern Recognition #2</a></li>
+  <li><a href="#birthday-problem" id="toc-birthday-problem" class="nav-link" data-scroll-target="#birthday-problem"><span class="header-section-number">7.6</span> Birthday Problem</a></li>
+  <li><a href="#minimum-cuts" id="toc-minimum-cuts" class="nav-link" data-scroll-target="#minimum-cuts"><span class="header-section-number">7.7</span> Minimum Cuts</a></li>
+  <li><a href="#when-to-choose-the-ticket" id="toc-when-to-choose-the-ticket" class="nav-link" data-scroll-target="#when-to-choose-the-ticket"><span class="header-section-number">7.8</span> When to Choose the Ticket</a></li>
+  <li><a href="#how-many-squares-on-a-chessboard" id="toc-how-many-squares-on-a-chessboard" class="nav-link" data-scroll-target="#how-many-squares-on-a-chessboard"><span class="header-section-number">7.9</span> How Many Squares on a Chessboard</a></li>
+  <li><a href="#book-sorting" id="toc-book-sorting" class="nav-link" data-scroll-target="#book-sorting"><span class="header-section-number">7.10</span> Book Sorting</a></li>
+  <li><a href="#inverted-triangle" id="toc-inverted-triangle" class="nav-link" data-scroll-target="#inverted-triangle"><span class="header-section-number">7.11</span> Inverted Triangle</a></li>
+  <li><a href="#the-spare-tire" id="toc-the-spare-tire" class="nav-link" data-scroll-target="#the-spare-tire"><span class="header-section-number">7.12</span> The Spare Tire</a></li>
+  <li><a href="#robot-triangle" id="toc-robot-triangle" class="nav-link" data-scroll-target="#robot-triangle"><span class="header-section-number">7.13</span> Robot Triangle</a></li>
+  <li><a href="#truth-telling" id="toc-truth-telling" class="nav-link" data-scroll-target="#truth-telling"><span class="header-section-number">7.14</span> Truth Telling</a></li>
+  <li><a href="#clock-made-with-matches" id="toc-clock-made-with-matches" class="nav-link" data-scroll-target="#clock-made-with-matches"><span class="header-section-number">7.15</span> Clock Made With Matches</a></li>
+  <li><a href="#two-stacks-of-cards" id="toc-two-stacks-of-cards" class="nav-link" data-scroll-target="#two-stacks-of-cards"><span class="header-section-number">7.16</span> Two Stacks of Cards</a></li>
+  <li><a href="#rapid-fire" id="toc-rapid-fire" class="nav-link" data-scroll-target="#rapid-fire"><span class="header-section-number">7.17</span> Rapid Fire</a></li>
+  <li><a href="#crossing-the-river" id="toc-crossing-the-river" class="nav-link" data-scroll-target="#crossing-the-river"><span class="header-section-number">7.18</span> Crossing the River</a></li>
   </ul>
 </nav>
     </div>
@@ -288,7 +294,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intuition" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></h1>
+<h1 class="title"><span id="sec-intuition" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></h1>
 </div>
 
 
@@ -306,8 +312,8 @@ window.Quarto = {
 
 
 <p>In this module you are presented with puzzles and problems to flex your analytic and quantitative thinking muscles. Most of these are well-known problems that you might run into during a job interview that is testing your problem-solving skills and your analytical thinking. In fact, several problems were culled from interview questions for quantitative and analytic positions. Others are testing your intuition about likelihoods and probability.</p>
-<section id="the-prisoners-dilemma" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="the-prisoners-dilemma"><span class="header-section-number">6.1</span> The Prisoner’s Dilemma</h2>
+<section id="the-prisoners-dilemma" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-prisoners-dilemma"><span class="header-section-number">7.1</span> The Prisoner’s Dilemma</h2>
 <p>Suppose that Andy and Brie are arrested as members of a criminal gang and held separately by the police. They cannot communicate. There is enough evidence to convict them on a lesser charge, but not on the principal charge. The police offers the following deal:</p>
 <ul>
 <li>If they both remain silent, they will each serve one year in prison.</li>
@@ -319,7 +325,7 @@ window.Quarto = {
 <div id="tbl-prisoner" class="striped quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prisoner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6.1: Expected payoffs in prisoner dilemma
+Table&nbsp;7.1: Expected payoffs in prisoner dilemma
 </figcaption>
 <div aria-describedby="tbl-prisoner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table">
@@ -352,7 +358,7 @@ Table&nbsp;6.1: Expected payoffs in prisoner dilemma
 </figure>
 </div>
 <p>The “payoffs” are shown in the matrix as negative numbers, as they represent a penalty, years of imprisonment. The goal is to maximize the payoff, a number as large as possible.</p>
-<p>The best situation for Andy is to testify when Brie remains silent. He would go free in this case (and does not mind Brie spending three years behind bars). Similarly, the best situation for Brie is to testify when Andy remains silent. These are the two diagonal cells in <a href="#tbl-prisoner" class="quarto-xref">Table&nbsp;<span>6.1</span></a>.</p>
+<p>The best situation for Andy is to testify when Brie remains silent. He would go free in this case (and does not mind Brie spending three years behind bars). Similarly, the best situation for Brie is to testify when Andy remains silent. These are the two diagonal cells in <a href="#tbl-prisoner" class="quarto-xref">Table&nbsp;<span>7.1</span></a>.</p>
 <p>The situation does not play out as well for them if one testifies and the other also testifies. What is the best strategy?</p>
 <section id="nash-equilibrium" class="level3">
 <h3 class="anchored" data-anchor-id="nash-equilibrium">Nash Equilibrium</h3>
@@ -364,7 +370,7 @@ Table&nbsp;6.1: Expected payoffs in prisoner dilemma
 <div id="tbl-prisoner2" class="striped quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prisoner2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6.2: Expected payoffs in prisoner dilemma
+Table&nbsp;7.2: Expected payoffs in prisoner dilemma
 </figcaption>
 <div aria-describedby="tbl-prisoner2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table">
@@ -394,8 +400,8 @@ Table&nbsp;6.2: Expected payoffs in prisoner dilemma
 <p>If Andy defects, his penalty will be less, regardless of whether Brie is collaborative or not (0 or 2 years compared to 1 or 3 years). The same applies to Brie, if she defects her penalty will be less regardless of what Andy does. The Nash equilibrium is that both players defect although they suffer worse penalties than if they had both cooperated.</p>
 </section>
 </section>
-<section id="guarding-criminals" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="guarding-criminals"><span class="header-section-number">6.2</span> Guarding Criminals</h2>
+<section id="guarding-criminals" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="guarding-criminals"><span class="header-section-number">7.2</span> Guarding Criminals</h2>
 <p>Suppose you are guarding <span class="math inline">\(n\)</span> criminals in an open field. You have one gun with a single bullet. You are a good shot and being fired at means death—the criminals know that. Their behavior is governed by the following rules:</p>
 <ul>
 <li>If any of them has a non-zero probability of surviving, they will attempt to escape.</li>
@@ -421,13 +427,17 @@ Solution
 </div>
 </div>
 </section>
-<section id="three-jars" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="three-jars"><span class="header-section-number">6.3</span> Three Jars</h2>
+<section id="three-jars" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="three-jars"><span class="header-section-number">7.3</span> Three Jars</h2>
 <p>Three opaque jars are sitting on a table. The jars are labeled “Apples”, “Oranges”, and “Apples &amp; Oranges”. Unfortunately, all three are labeled incorrectly.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/ThreeJars.png" class="img-fluid figure-img" style="width:75.0%"></p>
-<figcaption>Three opaque jars.</figcaption>
+<div id="fig-three-jars" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-three-jars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ThreeJars.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-three-jars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Three opaque jars.
+</figcaption>
 </figure>
 </div>
 <p>Your task is to assign the labels correctly to the jars. What is the smallest number of fruit you have to choose in order to correctly label the three jars?</p>
@@ -448,16 +458,16 @@ Solution
 </div>
 </div>
 </section>
-<section id="pattern-recognition-1" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="pattern-recognition-1"><span class="header-section-number">6.4</span> Pattern Recognition #1</h2>
-<p><a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows a logic reasoning puzzle. The first row makes sense if the strange operator is addition, but that does not work for the next rows. You have to find the meaning of that operator, then apply the pattern to solve the last equation.</p>
+<section id="pattern-recognition-1" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="pattern-recognition-1"><span class="header-section-number">7.4</span> Pattern Recognition #1</h2>
+<p><a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows a logic reasoning puzzle. The first row makes sense if the strange operator is addition, but that does not work for the next rows. You have to find the meaning of that operator, then apply the pattern to solve the last equation.</p>
 <div id="fig-math-puzzle1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-math-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/LogicPuzzle1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-math-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: Can you solve this?
+Figure&nbsp;7.2: Can you solve this?
 </figcaption>
 </figure>
 </div>
@@ -473,19 +483,19 @@ Solution
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We need to find a pattern that expresses the operations in terms of familiar algebra. If the operator in <a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> is interpreted as multiplication then we get 4, 10, 18, all smaller than the values on the right hand side. How much smaller? Exactly by the left-most number. The pattern that seems to apply to the first three rows is</p>
+<p>We need to find a pattern that expresses the operations in terms of familiar algebra. If the operator in <a href="#fig-math-puzzle1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> is interpreted as multiplication then we get 4, 10, 18, all smaller than the values on the right hand side. How much smaller? Exactly by the left-most number. The pattern that seems to apply to the first three rows is</p>
 <ul>
 <li>multiply the two numbers</li>
 <li>then add the number on the left</li>
 </ul>
-<p>Applying this pattern to the last row yields 96 as the solution (<a href="#fig-math-puzzle2" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>).</p>
+<p>Applying this pattern to the last row yields 96 as the solution (<a href="#fig-math-puzzle2" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>).</p>
 <div id="fig-math-puzzle2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-math-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/LogicPuzzle1Solution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-math-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: A solution.
+Figure&nbsp;7.3: A solution.
 </figcaption>
 </figure>
 </div>
@@ -494,8 +504,8 @@ Figure&nbsp;6.2: A solution.
 </div>
 </div>
 </section>
-<section id="pattern-recognition-2" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="pattern-recognition-2"><span class="header-section-number">6.5</span> Pattern Recognition #2</h2>
+<section id="pattern-recognition-2" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="pattern-recognition-2"><span class="header-section-number">7.5</span> Pattern Recognition #2</h2>
 <p>Here is a sequence of numbers.</p>
 <p><span class="math display">\[
 \begin{array}{c}
@@ -535,8 +545,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="birthday-problem" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="birthday-problem"><span class="header-section-number">6.6</span> Birthday Problem</h2>
+<section id="birthday-problem" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="birthday-problem"><span class="header-section-number">7.6</span> Birthday Problem</h2>
 <p>This is a classical problem in probability, and a popular one because it is relatable yet somewhat counterintuitive. The probability is higher than what most people expect. It goes like this:</p>
 <blockquote class="blockquote">
 <p>What is the probability that in a group of <span class="math inline">\(n\)</span> randomly chosen people, at least two share the same birthday?</p>
@@ -607,8 +617,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="minimum-cuts" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="minimum-cuts"><span class="header-section-number">6.7</span> Minimum Cuts</h2>
+<section id="minimum-cuts" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="minimum-cuts"><span class="header-section-number">7.7</span> Minimum Cuts</h2>
 <p>Imagine that you hire a consultant to work for you for five days. At the end of each day you need to pay them 1/5th of a gold bar. You have a single gold bar (worth 5 fifths) and need to cut it up so you can pay the consultant at the end of each day.</p>
 <div id="fig-gold-bar" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -616,7 +626,7 @@ Solution
 <img src="images/GoldBar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gold-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: A gold bar that needs to be cut up.
+Figure&nbsp;7.4: A gold bar that needs to be cut up.
 </figcaption>
 </figure>
 </div>
@@ -642,7 +652,7 @@ Solution
 <img src="images/GoldBarSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gold-bar-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.4: No more than two cuts are needed.
+Figure&nbsp;7.5: No more than two cuts are needed.
 </figcaption>
 </figure>
 </div>
@@ -658,8 +668,8 @@ Figure&nbsp;6.4: No more than two cuts are needed.
 </div>
 </div>
 </section>
-<section id="when-to-choose-the-ticket" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="when-to-choose-the-ticket"><span class="header-section-number">6.8</span> When to Choose the Ticket</h2>
+<section id="when-to-choose-the-ticket" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="when-to-choose-the-ticket"><span class="header-section-number">7.8</span> When to Choose the Ticket</h2>
 <p>An airline has a single seat open on a flight, but <span class="math inline">\(n=100\)</span> standby passengers hoping to get on the flight. You are one of the passengers on standby. To be fair to all standby passengers, the airline decides to drop 100 equal-sized pieces of paper into a bucket. 99 of them are blank, one says “Last Seat”. The papers are folded and shuffled in the bucket.</p>
 <p>The standby passengers queue and each passenger gets to pick one piece of paper without replacement—that is, they keep the slip and do not return it to the bucket. Also they cannot unfold and look at the slip until all of them re drawn. After the last slip is drawn the standby passengers announce who is the lucky person that drew the “Last Seat” by checking their slip.</p>
 <p>Here is the question: if you have your choice to pick first, second, last, or at any particular position in the queue, which position would you choose?</p>
@@ -681,16 +691,16 @@ Solution
 </div>
 </div>
 </section>
-<section id="how-many-squares-on-a-chessboard" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="how-many-squares-on-a-chessboard"><span class="header-section-number">6.9</span> How Many Squares on a Chessboard</h2>
-<p>A chess board is made up of eight rows and columns of black and white positions (<a href="#fig-chessboard" class="quarto-xref">Figure&nbsp;<span>6.5</span></a>). How many squares are on a board?</p>
+<section id="how-many-squares-on-a-chessboard" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="how-many-squares-on-a-chessboard"><span class="header-section-number">7.9</span> How Many Squares on a Chessboard</h2>
+<p>A chess board is made up of eight rows and columns of black and white positions (<a href="#fig-chessboard" class="quarto-xref">Figure&nbsp;<span>7.6</span></a>). How many squares are on a board?</p>
 <div id="fig-chessboard" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chessboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Chessboard.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chessboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.5: Chess board.
+Figure&nbsp;7.6: Chess board.
 </figcaption>
 </figure>
 </div>
@@ -715,8 +725,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="book-sorting" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="book-sorting"><span class="header-section-number">6.10</span> Book Sorting</h2>
+<section id="book-sorting" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="book-sorting"><span class="header-section-number">7.10</span> Book Sorting</h2>
 <p>Suppose you are working in a library and are sorting books from a box that contains 32 fiction (F) and 17 non-fiction (NF) books. A steady supply of new books is available to add to the box. Your sorting algorithm goes as follows:</p>
 <ul>
 <li><p>You randomly choose 2 books from the box.</p></li>
@@ -727,14 +737,14 @@ Solution
 <li>if you choose one fiction and one non-fiction book (F,NF or NF,F) then you add a non-fiction book to the box.</li>
 </ol></li>
 </ul>
-<p>The entire procedure is depicted in <a href="#fig-book-sorting" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>.</p>
+<p>The entire procedure is depicted in <a href="#fig-book-sorting" class="quarto-xref">Figure&nbsp;<span>7.7</span></a>.</p>
 <div id="fig-book-sorting" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-book-sorting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/BookSorting.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-book-sorting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.6: Book sorting routine. <a href="https://medium.com/puzzle-sphere/book-sorting-interview-puzzle-math-logic-google-amazon-microsoft-faang-quantitative-aptitude-probability-124b5917e059">Source</a>
+Figure&nbsp;7.7: Book sorting routine. <a href="https://medium.com/puzzle-sphere/book-sorting-interview-puzzle-math-logic-google-amazon-microsoft-faang-quantitative-aptitude-probability-124b5917e059">Source</a>
 </figcaption>
 </figure>
 </div>
@@ -758,16 +768,16 @@ Solution
 </div>
 </div>
 </section>
-<section id="inverted-triangle" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="inverted-triangle"><span class="header-section-number">6.11</span> Inverted Triangle</h2>
-<p><a href="#fig-coin-triangle" class="quarto-xref">Figure&nbsp;<span>6.7</span></a> shows a triangle made from 10 coins. Can you change this into an upside-down triangle by moving only 3 coins?</p>
+<section id="inverted-triangle" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="inverted-triangle"><span class="header-section-number">7.11</span> Inverted Triangle</h2>
+<p><a href="#fig-coin-triangle" class="quarto-xref">Figure&nbsp;<span>7.8</span></a> shows a triangle made from 10 coins. Can you change this into an upside-down triangle by moving only 3 coins?</p>
 <div id="fig-coin-triangle" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-coin-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/CoinTrianglePuzzle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.7: Inverting the coin triangle.
+Figure&nbsp;7.8: Inverting the coin triangle.
 </figcaption>
 </figure>
 </div>
@@ -783,14 +793,14 @@ Solution
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The solution is shown in <a href="#fig-coin-solution" class="quarto-xref">Figure&nbsp;<span>6.8</span></a>. First, focus on the seven coins in the center of the triangle. The original and the inverted triangle share these; they do not need to move at all. We can focus on the three coins at the edges.</p>
+<p>The solution is shown in <a href="#fig-coin-solution" class="quarto-xref">Figure&nbsp;<span>7.9</span></a>. First, focus on the seven coins in the center of the triangle. The original and the inverted triangle share these; they do not need to move at all. We can focus on the three coins at the edges.</p>
 <div id="fig-coin-solution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-coin-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/CoinTrianglePuzzleSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.8: Moving the three coins.
+Figure&nbsp;7.9: Moving the three coins.
 </figcaption>
 </figure>
 </div>
@@ -798,17 +808,17 @@ Figure&nbsp;6.8: Moving the three coins.
 </div>
 </div>
 </section>
-<section id="the-spare-tire" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="the-spare-tire"><span class="header-section-number">6.12</span> The Spare Tire</h2>
+<section id="the-spare-tire" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="the-spare-tire"><span class="header-section-number">7.12</span> The Spare Tire</h2>
 <p>Your car has four tires mounted to the wheels and a spare tire (S). That gives you five tires to work with. Each of the tires lasts at most 30,000 miles. If you can exchange tires among the five as many times as you wish, what is the furthest distance you can travel before you need to purchase a new tire?</p>
-<p><a href="#fig-tire-solution1" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> depicts the initial tire life prior to driving the first mile. All tires, including the spare (S) have the same life expectancy of 30,000 miles.</p>
+<p><a href="#fig-tire-solution1" class="quarto-xref">Figure&nbsp;<span>7.10</span></a> depicts the initial tire life prior to driving the first mile. All tires, including the spare (S) have the same life expectancy of 30,000 miles.</p>
 <div id="fig-tire-solution1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tire-solution1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/TirePuzzleSolution1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tire-solution1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.9: Tire life before driving the first mile.
+Figure&nbsp;7.10: Tire life before driving the first mile.
 </figcaption>
 </figure>
 </div>
@@ -827,14 +837,14 @@ Solution
 <p>The maximum total distance the five tires could travel before they are all worn out is 30,000 x 5 = 150,000 miles. The minimum distance of travel before you have to buy at least one new tire is 30,000 miles; it is achieved if you do not use the spare tire and run down the four tires currently mounted.</p>
 <p>By optimizing how you use the spare tire, there must be an achievable distance between 30,000 and 150,000 miles. The optimal strategy is to wear all tires equally and to use the spare tire as much as possible. But we cannot use the spare for more than 30,000 miles, same as with the other four tires.</p>
 <p>If the four tires on the car are equally worn, we can go at most 150,000/4 = 37,500 miles. The strategy is to get 30,000 miles from each of the tires on the car and 4 times 7,500 = 30,000 miles from the spare tire. In other words, the spare will have to give each of the four tires a 7,500 mile break.</p>
-<p><a href="#fig-tire-solution2" class="quarto-xref">Figure&nbsp;<span>6.10</span></a> shows how the spare tire is rotated for another tire after each leg of 7,500 miles. The right rear tire comes off after the fourth leg, it is worn out. The other tires still have 7,500 miles of life to go.</p>
+<p><a href="#fig-tire-solution2" class="quarto-xref">Figure&nbsp;<span>7.11</span></a> shows how the spare tire is rotated for another tire after each leg of 7,500 miles. The right rear tire comes off after the fourth leg, it is worn out. The other tires still have 7,500 miles of life to go.</p>
 <div id="fig-tire-solution2" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tire-solution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/TirePuzzleSolution2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/TirePuzzleSolution2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/TirePuzzleSolution2.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/TirePuzzleSolution2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tire-solution2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.10: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles
+Figure&nbsp;7.11: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles
 </figcaption>
 </figure>
 </div>
@@ -842,16 +852,16 @@ Figure&nbsp;6.10: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 mil
 </div>
 </div>
 </section>
-<section id="robot-triangle" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="robot-triangle"><span class="header-section-number">6.13</span> Robot Triangle</h2>
-<p>There are many versions of this basic puzzle, using ants, camels, and other animals. We use robots here, the puzzle goes like this. Three robots are placed at the corners of a triangle. A robot can choose to move along either side of the triangle that meet at its corner (<a href="#fig-robot-triangle" class="quarto-xref">Figure&nbsp;<span>6.11</span></a>). What is the probability that any two robots will collide?</p>
+<section id="robot-triangle" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="robot-triangle"><span class="header-section-number">7.13</span> Robot Triangle</h2>
+<p>There are many versions of this basic puzzle, using ants, camels, and other animals. We use robots here, the puzzle goes like this. Three robots are placed at the corners of a triangle. A robot can choose to move along either side of the triangle that meet at its corner (<a href="#fig-robot-triangle" class="quarto-xref">Figure&nbsp;<span>7.12</span></a>). What is the probability that any two robots will collide?</p>
 <div id="fig-robot-triangle" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-robot-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RobotTrianglePuzzle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robot-triangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.11: Robot triangle.
+Figure&nbsp;7.12: Robot triangle.
 </figcaption>
 </figure>
 </div>
@@ -867,14 +877,14 @@ Solution
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Each robot has two possible movements, so there are a total of 2 x 2 x 2 = 8 possible moves on the triangle. There are two ways in which there won’t be any collisions, if all choose to go clockwise or counter-clockwise. In those cases they will follow each other around the triangle (<a href="#fig-robot-solution" class="quarto-xref">Figure&nbsp;<span>6.12</span></a>).</p>
+<p>Each robot has two possible movements, so there are a total of 2 x 2 x 2 = 8 possible moves on the triangle. There are two ways in which there won’t be any collisions, if all choose to go clockwise or counter-clockwise. In those cases they will follow each other around the triangle (<a href="#fig-robot-solution" class="quarto-xref">Figure&nbsp;<span>7.13</span></a>).</p>
 <div id="fig-robot-solution" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-robot-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RobotPuzzleSolution.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robot-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.12: Robots moving without running into each other.
+Figure&nbsp;7.13: Robots moving without running into each other.
 </figcaption>
 </figure>
 </div>
@@ -883,8 +893,8 @@ Figure&nbsp;6.12: Robots moving without running into each other.
 </div>
 </div>
 </section>
-<section id="truth-telling" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="truth-telling"><span class="header-section-number">6.14</span> Truth Telling</h2>
+<section id="truth-telling" class="level2" data-number="7.14">
+<h2 data-number="7.14" class="anchored" data-anchor-id="truth-telling"><span class="header-section-number">7.14</span> Truth Telling</h2>
 <p>This puzzle is about logic reasoning and not about probability. Surprisingly, it is related to the previous robot movement puzzle.</p>
 <p>Consider the following three statements:</p>
 <ol type="1">
@@ -921,8 +931,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="clock-made-with-matches" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="clock-made-with-matches"><span class="header-section-number">6.15</span> Clock Made With Matches</h2>
+<section id="clock-made-with-matches" class="level2" data-number="7.15">
+<h2 data-number="7.15" class="anchored" data-anchor-id="clock-made-with-matches"><span class="header-section-number">7.15</span> Clock Made With Matches</h2>
 <p>You have two wooden sticks and a box of matches. When a sticks is lit it will burn completely in exactly one hour. How do you use these ingredients to measure exactly 45 minutes?</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
@@ -936,26 +946,26 @@ Solution
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Light the first stick on one end and light the second stick on both ends. Since an entire stick burns in one hour, the stick lit on both ends will burn down in 30 minutes (<a href="#fig-stick-puzzle1" class="quarto-xref">Figure&nbsp;<span>6.13</span></a>).</p>
+<p>Light the first stick on one end and light the second stick on both ends. Since an entire stick burns in one hour, the stick lit on both ends will burn down in 30 minutes (<a href="#fig-stick-puzzle1" class="quarto-xref">Figure&nbsp;<span>7.14</span></a>).</p>
 <div id="fig-stick-puzzle1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stick-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/StickPuzzle1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stick-puzzle1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.13: Initial lighting of sticks.
+Figure&nbsp;7.14: Initial lighting of sticks.
 </figcaption>
 </figure>
 </div>
 <p>At that point light the first stick on the other end. This will double the speed with which that stick, now reduced to 30 minutes burn time, will burn.</p>
-<p>When the first stick is completely burned down, 45 minutes will have passed (<a href="#fig-stick-puzzle2" class="quarto-xref">Figure&nbsp;<span>6.14</span></a>).</p>
+<p>When the first stick is completely burned down, 45 minutes will have passed (<a href="#fig-stick-puzzle2" class="quarto-xref">Figure&nbsp;<span>7.15</span></a>).</p>
 <div id="fig-stick-puzzle2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stick-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/StickPuzzle2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stick-puzzle2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.14: After 30 minutes, light the other end of the first stick.
+Figure&nbsp;7.15: After 30 minutes, light the other end of the first stick.
 </figcaption>
 </figure>
 </div>
@@ -963,8 +973,8 @@ Figure&nbsp;6.14: After 30 minutes, light the other end of the first stick.
 </div>
 </div>
 </section>
-<section id="two-stacks-of-cards" class="level2" data-number="6.16">
-<h2 data-number="6.16" class="anchored" data-anchor-id="two-stacks-of-cards"><span class="header-section-number">6.16</span> Two Stacks of Cards</h2>
+<section id="two-stacks-of-cards" class="level2" data-number="7.16">
+<h2 data-number="7.16" class="anchored" data-anchor-id="two-stacks-of-cards"><span class="header-section-number">7.16</span> Two Stacks of Cards</h2>
 <p>You have two stacks of cards. The first is a regular 52-card deck. The second stack contains two regular 52-card decks, thus has 104 cards. Both stacks are shuffled well. You choose two cards in sequence and you win if they are both red. Would you prefer to choose from the 52-card stack or the 104-card stack?</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
@@ -988,8 +998,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="rapid-fire" class="level2" data-number="6.17">
-<h2 data-number="6.17" class="anchored" data-anchor-id="rapid-fire"><span class="header-section-number">6.17</span> Rapid Fire</h2>
+<section id="rapid-fire" class="level2" data-number="7.17">
+<h2 data-number="7.17" class="anchored" data-anchor-id="rapid-fire"><span class="header-section-number">7.17</span> Rapid Fire</h2>
 <p>Cowboy Billy carries a Colt single action 6 shooter revolver. When he fires all 6 shots in a row, the time between the first bullet and the last is 60 seconds. How long would it take him to fire 3 shots?</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
@@ -1010,8 +1020,8 @@ Solution
 </div>
 </div>
 </section>
-<section id="crossing-the-river" class="level2" data-number="6.18">
-<h2 data-number="6.18" class="anchored" data-anchor-id="crossing-the-river"><span class="header-section-number">6.18</span> Crossing the River</h2>
+<section id="crossing-the-river" class="level2" data-number="7.18">
+<h2 data-number="7.18" class="anchored" data-anchor-id="crossing-the-river"><span class="header-section-number">7.18</span> Crossing the River</h2>
 <p>A farmer is on his way back from the market, with him he has a fox, a chicken and some grain. To get home he needs to cross a river using a small boat that can accommodate only him and one of the other items. Unfortunately, if the fox is left alone with the chicken it will eat it. If the chicken is left alone with the grain, it will eat it. How can the farmer cross the river and bring home the fox, the chicken, and the grain?</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solution">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
@@ -1042,7 +1052,7 @@ Solution
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.10: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;7.11: Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles</span>
 </div>
 </section>
 
@@ -1603,12 +1613,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./dataliteracy.html" class="pagination-link" aria-label="Data Literacy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./predictions.html" class="pagination-link" aria-label="Making Predictions">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making Predictions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1626,7 +1636,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

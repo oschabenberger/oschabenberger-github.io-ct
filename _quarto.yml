@@ -22,6 +22,7 @@ book:
     - cholera.qmd
     - datascience.qmd
     - firstStepsR.qmd
+    - correlation.qmd
     - dataliteracy.qmd
     - intuition.qmd
     - predictions.qmd

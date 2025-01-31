@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Computational and Quantitative Thinking - 5&nbsp; Data Literacy</title>
+<title>Computational and Quantitative Thinking - 6&nbsp; Data Literacy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./intuition.html" rel="next">
-<link href="./firstStepsR.html" rel="prev">
+<link href="./correlation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,7 +136,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataliteracy.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataliteracy.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -178,7 +178,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational &amp; Quantitative Thinking</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -201,32 +201,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./genAI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -245,32 +251,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link active" data-scroll-target="#uncertainty"><span class="header-section-number">5.1</span> Uncertainty</a></li>
-  <li><a href="#sec-literacy-signal-noise" id="toc-sec-literacy-signal-noise" class="nav-link" data-scroll-target="#sec-literacy-signal-noise"><span class="header-section-number">5.2</span> Signal and Noise</a></li>
-  <li><a href="#sec-literacy-accuracy-precision" id="toc-sec-literacy-accuracy-precision" class="nav-link" data-scroll-target="#sec-literacy-accuracy-precision"><span class="header-section-number">5.3</span> Accuracy and Precision</a></li>
-  <li><a href="#sec-literacy-correlation" id="toc-sec-literacy-correlation" class="nav-link" data-scroll-target="#sec-literacy-correlation"><span class="header-section-number">5.4</span> Causation and Correlation</a>
+  <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link active" data-scroll-target="#uncertainty"><span class="header-section-number">6.1</span> Uncertainty</a></li>
+  <li><a href="#sec-literacy-signal-noise" id="toc-sec-literacy-signal-noise" class="nav-link" data-scroll-target="#sec-literacy-signal-noise"><span class="header-section-number">6.2</span> Signal and Noise</a></li>
+  <li><a href="#sec-literacy-accuracy-precision" id="toc-sec-literacy-accuracy-precision" class="nav-link" data-scroll-target="#sec-literacy-accuracy-precision"><span class="header-section-number">6.3</span> Accuracy and Precision</a></li>
+  <li><a href="#sec-literacy-correlation" id="toc-sec-literacy-correlation" class="nav-link" data-scroll-target="#sec-literacy-correlation"><span class="header-section-number">6.4</span> Causation and Correlation</a>
   <ul>
-  <li><a href="#examples-of-spurious-correlations" id="toc-examples-of-spurious-correlations" class="nav-link" data-scroll-target="#examples-of-spurious-correlations">Examples of Spurious Correlations</a>
-  <ul class="collapse">
-  <li><a href="#coincidence" id="toc-coincidence" class="nav-link" data-scroll-target="#coincidence">Coincidence</a></li>
-  <li><a href="#latent-variables" id="toc-latent-variables" class="nav-link" data-scroll-target="#latent-variables">Latent variables</a></li>
-  <li><a href="#induced-correlation" id="toc-induced-correlation" class="nav-link" data-scroll-target="#induced-correlation">Induced correlation</a></li>
-  </ul></li>
-  <li><a href="#establishing-causality" id="toc-establishing-causality" class="nav-link" data-scroll-target="#establishing-causality">Establishing Causality</a>
-  <ul class="collapse">
   <li><a href="#observational-and-experimental-data" id="toc-observational-and-experimental-data" class="nav-link" data-scroll-target="#observational-and-experimental-data">Observational and experimental data</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#sec-literacy-bias-variance" id="toc-sec-literacy-bias-variance" class="nav-link" data-scroll-target="#sec-literacy-bias-variance"><span class="header-section-number">5.5</span> Bias and Variance Tradeoff</a>
+  <li><a href="#sec-literacy-bias-variance" id="toc-sec-literacy-bias-variance" class="nav-link" data-scroll-target="#sec-literacy-bias-variance"><span class="header-section-number">6.5</span> Bias and Variance Tradeoff</a>
   <ul>
   <li><a href="#sec-literacy-overfitting" id="toc-sec-literacy-overfitting" class="nav-link" data-scroll-target="#sec-literacy-overfitting">Overfitting</a></li>
   <li><a href="#underfitting" id="toc-underfitting" class="nav-link" data-scroll-target="#underfitting">Underfitting</a></li>
   </ul></li>
-  <li><a href="#all-models-are-wrongsome-are-useful" id="toc-all-models-are-wrongsome-are-useful" class="nav-link" data-scroll-target="#all-models-are-wrongsome-are-useful"><span class="header-section-number">5.6</span> All Models are Wrong–Some are Useful</a>
+  <li><a href="#all-models-are-wrongsome-are-useful" id="toc-all-models-are-wrongsome-are-useful" class="nav-link" data-scroll-target="#all-models-are-wrongsome-are-useful"><span class="header-section-number">6.6</span> All Models are Wrong–Some are Useful</a>
   <ul>
   <li><a href="#compartmental-models-in-epidemiology" id="toc-compartmental-models-in-epidemiology" class="nav-link" data-scroll-target="#compartmental-models-in-epidemiology">Compartmental Models in Epidemiology</a></li>
   </ul></li>
-  <li><a href="#agent-based-models" id="toc-agent-based-models" class="nav-link" data-scroll-target="#agent-based-models"><span class="header-section-number">5.7</span> Agent-based Models</a></li>
+  <li><a href="#agent-based-models" id="toc-agent-based-models" class="nav-link" data-scroll-target="#agent-based-models"><span class="header-section-number">6.7</span> Agent-based Models</a></li>
   </ul>
 </nav>
     </div>
@@ -279,7 +276,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-literacy" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></h1>
+<h1 class="title"><span id="sec-literacy" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></h1>
 </div>
 
 
@@ -311,11 +308,11 @@ window.Quarto = {
 <li>Transform raw data into insights</li>
 </ul>
 <p>This module covers a number of concepts and topics around data and data analysis that help you become more data literate.</p>
-<section id="uncertainty" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="uncertainty"><span class="header-section-number">5.1</span> Uncertainty</h2>
+<section id="uncertainty" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="uncertainty"><span class="header-section-number">6.1</span> Uncertainty</h2>
 </section>
-<section id="sec-literacy-signal-noise" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="sec-literacy-signal-noise"><span class="header-section-number">5.2</span> Signal and Noise</h2>
+<section id="sec-literacy-signal-noise" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-literacy-signal-noise"><span class="header-section-number">6.2</span> Signal and Noise</h2>
 <p>Separating the signal from the noise is a key objective in all data analysis. The <strong>signal</strong> represents the systematic, non-random effects in the data. Data scientists and statisticians define the <strong>noise</strong> as the unpredictable randomness around the signal. A slightly different, and also useful, definition of noise stems from intelligence analysis. The signal is the information we are trying to find, the noise is the cacophony of other information that obscures the signal. That information might well be a signal for something else but it is irrelevant or useless for the event the intelligence analyst is trying to predict.</p>
 <p>Information not being relevant for the signal we are trying to find is the key. In the view of the statistician, that information is due to random events.</p>
 <p>Finding the signal is not trivial, different analysts can arrive at different models to capture it. Signals can be obscured by noise. What appears to be a signal might just be random noise that we mistake for a systematic effect.</p>
@@ -324,7 +321,7 @@ window.Quarto = {
 <p>Example: Theophylline Concentration</p>
 </div>
 <div class="example-container">
-<p><a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows the concentration of the drug theophylline over 24 hours after administration of the drug in two groups of patients. There are 98 data points of theophylline concentration and measurement time. What are the signals in the data? What is noise?</p>
+<p><a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows the concentration of the drug theophylline over 24 hours after administration of the drug in two groups of patients. There are 98 data points of theophylline concentration and measurement time. What are the signals in the data? What is noise?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-theop-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -333,7 +330,7 @@ window.Quarto = {
 <img src="dataliteracy_files/figure-html/fig-theop-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theop-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Theophylline concentration over time in two groups of patients.
+Figure&nbsp;6.1: Theophylline concentration over time in two groups of patients.
 </figcaption>
 </figure>
 </div>
@@ -350,19 +347,19 @@ Figure&nbsp;5.1: Theophylline concentration over time in two groups of patients.
 <li><p>Overall trend of drug concentration over time: signal</p></li>
 <li><p>Differences among the groups: signal</p></li>
 </ul>
-<p>These assignments to signal and noise can be argued. For example, we might want to test the very hypothesis that there are no group-to-group differences. If that hypothesis is true, any differences between the groups we discern in <a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> would be due to chance; random noise in other words.</p>
+<p>These assignments to signal and noise can be argued. For example, we might want to test the very hypothesis that there are no group-to-group differences. If that hypothesis is true, any differences between the groups we discern in <a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> would be due to chance; random noise in other words.</p>
 <p>The variability between patients could be due to factors such as age, gender, medical condition, etc. We do not have any data about these attributes. By treating these influences as noise, we are making important assumptions that their effects are irrelevant for conclusions derived from the data. Suppose that the groups refer to smokers and non-smokers but also that group 1 consists of mostly men and group 2 consists of mostly women. If we find differences in theophylline concentration over time among the groups, we could not attribute those to either smoking status or gender.</p>
 </div>
 </div>
-<p>A common reason to mistake signal for noise is <strong>overfitting</strong> a model, a concept we return to in <a href="#sec-literacy-overfitting" class="quarto-xref"><span>Section 5.5.1</span></a>.</p>
-<p>Another reason is if there is simply no signal at all. <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> is taken from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 341</a>)</span> and displays six “trends”. Four of them are simple random walks, the result of pure randomness. Two panels show the movement of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the 1970s and 1980s. Which of the panels are showing the DJIA and which are random noise?</p>
+<p>A common reason to mistake signal for noise is <strong>overfitting</strong> a model, a concept we return to in <a href="#sec-literacy-overfitting" class="quarto-xref"><span>Section 6.5.1</span></a>.</p>
+<p>Another reason is if there is simply no signal at all. <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> is taken from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 341</a>)</span> and displays six “trends”. Four of them are simple random walks, the result of pure randomness. Two panels show the movement of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the 1970s and 1980s. Which of the panels are showing the DJIA and which are random noise?</p>
 <div id="fig-random-walk" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Figure11_4_Silver.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market data?
+Figure&nbsp;6.2: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market data?
 </figcaption>
 </figure>
 </div>
@@ -371,10 +368,10 @@ Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012"
 <li><p>Even purely random data can appear non-random over shorter sequences. We can easily fall into the trap of seeing a pattern (a signal) where there is none. After drawing two unlikely poker hands in a row there is not a greater chance of a third unlikely hand unless there is some systematic effect (cards not properly shuffled, game rigged). Our brains ignore that fact and believe that we are more lucky than is expected by chance.</p></li>
 <li><p>Data that contains clear long-run signals—the stock market value is increasing over time—can appear quite random on shorter sequences. One a day to day basis predicting whether the market goes up or down is very difficult. In the long run ups and downs are almost equally likely. Upswings have a slight upper hand and on average are greater than the downswings, increasing the overall value in the long term. Traders who try to beat the market over the short run have their work cut out for them.</p></li>
 </ul>
-<p>By the way, panels D and F in <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> are from actual stock market data. Panels A, B, C, and E are pure random walks. It would not be surprising if investors would bet money on “trend” C.</p>
+<p>By the way, panels D and F in <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> are from actual stock market data. Panels A, B, C, and E are pure random walks. It would not be surprising if investors would bet money on “trend” C.</p>
 </section>
-<section id="sec-literacy-accuracy-precision" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sec-literacy-accuracy-precision"><span class="header-section-number">5.3</span> Accuracy and Precision</h2>
+<section id="sec-literacy-accuracy-precision" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-literacy-accuracy-precision"><span class="header-section-number">6.3</span> Accuracy and Precision</h2>
 <p>The terms <strong>accuracy</strong> and <strong>precision</strong> are often used interchangeably. In the context of measurement and data analysis they mean different things and the distinction is important.</p>
 <p>When talking about measuring devices, accuracy and precision are defined as</p>
 <ul>
@@ -383,7 +380,7 @@ Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012"
 </ul>
 <p>When folks say that something is precise, what they often mean is that it is accurate. For example, when you measure something that is 8 feet long with a tape measure and the tape reads 8 feet, then it is accurate. If you repeat the measurement several times and all readings are close to 8 feet, then the tape (and you as its operator) is precise.</p>
 <p>Precision refers to the repeatability of a method, accuracy refers to its proximity to a target value.</p>
-<p>To demonstrate the difference between accuracy and precision, the dart board bullseye metaphor is helpful. <a href="#fig-dartboard" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> shows four scenarios of shooting four darts each at a dart board. Suppose we are trying to hit the bullseye in the center of the board; it is the true value we are trying to measure.</p>
+<p>To demonstrate the difference between accuracy and precision, the dart board bullseye metaphor is helpful. <a href="#fig-dartboard" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows four scenarios of shooting four darts each at a dart board. Suppose we are trying to hit the bullseye in the center of the board; it is the true value we are trying to measure.</p>
 <ul>
 <li><p>Pattern <strong>A</strong> is the result of a thrower who is neither accurate nor precise. The throws vary greatly from each other (lack of precision), and the average location is far from the bullseye (inaccurate).</p></li>
 <li><p>Pattern <strong>B</strong> is the result of a thrower who is inaccurate but precise. The throws group tightly together (high precision) but the average location misses the bullseye (the average distance from the bullseye is not zero).</p></li>
@@ -393,10 +390,10 @@ Figure&nbsp;5.2: Figure 11-4 from <span class="citation" data-cites="Silver2012"
 <div id="fig-dartboard" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dartboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/Bullseye.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/Bullseye.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+<a href="images/Bullseye.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/Bullseye.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dartboard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: Accuracy and precision—the dart board bullseye metaphor.
+Figure&nbsp;6.3: Accuracy and precision—the dart board bullseye metaphor.
 </figcaption>
 </figure>
 </div>
@@ -423,142 +420,14 @@ Figure&nbsp;5.3: Accuracy and precision—the dart board bullseye metaphor.
 <p>“The average temperature on the planet will increase by 1.4 degrees centigrade by 2030”. The 95% prediction interval in 2030 ranges from 0.2 to 2.6 degrees.</p>
 </blockquote>
 </section>
-<section id="sec-literacy-correlation" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="sec-literacy-correlation"><span class="header-section-number">5.4</span> Causation and Correlation</h2>
-<p>You might have heard the saying “correlation is not causation.” What is meant by that?</p>
-<p>Causation implies that one thing is the result of another thing; they stand in a cause-and-effect relationship to each other. The gravitational pull of the moon on earth’s oceans causes the tides. An accident causes a traffic jam. Smoking causes an increase in the risk of developing lung cancer.</p>
-<p>Correlation, on the other hand, is about establishing <strong>association</strong> between attributes. The weight of a person is correlated with their height. Taller people tend to be heavier but height alone is not the only factor affecting someone’s weight. Smoking is correlated with alcoholism but does not cause it.</p>
-<p>In <a href="cholera.html" class="quarto-xref"><span>Chapter 2</span></a> we discussed the 1854 cholera outbreak in Soho, London and John Snow’s investigation. He found higher cholera incidences in houses closer to the Broad Street public water pump. There was at least an association between cholera cases and proximity to the pump. Did the pump—or more precisely the water from the pump or something in the water—cause cholera? Today we know that cholera is caused by the bacterium <em>Vibrio cholerae</em>, but that discovery was not made until 1883.</p>
-<p>We experience correlation when one attribute changes with another. <a href="#fig-correlations" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> shows various patterns in which two continuous attributes might be correlated. When the correlation is positive, one attribute tends to increase as the other increases. If the correlation is negative, an increase in one attribute is associated with a decrease in the other attribute.</p>
-<div id="fig-correlations" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/different_correlations.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.4: Correlations of different strength and directions. The numbers above the point clouds indicate the strength and direction of the correlation
-</figcaption>
-</figure>
-</div>
-<p>Correlations are measured by the correlation coefficient, which ranges from -1 to 1. These extremes are called perfect correlations and happen when all points fall on a perfect line, without variability about the line.</p>
-<p>It seems obvious that just because two attributes vary with each other—are correlated—one should not infer that they are cause and effect of each other. Unfortunately, that leap of faith is often made and can lead to very problematic decisions.</p>
-<div id="fig-chocolate-corr" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/Chocolate.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/Chocolate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.5: Chocolate consumption and number of Nobel laureates.
-</figcaption>
-</figure>
-</div>
-<p><a href="#fig-chocolate-corr" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> displays the number of Nobel laureates per 10 million population against the chocolate consumption (in kg per capita and year) for various countries <span class="citation" data-cites="Messerli_2012">(<a href="references.html#ref-Messerli_2012" role="doc-biblioref">Messerli 2012</a>)</span>. An upward trend is clearly noticeable. A greater per-capita chocolate consumption is associated with a lager number of Nobel laureates. Whoa! If the two variables stand in a cause-effect relationship then we have a simple recipe to increase Nobel prizes: we all should eat more chocolate. While one can argue the benefits of chocolate for cognitive function, what we have here is a simple correlation. The two attributes, number of Nobel laureates per 10 million population and chocolate consumption per capita, are related. If one increases so does the other. But why?</p>
-<p>This is an example of a <strong>spurious</strong> correlation. The variables are not really dependent on each other, a relationship is induced in some other way. In this particular example, the correlation was “found” by cherry-picking the data: only four years of chocolate consumption were considered on a limited number of chocolate products and no data prior to 2002 was used. The number of Nobel laureates is a cumulative measure that spans a much longer time frame.</p>
-<p>It appears that the data were organized in such a way as to suggest a relationship between the variables.</p>
-<p>You can find spurious correlations everywhere, without manipulating the data. Here are some examples and the reasons why the data appear correlated.</p>
-<section id="examples-of-spurious-correlations" class="level3">
-<h3 class="anchored" data-anchor-id="examples-of-spurious-correlations">Examples of Spurious Correlations</h3>
-<section id="coincidence" class="level4">
-<h4 class="anchored" data-anchor-id="coincidence">Coincidence</h4>
-<p>Forecasting economic conditions is difficult and highly valuable. Since the end of World War II there have been only eleven economic recessions. On the other hand we are producing thousands of economic indicators. The government alone generates 45,000 economic statistics each year <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 185</a>)</span>.</p>
-<p>So it should not be surprising that when sifting through all those variables we find some that appear to go up or down together, just by coincidence.</p>
-<p>A famous example is the Super Bowl winning conference as an indicator of economic performance. Between 1967 and 1997, in years when the team from the original NFL won, the stock market went up by 14%. When a team from the original AFL won the stock market decreased by almost 10%. Through 1997, the Super Bowl winner “predicted” correctly the direction of the stock market in 28 out of 31 years <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012</a>)</span>. Since 1998 the trend has reversed and the stock market is doing better when an AFL team won the Super Bowl. Coincidence during a period of time leads to mistake noise for signal.</p>
-<p>Another example of coincidence being mistaken for correlation is <a href="https://en.wikipedia.org/wiki/Paul_the_Octopus">Paul, the octopus</a> who correctly predicted the winner in 2008–2010 international soccer matches 12 out of 14 times, an 85% accuracy. Since this success rate is unlikely to happen by chance, it was determined that Paul the octopus has divine powers. When Paul got it wrong in a 2010 FIFA World Cup game between Germany and Spain, the German fans called for Paul to be eaten and the Spanish Prime Minister offered Paul asylum.</p>
-</section>
-<section id="latent-variables" class="level4">
-<h4 class="anchored" data-anchor-id="latent-variables">Latent variables</h4>
-<p>A correlation between variables A and C can be induced by another variable, say B. If A is correlated with (or caused by) B and C is correlated (or caused by) B, then plotting A versus C indicates a correlation between the two variables. However, the relationship is induced by the <strong>latent variable</strong> B.</p>
-<div id="fig-spurious-corr" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-spurious-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/spurious3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spurious-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.6: Spurious correlation.
-</figcaption>
-</figure>
-</div>
-<p>Latent variables are often the real reason why things appear related when we deal with variables that depend on population size or common factors such as the weather or time. <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>5.6</span></a> shows the close relationship over time between the number of high school graduates and donut consumption. More donut consumption appears related to more high school graduates. Notice that we are not plotting graduation <strong>rates</strong>, these would most likely not have any relationships with donut consumption. The latent variable at work in <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>5.6</span></a> is the size of the population over time. As the population increases, more donuts are consumed and more people graduate from high school.</p>
-<p>A similar spurious correlation is that between ice cream sales and forest fires. Both increase during the summer heat and decrease in the winter.</p>
-<p>You can imagine the horrible public policy decisions one would make by mistaken those spurious correlations for cause and effect.</p>
-</section>
-<section id="induced-correlation" class="level4">
-<h4 class="anchored" data-anchor-id="induced-correlation">Induced correlation</h4>
-<p>Another interesting mechanism to induce correlation is by introducing a mathematical dependence between two attributes. A famous example is the relationship between birth rate and the density of storks.</p>
-<div id="fig-stork-baby" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stork-baby-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Stork.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-baby-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.7: Storks and Babies
-</figcaption>
-</figure>
-</div>
-<p>In central Europe a persistent myth is that storks bring babies. <a href="https://en.wikipedia.org/wiki/Storks_(film)">Movies</a> were made about it! The origin of the association probably goes back to medieval days when conception was more common in mid-summer during the celebration of the summer solstice which is also a pagan holiday of marriage and fertility. The white stork is a migratory bird that flies to Africa in the fall and returns to Europe nine months later. Hence the connection was made that storks brought the babies.</p>
-<p>Although the myth has been debunked, there have been several studies of the connection between fertility and the stork abundance. <span class="citation" data-cites="Neyman_1952">Neyman (<a href="references.html#ref-Neyman_1952" role="doc-biblioref">1952</a>)</span> describes a study of 54 counties that comprises the following attributes</p>
-<ul>
-<li><span class="math inline">\(W\)</span>: Number of women of child-bearing age in the county (in 10,000)</li>
-<li><span class="math inline">\(S\)</span>: Number of storks in the county</li>
-<li><span class="math inline">\(B\)</span>: Number of babies born in the county</li>
-</ul>
-<p>Since it is likely that these numbers increase with the size of the county, the variables analyzed were <span class="math inline">\(Y = B/W\)</span> and <span class="math inline">\(X=S/W\)</span>, the birth rate per 10,000 women and the density of storks per 10,000 women. A plot of these variables and a smooth estimate of their trend is shown in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>5.8</span></a>.</p>
-<div id="fig-stork-trend" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Storks_and_Babies.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.8: Storks and babies.
-</figcaption>
-</figure>
-</div>
-<p>It certainly appears that the birth rate increases with the density of storks. Could the myth be true? Is something else going on?</p>
-<p>The trend in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>5.8</span></a> is induced by expressing both variables as ratios with the same variable, <span class="math inline">\(W\)</span>, the number of women of child-bearing age. If <span class="math inline">\(S\)</span> and <span class="math inline">\(B\)</span> are unrelated, <span class="math inline">\(S/W\)</span> and <span class="math inline">\(B/W\)</span> now share information because they are expressed relative to another variable.</p>
-</section>
-</section>
-<section id="establishing-causality" class="level3">
-<h3 class="anchored" data-anchor-id="establishing-causality">Establishing Causality</h3>
-<p>Let’s return to the 1854 cholera outbreak and the question before John Snow: did something in the water of the Broad Street public water pump cause cholera? If so, this would explain the higher incidence rate of cholera in residences near the pump and it would also explain the other anomalies he found in the data (see <a href="cholera.html" class="quarto-xref"><span>Chapter 2</span></a>).</p>
-<p>The map Snow drew in 1854 (<a href="cholera.html#fig-cholera-map" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>) might be convincing to us, his contemporaries did not feel that way. For one, he could not <strong>prove</strong> that the Broad Street well water caused the cholera cases. And his hypothesis was inconsistent with the prevailing theory of the time, that cholera was caused by airborne particles (miasma) from dirty or decaying biological material.</p>
-<p>The analysis of the cholera map established a correlation rather than causation because of the possibility of <strong>confounding</strong> factors: variables that can mask or distort the effect of other variables. In the 1960s it was shown that coffee drinkers had higher rates of lung cancer than non-coffee drinkers. Some thought this was implication of coffee as a cause of lung cancer. That is incorrect. The association is due to a confounding factor: coffee drinkers at the time were more likely to be also smokers. Coffee drinking was associated with lung cancer but does not cause the disease.</p>
-<p>In the case of the 1854 cholera outbreak, there could have been confounding factors that caused cholera incidences in the Broad Street area to be higher, whether the water was or was not the cause of the disease. Maybe the residents of that poorer neighborhood had a different diet that caused the disease. Maybe they had occupations that made it more likely to be exposed to a harmful agent. Maybe. Maybe. Maybe.</p>
-<p>In order to establish a causal link between two variables, the confounding factors must be accounted for—at least beyond a reasonable doubt. Otherwise there will always be some reason to believe another mechanism was at work.</p>
-<p>How one goes about accounting for confounding factors depends on the domain. The first question is whether the factors are controllable in some form. If so, we can use <strong>experimentation</strong> to set up controlled environments in which the only thing that can reasonably explain the effects we are seeing are the factors we deliberately manipulate. This is the area of <strong>experimental design</strong>.</p>
-<p>If you cannot manipulate and control factors in an experiment, maybe you are lucky to find data where the confounding factors have already been controlled for you. Sometimes real life runs these quasi-experiments for us and eliminates the confounding factors. Although the data is observational rather than experimental (see below), it can go a long way toward establishing causality. In <a href="cholera.html#sec-cholera-deeper" class="quarto-xref"><span>Section 2.4</span></a> we discussed a second, deeper analysis John Snow conducted in which he compared cases between customers of the Lambeth and the Southward &amp; Vauxhall water companies. For all intents and purposes the groups serviced by the two companies were identical except for the source of the water. Lambeth’s water was drawn upriver from sewage discharge into the River Thames and was cleaner than the water from Southwark &amp; Vauxhall, which drew water below the sewage discharge. The much higher cholera incidence in the group supplied by Southwark &amp; Vauxhall was sufficient evidence to implicate the water.</p>
-<p>In domains and applications where experimentation is not possible and confounding factors are present, we try to establish causation by a process called <a href="https://en.wikipedia.org/wiki/Causal_inference"><strong>causal inference</strong></a>. By studying which variables act on each other, causality can be inferred.</p>
-<div class="assignment">
-<div class="assignment-header">
-<p>Assignment: Fluoride Exposure and IQ</p>
-</div>
-<div class="assignment-container">
-<p>The National Toxicology Program of the U.S. Department of Health and Human Services conducted a <strong>meta-analysis</strong> of the relationship between fluoride intake and IQ.</p>
-<p>Among the findings of the analysis, the article states (emphasis in original):</p>
-<blockquote class="blockquote">
-<p><em>The NTP monograph concluded, with moderate confidence, that higher levels of fluoride exposure, such as drinking water containing more than 1.5 milligrams of fluoride per liter, are associated with lower IQ in children. The NTP review was designed to evaluate total fluoride exposure from all sources and was not designed to evaluate the health effects of fluoridated drinking water alone. <strong>It is important to note that there were insufficient data to determine if the low fluoride level of 0.7 mg/L currently recommended for U.S. community water supplies has a negative effect on children’s IQ.</strong> The NTP found no evidence that fluoride exposure had adverse effects on adult cognition.<br>
-<br>
-…<br>
-<br>
-The determination about lower IQs in children was based primarily on epidemiology studies in non-U.S. countries such as Canada, China, India, Iran, Pakistan, and Mexico where some pregnant women, infants, and children received total fluoride exposure amounts higher than 1.5 mg fluoride/L of drinking water. </em></p>
-</blockquote>
-<p>Please read the full article from the National Toxicology Program <a href="https://ntp.niehs.nih.gov/whatwestudy/assessments/noncancer/completed/fluoride">here</a> and answer the following questions:</p>
-<ol type="1">
-<li>Did the study establish correlation or causation between fluoride intake and children’s IQ?</li>
-<li>Does the article make it clear whether to take the results as an indication of causation or correlation?</li>
-<li>What is meta-analysis?</li>
-<li>How do you interpret the fact that the study did not analyze data from the U.S.? Does that affect whether the results are applicable to U.S. children?</li>
-<li>Can you think of confounding factors that limit transfer of the results to the U.S?</li>
-<li>Are you surprised that there is no evidence of adverse effects on adults?</li>
-</ol>
-</div>
-</div>
+<section id="sec-literacy-correlation" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-literacy-correlation"><span class="header-section-number">6.4</span> Causation and Correlation</h2>
 <section id="observational-and-experimental-data" class="level4">
 <h4 class="anchored" data-anchor-id="observational-and-experimental-data">Observational and experimental data</h4>
 </section>
 </section>
-</section>
-<section id="sec-literacy-bias-variance" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="sec-literacy-bias-variance"><span class="header-section-number">5.5</span> Bias and Variance Tradeoff</h2>
+<section id="sec-literacy-bias-variance" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-literacy-bias-variance"><span class="header-section-number">6.5</span> Bias and Variance Tradeoff</h2>
 <section id="sec-literacy-overfitting" class="level3">
 <h3 class="anchored" data-anchor-id="sec-literacy-overfitting">Overfitting</h3>
 </section>
@@ -566,8 +435,8 @@ The determination about lower IQs in children was based primarily on epidemiolog
 <h3 class="anchored" data-anchor-id="underfitting">Underfitting</h3>
 </section>
 </section>
-<section id="all-models-are-wrongsome-are-useful" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="all-models-are-wrongsome-are-useful"><span class="header-section-number">5.6</span> All Models are Wrong–Some are Useful</h2>
+<section id="all-models-are-wrongsome-are-useful" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="all-models-are-wrongsome-are-useful"><span class="header-section-number">6.6</span> All Models are Wrong–Some are Useful</h2>
 <p>In a 1976 paper, George E.P. Box declared “All models are wrong” <span class="citation" data-cites="GEPBox1976">(<a href="references.html#ref-GEPBox1976" role="doc-biblioref">Box 1976</a>)</span>. Later, he added a qualification which turned into a frequently cited quote about modeling:</p>
 <blockquote class="blockquote">
 <p><em>All models are wrong, some are useful.</em> <span class="citation" data-cites="BoxDraper_1987">(<a href="references.html#ref-BoxDraper_1987" role="doc-biblioref">Box and Draper 1987, 424</a>)</span>.</p>
@@ -591,15 +460,14 @@ The determination about lower IQs in children was based primarily on epidemiolog
 <p>The rate at which the disease spreads through the population is measured by the <strong>basic reproduction</strong> number, <span class="math inline">\(R_0\)</span>. This number, which we became all too familiar with during the COVID-19 pandemic, measures the number of uninfected people expected to catch the disease from an infected individual. An <span class="math inline">\(R_0\)</span> of 3 means that someone who contracts the disease is expected to pass it on to three other individuals. In the absence of vaccines or quarantines, any disease with <span class="math inline">\(R_0 &gt; 1\)</span> will eventually spread to the entire population.</p>
 </section>
 </section>
-<section id="agent-based-models" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="agent-based-models"><span class="header-section-number">5.7</span> Agent-based Models</h2>
+<section id="agent-based-models" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="agent-based-models"><span class="header-section-number">6.7</span> Agent-based Models</h2>
 <p>A different tactic than to rely on <em>sophisticatedly simple</em> models that abstract the essence of the thing we wish to study is to simulate the process in all its complexity, essentially building a digital twin of the thing we wish to study.</p>
 <p>That is essentially the approach taken in weather prediction. Rather than relying on statistical models that predict based on historical data, weather predictions are based on complex physical simulations of the atmosphere.</p>
 
 
 <div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;5.3: Accuracy and precision—the dart board bullseye metaphor.</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;5.5: Chocolate consumption and number of Nobel laureates.</span>
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.3: Accuracy and precision—the dart board bullseye metaphor.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-GEPBox1976" class="csl-entry" role="listitem">
@@ -607,12 +475,6 @@ Box, George E. P. 1976. <span>“Science and Statistics.”</span> <em>Journal o
 </div>
 <div id="ref-BoxDraper_1987" class="csl-entry" role="listitem">
 Box, George E. P., and Norman R. Draper. 1987. <em>Empirical Model-Building and Response Surfaces</em>. John Wiley &amp; Sons, New York.
-</div>
-<div id="ref-Messerli_2012" class="csl-entry" role="listitem">
-Messerli, F. H. 2012. <span>“Chocolate Consumption, Cognitive Function, and Nobel Laureates.”</span> <em>New England Journal of Medicine</em> 367: 1562–64.
-</div>
-<div id="ref-Neyman_1952" class="csl-entry" role="listitem">
-Neyman, Jerzy. 1952. <em>Lectures and Conferences on Mathematical Statistics and Probability</em>. Graduate School, Dept. of Agriculture, Washington.
 </div>
 <div id="ref-Silver2012" class="csl-entry" role="listitem">
 Silver, Nate. 2012. <em>The Signal and the Noise: Why so Many Predictions Fail–but Some Don’t</em>. Penguin Books.
@@ -1176,13 +1038,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./firstStepsR.html" class="pagination-link" aria-label="First Steps in `R`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation and Causation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./intuition.html" class="pagination-link" aria-label="Quantitative Intuition and Problem Solving">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1200,7 +1062,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
