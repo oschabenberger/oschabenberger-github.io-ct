@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computational and Quantitative Thinking - 5&nbsp; Correlation and Causation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./dataliteracy.html" rel="next">
+<link href="./firstStepsR.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational and Quantitative Thinking</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational &amp; Quantitative Thinking</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cholera.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Case Study: 1854 Cholera Outbreak in Soho, London</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datascience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science—CT + QT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./firstStepsR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intuition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./life_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Algorithms to Live By</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genAI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Generative AI</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
+  <li><a href="#correlation-and-the-correlation-coefficient" id="toc-correlation-and-the-correlation-coefficient" class="nav-link" data-scroll-target="#correlation-and-the-correlation-coefficient"><span class="header-section-number">5.2</span> Correlation and the Correlation Coefficient</a></li>
+  <li><a href="#spurious-correlations" id="toc-spurious-correlations" class="nav-link" data-scroll-target="#spurious-correlations"><span class="header-section-number">5.3</span> Spurious Correlations</a>
+  <ul>
+  <li><a href="#coincidence" id="toc-coincidence" class="nav-link" data-scroll-target="#coincidence">Coincidence</a></li>
+  <li><a href="#latent-variables" id="toc-latent-variables" class="nav-link" data-scroll-target="#latent-variables">Latent Variables</a></li>
+  <li><a href="#induced-correlation" id="toc-induced-correlation" class="nav-link" data-scroll-target="#induced-correlation">Induced Correlation</a></li>
+  </ul></li>
+  <li><a href="#establishing-causality" id="toc-establishing-causality" class="nav-link" data-scroll-target="#establishing-causality"><span class="header-section-number">5.4</span> Establishing Causality</a>
+  <ul>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
+  <li><a href="#adjustment" id="toc-adjustment" class="nav-link" data-scroll-target="#adjustment">Adjustment</a></li>
+  <li><a href="#stratification" id="toc-stratification" class="nav-link" data-scroll-target="#stratification">Stratification</a>
+  <ul class="collapse">
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a></li>
+  </ul></li>
+  <li><a href="#randomization" id="toc-randomization" class="nav-link" data-scroll-target="#randomization">Randomization</a></li>
+  <li><a href="#experimentationthe-randomized-controlled-trial-rct" id="toc-experimentationthe-randomized-controlled-trial-rct" class="nav-link" data-scroll-target="#experimentationthe-randomized-controlled-trial-rct">Experimentation–The Randomized Controlled Trial (RCT)</a>
+  <ul class="collapse">
+  <li><a href="#example-rcbd-in-agriculture" id="toc-example-rcbd-in-agriculture" class="nav-link" data-scroll-target="#example-rcbd-in-agriculture">Example: RCBD in Agriculture</a></li>
+  <li><a href="#other-experiments" id="toc-other-experiments" class="nav-link" data-scroll-target="#other-experiments">Other Experiments</a></li>
+  </ul></li>
+  <li><a href="#when-experimentation-is-not-possible" id="toc-when-experimentation-is-not-possible" class="nav-link" data-scroll-target="#when-experimentation-is-not-possible">When Experimentation is Not Possible</a>
+  <ul class="collapse">
+  <li><a href="#quasi-experiments" id="toc-quasi-experiments" class="nav-link" data-scroll-target="#quasi-experiments">Quasi-experiments</a></li>
+  <li><a href="#hills-criteria" id="toc-hills-criteria" class="nav-link" data-scroll-target="#hills-criteria">Hill’s Criteria</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-corr-cause" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation and Causation</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled" title="Quote">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quote
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="flushright">
+<p><em>Just because two variables have a statistical relationship with each other does not mean<br>
+that one is responsible for the other. For instance, ice cream sales and forest fires<br>
+are correlated because both occur more often in the summer heat. But there is no<br>
+causation; you don’t light a patch of the Montana brush on fire when you buy a<br>
+pint of Häagan-Dazs.</em><br>
+Nate Silver, The Signal and the Noise</p>
+</div>
+</div>
+</div>
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<p>One of the key tasks in analyzing data is uncovering relationships between things. Describing the statistical behavior of a single variable is interesting. Studying how two or more variables behave <strong>together</strong> is really interesting. That is how we uncover mechanisms, relationships, associations, and patterns. And if things go really well, we might discover cause-and-effect relationships.</p>
+<p>You might have heard the saying</p>
+<div class="quote">
+<p>correlation does not imply causation</p>
+</div>
+<p>What do we mean by that?</p>
+<p>Causation implies that one thing is the result of another thing; they stand in a cause-and-effect relationship to each other. The gravitational pull of the moon on earth’s oceans causes the tides. An accident causes a traffic jam. Smoking causes an increase in the risk of developing lung cancer.</p>
+<p>Correlation, on the other hand, is about establishing <strong>association</strong> between attributes. The weight of a person is correlated with their height. Taller people tend to be heavier but height alone is not the only factor affecting someone’s weight. Smoking is correlated with alcoholism but does not cause it.</p>
+<p><a href="#fig-lemon-acc" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> displays the relationship between highway accidents in the U.S. and lemon imports from Mexico for a period of five years, from 1996–2001. The U.S. Dept. of Agriculture tracks agricultural imports and exports, the U.S. National Highway Traffic Safety Administration (NHTSA) tracks highway fatalities. Neither federal agency probably thought much about the data collected by the other agency. But when put together, voilà. A clear trend emerges!</p>
+<div id="fig-lemon-acc" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lemon-acc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/spurious1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/spurious1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lemon-acc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Relationship between highway fatalities and lemon imports from Mexico.
+</figcaption>
+</figure>
+</div>
+<p>If the relationship in <a href="#fig-lemon-acc" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> is causal, public policy to reduce highway fatalities is very clear: reduce fresh lemon imports from Mexico! Clearly, this is not a causal relationship. There must be another explanation why the variables in <a href="#fig-lemon-acc" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> appear related.</p>
+<p>Compare this situation to John Snow’s investigation of the relationship between water quality and cholera incidences in 19<sup>th</sup> century London (<a href="cholera.html" class="quarto-xref"><span>Chapter 2</span></a>). Snow found higher cholera incidences in houses closer to the Broad Street public water pump. There was a strong association between cholera cases and proximity to the pump. But did the pump—or more precisely the water from the pump or something in the water—<strong>cause</strong> cholera? Today we know that cholera is caused by the bacterium <em>Vibrio cholerae</em>, but that discovery was not made until 1883.</p>
+</section>
+<section id="correlation-and-the-correlation-coefficient" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="correlation-and-the-correlation-coefficient"><span class="header-section-number">5.2</span> Correlation and the Correlation Coefficient</h2>
+<p>We experience correlation when one attribute changes with another. When the attributes are continuous (see <a href="intro.html#sec-data-types" class="quarto-xref"><span>Section 1.2.4</span></a>), we can display their association with a scatterplot. A positive correlation then implies that the point cloud has a positive slope, as one attribute increases the other one tends to increase as well (<a href="#fig-corr-pos" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>). When the correlation is negative, an increase in one attribute is associated with a decrease in the other attribute (<a href="#fig-corr-neg" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>).</p>
+<div id="fig-corr-pos" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-pos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/CorrelationPositive.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/CorrelationPositive.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-pos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Positive correlation.
+</figcaption>
+</figure>
+</div>
+<div id="fig-corr-neg" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-neg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/CorrelationNegative.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/CorrelationNegative.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-neg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Negative correlation.
+</figcaption>
+</figure>
+</div>
+<p>While the direction of the point cloud indicates whether the correlation (association) is positive or negative, the tightness of the point cloud indicates the strength of the association (<a href="#fig-correlations" class="quarto-xref">Figure&nbsp;<span>5.4</span></a>).</p>
+<div id="fig-correlations" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/different_correlations.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: Correlations of different strength and directions. The numbers above the point clouds indicate the strength and direction of the correlation
+</figcaption>
+</figure>
+</div>
+<p>When we are dealing with discrete attributes, the association cannot be revealed through a point cloud. Instead, we <strong>cross-tabulate</strong> the frequency of occurrence of the attributes.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Rater Agreement</p>
+</div>
+<div class="example-container">
+<p><a href="#tbl-rater-agree" class="quarto-xref">Table&nbsp;<span>5.1</span></a> shows the results of a study where insect damage on 236 agricultural fields was classified into 5 damage categories by two different inspectors.</p>
+<div id="tbl-rater-agree" class="striped quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rater-agree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Results of rating 236 experimental units by 2 raters
+</figcaption>
+<div aria-describedby="tbl-rater-agree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Rater 2</strong></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">69</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">236</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>For example, 16 experimental units were assigned to damage category 3 by rater 1 and to damage category 2 by rater 2. There is relatively strong association between the ratings, the majority of the counts fall on the diagonal of the table and in the cells immediately off the diagonal (where the raters disagree by one damage category).</p>
+</div>
+</div>
+<p>Another example of cross-tabulating counts to demonstrate association is <a href="cholera.html#tbl-chol-rate2" class="quarto-xref">Table&nbsp;<span>2.2</span></a> in John Snow’s cholera study. It shows that cholera deaths are 10 times more likely to occur in homes supplied by the Southward &amp; Vauxhall water company than in homes supplied by the Lambeth water company.</p>
+<hr>
+<p>The strength of the correlation between continuous attributes is measured by the <strong>correlation coefficient</strong>, which ranges from -1 to 1. Both of these extremes are called perfect correlations and happen when all points fall on a perfect line, without variability about the line. The relationship is <strong>deterministic</strong>. Linear mathematical relationships exhibit such patterns, for example, the relationship between degree Celsius and degree Fahrenheit (<a href="#fig-fahrenheit" class="quarto-xref">Figure&nbsp;<span>5.5</span></a>): <span class="math display">\[
+^\circ F = {^\circ C} \times \frac{9}{5}  + 32
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-fahrenheit" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fahrenheit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_files/figure-html/fig-fahrenheit-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fahrenheit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: Linear relationship between <span class="math inline">\(^\circ F\)</span> and <span class="math inline">\(^\circ C\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This raises another caution about relying on correlation metrics: the relationship between attributes can be quite strong, but their degree of <strong>linear</strong> relationship can be low. <a href="#fig-corr-nonlin" class="quarto-xref">Figure&nbsp;<span>5.6</span></a> shows two variables with a strong nonlinear relationship. <span class="math inline">\(Y\)</span> decreases with increasing <span class="math inline">\(C\)</span> for values <span class="math inline">\(X &lt; 0\)</span> and <span class="math inline">\(Y\)</span> increases with <span class="math inline">\(X\)</span> for values <span class="math inline">\(X &gt; 0\)</span>. When the standard linear correlation coefficient is calculated, it turns out to indicate a very weak relationship between the variables—a very weak <strong>linear</strong> relationship. The takeaway is not to only focus on reported measures of association but to also examine the relationships visually.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-corr-nonlin" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-nonlin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_files/figure-html/fig-corr-nonlin-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-nonlin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.6: Strong nonlinear relationship with small (linear) correlation coefficient.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="spurious-correlations" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="spurious-correlations"><span class="header-section-number">5.3</span> Spurious Correlations</h2>
+<p>It seems obvious that just because two attributes vary with each other—are correlated—one should not infer that they are cause and effect of each other. Unfortunately, that leap of faith is often made and can lead to very problematic decisions.</p>
+<div id="fig-chocolate-corr" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/Chocolate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/Chocolate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.7: Chocolate consumption and number of Nobel laureates.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-chocolate-corr" class="quarto-xref">Figure&nbsp;<span>5.7</span></a> displays the number of Nobel laureates per 10 million population against the chocolate consumption (in kg per capita and year) for various countries <span class="citation" data-cites="Messerli_2012">(<a href="references.html#ref-Messerli_2012" role="doc-biblioref">Messerli 2012</a>)</span>. An upward trend is clearly noticeable. A greater per-capita chocolate consumption is associated with a lager number of Nobel laureates. Whoa! If the two variables stand in a cause-effect relationship then we have a simple recipe to increase Nobel prizes: we all should eat more chocolate. While one can argue the benefits of chocolate for cognitive function, what we have here is a simple correlation. The two attributes, number of Nobel laureates per 10 million population and chocolate consumption per capita, are related. If one increases so does the other. But why?</p>
+<p>This is an example of a <strong>spurious</strong> correlation. The variables are not really dependent on each other, a relationship is induced in some other way. In this particular example, the correlation was “found” by cherry-picking the data: only four years of chocolate consumption were considered on a limited number of chocolate products and no data prior to 2002 was used. The number of Nobel laureates is a cumulative measure that spans a much longer time frame.</p>
+<p>It appears that the data were organized in such a way as to suggest a relationship between the variables.</p>
+<p>You can find spurious correlations everywhere, without manipulating the data. Here are some examples and the reasons why the data appear correlated.</p>
+<section id="coincidence" class="level3">
+<h3 class="anchored" data-anchor-id="coincidence">Coincidence</h3>
+<p>Forecasting economic conditions is difficult and highly valuable. Since the end of World War II there have been only eleven economic recessions. On the other hand we are producing thousands of economic indicators. The government alone generates 45,000 economic statistics each year <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 185</a>)</span>.</p>
+<p>So it should not be surprising that when sifting through all those variables we find some that appear to go up or down together, just by coincidence.</p>
+<p>A famous example is the Super Bowl winning conference as an indicator of economic performance. Between 1967 and 1997, in years when the team from the original NFL won, the stock market went up by 14%. When a team from the original AFL won the stock market decreased by almost 10%. Through 1997, the Super Bowl winner “predicted” correctly the direction of the stock market in 28 out of 31 years <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012</a>)</span>. Since 1998 the trend has reversed and the stock market is doing better when an AFL team won the Super Bowl. Coincidence during a period of time leads to mistake noise for signal.</p>
+<p>Another example of coincidence being mistaken for correlation is <a href="https://en.wikipedia.org/wiki/Paul_the_Octopus">Paul, the octopus</a> who correctly predicted the winner in 2008–2010 international soccer matches 12 out of 14 times, an 85% accuracy. Since this success rate is unlikely to happen by chance, it was determined that Paul the octopus has divine powers. When Paul got it wrong in a 2010 FIFA World Cup game between Germany and Spain, the German fans called for Paul to be eaten and the Spanish Prime Minister offered Paul asylum.</p>
+</section>
+<section id="latent-variables" class="level3">
+<h3 class="anchored" data-anchor-id="latent-variables">Latent Variables</h3>
+<p>A correlation between variables A and C can be induced by another variable, say B. If A is correlated with (or caused by) B and C is correlated (or caused by) B, then plotting A versus C indicates a correlation between the two variables. However, the relationship is induced by the <strong>latent variable</strong> B.</p>
+<div id="fig-spurious-corr" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spurious-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/spurious3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spurious-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.8: Spurious correlation.
+</figcaption>
+</figure>
+</div>
+<p>Latent variables are often the real reason why things appear related when we deal with variables that depend on population size or common factors such as the weather or time. <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>5.8</span></a> shows the close relationship over time between the number of high school graduates and donut consumption. More donut consumption appears related to more high school graduates. Notice that we are not plotting graduation <strong>rates</strong>, these would most likely not have any relationships with donut consumption. The latent variable at work in <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>5.8</span></a> is the size of the population over time. As the population increases, more donuts are consumed and more people graduate from high school.</p>
+<p>A similar spurious correlation is that between ice cream sales and forest fires. Both increase during the summer heat and decrease in the winter.</p>
+<p>You can imagine the horrible public policy decisions one would make by mistaken those spurious correlations for cause and effect relationships.</p>
+</section>
+<section id="induced-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="induced-correlation">Induced Correlation</h3>
+<p>Another interesting mechanism to induce correlation is by introducing a mathematical dependence between two attributes. A famous example is the relationship between birth rate and the density of storks.</p>
+<div id="fig-stork-baby" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stork-baby-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Stork.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-baby-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.9: Storks and Babies
+</figcaption>
+</figure>
+</div>
+<p>In central Europe a persistent myth is that storks bring babies. <a href="https://en.wikipedia.org/wiki/Storks_(film)">Movies</a> were made about it! The origin of the association probably goes back to medieval days when conception was more common in mid-summer during the celebration of the summer solstice which is also a pagan holiday of marriage and fertility. The white stork is a migratory bird that flies to Africa in the fall and returns to Europe nine months later. Hence the connection was made that storks brought the babies.</p>
+<p>Although the myth has been debunked, there have been several studies of the connection between fertility and the stork abundance. <span class="citation" data-cites="Neyman_1952">Neyman (<a href="references.html#ref-Neyman_1952" role="doc-biblioref">1952</a>)</span> describes a study of 54 counties that comprises the following attributes</p>
+<ul>
+<li><span class="math inline">\(W\)</span>: Number of women of child-bearing age in the county (in 10,000)</li>
+<li><span class="math inline">\(S\)</span>: Number of storks in the county</li>
+<li><span class="math inline">\(B\)</span>: Number of babies born in the county</li>
+</ul>
+<p>Since it is likely that these numbers increase with the size of the county, the variables analyzed were <span class="math inline">\(Y = B/W\)</span> and <span class="math inline">\(X=S/W\)</span>, the birth rate per 10,000 women and the density of storks per 10,000 women. A plot of these variables and a smooth estimate of their trend is shown in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>5.10</span></a>.</p>
+<div id="fig-stork-trend" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Storks_and_Babies.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.10: Storks and babies.
+</figcaption>
+</figure>
+</div>
+<p>It certainly appears that the birth rate increases with the density of storks. Could the myth be true? Is something else going on?</p>
+<p>The trend in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>5.10</span></a> is induced by expressing both variables as ratios with the same variable, <span class="math inline">\(W\)</span>, the number of women of child-bearing age. If <span class="math inline">\(S\)</span> and <span class="math inline">\(B\)</span> are unrelated, <span class="math inline">\(S/W\)</span> and <span class="math inline">\(B/W\)</span> now share information because they are expressed relative to another variable.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Mozzarella and Engineering Degrees</p>
+</div>
+<div class="assignment-container">
+<p><span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021</a>)</span> cites the strong correlation (coefficient 0.96) between the annual per-capita consumption of mozzarella cheese in the U.S. in the period 2000–2009 (<span class="math inline">\(X\)</span>) and the number of civil engineering doctorates awarded in those years (<span class="math inline">\(Y\)</span>).</p>
+<ol type="1">
+<li>How would you interpret this relationship if <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>?</li>
+<li>If this relationship is spurious, what could explain it?</li>
+<li>Correlation is a symmetrical relationship, mathematically, <span class="math inline">\(\text{Cor}(X,Y) = \text{Cor}(Y,X)\)</span>. Causation on the other hand is asymmetrical. If <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span> does not imply that <span class="math inline">\(Y\)</span> causes <span class="math inline">\(X\)</span>. <span class="math inline">\(Y\)</span> causing <span class="math inline">\(X\)</span> is called <strong>reverse causation</strong>. What does reverse causation mean in the Mozzarella–Engineering Ph.D.&nbsp;example?</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="establishing-causality" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="establishing-causality"><span class="header-section-number">5.4</span> Establishing Causality</h2>
+<p>Establishing a causal link between factors is the holy grail of scientific study. When we prove that one event is the result of another event, we have established new, irrefutable knowledge, beyond a reasonable doubt.</p>
+<p>Establishing cause and effect is also quite difficult. <span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021, 97</a>)</span> calls causation a “deeply contested subject”. You get a splinter in your finger and it hurts. Did the splinter cause the pain? Is it possible that the finger would have abruptly started to hurt if it wasn’t for the splinter? If it was me, it would be pretty obvious to <strong>me</strong> that the splinter caused the pain.</p>
+<p>But wait. Not everyone has the same level of pain tolerance. The splinter that causes me much agony might be a mere scratch, hardly noticeable, for someone else. How do we take this variability in the population into account in making statements about causality?</p>
+<p>When we say that smoking causes lung cancer, we do not claim that every smoker will get the disease. Some smokers do not get lung cancer and there are lung cancer patients who never smoked. The second leading cause of lung cancer deaths in the U.S. is exposure to Radon gas. That is why in many regions Radon inspections are required prior to purchasing homes. A more precise statement would be that smoking causes an increase <strong>in the likelihood</strong> of getting lung cancer. It is not a statement about what happens to Joe or Diana. The statistical notion of causation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> means that if <span class="math inline">\(X\)</span> occurs, <span class="math inline">\(Y\)</span> <strong>tends to occur</strong> more or less often. The statistical notion of causation is not deterministic <span class="citation" data-cites="Spiegelhalter2021">(<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">Spiegelhalter 2021, 99</a>)</span>.</p>
+<p>In a study about the association between repeated head impacts (RHI) and chronic traumatic encephalopathy (CTE), <span class="citation" data-cites="Nowinski_et_al">Nowinski et al. (<a href="references.html#ref-Nowinski_et_al" role="doc-biblioref">2022</a>)</span> state that causation is an interpretation, not an entity. In studies involving complex environmental exposures causation is a continuum from highly unlikely to highly likely, and no single study can prove causation.</p>
+<p>In the presence of uncertainty some scientific standard needs to be met in order for us to claim that something has been proven and even then, we are not making statements that the something will happen every time, only that the proportion of times that it will happen has been affected.</p>
+<section id="confounding" class="level3">
+<h3 class="anchored" data-anchor-id="confounding">Confounding</h3>
+<p>Let’s return to the 1854 cholera outbreak and the question before John Snow: did something in the water of the Broad Street public water pump cause cholera? If so, this would explain the higher incidence rate of cholera in residences near the pump and it would also explain the other anomalies he found in the data (see <a href="cholera.html" class="quarto-xref"><span>Chapter 2</span></a>).</p>
+<p>The map Snow drew in 1854 (<a href="cholera.html#fig-cholera-map" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>) might be convincing to us, his contemporaries did not feel that way. For one, he could not <strong>prove</strong> that the Broad Street well water caused the cholera cases. And his hypothesis was inconsistent with the prevailing theory of the time, that cholera was caused by airborne particles (miasma) from dirty or decaying biological material.</p>
+<p>The analysis of the cholera map established a correlation rather than causation because of the possibility of <strong>confounding</strong> factors: variables that can mask or distort the effect of other variables. In the 1960s it was shown that coffee drinkers had higher rates of lung cancer than non-coffee drinkers. Some thought this was implication of coffee as a cause of lung cancer. That is incorrect. The association is due to a confounding factor: coffee drinkers at the time were more likely to be also smokers. Coffee drinking was associated with lung cancer but does not cause the disease.</p>
+<p>A confounding factor is related to both the cause and the effect and can mislead us into attributing too much or too little importance to the potential cause. Variables such as age, time, temperature, population size are often confounding factors because they act on the factor of interest and on the outcome of interest. For example, age is a confounding factor in studies of exposure to harmful agents. If damage from the agent is more prevalent in older people, age can be a confounding factor because older people have been exposed longer.</p>
+<p>When spurious correlations are induced by latent variables, the latent variable is a confounder. The apparent correlation between ice cream sales and shark attacks is explained by the confounder <em>temperature</em>. Ice cream sales and shark attacks increase with temperature as more people buy ice cream and more people go to the beach.</p>
+<p>:::{.assignment} ::::{.assignment-header} Assignment: 1854 Cholera Outbreak :::: ::::{.assignment-container} In the case of the 1854 cholera outbreak, there could have been confounding factors that caused cholera incidences in the Broad Street area to be higher, whether the water was or was not the cause of the disease. Maybe the residents of that poorer neighborhood had a different diet that caused the disease. Maybe they had occupations that made it more likely to be exposed to a harmful agent. Maybe. Maybe. Maybe.</p>
+<p>What other confounding factors can you think of that would mask, amplify, or suppress the incidence of cholera? ::::</p>
+<p>In order to establish a causal link between two variables, the confounding factors must be accounted for—at least beyond a reasonable doubt. Otherwise there will always be some reason to believe another mechanism was at work. There are a few principal mechanisms to deal with confounding variables:</p>
+<ol type="1">
+<li>Adjustment</li>
+<li>Stratification</li>
+<li>Randomization</li>
+</ol>
+<p>We will discuss these in turn, but note that they are not mutually exclusive. A study might involve experimentation with randomly assigned treatments as well as model adjustments for confounding variables.</p>
+</section>
+<section id="adjustment" class="level3">
+<h3 class="anchored" data-anchor-id="adjustment">Adjustment</h3>
+<p>Adjusting for confounding variables means to include the variables in models that describe the relationship between the factor of interest and the outcome of interest. Consider the Radon exposure example above. A model to describe the relationship between exposure <span class="math inline">\(x\)</span> (in picocuries per liter air) and cancer risk could be written in two parts: <span id="eq-radon-model"><span class="math display">\[
+\begin{align}
+\eta &amp;= \beta_0 + \beta_1 x + \beta_2 \text{ age} \\
+\Pr(\text{Develops cancer}) &amp;= \frac{1}{1+\exp\{-\eta\}} \\
+\end{align}
+\tag{5.1}\]</span></span></p>
+<p>The first term of the model, <span class="math inline">\(\eta\)</span>, is called the linear predictor and is a function of the variables that materially determine the cancer risk. In addition to the exposure <span class="math inline">\(x\)</span>, the linear predictor also contains a term for a person’s age. The second expression in <a href="#eq-radon-model" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> transforms the linear predictor into a probability—it is called the logistic transformation.</p>
+<p>This model allows us to estimate how much of the cancer risk is due to the level of radon exposure and how much is due to the age of the person. With the variable of interest (<span class="math inline">\(x\)</span>) and the confounding variable (age) disentangled we can make statements about the risk of cancer as a function of radon exposure and age.</p>
+<p>An important aspect of adjusting for confounding variables is the functional relationship between the variables. In <a href="#eq-radon-model" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> the two variables enter the linear predictor in an additive fashion. Maybe this is not the appropriate adjustment. If the effect of age on cancer risk changes with the level of radon exposure then we say that the two variables <strong>interact</strong>. A model that includes a multiplicative interaction tterm then might be more appropriate: <span class="math display">\[
+\eta = \beta_0 + \beta_1 x + \beta_2 \text{ age} + \beta_3 x\,\text{age}\\
+\]</span></p>
+<p>In other words, determining <strong>how</strong> to model the relationship of confounding variables on other variables and on the outcome of interest, is of great importance.</p>
+</section>
+<section id="stratification" class="level3">
+<h3 class="anchored" data-anchor-id="stratification">Stratification</h3>
+<p>Stratification is an approach to deal with confounding factors that are qualitative. It means to examine relationships separately for each level of the confounder. To see if there is a general relationship between ice cream sales and shark attacks we can examine the association for different temperature ranges. As a surrogate for that we can look at the association by month or by season.</p>
+<p>When performing analyses overall and comparing them to analyses within groups (within strata) we can run into situations where the two seem to provide contradictory results. This is known as Simpson’s paradox.</p>
+<section id="simpsons-paradox" class="level4">
+<h4 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s Paradox</h4>
+<p>The paradox is named after Edward Simpson who described it in a technical paper in 1951, but the phenomenon has been known much longer. It is also not a paradox as it does not lead to nonsensical outcomes or a contradiction. What we know as Simpson’s Paradox is simply the result of looking at an aspect from two viewpoints: The trend that we see in combined data can reverse when we look at the data in groups.</p>
+<p><a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>5.11</span></a> displays a scatter plot of two variables and a linear regression trend. The slope is positive, the average value of <span class="math inline">\(Y\)</span> increases with the value of <span class="math inline">\(X\)</span>.</p>
+<p>The data in <a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>5.11</span></a> consists of three groups and when the regression analysis is performed separately for each group, a different picture emerges. Within each group the regression relationship indicates a negative slope, the opposite of the trend in the ungrouped data (<a href="#fig-simpson-group" class="quarto-xref">Figure&nbsp;<span>5.12</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-simpson-all" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simpson-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_files/figure-html/fig-simpson-all-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.11: Combined data and regression trend.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-simpson-group" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simpson-group-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_files/figure-html/fig-simpson-group-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-group-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.12: Grouped data and group-specific regression trends.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The apparent contradiction comes about because the three groups have different centers and orientation. When “stacked” they create a single point cloud with a positive slope. As mentioned previously, this is not really a paradox, both ways of looking at the data are sensible and the results are meaningful either way. The “paradox” lies in the fact that the two views lead to seemingly different conclusions about the relationship between the variables.</p>
+<p>Examples of Simpson’s Paradox with qualitative data can be found in college admissions data. <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Wikipedia</a> shows the apparent gender bias effect for 1973 data from UC Berkeley. <span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021</a>)</span> shows data for Cambridge from 1996. The table in <span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021, 111</a>)</span> is reproduced below as two separate tables.</p>
+<div id="tbl-camb-all" class="striped quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-camb-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Application and acceptance rates at Cambridge in 1996 in STEM disciplines for men and women.
+</figcaption>
+<div aria-describedby="tbl-camb-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Women</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Men</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: right;"><strong>Applied</strong></td>
+<td style="text-align: right;"><strong>Accepted</strong></td>
+<td style="text-align: right;"><strong>%</strong></td>
+<td style="text-align: right;"><strong>Applied</strong></td>
+<td style="text-align: right;"><strong>Accepted</strong></td>
+<td style="text-align: right;"><strong>%</strong></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: right;">1,184</td>
+<td style="text-align: right;">274</td>
+<td style="text-align: right;">23%</td>
+<td style="text-align: right;">2,740</td>
+<td style="text-align: right;">584</td>
+<td style="text-align: right;">24%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-camb-all" class="quarto-xref">Table&nbsp;<span>5.2</span></a> shows the overall acceptance rates for men and women, with the former slightly higher by one percent.</p>
+<div id="tbl-camb-stem" class="striped quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-camb-stem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.3: Application and acceptance rates at Cambridge in 1996 by STEM discipline.
+</figcaption>
+<div aria-describedby="tbl-camb-stem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Women</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Men</th>
+<th style="text-align: right;"></th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: right;"><strong>Applied</strong></td>
+<td style="text-align: right;"><strong>Accepted</strong></td>
+<td style="text-align: right;"><strong>%</strong></td>
+<td style="text-align: right;"><strong>Applied</strong></td>
+<td style="text-align: right;"><strong>Accepted</strong></td>
+<td style="text-align: right;"><strong>%</strong></td>
+</tr>
+<tr class="even">
+<td>Computer Science</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">27%</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">25%</td>
+</tr>
+<tr class="odd">
+<td>Economics</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">26%</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr class="even">
+<td>Engineering</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">32%</td>
+<td style="text-align: right;">972</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">26%</td>
+</tr>
+<tr class="odd">
+<td>Medicine</td>
+<td style="text-align: right;">416</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">24%</td>
+<td style="text-align: right;">578</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="even">
+<td>Veterinary Medicine</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">16%</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">12%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-camb-stem" class="quarto-xref">Table&nbsp;<span>5.3</span></a> shows the applications and acceptance rates by discipline. In each discipline the acceptance rate for women is at least as high as that for men, in fact it is higher than that for men, except for Medicine.</p>
+<p>How do we explain this apparent contradiction? In each discipline the acceptance rate for women is as high or higher than that for men, but overall the acceptance rat for women is lower. The explanation is that women were more likely to apply for subjects that have high application numbers and are more difficult to get in. 64% of the applications from women went to Medicine and Veterinary Medicine (416 + 338 out of 1,184). Only 30% of the male applications went to those subjects. Men applied disproportionately more to Engineering, which has a higher acceptance rate than the other STEM disciplines. It seems that there is no gender bias in these admission numbers, the lower overall admission rate for women is the result in women applying in larger numbers to STEM disciplines that are difficult to get into.</p>
+</section>
+</section>
+<section id="randomization" class="level3">
+<h3 class="anchored" data-anchor-id="randomization">Randomization</h3>
+<p><strong>Randomization</strong> is a simple and effective mechanism to create probabilistic equivalence in data and takes two forms: random <strong>selection</strong> and random <strong>assignment</strong>. Random does not imply haphazard or arbitrary, the way in which selection or assignment is randomized obeys probability distributions. Because we specify the distribution according to which selection or assignment occurs, we understand the probabilistic behavior of the data we collect.</p>
+<p>For example, we select a <strong>random sample</strong> of people from a population such that each person has the same chance of entering the sample. This guarantees that the attributes of the population are represented properly in the sample. The proportion of persons of different age, gender, race, etc. in the sample will be representative of the population from which the sample is drawn, although the exact proportions will not be identical in a particular sample. If we were to draw a sample of <span class="math inline">\(n\)</span> people by a non-random mechanism, for example, by taking the first <span class="math inline">\(n\)</span> folks who drive through an intersection, or <span class="math inline">\(n\)</span> airline passengers on a given day, or <span class="math inline">\(n\)</span> residents of a particular neighborhood, or the first <span class="math inline">\(n\)</span> entries in the list of the U.S. Census Bureau, our sample would not be representative of the population we are interested in studying. The sample would suffer from <strong>selection bias</strong>, conclusions drawn from analyzing the data in the sample would not apply to the population as a whole. Note that random sampling from a non-representative list also suffers from selection bias. Randomly sampling social media posts does not give insight into the opinions of the general population because social media users are not representative of the general population. Asking questions of a random sample of drivers passing through an intersection does not properly represent those who do not drive or live elsewhere.</p>
+<p>The random mechanism in random selection has a balancing property. It ensures that sub-groups are not over represented or under represented in the sample, provided that the sample is sufficiently large. This balancing property is also key for the second form of randomization: <strong>random assignment</strong> when conditions are manipulated on purpose. This leads us to experimentation.</p>
+</section>
+<section id="experimentationthe-randomized-controlled-trial-rct" class="level3">
+<h3 class="anchored" data-anchor-id="experimentationthe-randomized-controlled-trial-rct">Experimentation–The Randomized Controlled Trial (RCT)</h3>
+<section id="example-rcbd-in-agriculture" class="level4">
+<h4 class="anchored" data-anchor-id="example-rcbd-in-agriculture">Example: RCBD in Agriculture</h4>
+<p>Suppose you wish to study how poppies grow on an agricultural field. The poppies are subject to varying growing conditions due to differences in the soil characteristics, topography, weather, plant-to-plant variations, and so on. We are particularly interested to see how six different fertilizer applications affect the poppy growth. The conditions that affect poppy growth can be grouped into three categories:</p>
+<ol type="1">
+<li>Conditions we manipulate</li>
+<li>Conditions we do not manipulate but know about</li>
+<li>Conditions we do not know about (lurking factors)</li>
+</ol>
+<p>The fertilizer treatments fall into the first category. We can apply parts of the field and apply fertilizer A to it, other parts receive fertilizer B, and so on. Suppose that the field is large and sloped and we suspect a gradient in soil nutrients and water. This falls into the second category. We do not create or manipulate the soil and water conditions, but we are aware of them. They are a confounding factor. All other potential influences of poppy growth fall into the third category.</p>
+<p><a href="#fig-rcbd-poppies" class="quarto-xref">Figure&nbsp;<span>5.13</span></a> displays a popular layout for running such a fertilizer experiment in agricultural science. It is called a randomized complete block design (RCBD). The experimental area is divided up into separate blocks, in this case four of them.</p>
+<div id="fig-rcbd-poppies" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd-poppies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/RandomizedBlocks.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="images/RandomizedBlocks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd-poppies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.13: Experimental layout for poppy experiment.
+</figcaption>
+</figure>
+</div>
+<p>The blocks are chosen so that the fields within a block—we call them <strong>experimental units</strong>—are homogeneous with respect to the conditions we know about. This is the technique to control confounding factors in category 2 by stratification and adjustment. Within each block the fertilizer treatments are assigned <strong>randomly</strong> to the six experimental units. This random assignment balances out the effects of the confounding factors we do not know about (category 3). If we were to assign treatments to experimental unit in a deterministic way—for example, treatment A always to the upper left unit, treatment B right next to it, etc.—it is possible that confounding factors associated with the position in the block mask or distort the effect of the treatment. We would then not really compare treatment A to treatment B, but a blend of treatment effect and location effect.</p>
+<p>Finally, because the world is uncertain, we do not apply the treatments only once. We use multiple blocks, each with a separate assignment of treatments to experimental units to <strong>replicate</strong> the per-block layout. This replication allows us to measure the inherent variability in poppy growth, unaffected by treatment or confounding factors.</p>
+<p>If the experimental units in our agricultural science experiment contain more poppies than we can harvest and analyze in the lab, we would select some of them for lab analysis. This would be done by random selection to make sure that the plants analyzed in the lab are representative of the plants growing on the experimental unit.</p>
+<p>In this RCBD with four blocks and six treatments we encounter all techniques to manage confounding factors: stratification, adjustment (because block effects will be included in the model during analysis), and randomization. As a result, we are allowed to make cause-and-effect statements about the treatment factor we manipulated, the fertilizer. If plants grown under the fertilizer A treatment are taller than those grown under fertilizer B, then there are only two possible explanations:</p>
+<ol type="1">
+<li>Fertilizer A causes poppies to grow taller compared to fertilizer B</li>
+<li>Coincidence: the height difference we are seeing is due to chance</li>
+</ol>
+<p>Other explanations can be ruled out because we controlled the experiment for other factors.</p>
+<p>In order to separate the two remaining explanations, we analyze the size of the treatment differences relative to the inherent variability in poppy growth. That is the reason why the experiment uses multiple blocks rather than a single block. The replication of treatment assignments allows us to estimate that inherent variation. If poppy growth varies widely, then a small difference in height between plants from treatment A and treatment B will not surprise us. If inherent growth variation is small, observed differences between treatments point at the fertilizer as the cause.</p>
+</section>
+<section id="other-experiments" class="level4">
+<h4 class="anchored" data-anchor-id="other-experiments">Other Experiments</h4>
+<p>Experimentation with random assignment of conditions has a long history. It started in agricultural experiments and has since permeated many domains. Randomized clinical trials are common to test medical drugs, devices, and treatments. Industrial experimentation is used to find the best manufacturing conditions for products.</p>
+<p>Randomized trials are also used in the social sciences. <span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021, 107</a>)</span> cites the Study of the Therapeutic Effects of Intercessory Prayer (STEP) by <span class="citation" data-cites="Benson_et_al">Benson H. et al. (<a href="references.html#ref-Benson_et_al" role="doc-biblioref">2006</a>)</span> to answer the question whether being prayed for improves the recovery of patients after coronary artery bypass graft (CABG) surgery. The Methods section of the paper describes the randomized experiment:</p>
+<blockquote class="blockquote">
+<p><em>Patients at 6 US hospitals were randomly assigned to 1 of 3 groups: 604 received intercessory prayer after being informed that they may or may not receive prayer; 597 did not receive intercessory prayer also after being informed that they may or may not receive prayer; and 601 received intercessory prayer after being informed they would receive prayer. Intercessory prayer was provided for 14 days, starting the night before CABG. The primary outcome was presence of any complication within 30 days of CABG. Secondary outcomes were any major event and mortality.</em></p>
+</blockquote>
+<p>The study concludes</p>
+<blockquote class="blockquote">
+<p><em>Intercessory prayer itself had no effect on complication-free recovery from CABG, but certainty of receiving intercessory prayer was associated with a higher incidence of complications.</em></p>
+</blockquote>
+<p>Knowing that they were being prayed for might have made patients more uncertain, wondering whether they are so sick that they had to call in the prayer team.</p>
+<hr>
+<p>Experimentation with random assignment is also used frequently in the technology industry, the technique is known as A/B testing. Only two treatments are being evaluated (A and B), one is typically a current product or design. Users of the product/design are randomly directed to the A or B option and the attribute of interest is measured (click-through rate, time on page, use of features on page, checkout, purchase amount, etc.). We are all participating in these ongoing A/B experiments when we operate online. Google is said to run about 10,000 A/B experiments every year.</p>
+</section>
+</section>
+<section id="when-experimentation-is-not-possible" class="level3">
+<h3 class="anchored" data-anchor-id="when-experimentation-is-not-possible">When Experimentation is Not Possible</h3>
+<p>Experimentation with random assignment of treatments is the gold standard to establish cause and effect. But it is not always possible to go down that path.</p>
+<p>Some systems defy manipulation with treatments. We can only observe the weather we cannot change it. The process of manipulation can alter how a system behaves in ways that are not related to the treatment application, so we cannot really study just the treatment effects. Epidemiological studies, like John Snow’s investigation of the 1854 Cholera epidemic are by definition <strong>observational</strong> studies: we observe what is happening, not conditions we create deliberately.</p>
+<p>While one can assign conditions, ethical considerations might prevent us from doing so. How can we justify assigning harmful things and ask a person to smoke two packs of cigarettes a day for the next 10 years? In the case of testing a medical breakthrough against a horrible disease, how can we justify assigning patients to a placebo group and withholding a potentially life-saving treatment? To show that repeated head impact (RHI) causes chronic traumatic encephalopathy (CTE), it would not be ethical to randomize subjects and hit those assigned to the RHI arm of the study repeatedly over the head.</p>
+<p>When experimentation is not possible, we rely on <strong>observational data</strong>, analyzing the data we can collect, and it is often the best we can do. How can we then explain the association we find in the data and get closer to establishing causality?</p>
+<p>To link RHI to CTE, we can study data on subjects who have been exposed to repeated head trauma, such as boxers and football players, and compare their likelihood of developing CTE to individuals who did not experience such head trauma. Comparisons must be made with care. We would not want to compare star athletes who experience head trauma with non-athletes who did not experience head trauma; there would be too many confounding factors. Maybe we could follow a group of athletes over time and record accumulated head impacts along with brain scans. While we cannot design an experiment, we can design how to collect observational data.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Why Do Old Men Have Big Ears?</p>
+</div>
+<div class="assignment-container">
+<p><span class="citation" data-cites="Spiegelhalter2021">Spiegelhalter (<a href="references.html#ref-Spiegelhalter2021" role="doc-biblioref">2021, 108–9</a>)</span> asks this question based on his personal experience that older men <em>seem</em> to have big ears. This question cannot be answered with a randomized controlled trial, we cannot assign ear lengths. It is what it is.</p>
+<p>Observational studies in the UK and Japan collected cross-sectional data, that is, a sample from the current population, which will include men of different ages. Analyzing the data the studies concluded that there is a positive correlation between age and ear length. For example, the figure below appeared in <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>. The study concluded that the regression trend was significant. The slope of the regression line is 0.22mm per year with a 95% confidence interval of [0.17, 0.27] mm per year. Because the confidence interval does not cover the value 0, the trend is statistically significant. It seems that as we get older our ears get bigger by an average by 0.22 mm per year.</p>
+<div id="fig-ear-length" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ear-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/EarLength.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="images/EarLength.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ear-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.14: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.
+</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><p>Try and explain the association between age and ear length in men. What are possible reasons ears are/appear larger in older men?</p></li>
+<li><p>If you were to conduct a follow-up study to test the possible reasons in 1., what would the study look like? What kind of data would you collect? What kind of men would you recruit for the study?</p></li>
+</ol>
+</div>
+</div>
+<section id="quasi-experiments" class="level4">
+<h4 class="anchored" data-anchor-id="quasi-experiments">Quasi-experiments</h4>
+<p>If you cannot manipulate and control factors in an experiment, maybe you are lucky to find data where the confounding factors have already been controlled for you. Sometimes real life runs these quasi-experiments for us and eliminates the confounding factors. Although the data is observational rather than experimental, it can go a long way toward establishing causality. In <a href="cholera.html#sec-cholera-deeper" class="quarto-xref"><span>Section 2.4</span></a> we discussed a second, deeper analysis John Snow conducted in which he compared cases between customers of the Lambeth and the Southward &amp; Vauxhall water companies. For all intents and purposes the groups serviced by the two companies were identical except for the source of the water. Lambeth’s water was drawn upriver from sewage discharge into the River Thames and was cleaner than the water from Southwark &amp; Vauxhall, which drew water below the sewage discharge. The much higher cholera incidence in the group supplied by Southwark &amp; Vauxhall was sufficient evidence to implicate the water.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Fluoride Exposure and IQ</p>
+</div>
+<div class="assignment-container">
+<p>The National Toxicology Program of the U.S. Department of Health and Human Services conducted a <strong>meta-analysis</strong> of the relationship between fluoride intake and IQ.</p>
+<p>Among the findings of the analysis, the article states (emphasis in original):</p>
+<blockquote class="blockquote">
+<p><em>The NTP monograph concluded, with moderate confidence, that higher levels of fluoride exposure, such as drinking water containing more than 1.5 milligrams of fluoride per liter, are associated with lower IQ in children. The NTP review was designed to evaluate total fluoride exposure from all sources and was not designed to evaluate the health effects of fluoridated drinking water alone. <strong>It is important to note that there were insufficient data to determine if the low fluoride level of 0.7 mg/L currently recommended for U.S. community water supplies has a negative effect on children’s IQ.</strong> The NTP found no evidence that fluoride exposure had adverse effects on adult cognition.<br>
+<br>
+…<br>
+<br>
+The determination about lower IQs in children was based primarily on epidemiology studies in non-U.S. countries such as Canada, China, India, Iran, Pakistan, and Mexico where some pregnant women, infants, and children received total fluoride exposure amounts higher than 1.5 mg fluoride/L of drinking water. </em></p>
+</blockquote>
+<p>Please read the full article from the National Toxicology Program <a href="https://ntp.niehs.nih.gov/whatwestudy/assessments/noncancer/completed/fluoride">here</a> and answer the following questions:</p>
+<ol type="1">
+<li>Did the study establish correlation or causation between fluoride intake and children’s IQ?</li>
+<li>Does the article make it clear whether to take the results as an indication of causation or correlation?</li>
+<li>What is meta-analysis?</li>
+<li>How do you interpret the fact that the study did not analyze data from the U.S.? Does that affect whether the results are applicable to U.S. children?</li>
+<li>Can you think of confounding factors that limit transfer of the results to the U.S?</li>
+<li>Are you surprised that there is no evidence of adverse effects on adults?</li>
+</ol>
+</div>
+</div>
+<p>In domains and applications where experimentation is not possible and confounding factors are present, we try to establish causation by a process called <a href="https://en.wikipedia.org/wiki/Causal_inference"><strong>causal inference</strong></a>. By studying which variables act on each other, causality can be inferred.</p>
+</section>
+<section id="hills-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="hills-criteria">Hill’s Criteria</h4>
+<p>Establishing causality from observational data, as in the case of Snow’s water quality study, is a common problem in <strong>epidemiology</strong>, the study of the distribution of diseases and health risks. Establishing designed experiments with randomized control of factors is often not possible in those studies.</p>
+<p>The English epidemiologist and statistician Sir Author Bradford Hill established nine principles that allow one to move from association to causation. These are known as <strong>Hill’s criteria</strong>, developed to establish causation involving environmental exposure. Hill was part of the research team that confirmed the link between smoking and lung cancer. The criteria are:</p>
+<ol type="1">
+<li><p><strong>Strength</strong>: strong association is stronger evidence of causality. A small association does not rule out a causal effect, however.</p></li>
+<li><p><strong>Consistency</strong>: similar studies by others in different places with different samples give consistent findings.</p></li>
+<li><p><strong>Specificity</strong>: the more specific the association between a factor and an effect, the more likely we are dealing with cause and effect. The association is specific when the cause leads to only one outcome and the outcome can only come from the one cause.</p></li>
+<li><p><strong>Temporarlity</strong>: the effect comes after the cause.</p></li>
+<li><p><strong>Gradient</strong>: an increase in level, intensity, duration or total level of exposure to the potential cause leads to progressive increase in (the likelihood of) the outcome.</p></li>
+<li><p><strong>Plausibility</strong>: the association is plausible based on known scientific facts.</p></li>
+<li><p><strong>Coherence</strong>: agreement between epidemiological and laboratory findings. The interpretation of the data does not seriously conflict with what is already known about the disease or exposure.</p></li>
+<li><p><strong>Experimentation</strong>: if experimentation is possible, it provides results in support of the causal hypothesis (provides strong evidence).</p></li>
+<li><p><strong>Analogy</strong>: similarity between things that are otherwise different. Scientists can use prior knowledge and patterns to infer similar causal associations.</p></li>
+</ol>
+<p>Hill’s criteria should be viewed as a <u>guideline</u> for establishing causality based on association. Proving causality is not done by clicking check boxes. Meeting the criteria increases the likelihood that a factor causes an effect.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Causal Link between RHI and CTE</p>
+</div>
+<div class="assignment-container">
+<p>Tiaina Baul “Junior” Seau was an outstanding linebacker who played in the National Football League for 20 years, mostly with the San Diego Chargers and also the Miami Dolphins and New England Patriots. He committed suicide in 2012 by shooting himself in the chest. Junior did not leave a suicide note but a piece of paper with lyrics from the country song “Who I Ain’t”. An autopsy confirmed that Junior Seau had suffered from chronic traumatic encephalopahty (CTE) believed due to repeated head trauma he experienced as a football player.</p>
+<div id="fig-junior-seau" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-junior-seau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Junior_Seau.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-junior-seau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.15: Junior Seau playing for the New England Patriots. Source: <a href="https://en.wikipedia.org/wiki/Junior_Seau">Wikipedia</a>
+</figcaption>
+</figure>
+</div>
+<p><span class="citation" data-cites="Nowinski_et_al">Nowinski et al. (<a href="references.html#ref-Nowinski_et_al" role="doc-biblioref">2022</a>)</span> applied the Hill criteria to establish causality between repeated head impacts (RHI) and CTE. The authors discuss previous research on the association of the two and resistance to calling the link between RHI and CTE causal. Interestingly, it appears that the causal link between the two was settled throughout the 20th century when causality was called into question again. The article is available <a href="https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.938163/full">online</a>.</p>
+<ol type="1">
+<li><p>What reasons were given by some of the organizations involved in the debate (like CISG) to resist declaring a causal link between RHI and CTE?</p></li>
+<li><p>What do you believe was their motivation to do so?</p></li>
+<li><p>In the section <em>Understanding Causation</em>, the article examines each of Hill’s nine criteria. Cite one argument from the article in support of each criterion.</p></li>
+<li><p>Per the <em>Discussion</em> section of the article, what are valid reasons why scientists might remain skeptical of a causal link between RHI and CTE?</p></li>
+<li><p>What language did the authors use in the <em>Conclusion</em> to indicate a causal relationship between RHI and CTE?</p></li>
+<li><p>Based on the evidence provided, should the conclusions drawn from data about adult athletes be applied to children? Argue for or against and why or why not?</p></li>
+</ol>
+</div>
+</div>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;5.1: Relationship between highway fatalities and lemon imports from Mexico.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;5.2: Positive correlation.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;5.3: Negative correlation.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;5.7: Chocolate consumption and number of Nobel laureates.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;5.13: Experimental layout for poppy experiment.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;5.14: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Benson_et_al" class="csl-entry" role="listitem">
+Benson H., Dusek J. A., Sherwood J. B., P. Lam, C. F. Bethea, W. Carpenter, S. Levitsky, et al. 2006. <span>“Study of the Therapeutic Effects of Intercessory Prayer (STEP) in Cardiac Bypass Patients: A Multicenter Randomized Trial of Uncertainty and Certainty of Receiving Intercessory Prayer.”</span> <em>American Heart Journal</em> 151 (4): 934–42.
+</div>
+<div id="ref-Heathcote1995" class="csl-entry" role="listitem">
+Heathcote, James A. 1995. <span>“Why Do Old Men Have Big Ears?”</span> <em>BMJ</em> 311 (7021): 1668. <a href="https://doi.org/10.1136/bmj.311.7021.1668">https://doi.org/10.1136/bmj.311.7021.1668</a>.
+</div>
+<div id="ref-Messerli_2012" class="csl-entry" role="listitem">
+Messerli, F. H. 2012. <span>“Chocolate Consumption, Cognitive Function, and Nobel Laureates.”</span> <em>New England Journal of Medicine</em> 367: 1562–64.
+</div>
+<div id="ref-Neyman_1952" class="csl-entry" role="listitem">
+Neyman, Jerzy. 1952. <em>Lectures and Conferences on Mathematical Statistics and Probability</em>. Graduate School, Dept. of Agriculture, Washington.
+</div>
+<div id="ref-Nowinski_et_al" class="csl-entry" role="listitem">
+Nowinski, Christopher J., Samantha C. Bureau, Michael E. Buckland, Maurice A. Curtis, Daniel H. Daneshvar, Richard L. M. Faull, Lea T. Grinberg, et al. 2022. <span>“Applying the Bradford Hill Criteria for Causation to Repetitive Head Impacts and Chronic Traumatic Encephalopathy.”</span> <em>Frontiers in Neurology</em> 13. <a href="https://doi.org/10.3389/fneur.2022.938163">https://doi.org/10.3389/fneur.2022.938163</a>.
+</div>
+<div id="ref-Silver2012" class="csl-entry" role="listitem">
+Silver, Nate. 2012. <em>The Signal and the Noise: Why so Many Predictions Fail–but Some Don’t</em>. Penguin Books.
+</div>
+<div id="ref-Spiegelhalter2021" class="csl-entry" role="listitem">
+Spiegelhalter, David. 2021. <em>The Art of Statistics. How to Learn from Data</em>. Basic Books.
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./firstStepsR.html" class="pagination-link" aria-label="First Steps in `R`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">First Steps in <code>R</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./dataliteracy.html" class="pagination-link" aria-label="Data Literacy">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Literacy</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Computational Thinking by Oliver Schabenberger</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
