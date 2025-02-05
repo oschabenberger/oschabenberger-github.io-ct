@@ -284,11 +284,6 @@ window.Quarto = {
 </header>
 
 
-<style>
-.flushright {
-   text-align: right;
-}
-</style>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -300,10 +295,10 @@ Quotes
 </div>
 <div class="callout-body-container callout-body">
 <div class="flushright">
-<p><em>Much as we bemoan the daily rat race, the fact that it’s a race rather than<br>
+<p>Much as we bemoan the daily rat race, the fact that it’s a race rather than<br>
 a fight is a key part of what sets us apart from the monkeys, the chickens<br>
-—and, for that matter, the rats.</em><br>
-Brian Christian &amp; Tom Griffiths, Algorithms to Live By</p>
+—and, for that matter, the rats.<br>
+<span class="quoteauthor">Brian Christian &amp; Tom Griffiths, Algorithms to Live By</span></p>
 </div>
 </div>
 </div>
@@ -1035,7 +1030,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

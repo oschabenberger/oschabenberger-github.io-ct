@@ -21,7 +21,18 @@ $col-vt-black: black;
 /*-- scss:rules --*/
 
 .flushright {
-   text-align: right;
+    text-align: right;
+    color: $col-vt-maroon;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.quoteauthor {
+    color: $col-vt-orange;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .quote {
@@ -32,6 +43,7 @@ $col-vt-black: black;
     font-style: italic;
     
 }
+
 .assignment {
   margin: 1em 0;
   border: 2px solid gray;
@@ -48,7 +60,7 @@ $col-vt-black: black;
   color: GhostWhite;
   background-color: indigo;
   border-top-right-radius: 10px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   background-size: 40px;
   background-repeat: no-repeat;
@@ -83,7 +95,7 @@ $col-vt-black: black;
   color: black;
   background-color: rgb(123, 173, 173);
   border-top-right-radius: 10px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   background-size: 40px;
   background-repeat: no-repeat;
@@ -117,7 +129,7 @@ $col-vt-black: black;
   color: rgb(175, 44, 6); //black;
   background-color: rgb(88, 212, 187);
   border-top-right-radius: 10px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   background-size: 40px;
   background-repeat: no-repeat;

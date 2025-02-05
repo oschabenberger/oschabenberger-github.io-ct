@@ -321,15 +321,15 @@ window.Quarto = {
 <p>Example: Theophylline Concentration</p>
 </div>
 <div class="example-container">
-<p><a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows the concentration of the drug theophylline over 24 hours after administration of the drug in two groups of patients. There are 98 data points of theophylline concentration and measurement time. What are the signals in the data? What is noise?</p>
+<p><a href="#fig-theop-data2" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows the concentration of the drug theophylline over 24 hours after administration of the drug in two groups of patients. There are 98 data points of theophylline concentration and measurement time. What are the signals in the data? What is noise?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-theop-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-theop-data2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-theop-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="dataliteracy_files/figure-html/fig-theop-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<div aria-describedby="fig-theop-data2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="dataliteracy_files/figure-html/fig-theop-data2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theop-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theop-data2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.1: Theophylline concentration over time in two groups of patients.
 </figcaption>
 </figure>
@@ -347,18 +347,18 @@ Figure&nbsp;6.1: Theophylline concentration over time in two groups of patients.
 <li><p>Overall trend of drug concentration over time: signal</p></li>
 <li><p>Differences among the groups: signal</p></li>
 </ul>
-<p>These assignments to signal and noise can be argued. For example, we might want to test the very hypothesis that there are no group-to-group differences. If that hypothesis is true, any differences between the groups we discern in <a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> would be due to chance; random noise in other words.</p>
+<p>These assignments to signal and noise can be argued. For example, we might want to test the very hypothesis that there are no group-to-group differences. If that hypothesis is true, any differences between the groups we discern in <a href="#fig-theop-data2" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> would be due to chance; random noise in other words.</p>
 <p>The variability between patients could be due to factors such as age, gender, medical condition, etc. We do not have any data about these attributes. By treating these influences as noise, we are making important assumptions that their effects are irrelevant for conclusions derived from the data. Suppose that the groups refer to smokers and non-smokers but also that group 1 consists of mostly men and group 2 consists of mostly women. If we find differences in theophylline concentration over time among the groups, we could not attribute those to either smoking status or gender.</p>
 </div>
 </div>
 <p>A common reason to mistake signal for noise is <strong>overfitting</strong> a model, a concept we return to in <a href="#sec-literacy-overfitting" class="quarto-xref"><span>Section 6.5.1</span></a>.</p>
-<p>Another reason is if there is simply no signal at all. <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> is taken from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 341</a>)</span> and displays six “trends”. Four of them are simple random walks, the result of pure randomness. Two panels show the movement of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the 1970s and 1980s. Which of the panels are showing the DJIA and which are random noise?</p>
-<div id="fig-random-walk" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<p>Another reason is if there is simply no signal at all. <a href="#fig-random-walk2" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> is taken from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 341</a>)</span> and displays six “trends”. Four of them are simple random walks, the result of pure randomness. Two panels show the movement of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the 1970s and 1980s. Which of the panels are showing the DJIA and which are random noise?</p>
+<div id="fig-random-walk2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-random-walk2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Figure11_4_Silver.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.2: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market data?
 </figcaption>
 </figure>
@@ -368,7 +368,7 @@ Figure&nbsp;6.2: Figure 11-4 from <span class="citation" data-cites="Silver2012"
 <li><p>Even purely random data can appear non-random over shorter sequences. We can easily fall into the trap of seeing a pattern (a signal) where there is none. After drawing two unlikely poker hands in a row there is not a greater chance of a third unlikely hand unless there is some systematic effect (cards not properly shuffled, game rigged). Our brains ignore that fact and believe that we are more lucky than is expected by chance.</p></li>
 <li><p>Data that contains clear long-run signals—the stock market value is increasing over time—can appear quite random on shorter sequences. One a day to day basis predicting whether the market goes up or down is very difficult. In the long run ups and downs are almost equally likely. Upswings have a slight upper hand and on average are greater than the downswings, increasing the overall value in the long term. Traders who try to beat the market over the short run have their work cut out for them.</p></li>
 </ul>
-<p>By the way, panels D and F in <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> are from actual stock market data. Panels A, B, C, and E are pure random walks. It would not be surprising if investors would bet money on “trend” C.</p>
+<p>By the way, panels D and F in <a href="#fig-random-walk2" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> are from actual stock market data. Panels A, B, C, and E are pure random walks. It would not be surprising if investors would bet money on “trend” C.</p>
 </section>
 <section id="sec-literacy-accuracy-precision" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-literacy-accuracy-precision"><span class="header-section-number">6.3</span> Accuracy and Precision</h2>
@@ -1062,7 +1062,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

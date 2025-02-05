@@ -1,22 +1,14 @@
 
-```{=html}
-<style>
-.flushright {
-   text-align: right;
-}
-</style>
-```
-
 # Making Predictions {#sec-predict}
 
 :::{.callout-tip title="Quotes"}
-::: {.flushright data-latex=""}
-*We love to predict things---and we aren't very good at it.*\
-Nate Silver, The Signal and the Noise\
-*It is difficult to predict, especially the future.*\
-Niels Bohr\
-*The best way to predict the future is to create it.*\
-Peter Drucker, often attributed to Abraham Lincoln
+::: {.flushright}
+We love to predict things---and we aren't very good at it.\
+[Nate Silver, The Signal and the Noise]{.quoteauthor}\
+It is difficult to predict, especially the future.\
+[Niels Bohr]{.quoteauthor}\
+The best way to predict the future is to create it.\
+[Peter Drucker, often attributed to Abraham Lincoln]{.quoteauthor}
 :::
 :::
 

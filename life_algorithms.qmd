@@ -1,22 +1,13 @@
 
-
-```{=html}
-<style>
-.flushright {
-   text-align: right;
-}
-</style>
-```
-
 # Algorithms to Live By {#sec-algos-live}
 
 :::{.callout-tip title="Quotes"}
 
-::: {.flushright data-latex=""}
-*Much as we bemoan the daily rat race, the fact that it’s a race rather than \
+::: {.flushright}
+Much as we bemoan the daily rat race, the fact that it’s a race rather than \
 a fight is a key part of what sets us apart from the monkeys, the chickens\
----and, for that matter, the rats.*\
-Brian Christian & Tom Griffiths, Algorithms to Live By
+---and, for that matter, the rats.\
+[Brian Christian & Tom Griffiths, Algorithms to Live By]{.quoteauthor}
 :::
 :::
 

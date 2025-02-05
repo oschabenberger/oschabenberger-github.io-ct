@@ -20,6 +20,14 @@ thinking like a computer scientists.
 
 What is that like? The five elements of computational thinking are
 
+1. **Problem Definition**. What problem are we trying to solve.
+2. **Decomposition** (Factoring). Break the problem into smaller parts.
+3. **Pattern Recognition**. Learning connections and relationships between the parts.
+4. **Generalization** (Abstraction). Recognize relevant details.
+5. **Algorithmic Design**. Define the solution as a series of repeatable steps.
+
+Let's look at the steps in more detail.
+
 #### Problem Definition
 
 This should go without saying, before attempting to

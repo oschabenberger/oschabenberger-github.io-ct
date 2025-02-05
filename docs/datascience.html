@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -43,6 +63,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +95,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -195,7 +247,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
+  <li><a href="#data-science-models" id="toc-data-science-models" class="nav-link" data-scroll-target="#data-science-models"><span class="header-section-number">3.2</span> Data Science Models</a>
+  <ul>
+  <li><a href="#sec-data-science-signal-noise" id="toc-sec-data-science-signal-noise" class="nav-link" data-scroll-target="#sec-data-science-signal-noise">Signal and Noise</a></li>
+  <li><a href="#choosing-a-model" id="toc-choosing-a-model" class="nav-link" data-scroll-target="#choosing-a-model">Choosing a Model</a></li>
+  <li><a href="#regression-and-classification" id="toc-regression-and-classification" class="nav-link" data-scroll-target="#regression-and-classification">Regression and Classification</a></li>
+  <li><a href="#generalization" id="toc-generalization" class="nav-link" data-scroll-target="#generalization">Generalization</a></li>
+  <li><a href="#all-models-are-wrong" id="toc-all-models-are-wrong" class="nav-link" data-scroll-target="#all-models-are-wrong">All Models are Wrong</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -219,11 +285,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-.flushright {
-   text-align: right;
-}
-</style>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -235,23 +296,365 @@ Quotes
 </div>
 <div class="callout-body-container callout-body">
 <div class="flushright">
-<p><em>It would be nice if we could just plug data into a statistical model,<br>
+<p>It would be nice if we could just plug data into a statistical model,<br>
 crunch the numbers, and take for granted that it was a good<br>
-representation of the real world.</em><br>
-Nate Silver, The Signal and the Noise</p>
+representation of the real world.<br>
+<span class="quoteauthor">Nate Silver, The Signal and the Noise</span></p>
 </div>
 </div>
 </div>
+<section id="introduction" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
+<p>Computational thinking is a problem-solving methodology that breaks down complex problems in manageable parts, finds relationships and patterns among the parts, and delivers solutions as repeatable steps—as algorithms. Quantitative thinking is a problem-solving technique that represents things in measurable quantities, enabling us to manipulate concepts mathematically. Quantitative thinking turns concepts into data.</p>
+<p>CT and QT are used in many disciplines, CT is not just for computer scientists and quantification is not the concern of only mathematicians or statisticians. The two methodologies fit together like hand in glove in the modern discipline of <strong>data science</strong>.</p>
+<p>The origins of data science trace back to statistics, the study of information in the presence of uncertainty, computer science, and mathematics. Drawing on these foundational disciplines, data science aims at solving real-world problems using data.</p>
 <div class="definition">
 <div class="definition-header">
 <p>Definition: Data Science</p>
 </div>
-<div class="{.definition-container">
+<div class="definition-container">
 <p>At the intersection of the foundation disciplines statistics, mathematics, and computer science, performing data science means drawing conclusions from data about real-world problems using computation and automation in the presence of uncertainty.</p>
 </div>
 </div>
+<p>The solutions produced by data science involve reports, dashboards, visualizations, algorithms and software. Of particular importance in data science application is using statistical and machine learning techniques to train algorithms on data sets to find patterns and relationships and to generalize these patterns into prediction machines. This effort is referred to as <strong>modeling</strong> in data science and the algorithms themselves are the data science models.</p>
+<p>You recognize in this description of data science the elements of computational and quantitative thinking: data, patterns and relationships, generalization, algorithm development.</p>
+<p>A data science investigation starts with a problem: a business, policy, or research question:</p>
+<ul>
+<li>A retail company might wonder whether there is a difference between customers visiting its bricks-and-mortar stores and online shoppers.</li>
+<li>A technical support provider might be interested to determine the drivers behind response/non-response to surveys after tickets have been resolved.</li>
+<li>A city wants to make personalized recommendations to residents on how to reduce water consumption.</li>
+<li>A marketing team is looking for ways to automate the creation of product descriptions.</li>
+<li>A panel at the Food and Drug Administration (FDA) examines whether a new drug shows significantly more side effects than a currently available drug.</li>
+<li>The operator of a grocery store is wondering whether revenue can be increased by placing certain items closer together on shelves.</li>
+<li>A trucking company wants to move from scheduled maintenance of its fleet to predictive maintenance by equipping trucks with sensors that inform the company when a vehicle requires maintenance or fixing.</li>
+</ul>
+<p>The real-world problem is translated by the data scientist into one or more analytical categories:</p>
+<table class="table-striped table">
+<caption>Analytic categories.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Question asked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Description</strong></td>
+<td style="text-align: left;">What is and what has been?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Prediction</strong></td>
+<td style="text-align: left;">What will be?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Classification</strong></td>
+<td style="text-align: left;">What category does this item belong to?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Hypothesis Testing</strong></td>
+<td style="text-align: left;">What can I say about X?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Prescription</strong></td>
+<td style="text-align: left;">What should I do?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Clustering</strong></td>
+<td style="text-align: left;">Which things are similar?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Association</strong></td>
+<td style="text-align: left;">Which things occur together?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Optimization</strong></td>
+<td style="text-align: left;">What is the best way to do something?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Generation</strong></td>
+<td style="text-align: left;">What novel content is there?</td>
+</tr>
+</tbody>
+</table>
+<p>The question before the FDA falls in the hypothesis testing category. Based on the data from a clinical trial, can we reject the hypothesis that the new and current drug have the same level of side effects? Answering the question of the retail company involves a combination of description, clustering, and hypothesis testing. The technical support provider will employ a predictive model that links attributes of the support tickets and the customer to the likelihood of response to the survey request. The marketing team might be looking toward a generative AI solutions to produce text descriptions from images of products. The city uses clustering to segment residents into groups that are similar with respect to water usage profiles and develops a separate recommendation model for each group. The grocery store uses association analysis of past purchase records to determine which items are likely to be purchased together. The trucking company uses a combination of predictive models that forecast the likelihood of parts failing and optimization to get a truck to a repair shop with minimal disruption of the route.</p>
+<p>A fundamental aspect of these investigation is the development of a data science model that draws on the essential patterns and relationships in the data to describe, predict, classify, test, recommend, cluster, associate, optimize, and generate.</p>
+</section>
+<section id="data-science-models" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-science-models"><span class="header-section-number">3.2</span> Data Science Models</h2>
+<p>From the 30,000 foot view a model is simply a mechanism to process some input and produce a corresponding output (<a href="#fig-proj-simplemodel" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
+<div id="fig-proj-simplemodel" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-proj-simplemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/BasicModel.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-proj-simplemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: A simple representation of a model that processes inputs with algorithmic logic and produces output.
+</figcaption>
+</figure>
+</div>
+<p>The input to drive the model algorithm is almost always some form of data. The algorithm that processes the inputs can be based on data, but that is not necessarily so. Suppose the problem we are trying to solve is to assess someone’s annual federal income tax. The problem is solved with a model that takes as <strong>input</strong> the individuals financial situation. This information is typically known without error as information about income, property taxes, expenses, etc. is well documented. The <strong>algorithm</strong> processing this input is a translation of the relevant information in the federal income tax laws into machine instructions. The <strong>output</strong> is the amount of money owed to the government or expected as a refund.</p>
+<p>Now suppose that for some reason the input data in the tax problem is not known without error. For example, income from tips, medical expenses or charitable contributions might be best guesses rather than exact amounts. Income data could be noisy because foreign income is converted at fluctuating exchange rates. If the input data is the realization of stochastic (random) influences, should we modify the algorithm?</p>
+<p>When the input data to an algorithm is the result of observing random variation, we are looking to the algorithm of the model to find the signal in the data and to separate it from the noise. The signal located in the data is then transformed into the model output. Most models built in data science are of this kind because data is inherently noisy. The reasons for the random variations are many: selecting observation from a larger population at random, applying treatments to randomly chosen experimental units, variations in measurement instruments and procedures, variations in the environment in which a phenomenon is observed, and so on. The specific algorithms data scientists use depend on the analysis category, properties of the data, assumptions one is willing to make, attributes we look for in competitive models, and personal preferences.</p>
+<section id="sec-data-science-signal-noise" class="level3">
+<h3 class="anchored" data-anchor-id="sec-data-science-signal-noise">Signal and Noise</h3>
+<p>The <strong>signal</strong> represents the systematic, non-random effects in the data. Data scientists and statisticians define the <strong>noise</strong> as the unpredictable randomness around the signal. A slightly different, and also useful, definition of noise stems from intelligence analysis. The signal is the information we are trying to find, the noise is the cacophony of other information that obscures the signal. That information might well be a signal for something else but it is irrelevant or useless for the event the intelligence analyst is trying to predict.</p>
+<p>Information not being relevant for the signal we are trying to find is the key. In the view of the data scientist, that information is due to random events.</p>
+<p>Finding the signal is not trivial, different analysts can arrive at different models to capture it. Signals can be obscured by noise. What appears to be a signal might just be random noise that we mistake for a systematic effect.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Theophylline Concentration</p>
+</div>
+<div class="example-container">
+<p><a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows the concentration of the drug theophylline over 24 hours after administration of the drug in two groups of patients. There are 98 data points of theophylline concentration and measurement time. What are the signals in the data? What is noise?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-theop-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-theop-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="datascience_files/figure-html/fig-theop-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theop-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Theophylline concentration over time in two groups of patients.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The first observation is that the data points are not all the same over time, otherwise they would fall on a horizontal straight line: there is <strong>variability</strong> in the data. Separating signal and noise means attributing this variability to different sources: some systematic, some random.</p>
+<p>Focusing on either the open circles (group 1) or the triangles (group 2), you notice that points that are close in time are not necessarily close in the concentration measurement. Not all patients were measured at exactly the same time points, but at very similar time points. For example, concentrations were measured after about 7, 9, and 12 hours. The differences in the concentration measurements among the patients receiving the same dosage might be due to patient-to-patient variability or measurement error.</p>
+<p>Focusing on the general patterns of open circles and triangles, it seems that the triangles appear on average below the average circle a few hours after administration. Absorption and elimination of theophylline appears to behave differently in the two groups.</p>
+<p>Much of the variability in the data seems to be a function of time. Shortly after administering the drug the concentration rises, reaches a maximum level and then declines as the drug is eliminated from the body. Note that this sentence describes a general overall trend in the data here.</p>
+<p>Which of these sources of variability are systematic—the signals in the data— and which are random noise?</p>
+<ul>
+<li><p>Patient-to-patient variability within a group at the same time of measurement: we attribute this to random differences among the participants.</p></li>
+<li><p>Possible measurement errors in determining the concentrations: random noise</p></li>
+<li><p>Overall trend of drug concentration over time: signal</p></li>
+<li><p>Differences among the groups: signal</p></li>
+</ul>
+<p>These assignments to signal and noise can be argued. For example, we might want to test the very hypothesis that there are no group-to-group differences. If that hypothesis is true, any differences between the groups we discern in <a href="#fig-theop-data" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> would be due to chance; random noise in other words.</p>
+<p>The variability between patients could be due to factors such as age, gender, medical condition, etc. We do not have any data about these attributes. By treating these influences as noise, we are making important assumptions that their effects are irrelevant for conclusions derived from the data. Suppose that the groups refer to smokers and non-smokers but also that group 1 consists of mostly men and group 2 consists of mostly women. If we find differences in theophylline concentration over time among the groups, we could not attribute those to either smoking status or gender.</p>
+</div>
+</div>
+<p>Finding the signal in noisy data is not trivial. The opposite can also be difficult: not mistaking noise for a signal. <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> is taken from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 341</a>)</span> and displays six “trends”. Four of them are simple random walks, the result of pure randomness. Two panels show the movement of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the 1970s and 1980s. Which of the panels are showing the DJIA and which are random noise?</p>
+<div id="fig-random-walk" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Figure11_4_Silver.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Figure 11-4 from <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span>, Random walk or stock market data?
+</figcaption>
+</figure>
+</div>
+<p>What do we learn from this?</p>
+<ul>
+<li><p>Even purely random data can appear non-random over shorter sequences. We can easily fall into the trap of seeing a pattern (a signal) where there is none. Sometimes there is no signal at all. After drawing two unlikely poker hands in a row there is not a greater chance of a third unlikely hand unless there is some systematic effect (cards not properly shuffled, game rigged). Our brains ignore that fact and believe that we are more lucky than is expected by chance.</p></li>
+<li><p>Data that contains clear long-run signals—the stock market value is increasing over time—can appear quite random on shorter sequences. One a day to day basis predicting whether the market goes up or down is very difficult. In the long run ups and downs are almost equally likely. Upswings have a slight upper hand and on average are greater than the downswings, increasing the overall value in the long term. Traders who try to beat the market over the short run have their work cut out for them.</p></li>
+</ul>
+<p>By the way, panels D and F in <a href="#fig-random-walk" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> are from actual stock market data. Panels A, B, C, and E are pure random walks. It would not be surprising if investors would bet money on “trend” C.</p>
+<div class="{assignment}">
+<div class="assignment-header">
+<p>Exercise: Southern Oscillation Index (SOI)</p>
+</div>
+<div class="assignment-container">
+<p>The Southern Oscillation Index (SOI) is a standardized index based on the observed sea level pressure differences between Tahiti and Darwin, Australia. The SOI is one measure of the large-scale fluctuations in air pressure occurring between the western and eastern tropical Pacific (i.e., the state of the Southern Oscillation) during El Niño and La Niña episodes.</p>
+<p>In general, smoothed time series of the SOI correlate highly with changes in ocean temperatures across the eastern tropical Pacific. The negative phase of the SOI represents below-normal air pressure at Tahiti and above-normal air pressure at Darwin. Prolonged periods of negative (positive) SOI values coincide with abnormally warm (cold) ocean waters across the eastern tropical Pacific typical of El Niño (La Niña) episodes (<a href="#fig-soi-data" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>).</p>
+<p>According to <a href="https://en.wikipedia.org/wiki/El_Ni%C3%B1o%E2%80%93Southern_Oscillation">Wikipedia</a>, there have been about 30 El Niño episodes since 1950 with strong El Niño events in 1982–83, 1997–98, and 2014–16. You recognize El Niño when the SOI dips negative for a period of time. La Niña is marked by periods of positive SOI values.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-soi-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-soi-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="datascience_files/figure-html/fig-soi-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soi-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Monthly SOI data from 1951 to mid-2023 according to NOAA.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>What is the signal and the noise in these data?</li>
+<li>Is it possible that there are multiple signals in these data, associated with different time horizons?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="choosing-a-model" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-model">Choosing a Model</h3>
+<p>Selecting the right type of model is a critical step in any data science project. There are many choices based on input data, learning methodology and analysis category. <a href="#fig-proj-dsmodels" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> is an attempt at structuring the input, algorithm, and output components of a model in the data science context. The diagram is complex and yet woefully incomplete and is intended to give you an idea of the diversity of methods and the many ways we can look at things. For example, in discussing input data we could highlight how data are stored, how fast it is moving, the degree to which the data is structured, the data types, and so forth. There are many other categorizations of data one could have listed.</p>
+<p>The categorization of algorithms leaves out some approaches to learning from data to keep things (relatively) simple. Volumes of books and papers have been written about every item in the list of algorithms and many algorithms are represented by a single entry. Multi-layer networks, for example, include artificial neural networks, deep networks such as convolutional and recurrent networks, and transformer architectures such as GPT.</p>
+<div id="fig-proj-dsmodels" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" alt="Structuring and categorizing input, algorithm, and output in data science models." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-proj-dsmodels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/DataScienceModels.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/DataScienceModels.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Structuring and categorizing input, algorithm, and output in data science models."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-proj-dsmodels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Structuring and categorizing input, algorithm, and output in data science models.
+</figcaption>
+</figure>
+</div>
+<p>Arguably the most important class of algorithms learning from data is <strong>supervised learning</strong>. The name originates in thinking of learning in an environment that is supervised by a teacher. The teacher asks questions for which they know the correct answer (the ground truth) and judge a student’s response to the questions. The goal is to increase students’ knowledge as measured by the quality of their answers. But we do not want students to just memorize answers, we want to teach them to be problem solvers, to apply the knowledge to new problems, to generalize.</p>
+<p>Supervised learning is characterized by the presence of a <strong>target variable</strong>, also called a dependent variable, response variable, or output variable. This is the attribute about which we wish to draw conclusions. For example, to predict the probability that someone contacting customer support will later fill out a survey, the target variable is whether they responded to the survey request or not. To model the strength of drywall a target variable might be the force required to pull a nail from the board.</p>
+<p>Other variables in our data set, beside the target variable, are potentially <strong>input variables</strong> to our model. In modeling the nail pull strength of drywall input variables might be the thickness of the board, the moisture, the chemistry of the gypsum, characteristics of the manufacturing environment, and so forth.</p>
+<p>The values of the target variable are also called the <strong>labels</strong> in machine learning. This name stems from image analysis where prior to training an algorithm human interpreters go through the images in the training data and label them (<a href="#fig-image-label" class="quarto-xref">Figure&nbsp;<span>3.6</span></a>).</p>
+<div id="fig-image-label" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-image-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image_labeling.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-image-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Labeling images prior to training an image processing network. <a href="https://www.labellerr.com/blog/a-practical-guide-on-image-labeling-in-computer-vision/">Source</a>.
+</figcaption>
+</figure>
+</div>
+<p>This process establishes the ground truth, the correct answer which the algorithm associates with the other variables in the data during training. Because the algorithm makes the connection between input variables and target variable at this stage, we can later apply the trained algorithm to new observations for which the label (the true value) is unknown.</p>
+<p>Supervised learning can have many goals. For example:</p>
+<ul>
+<li>Predict the target variable from input variables.</li>
+<li>Develop a function that approximates the underlying relationship between inputs and outputs.</li>
+<li>Understand the relationship between inputs and outputs.</li>
+<li>Classify observations into categories of the target variable based on the input variables.</li>
+<li>Group the observations into sets of similar data based on the values of the target variable and based on values of the inputs.</li>
+<li>Reduce the dimensionality of the problem by transforming target and inputs from a high-dimensional to a lower-dimensional space.</li>
+<li>Test hypotheses about the target variable.</li>
+</ul>
+<p>Data science projects can have multiple of these goals. For example, you might be interested in understanding the relationship between target and input variables and use that relationship for predictions.</p>
+<p>To close the loop, we can now map a teacher teaching a classroom of students to the problem of building a machine learning model through supervised learning.</p>
+<ul>
+<li>The problems asked by the teacher, the learning algorithm, are the data points.</li>
+<li>The values of the target variable are the the correct answers.</li>
+<li>The input variables represent the information used by the students to answer the questions.</li>
+</ul>
+</section>
+<section id="regression-and-classification" class="level3">
+<h3 class="anchored" data-anchor-id="regression-and-classification">Regression and Classification</h3>
+<p>Within the supervised learning category <strong>regression</strong> and <strong>classification</strong> models are the most important model types.</p>
+<p>In a regression context we are interested in the relationship between the mean of a target variable and the inputs. The goal is to make predictions about the mean of the target variable when the input variables take on certain values.</p>
+<p>In a classification context the target variable is categorical (see <a href="intro.html#sec-data-types" class="quarto-xref"><span>Section 1.2.4</span></a>), for example, makes of cars, or names of fruit, object categories on images, or the 10,000 words in a dictionary. Based on the values of input variables we wish to classify a new observation into one of the possible categories. For example, we measure health attributes such as LDL, weight, age, etc. along with the target variable, whether someone is at low, medium, or high risk of developing coronary heart disease. The process of training the model involves data from people with confirmed low, medium, and high risk of heart disease. Based on the classification model so developed, a physician can classify a new patient as low, medium, or high risk based on information about their LDL, weight, age, etc.</p>
+</section>
+<section id="generalization" class="level3">
+<h3 class="anchored" data-anchor-id="generalization">Generalization</h3>
+<p>Our teacher has the noble goal of not just drilling the correct answers but to turn the students into problem solvers who can apply concepts to solve new questions. What is the parallel of this concept in supervised machine learning?</p>
+<p>Suppose we can quantify the quality of a student’s answer, for example by using a metric that increases the further their answer is of the mark. When an answer is correct, the metric returns 0. When should the teacher stop teaching? When all the students can answer all the questions correctly? At this point our metric across the training questions would be zero. The teacher has done a good job training students on that set of questions, but have they learned to solve new, previously unseen, problems?</p>
+<p>We need to throw in some new problems and measure how well the students do on those. Getting great answers (small discrepancy metric) on new questions shows that the students can apply the learned concepts to new problems. They are able to <strong>generalize</strong>. Recall from <a href="intro.html#sec-intro-ct" class="quarto-xref"><span>Section 1.1</span></a> that generalization is one of the steps in computational thinking, just prior to algorithm design. In data science, the process of training a model leads to an algorithm that can perform the analytic goal. The way in which the model is trained ensures that the algorithm generalizes well to new observations, those not in the training data.</p>
+<p>Just like the teacher is not interested in drilling the correct answers to the questions in the lesson plan, we are not interested in building models that follow the training data too closely. Models that suffer from that problem are <strong>overfitting</strong> the data and do not generalize well. They treat too much of the noise as a worthwhile signal.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Melanoma Incidences</p>
+</div>
+<div class="example-container">
+<p>The data displayed in <a href="#fig-melanoma-data" class="quarto-xref">Figure&nbsp;<span>3.7</span></a> are from the Connecticut Tumor Registry and represent age-adjusted numbers of melanoma incidences per 100,000 people for the 37 years from 1936 to 1972 <span class="citation" data-cites="Houghton_1980">(<a href="references.html#ref-Houghton_1980" role="doc-biblioref">Houghton, Flannery, and Viola 1980</a>)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-melanoma-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-melanoma-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="datascience_files/figure-html/fig-melanoma-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-melanoma-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Incidences of melanoma per 100,000 people from 1936 to 1972
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There is noise and signal in the data. While the data points do not fall on a perfect trend line, there is a general upward trend in the number of melanoma incidences per 100,000 over the 37-year period. There is also a shorter-term oscillation around the overall trend.</p>
+<p><a href="#fig-melanoma-smooth" class="quarto-xref">Figure&nbsp;<span>3.8</span></a> shows the data and four possible models to capture the signal in the data. The solid black line tries to capture the overall trend. While this model might be OK to describe the trend over 30+ years, it is <strong>underfit</strong> with respect to the shorter oscillations of the incidence rate. The dotted (red), dashed (blue), and dot-dashed (dark green) lines try to capture these shorter-term signals in the data. The green line appears <strong>overfit</strong>, it follows the observed data too closely, almost interpolating the dots. The other two lines fall somewhere between the two extreme models.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-melanoma-smooth" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-melanoma-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="datascience_files/figure-html/fig-melanoma-smooth-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-melanoma-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Models of different degree of smoothness for the Melanoma data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Determining the appropriate amount of signal extraction, balancing overfitting and underfitting, is an important aspect of all data science modeling projects. An underfit model does not generalize well because it is too simple. An overfit model does not generalize well because it is too sensitive to unseen observations. Striking the balance between over- and under-fit is also known as the <strong>bias-variance tradeoff</strong> in data science.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="all-models-are-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="all-models-are-wrong">All Models are Wrong</h3>
+<p>George E.P. Box is credited with coining the much-used phrase “all models are wrong, but some are useful”. The phrase appears partially (“all models are wrong”) twice in his 1976 paper on <a href="http://www-sop.inria.fr/members/Ian.Jermyn/philosophy/writings/Boxonmaths.pdf">Science and Statistics</a> <span class="citation" data-cites="GEPBox1976">(<a href="references.html#ref-GEPBox1976" role="doc-biblioref">Box 1976</a>)</span>:</p>
+<blockquote class="blockquote">
+<p><em>Since all models are wrong the scientist cannot obtain a “correct” one by excessive elaboration.</em></p>
+<p><em>Since all models are wrong the scientist must be alert to what is importantly wrong.</em></p>
+</blockquote>
+<p>The full phrase appears on p.&nbsp;424 of his book with Norman Draper <span class="citation" data-cites="BoxDraper_1987">(<a href="references.html#ref-BoxDraper_1987" role="doc-biblioref">Box and Draper 1987</a>)</span>.</p>
+<p>The first G.E.P. Box quote instructs us not to overdo it in building models; this translates to the problem of <strong>overfitting</strong>, crafting a model that follows the training data too closely and as a result does not generalize well to new data points. If the goal is to predict, classify, or cluster the unseen; generalizability of the model is key. A model to forecast stock prices or trading volumes is judged by how well it can predict the future, not by how well it can predict the past. The adequate level of generalization for that model must be wrung from current and past stock prices.</p>
+<p>The second G.E.P. Box quote instructs us that models are abstracting away features of the phenomenon. If these are important features, the model is not useful. In the best case this model does not meet its goal and is revised or abandoned. In the worst case the model leads to bad decisions and harmful outcomes.</p>
+<p>The important lesson is that any model is an abstraction of a phenomenon and we strive to find a useful abstraction. The model does not attempt to reproduce the phenomenon. The tax algorithm converts the essence of the tax code into machine instructions, it is not an electronic copy of the entire law. The purpose is to accurately calculate an entity’s tax, anything else can be stripped away. An algorithm processing noisy data that reproduces the data is uninteresting. The goal is to abstract the data in such a way to allow separating the signal from the noise and to convert the signal into the desired output.</p>
+<p>The assumptions we make in building models are very important. Violations of the assumptions can lead to biased conclusions when the model does not represent the phenomenon it is supposed to abstract.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: Compartmental Models in Epidemiology</p>
+</div>
+<div class="assignment-container">
+<p>The SIR (Susceptible–Infectious–Recovered) model is a standard class of compartmental models in epidemiology, describing how an infectious disease moves through a population. On the surface this makes sense: at each point in time an individual is in one of three states, called compartments:</p>
+<ul>
+<li>You have not had the disease but you are susceptible to it (S compartment)</li>
+<li>You are infected by the disease (I compartment)</li>
+<li>You are recovered from the disease, or dead (R compartment)</li>
+</ul>
+<p>A vaccination, then, is a shortcut that moves an individual directly from the S to the R compartment, bypassing the infected state.</p>
+<p>However, there are a number of assumptions in the SIR model that can invalidate the model for some diseases and circumstances:</p>
+<ol type="1">
+<li>The disease progresses in only one direction, from S to I to R.</li>
+<li>Everyone is equally susceptible and behaves the same way.</li>
+<li>Everyone is equally likely to be vaccinated, if a vaccine is available.</li>
+<li>All members of the populations intermingle at random.</li>
+</ol>
+<p>The rate at which the disease spreads through the population is measured by the <strong>basic reproduction</strong> number, <span class="math inline">\(R_0\)</span>. This number, which we became all too familiar with during the COVID-19 pandemic, measures the number of uninfected people expected to catch the disease from an infected individual. An <span class="math inline">\(R_0\)</span> of 3 means that someone who contracts the disease is expected to pass it on to three other individuals. In the absence of vaccines or quarantines, any disease with <span class="math inline">\(R_0 &gt; 1\)</span> will eventually spread to the entire population.</p>
+<ul>
+<li><p>Discuss whether the assumptions of the SIR model apply to the COVID-19 pandemic.</p></li>
+<li><p>What could be reasons why epidemiologists hold on to a SIR model even if one or more of its assumptions are violated?</p></li>
+<li><p>In some countries COVID intervention measures were directly related to <span class="math inline">\(R_0\)</span>, often called the R-number. If a three-day average of <span class="math inline">\(R_0\)</span> was above a certain threshold more stringent COVID restrictions took effect. If the three-day average <span class="math inline">\(R_0\)</span> dropped below a threshold restrictions were relaxed. <span class="math inline">\(R_0\)</span> is calculated either retrospectively from epidemiological data (such as data from contact tracing) or using theoretical mathematical models based on differential equations such as the SIR model. Discuss the pros and cons of the two approaches.</p></li>
+<li><p>Is <span class="math inline">\(R_0\)</span> a biological constant of a pathogen, or is it a function of human behavior <strong>and</strong> characteristics of the pathogen?</p></li>
+</ul>
+</div>
+</div>
+<hr>
+<p>Models that explicitly incorporate uncertainty are called <strong>stochastic models</strong> and play an important role in analyzing data. Partly because data are inherently variable and noisy. Partly because describing something in stochastic terms—letting random elements account for some of the variability we see—enables us to model highly complex phenomena in relatively simple terms. The example of modeling coin flips will make the concept clearer.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Exercise: Modeling Coin Flips</p>
+</div>
+<div class="assignment-container">
+<p>Suppose we want to predict whether a coin, when flipped, lands on Heads or Tails. We can try and develop a mathematical model that captures the forces acting on the coin: its starting position, the angle and momentum when it is released, conditions of the environment such as wind and temperature (does that matter?), conditions of the landing surface (angle, softness, etc.), conditions of the coin (surface, weight, material, shape, damage, etc.) and so on and so on. It will turn into a very complicated model with many sub-models. We will have to make assumptions, for example, that wind speed and direction are constant, that the coin is perfectly round and flat.</p>
+<p>We end up with a very complex model, full of individual abstractions. Whether we will be able to perfectly predict whether the coin lands on Heads or Tails depends on whether we model the sub-processes correctly, whether we combine them correctly into an overall model, and whether the assumptions are met.</p>
+<p>A much simpler model would be to not try and predict any particular flip of the coin and to acknowledge that the forces that determine how a coin lands are essentially random (stochastic). The <strong>stochastic</strong> model for the coin flip is extremely simple. Every flip is assumed to be the realization of a random experiment with two possible outcomes: Heads and Tails. Our model rules out that the coin lands on each side. If the coin lands at an angle we call the side that faces up. The only <strong>parameter</strong> of the random experiment is the probability that the coin lands on Heads (or Tails). If the coin is fair and is properly tossed, that probability should be 0.5.</p>
+<p>We can even run an experiment with a particular coin and flip it 100 times to get an estimate of the parameter. If it lands on Heads 45 times out of 100 tosses, then the probability of Heads is 0.45.</p>
+</div>
+</div>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;3.5: Structuring and categorizing input, algorithm, and output in data science models.</span>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-GEPBox1976" class="csl-entry" role="listitem">
+Box, George E. P. 1976. <span>“Science and Statistics.”</span> <em>Journal of the American Statistical Association</em> 71 (356): 791–99.
+</div>
+<div id="ref-BoxDraper_1987" class="csl-entry" role="listitem">
+Box, George E. P., and Norman R. Draper. 1987. <em>Empirical Model-Building and Response Surfaces</em>. John Wiley &amp; Sons, New York.
+</div>
+<div id="ref-Houghton_1980" class="csl-entry" role="listitem">
+Houghton, A. N., J. Flannery, and M. V. Viola. 1980. <span>“Malignant Melanoma in Connecticut and Denmark.”</span> <em>International Journal of Cancer</em> 25: 95–104.
+</div>
+<div id="ref-Silver2012" class="csl-entry" role="listitem">
+Silver, Nate. 2012. <em>The Signal and the Noise: Why so Many Predictions Fail–but Some Don’t</em>. Penguin Books.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -833,6 +1236,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

@@ -4,12 +4,12 @@
 :::{.callout-tip title="Quote"}
 
 ::: {.flushright}
-*Just because two variables have a statistical relationship with each other does not mean \
+Just because two variables have a statistical relationship with each other does not mean \
 that one is responsible for the other.  For instance, ice cream sales and forest fires \
 are correlated because both occur more often in the summer heat.  But there is no \
 causation; you don't light a patch of the Montana brush on fire when you buy a\
-pint of Häagan-Dazs.*\
-Nate Silver, The Signal and the Noise
+pint of Häagan-Dazs.\
+[Nate Silver, The Signal and the Noise]{.quoteauthor}
 :::
 :::
 
@@ -398,6 +398,7 @@ Maybe. Maybe. Maybe.
 What other confounding factors can you think of that would mask, amplify,
 or suppress the incidence of cholera?
 ::::
+:::
 
 In order to establish a causal link between two variables, the confounding factors
 must be accounted for---at least beyond a reasonable doubt. Otherwise there will 

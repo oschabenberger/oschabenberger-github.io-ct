@@ -47,7 +47,7 @@ Example: Theophylline Concentration
 ::::
 
 ::::{.example-container}
-@fig-theop-data shows the concentration of the drug theophylline over 24 hours
+@fig-theop-data2 shows the concentration of the drug theophylline over 24 hours
 after administration of the drug in two groups of patients. 
 There are 98 data points of theophylline concentration and
 measurement time. What are the signals in the data? What is noise?
@@ -58,7 +58,7 @@ attach(theop)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="90%"}
-#| label: fig-theop-data
+#| label: fig-theop-data2
 #| fig.cap: Theophylline concentration over time in two groups of patients.
 plot(time,conc, 
      ylab="Concentration",
@@ -110,7 +110,7 @@ we attribute this to random differences among the participants.
 
 These assignments to signal and noise can be argued. For example, we might want 
 to test the very hypothesis that there are no group-to-group differences. If that
-hypothesis is true, any differences between the groups we discern in @fig-theop-data
+hypothesis is true, any differences between the groups we discern in @fig-theop-data2
 would be due to chance; random noise in other words.
 
 The variability between patients could be due to factors such as age, gender, 
@@ -127,7 +127,7 @@ to either smoking status or gender.
 A common reason to mistake signal for noise is **overfitting** a model, a concept 
 we return to in @sec-literacy-overfitting.
 
-Another reason is if there is simply no signal at all. @fig-random-walk is
+Another reason is if there is simply no signal at all. @fig-random-walk2 is
 taken from @Silver2012 [p. 341] and displays six "trends". Four of them are 
 simple random walks, the result of pure randomness. Two panels show the movement
 of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days of the
@@ -135,7 +135,7 @@ of the Dow Jones Industrial Average (DJIA) during the first 1,000 trading days o
 noise?
 
 
-![Figure 11-4 from @Silver2012, Random walk or stock market data?](images/Figure11_4_Silver.png){#fig-random-walk fig-align="center" width=80%}
+![Figure 11-4 from @Silver2012, Random walk or stock market data?](images/Figure11_4_Silver.png){#fig-random-walk2 fig-align="center" width=80%}
 
 What do we learn from this?
 
@@ -154,7 +154,7 @@ on average are greater than the downswings, increasing the overall value in the
 long term. Traders who try to beat the market over the short run have their work
 cut out for them.
 
-By the way, panels D and F in @fig-random-walk are from actual stock market data.
+By the way, panels D and F in @fig-random-walk2 are from actual stock market data.
 Panels A, B, C, and E are pure random walks. It would not be surprising if 
 investors would bet money on "trend" C.
 
