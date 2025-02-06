@@ -30,10 +30,30 @@ Let's look at the steps in more detail.
 
 #### Problem Definition
 
-This should go without saying, before attempting to
-build a solution one should know what problem the solution solves. However, we
-often get things backwards, building solutions first and then looking for what
-problems to solve with them. The world of technology is littered with solutions
+This should go without saying, before attempting to build a solution one should 
+know what the problem is. It seems obvious but problems are not always what they
+seem. It takes creativity and thinking to uncover what the real problem is that
+should be solved. We often take problems as given, fail to uncover the real
+problem, and end up solving the wrong one [@Kroese_2020]. Blockbuster turned
+down a deal with Netflix because it was convinced that customers would not want
+to have movies delivered to their home. LOL. If customers are telling you that
+they want "faster horses", are they looking to you to optimize the amount of
+hay, water, and carrots you feed horses or are they looking for a faster mode 
+of transportation? Disney's parks were criticized by customers for long queues
+for the rides, customers spent hours waiting for their turn. The obvious solutions
+would be to build more rides or allow fewer visitors in the parks, both would not
+be good for Disney's bottom line. @Kroese_2020 writes
+
+:::{.quote}
+instead of investing millions, Disney World simply added themed music, videos, 
+and introduction stories to the waiting areas. Instead of decreasing the waiting time, 
+they increased its value. 
+:::
+
+---
+
+We also get it wrong when we are building solutions first and then look for 
+the problems they might solve. The world of technology is littered with solutions
 looking for a problem. 
 
 :::{.callout-note title="Solution looking for a problem"}
@@ -52,6 +72,44 @@ imagine the many future applications of the technology.
 ![Benz Patent-Motorwagen, the first automobile.](images/FirstAutomobile.png){#fig-firstcar fig-align="center" width=50% .lightbox}
 :::
 
+Another wonderful example of a solution that did not solve a problem is the 
+story of the company Juicero.
+
+:::{.example}
+::::{.example-header}
+Example: Juicero, the juicer no one needed.
+::::
+::::{.example-container}
+Trying to cash in on the wellness craze, The Silicon Valley company Juicero 
+aimed to bring the experience of single-serve coffee makers like Keurig to the
+world of fruit and vegetable juice. Juicero developed a pricey and over-engineered
+machine to produce single-serve cold-pressed juice at the touch of a button.
+
+![The $699 Juicero juicer.](images/Juicero.png){#fig-juicero fig-align=center width=45%}
+
+The business model was a subscription service. You buy the Juicero juicing machine
+for the whopping price of $699, subscribe to the service, and the company will
+regularly send you pouches of diced vegetables and fruits which you run through the
+juicer. The machine was touted as very powerful, having enough force to "lift 
+two Teslas". Apparently, the whole thing was a great idea by Silicon Valley 
+standards and Juicero raised $120 million in venture capital funding.
+
+The user experience had a few quirks that turned out to be unpopular. You had to
+use the pouches from the company at $5--$7 per pack. You could buy the pouches
+only if you owned the $699 juicer. The pouches had an expiration date, lasted
+only 8 days, and needed to be scanned before running through the juicer; the 
+machine would refuse to process pouches that were past the expiration date. 
+
+The death knell tolled when Bloomberg reviewed the machine and determined that 
+you can just as easily squeeze the pouches by hand. Check out [this](https://www.bloomberg.com/news/features/2017-04-19/silicon-valley-s-400-juicer-may-be-feeling-the-squeeze)
+Bloomberg video that destroyed the myth of the juicing machine with four
+tons of pressing power.
+
+British daily newspaper The Guardian mocked Juicero as an example of the 
+Silicon Valley culture to raise large amounts of money for solutions to problems
+that do not exist. 
+::::
+:::
 
 #### Decomposition (Factoring)
 

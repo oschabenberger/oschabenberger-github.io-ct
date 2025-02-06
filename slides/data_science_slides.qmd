@@ -1,0 +1,554 @@
+---
+title: "Data Science"
+subtitle: "Computational and Quantitative Thinking"
+author: "Oliver Schabenberger"
+institute: "Academy of Data Science, Virginia Tech"
+date: "03/19/2025"
+date-format: long
+format: 
+  revealjs:
+      embed-resources: true
+      title-slide-attributes:
+        data-background-image: ../images/Burruss-1920x1080.png
+        data-background-size: contain  
+        data-background-opacity: "1"
+      smaller: true
+      fig-align: center
+      fig-cap-location: bottom
+      scrollable: false
+      slide-number: true
+      auto-stretch: false
+      preview-links: true
+      theme: [default, slides_custom.scss] # moon
+      logo: ../slides_images/VTBanner.png
+      footer: "UH 2514: Correlation and Causation"
+      css: slides_styles.css
+      execute:
+        echo: false
+        warning: false      
+---
+
+
+# Data Science
+
+:::{.absolute top=150}
+:::{.centered}
+At the intersection of the foundation disciplines statistics, mathematics, and 
+computer science, performing data science means drawing conclusions from data 
+about real-world problems using computation and automation in the presence of 
+uncertainty.
+:::
+:::
+
+## CT and QT Come Together
+
+:::{.incremental .highlight-last}
+* [Computational Thinking]{.maroon}
+<br/>A problem-solving methodology]
+<br/>Break complex problems into manageable parts
+<br/>Find patterns and relationships among the parts
+<br/>Generalize solutions as repeatable series of steps  
+
+* [Quantitative Thinking]{.maroon}
+<br/>A problem-solving technique
+<br/>Represent things in measurable quantities
+<br/>Enables us to manipulate concepts mathematically 
+<br/>Turns concepts into data.  
+
+
+* [Data Science]{.maroon}
+<br/>Origins in statistics, computer science, and mathematics. 
+<br/>Solving real-world problems using data. 
+<br/>Particularly important: modeling data
+    * Use statistical and machine learning techniques to train algorithms on data
+    * Find patterns and relationships 
+    * Generalize patterns into prediction machines. 
+:::
+
+
+## Start with the Problem
+
+[The problem: a business, policy, or research question]{.maroon}
+
+:::{.incremental}
+- [Retail Company]{.orange}: is there a difference between customers visiting bricks-and-mortar 
+stores and online shoppers?
+
+- [Technical Support Provider]{.orange}: interested to determine the drivers behind
+response/non-response to surveys after tickets have been resolved. 
+
+- [City]{.orange}: wants to make personalized recommendations to residents on how to reduce water 
+consumption.
+
+- [Marketing Team]{.orange}: looking for ways to automate the creation of product descriptions.
+
+- [FDA Panel]{.orange}: examines whether a new drug shows significantly more side effects 
+than a currently available drug.
+
+- [Grocery Store]{.orange}: can revenue be increased by placing certain items closer together 
+on shelves.
+
+- [Trucking Company]{.orange}: wants to move from scheduled maintenance of its fleet to
+predictive maintenance by equipping trucks with sensors that inform the company
+when a vehicle requires maintenance or fixing.
+:::
+
+## Translate Problem into Analytic Category
+
+:::{.absolute top=125}
+| [Category]{.maroon} | [Question asked]{.maroon} |
+|:----|:--------|
+| [Description]{.orange}        | What is and what has been?              | 
+| [Prediction]{.orange}         | What will be?                           |
+| [Classification]{.orange}     | What category does this item belong to? |
+| [Hypothesis Testing]{.orange} | What can I say about X?                 |
+| [Prescription]{.orange}       | What should I do?                       |
+| [Clustering]{.orange}         | Which things are similar?               |
+| [Association]{.orange}        | Which things occur together?            | 
+| [Optimization]{.orange}       | What is the best way to do something?   |
+| [Generation]{.orange}         | What novel content is there?            |
+:::
+
+
+## Exercise
+
+:::{.absolute top=200}
+:::{.assignment}
+::::{.assignment-header}
+Which Analytic Categories are Involved?
+::::
+::::{.assignment-container}
+Return to the list of data science problems on slide \#4.
+
+Which **analytic categories** from the previous table are involved in 
+solving the problems through data science?
+::::
+:::
+:::
+
+
+## Data Science Models 
+
+:::{.absolute top=125}
+:::{.centered}
+From the 30,000 foot view a model is simply a mechanism to process some input and 
+produce a corresponding output.
+:::
+
+![](../slides_images/BasicModel.png){fig-align=center width=60%}
+
+* [Input]{.maroon}: some form of data
+
+* [Algorithm]{.maroon}: processes the input
+
+* [Output]{.maroon}: the result of the algorithm
+
+* [Example]{.maroon}: Income tax software
+:::
+
+## Data Science Models
+
+:::{.centered}
+Reality of modeling is a bit more complicated.\
+Structuring and categorizing input, algorithm, and output in data science models.
+:::
+
+![](../images/DataScienceModels.png){.lightbox fig-align="center" width=60%}
+
+## Signal and Noise
+
+:::{.incremental .highlight-last}
+* [Models Separate Signal and Noise]{.maroon}
+<br/>**Signal**: Systematic, non-random effects in the data
+<br/>**Noise**: Unpredictable randomness around the signal  
+
+
+* [Intelligence Analysis]{.maroon}
+<br/>**Signal**: Information we are trying to find
+<br/>**Noise**: Cacophony of other information that obscures the signal
+<br/>Noise can be a signal for something else but is irrelevant for 
+what we are trying to predict
+<br/>Note: hindsight is 20:20  
+
+
+* [Finding the Signal]{.maroon}
+<br/>A non-trivial exercise
+<br/>Signals obscured by noise
+<br/>Multiple signals in the data
+<br/>Noise can masquerade as signal
+:::
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Theophylline Concentration
+::::
+
+::::{.assignment-container}
+The figure below shows the concentration of the drug theophylline over 24 hours
+after administration of the drug in two groups of patients. 
+There are 98 data points of theophylline concentration and
+measurement time. 
+
+- What are the signals in the data? 
+- What is noise? 
+
+```{r, include=FALSE}
+theop  <- read.csv("../data/theophylline.csv")
+attach(theop)
+```
+
+```{r, echo=FALSE, fig.align="center", fig.asp=0.7, out.width="50%"}
+#| fig.cap: Theophylline concentration over time in two groups of patients.
+plot(time,conc, 
+     ylab="Concentration",
+     xlab="Time (hrs)",
+     pch=group, 
+     col=group,cex=0.8, las=1,bty="l")
+gr <- unique(theop$group)
+legend("topright",
+       legend=c("Group 1","Group 2"),
+       cex=0.8,
+       pch=gr,col=gr)
+```
+::::
+:::
+
+## Mistaking Signal for Noise
+
+* [Figure 11-4 from Silver (2012)]{.maroon}
+<br/>Six time series "trends"
+<br/>Four of them are pure random walks (purely random)
+<br/>Two of them are actual Dow Jones Industrial Averages over 1,000 trading days
+
+
+![](../images/Figure11_4_Silver.png){fig-align="center" width=50%}
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Southern Oscillation Index (SOI)
+::::
+::::{.assignment-container}
+* (SOI) is based on the observed sea level pressure differences between Tahiti and
+Darwin, Australia. 
+* Measures the large-scale fluctuations in air pressure between the western and eastern
+tropical Pacific
+* Periods of positive SOI: La Niña 
+* Periods of negative SOI: El Niño
+
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+#| fig.cap: Monthly SOI data from 1951 to mid-2023 according to NOAA.
+soi_data <- read.csv(file="../data/southern_oscillation.csv")
+plot(soi_data$time,soi_data$soi, cex=0.4, type="h",
+     las=1,
+     bty="l",
+     col="darkslategray",
+     xlab="Time", ylab="SOI",
+     xlim=c(1950,2024))
+```
+::::
+:::
+
+## Supervised Learning
+
+* [Most important type of learning from data]{.maroon}
+
+* [Named after analogy to teacher in classroom]{.maroon}
+<br/>The teacher asks students questions
+<br/>The teacher knows the correct answer
+<br/>Measures quality of the answer 
+<br/>We do not want students to memorize answers
+<br/>We want them to become problem solvers, applying learned knowledge to new problems:
+**generalization**.
+
+## Supervised Learning and Data Science Models
+
+:::{.incremental}
+* [Target Variable]{.maroon}
+<br/>Other names: dependent variable, response variable, output variable
+<br/>The attribute we wish to draw conclusions about
+<br/>Its values represent the correct answers we train the model on  
+
+* [Input variables]{.maroon}
+<br/>Other names: independent variables, factors, regressors
+<br/>They should be somehow related to the target variable
+<br/>Relationships are used to construct a mathematical representation
+
+* [Learning and Teaching]{.maroon}
+<br/> The problems asked by the teacher, the learning algorithm, are the data points.
+<br/> The values of the target variable are the the correct answers. 
+<br/> The input variables represent the information used by the students to answer the 
+questions. 
+<br/> During training, the algorithm makes the connection between input variables and target variable
+<br/> Later we can apply the trained algorithm to new observations for
+which the label (the true value) is unknown.
+:::
+
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Nail Pull Test for Drywall
+::::
+::::{.assignment-container}
+The quality of drywall is measured with a **nail pull test**. A standard fastener is
+pulled through the entire wall, including the nail's head. The reported value for 
+Nail Pull Resistance is the maximum stress achieved while the head penetrates through 
+the board surface and core.
+
+- What is the target variable of a model for the nail pull test?
+- What are potential input variables of the model?
+- What are the benefits of deriving a data science model for the nail pull test?
+
+<br/>
+
+:::{.centered}
+{{< video https://www.youtube.com/watch?v=-HnyHuKfZdQ >}}
+:::
+::::
+:::
+
+## Labeling
+
+* The values of the target variable are also called the **labels** in machine learning. 
+
+* Name stems from image analysis: prior to training human interpreters label the content of images
+
+![](../images/image_labeling.webp){fig-align="center" width=60%}
+
+
+## Supervised Learning Goals. 
+
+<br/>
+
+-   Predict the target variable from input variables.
+
+-   Develop a function that approximates the underlying relationship between inputs and outputs.
+
+-   Understand the relationship between inputs and outputs.
+
+-   Classify observations into categories of the target variable based on the input variables.
+
+-   Group the observations into sets of similar data based on the values of the target variable and based on values of the inputs.
+
+-   Reduce the dimensionality of the problem by transforming target and inputs from a high-dimensional to a lower-dimensional space.
+
+-   Test hypotheses about the target variable.
+
+## Generalization
+
+<br/>
+
+:::{.centered}
+Our teacher has the noble goal of not just drilling the correct answers but to
+turn the students into problem solvers who can apply concepts to solve new
+questions. \
+\
+What is the parallel of this concept in supervised machine learning?
+:::
+
+<br/>
+
+* Need to test how well the model works for new data points
+
+* Want to get great answers (predictions, classifications, forecasts) on 
+previously unseen data 
+
+* Avoid **overfitting**: building models that follow the training data too closely
+
+* Avoid **underfitting**: building models that are too simple
+
+* This is known as the **bias--variance** tradeoff in data science
+
+## Example
+
+:::{.example}
+::::{.example-header}
+Melanoma Incidences
+::::
+::::{.example-container}
+
+Data from the Connecticut Tumor Registry on age-adjusted numbers of melanoma 
+incidences per 100,000 people for the 37 years from 1936 to 1972. 
+
+```{r, include=FALSE}
+melanoma <- read.csv("../data/melanoma.csv")
+```
+
+
+``` {r, echo=FALSE, fig.align="center", out.width="55%", fig.asp=0.7}
+plot(x=melanoma$year,
+     y=melanoma$incidences,
+     ylab="Incidences",
+     xlab="Year",
+     bty="l",
+     las=1,
+     ylim=c(0,6))
+```
+::::
+:::
+
+## Example
+
+:::{.example}
+::::{.example-header}
+Melanoma Incidences: Possible Signals
+::::
+::::{.example-container}
+
+``` {r, fig.align="center", out.width="55%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: Models of different degree of smoothness for the Melanoma data.
+library(splines)
+regspl_02 <- lm(incidences ~ ns(year,df= 2), data=melanoma)
+regspl_07 <- lm(incidences ~ ns(year,df= 7), data=melanoma)
+regspl_10 <- lm(incidences ~ ns(year,df=10), data=melanoma)
+regspl_25 <- lm(incidences ~ ns(year,df=25), data=melanoma)
+
+yr <- seq(1936,1972,length.out=50)
+
+plot(melanoma$year,melanoma$incidences,
+     las=1,
+     bty="l",
+     xlab="Year",
+     ylab="Incidences")
+lines(yr,predict(regspl_02,newdata=data.frame(year=yr)), 
+      col="black"    , lty="solid", lwd=1.5)
+lines(yr,predict(regspl_07,newdata=data.frame(year=yr)), 
+      col="red"      , lty="dotted", lwd=2)
+lines(yr,predict(regspl_10,newdata=data.frame(year=yr)), 
+      col="blue"     , lty="dashed", lwd=2)
+lines(yr,predict(regspl_25,newdata=data.frame(year=yr)), 
+      col="darkgreen", lty="dotdash", lwd=2)
+
+```
+::::
+:::
+
+
+## All Models are Wrong. Some are Useful.
+
+
+* [G.E.P. Box Quotes (1976)]{.maroon}
+
+:::{.quote}
+Since all models are wrong the scientist cannot obtain a "correct" one by excessive elaboration.\
+\
+Since all models are wrong the scientist must be alert to what is importantly wrong.
+:::
+
+* [G.E.P. Box Quotes (1987)]{.maroon}
+
+:::{.quote}
+All models are wrong, but some are useful.
+:::
+
+
+* [What did he mean by that?]{.maroon}
+
+
+## Assignment 
+:::{.assignment}
+::::{.assignment-header}
+Compartmental Models in Epidemiology
+::::
+::::{.assignment-container style="font-size: 0.8em;"}
+The SIR (Susceptible--Infectious--Recovered) model is a standard model in 
+epidemiology. It describes how an infectious disease moves through a population. 
+At each point in time an individual is in one of three states, called **compartments**: 
+
+* **S**: You have not had the disease but you are **susceptible** to it
+* **I**: You are **infected** by the disease
+* **R**: You are **recovered** from the disease, or dead 
+
+Assumptions of the SIR model:
+
+* The disease progresses in only one direction, from S to I to R. 
+* Everyone is equally susceptible and behaves the same way.
+* Everyone is equally likely to be vaccinated, if a vaccine is available.
+* All members of the populations intermingle at random.
+
+---
+
+1. What does vaccination look like in terms of s SIR model?
+2. Do the SIR model assumptions invalidate the model for some diseases and
+circumstances?
+3. Does the SIR model apply to the COVID-19 pandemic?
+::::
+:::
+
+## Assignment
+
+:::{.assignment}
+::::{.assignment-header}
+Reproduction Number $R_0$ Epidemiology
+::::
+::::{.assignment-container}
+The rate at which a disease spreads through the population is measured by the
+**basic reproduction** number, $R_0$. This number, which we became all too 
+familiar with during the COVID-19 pandemic, measures the number of uninfected 
+people expected to catch the disease from an infected individual. 
+
+An $R_0$ of
+3 means that someone who contracts the disease is expected to pass it on to three
+other individuals. In the absence of vaccines or quarantines, any disease with
+$R_0 > 1$ will eventually spread to the entire population.
+
+- Discuss whether the assumptions of the SIR model apply to the COVID-19 pandemic.
+
+- What could be reasons why epidemiologists hold on to a SIR model even if one 
+or more of its assumptions are violated?
+
+- In some countries COVID intervention measures were directly related to $R_0$,
+often called the R-number. Depending on whether a multi-day average of $R_0$ was above
+or below a threshold COVID restrictions were more severe or relaxed.
+$R_0$ is calculated either retrospectively from epidemiological data (such as data from contact 
+tracing) or using theoretical mathematical models based on differential equations
+such as the SIR model. Discuss the pros and cons of the two approaches.
+
+- Is $R_0$ a biological constant of a pathogen, or is it a function of human
+behavior **and** characteristics of the pathogen?
+::::
+:::
+
+
+
+## Stochastic Models
+
+- [Incorporate uncertainty explicitly]{.maroon}
+
+- [Data are inherently noisy]{.maroon}
+
+- [Allowing for random variation leads to simpler models]{.maroon}
+
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Modeling Coin Flips
+::::
+::::{.assignment-container}
+Goal: predict whether a coin, when flipped, lands on Heads or Tails.
+
+Approach 1: Develop a mathematical model that captures the forces acting on
+the coin
+
+- What are the inputs you consider for this model?
+- Are you building one big model or a combination of sub-models?
+- What are assumptions you are making? 
+
+Approach 2: Develop a stochastic model to predict coin flips.
+
+- What are the assumptions of this model?
+- What are the unknowns (parameters) in the model?
+- What sort of statements will you be able to make about a particular coin?
+- How would you establish whether a given coin is fair (heads and tails equally likely)?
+
+::::
+:::
+
+

@@ -325,7 +325,12 @@ window.Quarto = {
 <p>Let’s look at the steps in more detail.</p>
 <section id="problem-definition" class="level4">
 <h4 class="anchored" data-anchor-id="problem-definition">Problem Definition</h4>
-<p>This should go without saying, before attempting to build a solution one should know what problem the solution solves. However, we often get things backwards, building solutions first and then looking for what problems to solve with them. The world of technology is littered with solutions looking for a problem.</p>
+<p>This should go without saying, before attempting to build a solution one should know what the problem is. It seems obvious but problems are not always what they seem. It takes creativity and thinking to uncover what the real problem is that should be solved. We often take problems as given, fail to uncover the real problem, and end up solving the wrong one <span class="citation" data-cites="Kroese_2020">(<a href="references.html#ref-Kroese_2020" role="doc-biblioref">Kroese 2020</a>)</span>. Blockbuster turned down a deal with Netflix because it was convinced that customers would not want to have movies delivered to their home. LOL. If customers are telling you that they want “faster horses”, are they looking to you to optimize the amount of hay, water, and carrots you feed horses or are they looking for a faster mode of transportation? Disney’s parks were criticized by customers for long queues for the rides, customers spent hours waiting for their turn. The obvious solutions would be to build more rides or allow fewer visitors in the parks, both would not be good for Disney’s bottom line. <span class="citation" data-cites="Kroese_2020">Kroese (<a href="references.html#ref-Kroese_2020" role="doc-biblioref">2020</a>)</span> writes</p>
+<div class="quote">
+<p>instead of investing millions, Disney World simply added themed music, videos, and introduction stories to the waiting areas. Instead of decreasing the waiting time, they increased its value.</p>
+</div>
+<hr>
+<p>We also get it wrong when we are building solutions first and then look for the problems they might solve. The world of technology is littered with solutions looking for a problem.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Solution looking for a problem">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -341,13 +346,36 @@ Solution looking for a problem
 <div id="fig-firstcar" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/FirstAutomobile.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+<a href="images/FirstAutomobile.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<p>Another wonderful example of a solution that did not solve a problem is the story of the company Juicero.</p>
+<div class="example">
+<div class="example-header">
+<p>Example: Juicero, the juicer no one needed.</p>
+</div>
+<div class="example-container">
+<p>Trying to cash in on the wellness craze, The Silicon Valley company Juicero aimed to bring the experience of single-serve coffee makers like Keurig to the world of fruit and vegetable juice. Juicero developed a pricey and over-engineered machine to produce single-serve cold-pressed juice at the touch of a button.</p>
+<div id="fig-juicero" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-juicero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Juicero.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-juicero-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: The $699 Juicero juicer.
+</figcaption>
+</figure>
+</div>
+<p>The business model was a subscription service. You buy the Juicero juicing machine for the whopping price of $699, subscribe to the service, and the company will regularly send you pouches of diced vegetables and fruits which you run through the juicer. The machine was touted as very powerful, having enough force to “lift two Teslas”. Apparently, the whole thing was a great idea by Silicon Valley standards and Juicero raised $120 million in venture capital funding.</p>
+<p>The user experience had a few quirks that turned out to be unpopular. You had to use the pouches from the company at $5–$7 per pack. You could buy the pouches only if you owned the $699 juicer. The pouches had an expiration date, lasted only 8 days, and needed to be scanned before running through the juicer; the machine would refuse to process pouches that were past the expiration date.</p>
+<p>The death knell tolled when Bloomberg reviewed the machine and determined that you can just as easily squeeze the pouches by hand. Check out <a href="https://www.bloomberg.com/news/features/2017-04-19/silicon-valley-s-400-juicer-may-be-feeling-the-squeeze">this</a> Bloomberg video that destroyed the myth of the juicing machine with four tons of pressing power.</p>
+<p>British daily newspaper The Guardian mocked Juicero as an example of the Silicon Valley culture to raise large amounts of money for solutions to problems that do not exist.</p>
 </div>
 </div>
 </section>
@@ -384,14 +412,14 @@ Carl Friedrich Gauss
 <section id="generalization-abstraction" class="level4">
 <h4 class="anchored" data-anchor-id="generalization-abstraction">Generalization (Abstraction)</h4>
 <p>Once the problem is decomposed and the patterns are recognized, we should be able to see the relevant details of the problem and how we go about solving the problem. This is where we derive the core logic of the solution, the <strong>rules</strong>. For example, to write a computer program to solve a jigsaw puzzle, you would not want to write code specific to one particular puzzle image. You want code that can solve jigsaw puzzles in general. The specific image someone will use for the jigsaw puzzle is an irrelevant detail.</p>
-<p>A rectangle can be decomposed into a series of squares (<a href="#fig-rectangle-decomp" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>). Calculating the area of a rectangle as width x height is a generalization of the rule to calculate the area of a square as width-squared.</p>
+<p>A rectangle can be decomposed into a series of squares (<a href="#fig-rectangle-decomp" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>). Calculating the area of a rectangle as width x height is a generalization of the rule to calculate the area of a square as width-squared.</p>
 <div id="fig-rectangle-decomp" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rectangle-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/RectangleDecomposition.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rectangle-decomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to generalize computation of the area
+Figure&nbsp;1.3: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to generalize computation of the area
 </figcaption>
 </figure>
 </div>
@@ -400,14 +428,14 @@ Figure&nbsp;1.2: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to genera
 <h4 class="anchored" data-anchor-id="algorithm-design">Algorithm design</h4>
 <p>The final element of CT involves another form of thinking, <strong>algorithmic thinking</strong>. Here we define the solution as a series of steps to be executed. Algorithmic thinking does not mean the solution has to be implemented by a computer, although this is the case in the narrow sense of CT. The point of the algorithm is to arrive at a set of repeatable, step-by-step instructions, whether these are implemented by humans, machines, or a computer. Capturing the solution in an algorithm is a step toward <strong>automation</strong>.<br>
 <br>
-<a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> shows an algorithm to produce pumpkin soup, repeatable instructions that lay out the ingredients and how to process them in steos to transform them into soup.</p>
+<a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> shows an algorithm to produce pumpkin soup, repeatable instructions that lay out the ingredients and how to process them in steos to transform them into soup.</p>
 <div id="fig-soup-recipe" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.
+Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
 </figcaption>
 </figure>
 </div>
@@ -517,7 +545,7 @@ Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.
 <li>Pour into bowls and garnish with optional toppings (e.g., a swirl of cream, roasted seeds, or fresh herbs).</li>
 </ul></li>
 </ol>
-<p><a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> is a specific implementation of the algorithm.</p>
+<p><a href="#fig-soup-recipe" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> is a specific implementation of the algorithm.</p>
 <p>By applying computational thinking, we decomposed the task of making pumpkin soup into smaller steps, recognized patterns in the cooking process, abstracted the general process for making soups, and designed an algorithm to efficiently make pumpkin soup. This method helps streamline the cooking process, ensures nothing is overlooked and provides a clear, repeatable procedure.</p>
 </section>
 </section>
@@ -536,24 +564,24 @@ Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.
 </blockquote>
 <p>The largest book seller, Amazon, is a software company. Prior to the software revolution, it was brick-and-mortar book stores like Borders. The largest provider of video services, Netflix, is a software company. Previously, you rented physical video cassette tapes at Blockbuster. The music we listen to today is stored digitally as a file, distributed through software, and made audible through software. The best recruiting company, LinkedIn, is a software company. Some of the best movies are created by Pixar, a software company. You get the idea, I’ll stop here.</p>
 <p>While software implementations of problem solving have upended many industries, the way we build and use software, and the types of problems we can solve with it, is itself being upended, thanks to the advances in large-language models (LLMs) like ChatGPT, Claude, Gemini, and others.</p>
-<p>The shift toward computational thinking and the importance of solving problems through software has become most evident in 2024, when Nobel prizes in Physics and Chemistry were awarded not to scientists in those fields, but to computer scientists and artificial intelligence researchers who developed the foundational computational methods that helped to advance Physics and Chemistry (<a href="#fig-nobel-physics" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> and <a href="#fig-nobel-chemistry" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>).</p>
+<p>The shift toward computational thinking and the importance of solving problems through software has become most evident in 2024, when Nobel prizes in Physics and Chemistry were awarded not to scientists in those fields, but to computer scientists and artificial intelligence researchers who developed the foundational computational methods that helped to advance Physics and Chemistry (<a href="#fig-nobel-physics" class="quarto-xref">Figure&nbsp;<span>1.5</span></a> and <a href="#fig-nobel-chemistry" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>).</p>
 <div id="fig-nobel-physics" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizePhysics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizePhysics.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: 2024 Nobel Prize winners in Physics
+Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics
 </figcaption>
 </figure>
 </div>
 <div id="fig-nobel-chemistry" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizeChemistry.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizeChemistry.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry
+Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry
 </figcaption>
 </figure>
 </div>
@@ -672,7 +700,7 @@ https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
 <div class="example-container">
 <p>Building on the theme of “happiness”, a frequent question asked by companies that sell products or services is “are my customers satisfied and are they loyal?”</p>
 <p>Rather than an extensive survey with many questions as in the World Happiness Report, the question of customer satisfaction and loyalty is often distilled into a single metric in the business world, the Net Promoter Score (NPS). NPS is considered by many the gold standard customer experience metric. It rests on a single question: “How likely are you to recommend the companies products or services?”</p>
-<p>The calculation of NPS is as follows (<a href="#fig-nps" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>):</p>
+<p>The calculation of NPS is as follows (<a href="#fig-nps" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>):</p>
 <ul>
 <li>Customers answer the question on a scale of 0–10, with 0 being not at all likely to recommend and 10 being extremely likely to recommend.</li>
 <li>Based on their response, customers are categorized as promoters, passives, or detractors. A detractor is someone whose answer was between 0 and 6. A promoter is someone whose answer is 9 or 10. The others, which responded with a 7 or 8 are passives.</li>
@@ -685,7 +713,7 @@ https://www.mcgill.ca/sociology/files/sociology/2008_--_qunatification.pdf
 <img src="images/NetPromoterScore.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.6: Net promoter score
+Figure&nbsp;1.7: Net promoter score
 </figcaption>
 </figure>
 </div>
@@ -942,18 +970,18 @@ Discrete variables are further divided into the following groups:</p>
 <p>Example: Measuring Fitness</p>
 </div>
 <div class="example-container">
-<p>One method for quantifying the aerobic fitness of athletes is through testing their aerobic capacity under stress (<a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>). These measurements are time consuming and expensive.</p>
+<p>One method for quantifying the aerobic fitness of athletes is through testing their aerobic capacity under stress (<a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>). These measurements are time consuming and expensive.</p>
 <div id="fig-aerobic-fit" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/AerobicCapacity.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.7: Measuring aerobic capacity.
+Figure&nbsp;1.8: Measuring aerobic capacity.
 </figcaption>
 </figure>
 </div>
-<p>Imagine that you conduct a study in which a number of athletes are subjected to aerobic capacity tests on a machine similar to that shown in <a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>. In addition to measuring their aerobic capacity, you also measure simple-to-obtain attributes such as heart rate, rest pulse, run pulse, distance run, etc.</p>
+<p>Imagine that you conduct a study in which a number of athletes are subjected to aerobic capacity tests on a machine similar to that shown in <a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>. In addition to measuring their aerobic capacity, you also measure simple-to-obtain attributes such as heart rate, rest pulse, run pulse, distance run, etc.</p>
 <p>Then, you develop a model that can predict aerobic capacity from the easy-to-measure attributes. If that model works well, you can predict the aerobic capacity of an athlete by obtaining their heart rate, pulse, rest pulse, etc. The prediction from that model is a surrogate for the unobserved aerobic fitness measurement.</p>
 <p>This is an example of a <strong>regression model</strong>.</p>
 </div>
@@ -986,9 +1014,9 @@ Figure&nbsp;1.7: Measuring aerobic capacity.
 
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.</span>
-<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1.3: A recipe for pumpkin soup is an algorithm.</span>
-<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;1.4: 2024 Nobel Prize winners in Physics</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;1.5: 2024 Nobel Prize winners in Chemistry</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Andreessen_2011" class="csl-entry" role="listitem">
@@ -999,6 +1027,9 @@ Grue, Lars, and Arvid Heiberg. 2006. <span>“Notes on the History of Normality�
 </div>
 <div id="ref-Huff_1954" class="csl-entry" role="listitem">
 Huff, Darrell. 1954. <em>How to Lie with Statistics</em>. W.W. Norton &amp; Company, New York.
+</div>
+<div id="ref-Kroese_2020" class="csl-entry" role="listitem">
+Kroese, Jasper. 2020. <span>“Companies Are Brilliantly Solving the Wrong Problems.”</span> <a href="https://marker.medium.com/why-organizations-are-so-good-at-solving-the-wrong-problems-17d414d0259">https://marker.medium.com/why-organizations-are-so-good-at-solving-the-wrong-problems-17d414d0259</a>.
 </div>
 <div id="ref-ONeil2017" class="csl-entry" role="listitem">
 O’Neil, Cathy. 2017. <em>Weapons of Math Destruction. How Big Data Increases Inequality and Threatens Democracy</em>. Crown, New York.
@@ -1594,7 +1625,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

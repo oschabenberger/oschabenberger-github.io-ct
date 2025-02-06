@@ -273,44 +273,6 @@ The 95\% prediction interval in 2030 ranges from 0.2 to 2.6 degrees.
 
 ### Underfitting
 
-## All Models are Wrong--Some are Useful
-
-In a 1976 paper, George E.P. Box declared "All models are wrong" [@GEPBox1976].
-Later, he added a qualification which turned into a frequently cited quote 
-about modeling: 
-
->*All models are wrong, some are useful.* [@BoxDraper_1987, p. 424].
-
-### Compartmental Models in Epidemiology
-
-SIR (Susceptible--Infectious--Recovered) model is a standard class of compartmental
-models in epidemiology, describing how an infectious disease moves through a population. 
-On the surface this makes sense: at each point in time an individual is in one of 
-three states, called compartments: 
-
-* You have not had the disease but you are susceptible to it (S compartment)
-* You are infected by the disease (I compartment)
-* You are recovered from the disease, or dead (R compartment)
-
-A vaccination, then, is a shortcut that moves an individual directly from the 
-S to the R compartment, bypassing the infected state.
-
-However, there are a number of assumptions in the SIR model that can invalidate
-the model for some diseases and circumstances:
-
-1. The disease progresses in only one direction, from S to I to R. 
-2. Everyone is equally susceptible and behaves the same way
-3. Everyone is equally likely to be vaccinated, if a vaccine is available
-4. All members of the populations intermingle at random
-
-The rate at which the disease spreads through the population is measured by the
-**basic reproduction** number, $R_0$. This number, which we became all too 
-familiar with during the COVID-19 pandemic, measures the number of uninfected 
-people expected to catch the disease from an infected individual. An $R_0$ of
-3 means that someone who contracts the disease is expected to pass it on to three
-other individuals. In the absence of vaccines or quarantines, any disease with
-$R_0 > 1$ will eventually spread to the entire population.
-
 
 ## Agent-based Models
 
