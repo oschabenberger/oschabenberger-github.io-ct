@@ -19,6 +19,13 @@ $col-vt-black: black;
 /* ------------------------------------------------------ */
 
 /*-- scss:rules --*/
+.centered {
+    color: $col-vt-orange;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 600;    
+    text-shadow: 1px 1px 1px $col-vt-maroon;
+}
 
 .flushright {
     text-align: right;
@@ -42,6 +49,13 @@ $col-vt-black: black;
     font-weight: 600;
     font-style: italic;
     
+}
+
+.question {
+  padding: 1em;
+  margin: 1em 0;
+  border-left: 3px solid #2780e3;
+  background-color: #f8f9fa;
 }
 
 .assignment {

@@ -18,16 +18,17 @@ book:
 
   chapters:
     - index.qmd
-    - intro.qmd
+    - intro.qmd  # Computational Thinking
+    - quant.qmd  # Quantitative Thinking
     - cholera.qmd
     - datascience.qmd
     - firstStepsR.qmd
     - correlation.qmd
     - dataliteracy.qmd
-    - intuition.qmd
-    - predictions.qmd
     - life_algorithms.qmd
     - genAI.qmd
+    - intuition.qmd
+    - predictions.qmd
     - references.qmd
   #  - notes.qmd
     

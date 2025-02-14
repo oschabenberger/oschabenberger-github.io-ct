@@ -51,9 +51,27 @@ certain problems optimally. If you have to put five books on a shelf in order, y
 might not worry much about the sorting algorithm. When you have to sort 100,000
 items choosing between a bubble, quick, or merge sort matters much more.
 
-Can we apply what mathematicians and computer scientists know about optimal 
-algorithms to solve problems in everyday life? The discussion that follows draws
-on the book *Algorithms to Live By* by @ChristianGriffiths.
+**Question 1**: Can we apply what mathematicians and computer scientists know about optimal 
+algorithms to solve problems in everyday life? If you were searching for an apartment
+in San Francisco and finally sign a lease you might not be happy with the 
+outcome; maybe there were better apartments and better deals out there. If you 
+went about the search in an optimal way, then you can live with the outcome knowing 
+that the process maximized your probability of finding the best apartment. 
+The algorithm defines the best process although it does not guarantee the best 
+outcome.
+
+![ Trust the process.](images/TrustProcess.jpeg){#fig-trust-process fig-align=center width=50%}
+
+**Question 2**: What can we learn from how computer scientists think about algorithms about how to 
+design systems and make decisions in every day life? Computer scientists study
+the complexity of algorithms, trying to reduce the computational burden of a 
+solution. Can that inform how we interact with each other? Are you more likely
+to land a successful meeting invite on the calendar if you ask the meeting 
+participants which time works best for them or if you tell them "next Wednesday at 11:00 am"?
+It turns out it is the latter, because it presents a constrained solution which
+has a lower cognitive burden than "which time is most convenient for you?".
+
+The discussion that follows draws on the book *Algorithms to Live By* by @ChristianGriffiths.
 
 
 ## Optimal Stopping--The 37% Rule
@@ -214,9 +232,11 @@ assumptions and conditions under which the model applies. We quickly see that
 the assumptions do not map cleanly to real-life situations such as hiring, 
 finding a partner, or even circling a parking lot for the best empty space.
 
-As G.E.P. Box said 
+Recall from @sec-data-science-models-wrong the famous G.E.P. Box quote
 
->*All models are wrong. Some are useful.*
+:::{.quote}
+All models are wrong. Some are useful.
+:::
 
 The utility of casting real-life decision situations in terms of an optimal
 stopping problem lies in understanding that under special circumstances there
@@ -232,15 +252,17 @@ A situation where the algorithm applies cleanly to a real-life situation is
 when we are placing things in order---the task of sorting. The question then is
 what is the most efficient way to go about it?
 
-## Searching and Sorting---A Tradeoff
+## Searching and Sorting
 
-Searching means finding things in a collection. Sorting means arranging a collection
+**Searching** means finding things in a collection. **Sorting** means arranging a collection
 in order. Both are fundamental tasks in data processing. Sorting was one of the 
-first applications for computers, making sense of the 1890 census. Tallying the 
-previous census by hand took 8 years, just enough to finish the task before the next
-census [@ChristianGriffiths]. With growing number of questions asked on every 
-census, something needed to be done, the 1890 census would not be tallied by hand 
-in time for the 1900 census. Enter the Tabulator, a punchcard-based machine
+first applications for computers, making sense of the 1890 census. The census takes
+place every ten years and with increasing population and more questions asked
+on each census the burden of counting up the answers was growing. Doing this by
+hand was getting tricky. Tallying the previous census by hand took 8 years, just 
+enough to finish the task before the 1890 census [@ChristianGriffiths]. Something 
+needed to be done, the 1890 census could not be tallied by hand in time for the 
+1900 census. Enter the Tabulator, a punch card-based machine
 invented by Herman Hollerith and adapted for the 1890 census (@fig-hollerith).
 
 ![Tabulator with sorting machine invented by Herman Hollerith. Source: [Wikipedia](https://en.wikipedia.org/wiki/Tabulating_machine)](images/HollerithMachine.CHM.jpg){#fig-hollerith fig-align="center" width=70% .lightbox}
@@ -248,29 +270,32 @@ invented by Herman Hollerith and adapted for the 1890 census (@fig-hollerith).
 Sorting was one of the most important tasks for computers. @ChristianGriffiths 
 state
 
->*By the 1960s, one study estimated that more than a quarter of the computing resources of the world were being spent on sorting.*
+:::{.quote}
+By the 1960s, one study estimated that more than a quarter of the computing resources 
+of the world were being spent on sorting.
+:::
 
-and it is still at the heart of many algorithms. Every time you see a ranking,
+Sorting is still at the heart of many algorithms. Every time you see a ranking,
 a largest or smallest value, a 95^th^ percentile, a leader board or a top-10, 
 a list had to be arranged by value, sorted at least partially.
 
-As an exercise, can you think of some ways in which you encounter sorted things 
-every day? Here is a start:
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Find Examples of Sorting
+::::
+::::{.assignment-container}
+Can you think of some ways in which you encounter sorted things 
+every day? Here are examples to get you started:
 
 - Sports teams are ranked by criteria such as number of wins and losses, and
 displayed from highest to lowest.
-
 - Music is ranked by popularity, measured as number of downloads, sales, etc.
-
 - Music is grouped (sorted) by genre.
-
 - Streaming services recommend things to watch according to an algorithm that
 ranks shows based on your watch history.
-
 - Displays of countries are sorted by all kinds of attributes. The  medal count 
 in the Olympic Games, gross domestic product (GDP), annual oil production, 
 emissions, etc.
-
 - A Google search returns the search results sorted according to relevance. The 
 relevance is determined through a number of factors such as Google's famed 
 [PageRank](https://en.wikipedia.org/wiki/PageRank) algorithm, which sites are 
@@ -279,6 +304,7 @@ sift through millions of links to determine which ones are most relevant to
 your search. The ranking is very effective, less than 1\% of Google searches 
 scroll to the second page.
 
+<!---
 - The email Inbox is sorted by some criteria, read/unread, message thread, time 
 of arrival, etc.
 
@@ -295,6 +321,366 @@ brand, price, popularity, etc.
 
 - Books in the library are organized into buckets by call numbers and are sorted
 alphabetically within buckets.
+--->
+::::
+:::
+
+### The Search--Sort Tradeoff
+
+In business, economy of scales is the achievement of cost advantages through 
+increase of production (increase of scale). By producing more items the fixed
+cost of production such as building a factory are spread across a larger number
+of items, reducing the fixed cost per item. Striving for greater scale and 
+scalability is an important business and technology driver. With searching
+and sorting, however, size is kryptonite. From @ChristianGriffiths:
+
+:::{.quote}
+Sorting involves steep *dis*economies of scale, violating our normal intuitions 
+about the virtues of doing things in bulk. Cooking for two is typically no harder 
+than cooking for one, and it’s certainly easier than cooking for one person twice. 
+But sorting, say, a shelf of a hundred books will take you longer than sorting 
+two bookshelves of fifty apiece: you have twice as many things to organize, and 
+there are twice as many places each of them could go. The more you take on, the 
+worse it gets.
+:::
+
+That begs the question: should we even sort at all? One reason for sorting is
+to facilitate searching. Since the books of the library are sorted on shelves,
+knowing that you are in the QA section makes it easy to search for a book with a 
+QB call number. Could we find the QB book if the library arranges books in a 
+random order? It depends on how fast we can search the library. 
+
+- Sorting something that you will never look at and you will never search is a
+complete waste of time and resources.
+- If searching is fast then you should reduce the amount of effort spent on 
+sorting. Maybe partially sorted lists (a bucket for all names starting with letters
+A-D, a bucket for all names starting with E--H, ...) are sufficient.
+- If searching is really fast, we might not benefit from sorting first at all.
+
+For the public
+library or the university library, the tradeoff between sorting and searching
+is resolved by sorting the entire catalog. For the books in your home sorting
+as a preemptive strike for fast searching is probably not necessary. The time
+it takes you to scan a familiar bookshelf or two does not justify the time 
+spent arranging the books alphabetically.
+
+A classic example of the tradeoff is how we organize our email.
+There are basically two extreme approaches with many nuances in between.
+The first approach is to leave everything in your Inbox, your email is completely
+unorganized. The other extreme is to create a meticulous system of folder and 
+sub folders (or labels) to classify email messages you keep. Which system is better 
+in terms of finding an email message you received previously? 
+
+Searching electronic items is many times faster than searching through physical
+books in the library. The cost of searching even through a massive Inbox is tiny
+these days. When it comes to locating an email, sorting the messages 
+first and arranging them in folders is a waste of time. Clicking through the 
+folders to locate an email takes more time than locating it with a search.
+There are other benefits of grouping and arranging messages, such as archiving 
+or not being overwhelmed by the look of an Inbox out of control. Interestingly, 
+all mail clients cite organizing email in folders or labels as a way to make it 
+easier to find the information you need.
+
+### Sorting Algorithms
+
+Sorting suffers from *dis*economies of scale. Sorting larger lists is much 
+harder than sorting shorter lists. The development of sorting algorithms that
+can handle large lists efficiently has a long history in computer science. Let's
+look at a few common sorting algorithms.
+
+#### Bubble sort
+
+The bubble sort is a simple and intuitive sorting algorithm. It is also very 
+inefficient compared to other algorithms. In computer science, the bubble sort is 
+a punching bag of sorts. Don't get caught bubble sorting data unless you are told 
+to do so.
+
+Suppose you scan the list of items you wish to sort. 
+If you find two items that are in the wrong order you change their positions.
+When you come to the end of the list, start over at the beginning of the list.
+Once you reach the end of the list and there were no pairs of items out of 
+order the sort is complete.
+
+@fig-bubble-sort is an example of the first pass through the data from
+@Sehgal_2018. Sorting the list will require one more pass through the data, 
+swapping the "5" and "4" in the second and third positions.
+
+![Bubble sort example; first pass through the data. [Source](https://medium.com/karuna-sehgal/an-introduction-to-bubble-sort-d85273acfcd8).](images/BubbleSort.webp){#fig-bubble-sort fig-align="center" width=60%}
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Sort Students by Birthday
+::::
+::::{.assignment-container}
+All but one students in class write their birthdays on a Postit note and attach
+it to their clothing so it is visible from the front. The students then arrange
+themselves in a line around the classroom and the student who was left out 
+operates as the bubble sorter.
+
+The goal is to arrange the students by birthday from youngest to oldest.
+
+1. How many passes through the class did you have to make until the students
+were sorted?
+
+2. Were there any ties (students with the same birthday) and if so, how did you 
+handle them?
+
+3. How many times did you swap the places of two students in the line?
+
+4. If the class had twice as many students, how much longer would it take to
+sort the students by birthday this way?
+
+5. Did you incorporate any prior knowledge about birthdays in forming the 
+initial line of students, for example, knowledge that one of the students is
+considerably older or younger than the rest?
+::::
+:::
+
+#### Insertion sort
+
+Instead of arranging all items in a list and making individual swaps, we can
+start with an empty list and add items to it one by one. Suppose you want to 
+arrange the items in ascending order. Pick the first item and consider it the 
+middle of the list. If the next item is smaller, put it before the first item,
+otherwise place it after the first item. Starting with the third item you
+run through the existing list (which now has two items in it) from top to bottom
+and place the new item between the two items that bracket its value. You continue
+this process until all items have been placed on the list.
+
+This procedure is called the **insertion sort**. It is also very intuitive and
+more efficient than the bubble sort but not nearly as efficient as more advanced
+(and less intuitive) sorting algorithms.
+
+Suppose you with to sort the list {3,  7,  4,  9,  5,  2,  6,  1} in ascending
+order by insertion sort.
+
+Step 1. You start with the first element, 3. It is now the only element of the 
+sorted list: {3}
+
+Step 2. The next element under consideration is 7. Since it is larger than 3 the
+sorted list is now {3, 7}
+
+Step 3. The next element under consideration is 4. Starting from the top of the 
+list, the value slots in between 3 and 4: {3, 4, 7}
+
+Step 4. The next element under consideration is 9. Starting from the top of the
+list you make it all the way to the end before it slots into place: {3, 4, 7, 9}.
+
+And so on.
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Sort Students by Birthday
+::::
+::::{.assignment-container}
+Repeat the previous exercise arranging students in a classroom by birthday.
+This time apply the insertion sort. Start from students sitting in their 
+seats and ask them to come to the front of the class one by one. As students
+come to the front they represent the next element inserted into the list.
+Students move from the front of the existing list toward the end until they
+find the position where there birthday slots in.
+::::
+:::
+
+#### Mergesort
+
+Bubble and insertion sorts work, they produce ordered lists. Unfortunately, 
+these algorithms are not time efficient, meaning that they require many more
+operations (comparisons) than is necessary to sort a list. As the size of the
+list grows, these algorithms become untenable. A different approach is needed.
+
+Mergesort (or Merge sort) is an example of a **divide-and-conquer** algorithm.
+Such an algorithm breaks a larger problem down into smaller sub-problems, solves
+each sub-problem by itself and combines the results into the solution for the 
+overall problem. *Divide* the problem into smaller parts, *conquer* each part
+and combine the partial solutions into the solution to the original problem.
+
+We divide-and-conquer in real life as well. To cut up a pie into 8 slices a good
+approach is to cut it in half, then cut the halves in half, then cut those pieces 
+in half. The problem of getting to eight equally-sized slices is solved by
+dividing it into parts with simple solutions: *cut something in half*. The 
+divide-and-conquer solution to this problem works well because we are much better
+at dividing something in two equal parts than into eight equal parts.
+
+When you approach a jigsaw puzzle by grouping the pieces into border and non-border
+pieces, then organize them by color, pattern, or shape within the group, you are
+applying the divide-and-conquer principle.
+
+How does this relate to sorting?
+We know how to sort short lists. And we know how to combine two sorted lists.
+Suppose you have a list of two elements and a list of two other elements. You can 
+quickly arrange them into a single list of four elements, this is called **collation**.
+
+The Mergesort algorithm works as follows:
+
+1. Divide the unsorted list of size $n$ into $n$ sub-lists, each containing a
+ single element.
+
+2. Take two neighboring sub-lists and merge them. Now you have $n/2$ sub-lists
+of size 2.
+
+3. Repeat the step of merging two adjacent sub-lists until there are only two
+sub-lists remaining. When you merge those the original list is sorted.
+
+The divide-and-conquer idea can also be applied to the division of the original
+list in step 1. @fig-merge-sort is an example of the entire procedure. The set
+{7, 3, 2, 16, 24, 4, 11, 9} is to be sorted. The first four rows of the figure
+show divide-and-conquer applied to the original list to create the individual 
+elements of the merge sort operation.
+
+![Example of a merge sort.[Source](https://codexperiences.hashnode.dev/merge-sort).](images/Mergesort.png){#fig-merge-sort fig-align=center width=75% .lightbox}
+
+The three green-colored rows a the bottom of @fig-merge-sort create sorted 
+sub-lists that are merged into larger lists.
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Sort Students by Birthday
+::::
+::::{.assignment-container}
+Now let's sort the students in the classroom by birthday using a merge sort.
+You can imagine the initial division formed by students in their seats.
+
+1. What effect does the ability to efficiently merge two sub-lists have on the
+overall performance of the merge sort algorithm?
+
+2. Is there a recursive element to merge sort?
+::::
+:::
+
+## Computational Kindness
+
+In designing functions and algorithms, computer scientists worry a great deal
+about **computational complexity**, the resources required to carry out a 
+computational task. Particular attention is paid to the number of operations
+required (time complexity) and the memory requirements (space complexity). The 
+discussion of search algorithms in the previous section considered their
+time complexity. Also important can be the amount of data exchanged over the network 
+(communication complexity). The complexity of the best algorithm that solves a 
+problem is the complexity of the problem. 
+
+The underlying idea is that computation should be minimized---computation is *bad*. 
+It is bad to compute more than necessary, require more memory than necessary, 
+communicate with other machines more than necessary. In other words, the underlying 
+principle is to minimize the *labor of thought*, to minimize the computational burden.
+
+This principle translates very well into how we make decisions and design 
+systems in real life. You are computationally kind when you are respectful of 
+the cognitive problems you force others to solve. @fig-bus-stop shows digital 
+signage at a bus stop that has a low cognitive burden. The arrival times, even if 
+estimated, of the next six buses visiting the stop are shown in order. The signage
+is computationally kind.
+
+![A bus stop with digital signage that lowers cognitive burden](images/bus_stop_digital_sign.png){#fig-bus-stop fig-align="center" width=50% .lightbox}
+
+If I am waiting for the Number 12 bus, and stopping at the coffee shop nearby
+takes 5 minutes, I can be assured that I will not miss the bus should I opt for
+a latte now. The cognitive burden of this sign is much lower than that of 
+@fig-bus-stop2.
+
+
+![A bus stop sign in Paris, France.](images/bus_stop_signage.jpg){#fig-bus-stop2 fig-align="center" width=50%}
+
+**Computational kindness** is the principle to consider the cognitive (computational)
+burden in interactions with others. As @ChristianGriffiths put it, 
+
+:::{.quote}
+We can be “computationally kind” to others by framing issues in terms that make 
+the underlying computational problem easier.
+:::
+
+Computational kindness and politeness can be at odds. Etiquette suggests to 
+figure out how to spend the evening out by asking "What do you want to do tonight?"
+That places the cognitive burden of the decision on the other party. They have
+to figure out your preferences unless you will go along with their decision or
+they do not care to consider your preferences. It is computationally more kind
+to constrain the problem presented to the other party. You can state your 
+preferences---"I want to go to a movie"---or provide a limited set of options to 
+choose from: "Let's go to McDonald's or Taco Bell followed by either a movie or 
+playing pool at the sports bar." Computational kindness reduces mental burden
+but can be detrimental to your relationships.
+
+Why are folks more likely to schedule meetings when you ask "Can you meet tomorrow
+at 10 am?" instead of "What days and times next week are convenient for you?" The first
+question specifies constraints of the solution space. Now I do not have to 
+spend mental energy going through the open slots in my calendar, assemble a list
+of possible days and times for a meeting, send them back to the inquirer and 
+wait for a response. All I have to do is check my calendar against a narrow constraint:
+tomorrow at 10 am. The first question is computationally kind, its constraint
+reduces mental burden. The question about convenient days and times is computationally
+cruel.
+
+The more polite response when someone tries to schedule with you is to say "I am
+flexible". It is also the computationally most cruel one because it passes the
+buck of computation to the inquirer. They have to do all the work to narrow down 
+the large number of possibilities. Saying "I can do Monday at 2 pm and Wednesday
+at 4 pm" is computationally kind because it reduces their burden to selecting from 
+two options. And if neither of those work they will come back with another day
+and time---which you can likely accept because you are flexible.
+
+Our brains are sophisticated computing machines. If we design algorithms to 
+make the best use of resources, then we can also strive to make everyday tasks
+more computationally friendly to our brain. Opportunities are everywhere.
+
+- Restaurant policies to secure a table have very different levels of mental labor.
+An open seating policy means whoever gets to an open table first gets to sit
+down. Customers will hover, constantly checking on which tables might open up,
+anxiously awaiting their turn. A policy where patron check-in upon arrival,
+can visit the bar, and are being told when their table opens up has a much 
+lower cognitive burden for the patron, but is less computationally kind on the
+restaurant. \
+\
+A reservation service that guarantees you a table has the lowest stress
+level for the patron and the highest computational burden for the restaurant.
+Unless the restaurant knows how to take a reservation but not how to hold
+a reservation.
+
+:::{.centered}
+{{< video https://www.youtube.com/watch?v=A7uvttu8ct0 
+    width="400" height="300" >}}
+:::
+
+- Airline boarding policies. First-come-first serve versus assigned groups that
+board the plane from the back.
+
+- The bus stop that announces the arrival time of the buses versus one that makes
+you guess and wait.
+
+- Navigating a cluttered website with too much information and repeated ads versus
+a clean design where information is easy to find.
+
+- Assembly instructions that are written in some Klingon dialect.
+
+- A poorly delivered presentation with slides that are difficult to follow.
+
+- Amazon's 1-Click online buying system reduced the cognitive load of ordering online.
+With a shipping address and a credit card stored in the profile, you can check 
+out the items in the shopping cart with a single click on the website.
+
+:::{.assignment}
+::::{.assignment-header}
+Assignment: Designing a Parking Lot
+::::
+::::{.assignment-container}
+You are operating a mall or large venue and are designing a parking lot for 
+visitors of the space. Four designs are being proposed:
+
+1. A standard grid of lanes leading away from the venue with parking spaces on
+both sides of the lane.
+2. A standard multi-story parking deck.
+3. A single lane leading away from the venue with parking spaces on both sides
+of the lane.
+4. A helix-type structure that winds upward from the ground level where the 
+venue is located. Parking spaces are accessed directly from the helix.
+
+- Rank the four designs in terms of computational kindness to drivers.
+- Are parking lot designs you find in real life paying attention to 
+computational kindness considerations?
+- Can you think of other designs or technologies that balance the tradeoff 
+between mental labor of finding a parking spot and convenience?
+::::
+:::
+
 
 
 ## Asymmetric Cryptography
