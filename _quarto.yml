@@ -24,6 +24,7 @@ book:
     - datascience.qmd
     - firstStepsR.qmd
     - correlation.qmd
+#    - analysis.qmd
     - dataliteracy.qmd
     - life_algorithms.qmd
     - genAI.qmd

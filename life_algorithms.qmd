@@ -528,7 +528,7 @@ list in step 1. @fig-merge-sort is an example of the entire procedure. The set
 show divide-and-conquer applied to the original list to create the individual 
 elements of the merge sort operation.
 
-![Example of a merge sort.[Source](https://codexperiences.hashnode.dev/merge-sort).](images/Mergesort.png){#fig-merge-sort fig-align=center width=75% .lightbox}
+![Example of a merge sort. [Source](https://codexperiences.hashnode.dev/merge-sort).](images/Mergesort.png){#fig-merge-sort fig-align=center width=75% .lightbox}
 
 The three green-colored rows a the bottom of @fig-merge-sort create sorted 
 sub-lists that are merged into larger lists.

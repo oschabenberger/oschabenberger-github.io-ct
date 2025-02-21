@@ -177,7 +177,8 @@ Variables are difficult to quantify for various reasons:
 
 Here is a short list of difficult-to-quantify concepts from different areas:
 
-1. **Personal and Psychological Attributes**
+##### Personal and Psychological Attributes
+
  - **Emotions**: Happiness, sadness, or anxiety levels can be challenging to 
  measure as they are subjective and context-dependent.
  - **Personality traits**: Attributes like openness, conscientiousness, or 
@@ -189,7 +190,8 @@ Here is a short list of difficult-to-quantify concepts from different areas:
  - **Intelligence**: there are different forms of intelligence (emotional, spatial,
  linguistic, musical, etc.). IQ tests provide incomplete pictures.
 
-2. **Social and Cultural Variables**
+##### Social and Cultural Variables
+
  - **Social cohesion**: The sense of community and connection within a group.
  - **Cultural values**: Abstract beliefs such as collectivism or individualism 
  differ across societies.
@@ -198,31 +200,36 @@ Here is a short list of difficult-to-quantify concepts from different areas:
  - **Social norms**: Expectations about behavior that are implicit and vary 
  among groups.
 
-3. **Ethical and Moral Attributes**
+##### Ethical and Moral Attributes
+
  - **Fairness**: What is considered "fair" depends on personal, cultural, and contextual factors.
  - **Integrity**
  - **Justice**: Varied interpretations of what constitutes equitable treatment or outcomes.
 
-4. **Creative and Artistic Variables**
+##### Creative and Artistic Variables
+
  - **Creativity**: Measuring originality and innovation is inherently subjective.
  - **Aesthetic appeal**: People's appreciation of beauty is highly personal and 
  culturally influenced.
  - **Talent**
 
-5. **Environmental and Ecological Factors**
+##### Environmental and Ecological Factors
+
  - **Biodiversity value**: The intrinsic worth of maintaining species diversity 
   is challenging to calculate in monetary or ecological terms.
  - **Ecosystem health**: Assessing overall resilience, productivity, or 
   stability of ecosystems involves many interdependent variables.
  - **Natural beauty**
 
-6. **Economic and Market Variables**
+##### Economic and Market Variables
+
  - **Brand loyalty** is an emotional attachment to a product or service.
  - **Consumer satisfaction**: Highly subjective and influenced by expectations 
  and individual preferences.
 Innovation potential: The likelihood that a new product or idea will succeed in the market.
 
-7. **Abstract Concepts**
+##### Abstract Concepts
+
  - **Freedom**: The degree to which individuals or groups are free can depend on legal, social, and personal dimensions.
  - **Happiness**: The overall well-being of a population is a composite of 
  subjective factors.
@@ -416,7 +423,7 @@ overall health and your likelihood of developing certain medical conditions.
 And 
 
 :::{.quote}
-The standard BMI chart has limitations for various reasons. Because of this, 
+The standard BMI chart has limitations for various reasons. Because of this, \
 it’s important to not put too much emphasis on your BMI.
 :::
 
@@ -429,7 +436,8 @@ people, or the elderly.
 
 :::{.quote}
 Even though the BMI chart can be inaccurate for certain people, healthcare providers 
-still use it because it’s the quickest tool for assessing a person’s estimated 
+still use it \
+because it’s the quickest tool for assessing a person’s estimated 
 body fat amount.
 :::
 

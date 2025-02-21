@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,8 +268,36 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1><p><img src="QCT_Cover.png" title="Computational and Quantitative Thinking" class="quarto-cover-image img-fluid"></p>
+<p>This material is used to teach UH 2514 Topics in Quantitative and Computational Thinking for Global Citizens in the Honors College of Virginia Tech.</p>
+<p>Computational Thinking (CT) is a problem-solving methodology. It does not imply thinking like a computer scientist, although that connection is often made. CT is about decomposing a problem, recognizing patterns, abstracting solutions, and designing algorithms—repeatable step-by-step instructions. Clearly, computer scientists apply CT in developing software solutions for problems.</p>
+<p>Quantitative Thinking (QT) is also a problem-solving methodology. Its principle approach is to view the world through measurable events, through data.</p>
+<p>That CT and QT are on the rise is not a surprise. Computerization has followed mechanization during the industrial revolution. “Software is eating the world” as Mark Andreessen of VC firm Andreessen-Horowitz declared in 2011 <span class="citation" data-cites="Andreessen_2011">(<a href="references.html#ref-Andreessen_2011" role="doc-biblioref">Andreessen 2011</a>)</span>. In parallel, digitization has turned the world into data. Computer Science has discovered the intrinsic value of data as carrier of information, not just as bits to be stored and exchanged. Data Science has emerged as a combination of the foundational disciplines Statistics, Mathematics, and Computer Science.</p>
+<p>Every one and every field applies computational and quantitative thinking today. Data literacy—the ability to understand, interpret, critically evaluate, and effectively communicate data in context—is not a technical skill but a fundamental capability for everyone.</p>
+<p>The 2024 presidential election cycle in the U.S. has laid bare the discrepancy between the official government statistics measuring the health of the economy and the economic reality on the ground. Not because the government was lying to us about inflation, unemployment, or the country’s productivity. But because the way the commonly cited statistics such as unemployment rate, consumer price index (CPI), and gross domestic product (GDP) measure aspects of the economy and not the economic reality of groups. According to <span class="citation" data-cites="Ludwig_2025">Ludwig (<a href="references.html#ref-Ludwig_2025" role="doc-biblioref">2025</a>)</span>, for the lower and middle class</p>
+<div class="quote">
+<p>darker assessments of the economy were more authentically tethered to reality</p>
+</div>
+<p>than the government-reported statistics. For example, the GDP as a measure of a nation’s wealth gives an incomplete picture because it does not tell us how the wealth is shared among the citizens. If one group benefits disproportionately it is no surprise if another group feels left out.</p>
+<p>Critical thinking about data and the result of data analysis is a capability as fundamental as cruising the internet. We have come a long way and still have a long way to go. As <span class="citation" data-cites="Huff_1954">Huff (<a href="references.html#ref-Huff_1954" role="doc-biblioref">1954</a>)</span> put it so eloquently more than 70 years ago,</p>
+<div class="quote">
+<p>Many a statistic is false on its face. It gets by only because the<br>
+magic of numbers brings about a suspension of common sense</p>
+</div>
+<p>This remains true today. The antidote is quantitative and compuational awareness and thinking.</p>
+<p>Enjoy.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Andreessen_2011" class="csl-entry" role="listitem">
+Andreessen, Mark. 2011. <span>“Why Software Is Eating the World.”</span> <a href="https://a16z.com/why-software-is-eating-the-world/">https://a16z.com/why-software-is-eating-the-world/</a>.
+</div>
+<div id="ref-Huff_1954" class="csl-entry" role="listitem">
+Huff, Darrell. 1954. <em>How to Lie with Statistics</em>. W.W. Norton &amp; Company, New York.
+</div>
+<div id="ref-Ludwig_2025" class="csl-entry" role="listitem">
+Ludwig, Eugene. 2025. <span>“Voters Were Right about the Economy. The Data Was Wrong.”</span> <em>Politico</em>. <a href="https://www.politico.com/news/magazine/2025/02/11/democrats-tricked-strong-economy-00203464">https://www.politico.com/news/magazine/2025/02/11/democrats-tricked-strong-economy-00203464</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

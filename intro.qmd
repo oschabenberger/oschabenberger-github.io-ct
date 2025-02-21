@@ -322,11 +322,18 @@ based on medical knowledge and models that describe patient outcomes.
 
 In 2011, Mark Andreessen of VC firm Andreessen-Horowitz (known as a16z) declared
 
->*Software is eating the world.* 
+:::{.quote}
+Software is eating the world.
+:::
 
 Why was this happening? @Andreessen_2011 cites several reasons, among them
 
->*Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.*
+:::{.quote}
+Six decades into the computer revolution, four decades since the invention of the 
+microprocessor, and two decades into the rise of the modern Internet, all of the 
+technology required to transform industries through software finally works and 
+can be widely delivered at global scale.
+:::
 
 The largest book seller, Amazon, is a software company. Prior to the software
 revolution, it was brick-and-mortar book stores like Borders. The largest provider
@@ -367,4 +374,87 @@ Breaking with tradition, the Nobel committee awarded these prizes not to scienti
 who developed grand new theories of how the world works, but to scientist who 
 develop the computational tools that help us develop grand new theories of how 
 the world works.
+
+## Wicked Problems {#sec-intro-wicked}
+
+Not all problems are made the same. Simple problems can be dealt with by 
+*linear thinking*: here is a problem, this is the solution, and the problem goes
+away. @Grint_2022 distinguishes between three types of problems:
+
+1. **Tame problems**: we know how to fix the problem with standard operating 
+procedures (SOPs). Tame problems require *managers* to perform or delegate the 
+problem solving.
+
+2. **Critical problems**: crises that are self-evident, and we are hoping someone
+knows how to sort them out. These problems require *commanders* who know the 
+solution, are decisice, and direct and coerce others.
+
+3. **Wicked problems**: problems we do not know how to fix. Solving wicked problems
+requires *leaders* who recognize their own limits and the wicked nature of the 
+problem.
+
+A problem can be tame for some and wicked for others. Performing heart surgery
+would be a wicked problem for most of us because we have no clue how to go about
+it. For an experienced heart surgeon who performs the procedures every day this
+is a tame problem. Participants of the same problem can experience the same 
+situation from different problem perspective. A traffic accident is a tame 
+problem for a cop who deals with accidents routinely. For the drivers involved
+the problem presents a crisis.
+
+A single situation can have overlapping problem types and call for a combination
+of decision styles to deal with it. The Covid-19 pandemic is a case in point.
+@Hoban_2023 writes
+
+:::{.quote}
+vaccine development and distribution are simple problems as they follow known
+procedures; isolation, distancing and mask wearing are critical problems but both 
+the simple and the critical shade over into the wicked problems of a culture 
+where people may not trust their government, governments may have political 
+agendas, people’s exposure and susceptibility to infection are linked to socioeconomic 
+factors which in turn are downplayed by governments and so on.
+:::
+
+:::{.assignment}
+::::{.assignment-header}
+Assignment: CO2 Emissions
+::::
+::::{.assignment-container}
+Some think that we are emitting too much CO2 by burning fossil fuels and that
+this is a tame problem: move from energy based on fossil fuels to renewable
+energy sources. No more fossil fuels, no more CO2 emissions from burning fossil
+fuels, problem solved.
+
+Others think that reducing CO2 emissions is a wicked problem. A lot of CO2 emissions
+are already baked into the system and even if all CO2 emissions would stop today
+the climate would still be changing. Any action we take to change CO2 emissions
+changes the system itself. Once we manipulate the system do we have to look at
+other components besides the climate?
+
+Give reasons why reducing CO2 emissions is a wicked problem.
+::::
+:::
+
+Are wicked problems so difficult that they defy solution? Should we just 
+throw up our arms and walk away? Not at all.
+By definition a wicked problem does not have a solution, at least not yet. 
+Heart surgery was a wicked problem for surgeons until medical science advanced
+sufficiently to make it tameable. Today, heart surgery is a known problem with
+known solutions and standard operating procedures. Wicked problems require
+not managers or commanders, but leaders who recognize their own limits and 
+the wickedness of the problem. Leaders who can learn and grow, make and admit
+mistakes, and seek solutions for the public good.
+
+@Hoban_2023 gives three guidelines for dealing with wicked problems:
+
+1. **Do no harm**: do nothing that has a chance of doing catastrophic harm. 
+Do not attempt to change the entire system at once.
+
+2. **Find where you are**: you are somewhere in the middle of the problem. Every
+actor who wants to influence the system is part of the system.
+
+3. **Creativity through constraints**: just like the rules of a game force you
+to innovate within the constraints of the rules, know what you can and cannot do.
+Humans not being able to fly or breath underwater are wicked problems. Knowing
+that we cannot solve them by flapping our arms or by growing gills identifies
+constraints that point in the direction of a solution.
 

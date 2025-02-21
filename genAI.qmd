@@ -42,7 +42,7 @@ text processing or diffusion-based systems for image generation are examples.
 Turk. It was an **automaton**, a device made to imitate an human action. The action
 in this case was to play chess.
 
-![Mechanical Turk, a chess-playing automaton in the 18th century.](images/MechanicalTurk.jpeg){#fig-mech-turk fig-align="center" width=50%}
+![Reconstruction of Mechanical Turk, a chess-playing automaton in the 18th century. Source: [Wikipedia](https://en.wikipedia.org/wiki/Mechanical_Turk).](images/MechanicalTurk.jpeg){#fig-mech-turk fig-align="center" width=50%}
 
 You can imagine that building a purely analog machine that plays chess is difficult.
 To accomplish this in the 18th century is really remarkable. Well, it turned out 
@@ -69,7 +69,7 @@ with **expert systems**.
 During the Cold War the government was interested in the automatic, instant translation 
 of documents from Russian to English. Neural network architectures were proposed 
 to solve the task. Today, neural network-based algorithms can perform language 
-translation very well, it is just one of the many text analytics tasks that modern AI
+translation very well, it is just one of the many text analysis tasks that modern AI
 is good at. In the 1950s and 1960s progress was hindered by a number of factors:
 
 - lack of computing power to build large, in particular, deep networks
@@ -223,7 +223,7 @@ how they work. We can only observe how they perform and try to make corrections
 when they get it wrong. These models do not tell us why they decide that an 
 animal on a photo is more likely a cat than a dog. They do not understand "catness"
 or "dogness". They are simply performing pixel pattern matching, comparing what
-we feed them to the patterns they have encountered during the training phase.
+we feed them to the patterns they encountered during the training phase.
 
 With the arrival of generative AI this seemed to have changed. AI algorithms
 appeared much smarter and to understand much more about the world. The length

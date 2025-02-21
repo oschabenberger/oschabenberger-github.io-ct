@@ -1,1 +1,60 @@
 # Preface {.unnumbered}
+
+This material is used to teach UH 2514 Topics in Quantitative and Computational
+Thinking for Global Citizens in the Honors College of Virginia Tech.
+
+Computational Thinking (CT) is a problem-solving methodology. It does not imply
+thinking like a computer scientist, although that connection is often made. CT is
+about decomposing a problem, recognizing patterns, abstracting solutions,
+and designing algorithms---repeatable step-by-step instructions. Clearly, 
+computer scientists apply CT in developing software solutions for problems.
+
+Quantitative Thinking (QT) is also a problem-solving methodology. Its principle
+approach is to view the world through measurable events, through data.
+
+That CT and QT are on the rise is not a surprise. Computerization has followed
+mechanization during the industrial revolution. "Software is eating the world"
+as Mark Andreessen of VC firm Andreessen-Horowitz declared in 2011 [@Andreessen_2011]. 
+In parallel,
+digitization has turned the world into data. Computer Science has discovered the
+intrinsic value of data as carrier of information, not just as bits to be stored
+and exchanged. Data Science has emerged as a combination of the foundational
+disciplines Statistics, Mathematics, and Computer Science.
+
+Every one and every field applies computational and quantitative thinking today.
+Data literacy---the ability to understand, interpret, critically evaluate, and 
+effectively communicate data in context---is not a technical skill but a fundamental 
+capability for everyone.
+
+The 2024 presidential election cycle in the U.S. has laid bare the discrepancy 
+between the official government statistics measuring the health of the economy and 
+the economic reality on the ground. Not because the government was lying to us 
+about inflation, unemployment, or the country's productivity. But because the 
+way the commonly cited statistics such as unemployment rate, consumer price 
+index (CPI), and gross domestic product (GDP) measure aspects of the economy and not the
+economic reality of groups. According to @Ludwig_2025, for the lower and middle class
+
+:::{.quote}
+darker assessments of the economy were more authentically tethered to reality
+:::
+
+than the government-reported statistics. For example, the GDP as a measure of a 
+nation's wealth gives an incomplete picture because it does not tell us how the 
+wealth is shared among the citizens. If one group benefits disproportionately it 
+is no surprise if another group feels left out.
+
+Critical thinking about data and the result of data analysis is a capability
+as fundamental as cruising the internet. We have come a long way and still have
+a long way to go. As @Huff_1954 put it so eloquently more than 70 years ago,
+
+:::{.quote}
+Many a statistic is false on its face. It gets by only because the \
+magic of numbers brings about a suspension of common sense
+:::
+
+This remains true today. The antidote is quantitative and compuational awareness 
+and thinking.
+
+Enjoy.
+
+

@@ -273,6 +273,7 @@ window.Quarto = {
   <li><a href="#algorithm-design-1" id="toc-algorithm-design-1" class="nav-link" data-scroll-target="#algorithm-design-1">Algorithm Design</a></li>
   </ul></li>
   <li><a href="#sec-intro-ct-importance" id="toc-sec-intro-ct-importance" class="nav-link" data-scroll-target="#sec-intro-ct-importance"><span class="header-section-number">1.3</span> Importance of CT</a></li>
+  <li><a href="#sec-intro-wicked" id="toc-sec-intro-wicked" class="nav-link" data-scroll-target="#sec-intro-wicked"><span class="header-section-number">1.4</span> Wicked Problems</a></li>
   </ul>
 </nav>
     </div>
@@ -334,7 +335,7 @@ Solution looking for a problem
 <div id="fig-firstcar" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/FirstAutomobile.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+<a href="images/FirstAutomobile.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.
@@ -420,7 +421,7 @@ Figure&nbsp;1.3: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to genera
 <div id="fig-soup-recipe" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
@@ -543,20 +544,20 @@ Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
 <p>The rise of computational thinking is also due to the fact that many more problems are solved through software and computing today than in the past. We have become very good at capturing the essential details of processes and phenomena through <strong>models</strong>, which by their very nature are abstractions of the prevailing patterns in those processes. And the implementation of the models frequently involves the design and deployment of algorithms.</p>
 <p>Financial analysts make investment decisions based on mathematical models of market behavior. Banks decide whether to award a loan based on statistical models for the probability of loan default. Insurance premiums are based on risk models. A healthcare provider chooses a treatment plan based on assessment of risk factors and predictions of disease progression, based on medical knowledge and models that describe patient outcomes.</p>
 <p>In 2011, Mark Andreessen of VC firm Andreessen-Horowitz (known as a16z) declared</p>
-<blockquote class="blockquote">
-<p><em>Software is eating the world.</em></p>
-</blockquote>
+<div class="quote">
+<p>Software is eating the world.</p>
+</div>
 <p>Why was this happening? <span class="citation" data-cites="Andreessen_2011">Andreessen (<a href="references.html#ref-Andreessen_2011" role="doc-biblioref">2011</a>)</span> cites several reasons, among them</p>
-<blockquote class="blockquote">
-<p><em>Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.</em></p>
-</blockquote>
+<div class="quote">
+<p>Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.</p>
+</div>
 <p>The largest book seller, Amazon, is a software company. Prior to the software revolution, it was brick-and-mortar book stores like Borders. The largest provider of video services, Netflix, is a software company. Previously, you rented physical video cassette tapes at Blockbuster. The music we listen to today is stored digitally as a file, distributed through software, and made audible through software. The best recruiting company, LinkedIn, is a software company. Some of the best movies are created by Pixar, a software company. You get the idea, I’ll stop here.</p>
 <p>While software implementations of problem solving have upended many industries, the way we build and use software, and the types of problems we can solve with it, is itself being upended, thanks to the advances in large-language models (LLMs) like ChatGPT, Claude, Gemini, and others.</p>
 <p>The shift toward computational thinking and the importance of solving problems through software has become most evident in 2024, when Nobel prizes in Physics and Chemistry were awarded not to scientists in those fields, but to computer scientists and artificial intelligence researchers who developed the foundational computational methods that helped to advance Physics and Chemistry (<a href="#fig-nobel-physics" class="quarto-xref">Figure&nbsp;<span>1.5</span></a> and <a href="#fig-nobel-chemistry" class="quarto-xref">Figure&nbsp;<span>1.6</span></a>).</p>
 <div id="fig-nobel-physics" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizePhysics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizePhysics.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics
@@ -566,7 +567,7 @@ Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics
 <div id="fig-nobel-chemistry" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizeChemistry.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizeChemistry.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry
@@ -576,6 +577,37 @@ Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry
 <p>Demis Hassabis, for example, is the CEO of Google DeepMind, the company behind AI projects such as AlphaGo, the reinforcement-learning trained system that accomplished what was thought impossible for a computer to do: beat the best Go player in the world.</p>
 <p>Geoffrey Hinton is a leading figure in research on artificial neural networks and deep learning. He is often considered the “Godfather of AI”. He is co-author of a 1986 paper that popularized back-propagation, an algorithm that efficiently computes the gradients in a neural network with many layers.</p>
 <p>Breaking with tradition, the Nobel committee awarded these prizes not to scientists who developed grand new theories of how the world works, but to scientist who develop the computational tools that help us develop grand new theories of how the world works.</p>
+</section>
+<section id="sec-intro-wicked" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-intro-wicked"><span class="header-section-number">1.4</span> Wicked Problems</h2>
+<p>Not all problems are made the same. Simple problems can be dealt with by <em>linear thinking</em>: here is a problem, this is the solution, and the problem goes away. <span class="citation" data-cites="Grint_2022">Grint (<a href="references.html#ref-Grint_2022" role="doc-biblioref">2022</a>)</span> distinguishes between three types of problems:</p>
+<ol type="1">
+<li><p><strong>Tame problems</strong>: we know how to fix the problem with standard operating procedures (SOPs). Tame problems require <em>managers</em> to perform or delegate the problem solving.</p></li>
+<li><p><strong>Critical problems</strong>: crises that are self-evident, and we are hoping someone knows how to sort them out. These problems require <em>commanders</em> who know the solution, are decisice, and direct and coerce others.</p></li>
+<li><p><strong>Wicked problems</strong>: problems we do not know how to fix. Solving wicked problems requires <em>leaders</em> who recognize their own limits and the wicked nature of the problem.</p></li>
+</ol>
+<p>A problem can be tame for some and wicked for others. Performing heart surgery would be a wicked problem for most of us because we have no clue how to go about it. For an experienced heart surgeon who performs the procedures every day this is a tame problem. Participants of the same problem can experience the same situation from different problem perspective. A traffic accident is a tame problem for a cop who deals with accidents routinely. For the drivers involved the problem presents a crisis.</p>
+<p>A single situation can have overlapping problem types and call for a combination of decision styles to deal with it. The Covid-19 pandemic is a case in point. <span class="citation" data-cites="Hoban_2023">Hoban (<a href="references.html#ref-Hoban_2023" role="doc-biblioref">2023</a>)</span> writes</p>
+<div class="quote">
+<p>vaccine development and distribution are simple problems as they follow known procedures; isolation, distancing and mask wearing are critical problems but both the simple and the critical shade over into the wicked problems of a culture where people may not trust their government, governments may have political agendas, people’s exposure and susceptibility to infection are linked to socioeconomic factors which in turn are downplayed by governments and so on.</p>
+</div>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: CO2 Emissions</p>
+</div>
+<div class="assignment-container">
+<p>Some think that we are emitting too much CO2 by burning fossil fuels and that this is a tame problem: move from energy based on fossil fuels to renewable energy sources. No more fossil fuels, no more CO2 emissions from burning fossil fuels, problem solved.</p>
+<p>Others think that reducing CO2 emissions is a wicked problem. A lot of CO2 emissions are already baked into the system and even if all CO2 emissions would stop today the climate would still be changing. Any action we take to change CO2 emissions changes the system itself. Once we manipulate the system do we have to look at other components besides the climate?</p>
+<p>Give reasons why reducing CO2 emissions is a wicked problem.</p>
+</div>
+</div>
+<p>Are wicked problems so difficult that they defy solution? Should we just throw up our arms and walk away? Not at all. By definition a wicked problem does not have a solution, at least not yet. Heart surgery was a wicked problem for surgeons until medical science advanced sufficiently to make it tameable. Today, heart surgery is a known problem with known solutions and standard operating procedures. Wicked problems require not managers or commanders, but leaders who recognize their own limits and the wickedness of the problem. Leaders who can learn and grow, make and admit mistakes, and seek solutions for the public good.</p>
+<p><span class="citation" data-cites="Hoban_2023">Hoban (<a href="references.html#ref-Hoban_2023" role="doc-biblioref">2023</a>)</span> gives three guidelines for dealing with wicked problems:</p>
+<ol type="1">
+<li><p><strong>Do no harm</strong>: do nothing that has a chance of doing catastrophic harm. Do not attempt to change the entire system at once.</p></li>
+<li><p><strong>Find where you are</strong>: you are somewhere in the middle of the problem. Every actor who wants to influence the system is part of the system.</p></li>
+<li><p><strong>Creativity through constraints</strong>: just like the rules of a game force you to innovate within the constraints of the rules, know what you can and cannot do. Humans not being able to fly or breath underwater are wicked problems. Knowing that we cannot solve them by flapping our arms or by growing gills identifies constraints that point in the direction of a solution.</p></li>
+</ol>
 
 
 <div class="hidden" aria-hidden="true">
@@ -587,6 +619,12 @@ Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Andreessen_2011" class="csl-entry" role="listitem">
 Andreessen, Mark. 2011. <span>“Why Software Is Eating the World.”</span> <a href="https://a16z.com/why-software-is-eating-the-world/">https://a16z.com/why-software-is-eating-the-world/</a>.
+</div>
+<div id="ref-Grint_2022" class="csl-entry" role="listitem">
+Grint, Keith. 2022. <span>“Critical Essay: Wicked Problems in the Age of Uncertainty.”</span> <em>Human Relations</em> 75: 1518–32.
+</div>
+<div id="ref-Hoban_2023" class="csl-entry" role="listitem">
+Hoban, Jake. 2023. <span>“Embracing Wicked Problems.”</span> <a href="https://medium.com/@personofnorank/embracing-wicked-problems-76ec9c210f29">https://medium.com/@personofnorank/embracing-wicked-problems-76ec9c210f29</a>.
 </div>
 <div id="ref-Kroese_2020" class="csl-entry" role="listitem">
 Kroese, Jasper. 2020. <span>“Companies Are Brilliantly Solving the Wrong Problems.”</span> <a href="https://marker.medium.com/why-organizations-are-so-good-at-solving-the-wrong-problems-17d414d0259">https://marker.medium.com/why-organizations-are-so-good-at-solving-the-wrong-problems-17d414d0259</a>.
@@ -1177,7 +1215,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -1,0 +1,471 @@
+
+
+## Regression Trees
+
+### Basic Construction
+
+For this application we use the `Hitters` data on performance and salaries of 
+baseball players in the 1986/1987 seasons, the data are provided in the ISLR2
+library. Because the salaries are highly skewed a log transformation is applied
+prior to constructing the tree (@fig-hitters-salary). We will examine later the 
+effect of the log-transformation on the tree.
+
+```{r}
+#| fig.cap: Salaries and log(Salaries) for the Hitters data.
+#| label: fig-hitters-salary
+#| 
+library(ISLR2)
+data(Hitters)
+
+par(mfrow=c(1,2))
+plot(density(na.omit(Hitters$Salary)), main="Salary")
+plot(density(na.omit(log(Hitters$Salary))), main="log(Salary)")
+```
+
+```{r}
+
+```
+
+The following statements load the `rpart` library and request a decision tree
+according to the model formula. Note that not all variables specified in the 
+model are necessarily used in constructing the tree. `method="anova"` requests
+a regression tree, the complexity criterion is the residual sum of squares. Since
+the target variable is continuous, `rpart` defaults to a regression tree in this
+case and the `method=` specification is not necessary. However, because `rpart`
+has several tree-building methods to choose from, it is not a bad idea to state 
+explicitly what is intended.
+
+Note that a random number seed is set prior to the call to `rpart` since the 
+function performs 10-fold cross-validation by default. While the tree returned
+by `rpart` is not affected by the seed, the evaluations of the complexity (penalty)
+parameter during cross-validation depend on the random number stream.
+
+### Tree Summary
+
+```{r}
+library(rpart)
+set.seed(87654)
+t1 <- rpart(log(Salary) ~ Years + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors, 
+            data=Hitters)
+
+summary(t1, cp=0.2)
+```
+
+The `summary` function produces a lengthy listing of the tree. The `cp=` option
+is used here to specify a cutoff value for displaying nodes that fall below
+the value of the complexity parameter, simply to limit the amount of output.
+The `cp=` option on the `summary` call prunes the output, it does not prune the
+tree.
+
+The first table lists the result of 10-fold cross-validation of the cost-complexity
+parameter, more on this below. The variable importance listing ranks variables
+by a combination measure that accounts for the quality of split where the variable
+was the primary split variable, and an adjustment for splits where the variable
+was a surrogate. The sum of the variable importance measures is 100, but due 
+to rounding it might sum to a slightly different value. A variable that has a
+relative high variable importance might not get used in the final tree, due
+to pruning.
+
+The first node at the trunk of the tree contains 263 observation. The best
+split variable at this level is `Years` with split value of 4.5. Using this
+variable and split point leads to the largest improvement in the complexity
+criterion. `rpart` also constructs a list of the surrogate variables should
+the primary split variable be missing. For this node a missing value in `Years`
+would be split on `HmRun`. The numbers in parentheses tell you how many observations
+actually had missing values and which split variables were used as surrogates.
+For these data, only the target variable contains missing values.
+
+`rpart` removes observations with missing values from the analysis if
+the target is missing or if all inputs are missing. The missing values in this
+data set occur only in the target variable, which means that surrogates were
+not used in training the model.
+
+A more concise listing of the tree is obtained with the `print` method.
+
+```{r}
+print(t1)
+```
+
+There are a total of 15 nodes in the tree and 9 terminal nodes (leaves) as indicated
+by asterisks. For each node, the listing shows the split variable and split point,
+the number of observations, the residual sum of squares, and the representative
+value for the node. For example, at the root node (trunk) of the tree there are
+263 observations, the sum of squares $\sum (y-\overline{y})^2 = 207.153$ and the
+average log salary is 5.9272. Ninety observations are split off to the left at
+the first split on `Years` with split value of 4.5. The sum of squares of those
+ninety observations is 42.353 and their average is 5.1067.
+
+--- 
+
+The easiest way to consume the results of constructing a tree is by visualizing
+the tree. The `rpart.plot` function in the `rpart.plot` package creates good-looking
+trees and has many options to affect the rendering. @fig-tree-hitter1 displays
+the regression tree for the Hitters data built so far.
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Default regression tree for log(salary) constructed by `rpart` for Hitters data.
+#| label: fig-tree-hitter1
+#| lightbox:
+
+library(rpart.plot)
+rpart.plot(t1,roundint=FALSE)
+```
+
+The boxes annotating the nodes display the representative (predicted) value for
+the node and the percent of observations that fall into the node. 
+The intensity of the node color is proportional to the value predicted at the node.
+
+If we were to choose a "stump"---that is, a tree with a single split, we would predict a log
+salary of 6.4 for players who have been in the league for more than 4.5 years 
+and a salary for 5.1 for the players with less tenure. For a player with 7 years 
+experience, 100 hits and 30 walks in 1986 we would predict a log salary of 6.3.
+
+Note that not all variables in the model are used in constructing the tree. 
+Variables that do not improve a tree at any split in a meaningful way do not
+show up. For example, the number of RBIs or errors in 1986 are not used as 
+primary split variables. This does not mean that these variables are unrelated
+to the target, they can enter the model indirectly through correlation with 
+other variables. They might also be used as surrogate split variables, which the 
+figure does not convey.
+
+Also note that variables can be *reused*. A variable that serves as the primary
+split variable can later be used again as a split variable. For example, `Years`
+is the first split variable and is used again on both sides of the tree. The number
+of `Walks` in 1986 separates observations differently for longer-tenured players
+that have less than 118 `Hits` and those who have more.
+
+---
+
+What would the tree look like if we had not transformed the target variable by
+taking logarithms?
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Default regression tree for salary constructed by `rpart` for Hitters data.
+#| label: fig-tree-hitter2
+#| lightbox:
+#| 
+t2 <- rpart(Salary ~ Years + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors, 
+            data=Hitters,
+            method="anova")
+
+rpart.plot(t2,roundint=FALSE)
+```
+
+Clearly, @fig-tree-hitter2 is not the same tree as shown in @fig-tree-hitter1.
+Although the log transformation is monotonic for the positive salary values,
+it affects the distribution of the target variable and its relationship to the
+inputs. 
+
+However, if we apply a monotone transformation to inputs, the 
+constructed tree does not change. The following code fits the initial tree 
+but uses log(years) instead of years. Only the values for the split variable 
+change, but not the tree (@fig-tree-hitter3). Compare this to @fig-tree-hitter1.
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Default regression tree for log(salary) with log-transformed year as input.
+#| label: fig-tree-hitter3
+#| lightbox:
+#| 
+t3 <- rpart(log(Salary) ~ log(Years) + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors, 
+            data=Hitters,
+            method="anova")
+
+rpart.plot(t3,roundint=FALSE)
+```
+
+Changing in the model from years to log(years) does not impact the splits or 
+split values for any of the other inputs. This is fundamentally different from
+a linear regression model where transforming one input variable affects the
+coefficients of other inputs unless they are completely uncorrelated.
+Compare the following:
+
+```{r}
+round(
+    lm(log(Salary) ~ Years + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors,
+            data=Hitters)$coefficients,4)
+
+round(
+    lm(log(Salary) ~ log(Years) + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors,
+            data=Hitters)$coefficients,4)
+
+
+```
+
+### Rules
+
+A very helpful extension of `rpart` in `rpart.plot` is the `rpart.rules` function.
+It expresses the decisions captured in an `rpart` model as a set of text rules.
+The variables are listed in the order of frequency in the rules. A variable that
+appears in more rules is listed first. Adding the `cover=TRUE` option also
+displays the percentage of cases covered by each rule. For the initial tree
+constructed above, this yields:
+
+```{r}
+rpart.rules(t1, roundint=FALSE)
+```
+The information displayed in the rules can be affected through options, 
+for example,
+
+```{r}
+rpart.rules(t1, cover=TRUE, style="tallw", roundint=FALSE)
+```
+
+### Cross-validation and Pruning
+
+As mentioned earlier, `rpart` performs cross-validation for cost complexity 
+values as part of the tree construction. This is the origin of the CP table
+that appears at the top of the `summary.rpart` output. You can print this
+information by itself with the `printcp` function.
+
+```{r}
+cp <- printcp(t1)
+```
+
+The complexity table lists trees in order of the complexity criterion, smaller
+trees are on top (larger `CP` value), larger trees at the bottom. The number of
+(internal) nodes in the tree is `nsplit` plus one. The error columns are reported
+relative to the error at the first node. `xerror` is the error from cross-validation
+and `xstd` is the standard error. Scanning the `xerror` column we see that the
+error is minimized at 3 splits (4 nodes). The standard error is useful to 
+determine the best number of split points by taking in the uncertainty in the 
+error estimate and the fact that there is often a neighborhood of similar values.
+The 1-SE rule says to consider all values within one standard error of the 
+achieved minimum. Those are essentially equivalent and we choose the simplest
+model. In @fig-tree-cp this is a tree of size 4 (3 splits). The horizontal line
+is drawn 1 standard error above the smallest cross-validated error.
+
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Complexity parameter plot for Hitters data. The size of the tree refers to the number of nodes (number of splits + 1).
+#| label: fig-tree-cp
+#| lightbox:
+#| 
+plotcp(t1, upper="size")
+```
+
+To produce the final tree, apply the `prune` function with the selected value
+of the complexity parameter (@fig-tree-final).
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Final tree for Hitters data after pruning and cross-validation. 
+#| label: fig-tree-final
+#| lightbox:
+t_final <- prune(t1,cp=cp[cp[,2]==3,1])
+
+rpart.plot(t_final,roundint=FALSE)
+```
+
+
+### Controlling the Tree 
+
+Many parameters and setting affect the construction of the tree. The split 
+criterion, cost function, minimum number of observations before attempting a 
+split or in terminal nodes, the use of surrogate variables, the maximum 
+depth, cross-validation settings, and so on.
+
+Changing tree control parameters affects primarily the depth of the tree and the
+computational requirements. For example, `rpart` computes by default up to 
+5 surrogate split variables. Unless you have missing values in input variables,
+surrogate splits will not be used. If you are sure that you also do not have 
+missing values in non-training data, then you can skip the determination of
+the surrogates. Approximately half of the computing time during tree construction
+is used to find surrogate splits.
+
+In `rpart`, parameters that determine the tree construction are passed as a 
+`rpart.control` structure to the `control=` parameter. The most important
+parameters that determine the **depth** of the tree are
+
+- `minsplit`: The minimum number of observations in a node for which a split is 
+even attempted, default 20. Setting this to a small number will save computation
+time since nodes that have fewer than `minsplit` observations will not be 
+split and are likely chopped off during pruning. \
+
+- `minbucket`: The minimum number of observations in terminal nodes (leaves).
+The default is `minsplit/3`.
+
+- `cp`: Threshold for the complexity parameter. The complexity of the tree is 
+measured during pruning as
+$$
+C_\alpha(T) = Q(T) + \alpha|T|
+$$
+where $Q(T)$ is the cost criterion by which tree $T$ is evaluated, $|T|$ is
+the number of terminal nodes in $T$, and $\alpha$ is the penalty parameter. The 
+`rpart` version of this is 
+$$
+C_\alpha(T) = Q(T) + cp|T|\, Q(T_1)
+$$
+where $Q(T_1)$ is a tree with no splits. A split that does not improve the 
+fit by at least the `cp=` threshold value will not be attempted. Setting `cp=1` 
+results in a tree with no splits. The default is `cp=0.01`. During cost-complexity
+pruning `rpart` evaluates trees for values that are larger than the threshold
+parameter. Setting `cp=0` asks `rpart` to evaluate very deep trees, subject
+to the other parameters such as `minsplit`, `minbucket`, and `maxdepth`.
+
+- `maxdepth`: the maximum depth of the final tree, with the root node counting
+as depth zero. For example, `maxdepth=1` results in a single split, also known
+as a "stump". (Technically, a stump would have no splits.)
+
+Important parameters that control the memory and computational requirements 
+beyond computing trees at various depths are
+
+- `maxsurrogate`: the number of surrogate splits, default is 5. Set it to 0 to
+prevent the search for surrogate split variables.
+
+- `xval`: the number of cross-validations, default is 10.
+
+- `cp`: The complexity parameter threshold also affects the computing requirements
+as splits that do not improve the overall fit by at least that value will not
+be attempted.
+
+#### Fitting stumps
+
+A special application of controlling the construction of decision trees are
+trees with a single split, also called "stumps". In most scenarios such trees
+will underfit the data. However, in **adaptive boosting**, we fit a large number of
+trees where subsequent trees are weighing observations according to the level
+of misclassification, those trees focus on observations poorly classified so far.
+The individual trees are not deep trees, relying only on the most important
+variables. The use of stumps is common in adaptive boosting.
+
+The following code fits a stump to the `Hitters` data. `minsplit=2` specifies
+that a split will not be attempted unless at least two observations are present.
+This guarantees that at least one split occurs (setting `minsplit=0` as 
+recommended in some places does not seem to always work in guaranteeing a single split).
+Setting the threshold for the complexity parameter to -1 essentially turns off
+checking whether the split improves the overall fit. `maxdepth=1` sets the 
+maximum depth of the tree to two nodes; zero depth refers to the root node.
+Finally, `xval=0` turns off the cross-validation.
+
+```{r, fig.align="center", out.width="70%"}
+#| fig.cap: A stump fit to the Hitters data. 
+#| label: fig-tree-stump
+#| lightbox:
+
+stump <- rpart(log(Salary) ~ Years + Hits + RBI + Walks + Runs + HmRun + 
+                PutOuts + AtBat + Errors, 
+            data=Hitters,
+            control=rpart.control(maxdepth = 1,
+                                  cp       =-1,
+                                  minsplit = 2,
+                                  xval     = 0),
+            method="anova")
+
+stump
+rpart.plot(stump,roundint=FALSE)
+```
+
+
+The result of the stump fit are as expected based on the previous analysis.
+The number of years in the league is the most important variable and the basis
+of the first split (@fig-tree-stump).
+
+## Classification Trees
+
+Fitting a classification tree in `rpart` is simple, when the target variable
+is a factor the software defaults to building a classification tree. Choosing
+`method=class` makes that explicit. 
+
+### Binary Classification
+
+For this example we use the `stagec` data frame that ships with the `rpart` 
+package. It contains data on  146 patients with stage C prostate cancer from a 
+study on the prognostic value of flow cytometry. 
+
+Input variables include
+
+- `age`: age of patient in years
+- `eet`: a binary variable indicating early endocrine therapy (1=no, 2=yes)
+- `g2`: percent of cells in G2 phase as determined by flow cytometry
+- `grade`: the grade of the tumor according to the Farrow system
+- `gleason`: the Gleason score of the tumor, higher values indicate a more aggressive 
+cancer
+- `ploidy`: a three-level factor that indicates the tumor status according to
+flow cytometry as diplioid, tetraploid, or aneuploid.
+
+The outcome (target) variable
+for this classification is `pgstat`, a binary variable that indicates progression
+of the cancer (`pgstat=1`). The variable is recoded as a factor for a nicer
+display on the tree. Similarly, the `eet` variable is recoded as a factor.
+
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Classification tree for stagec data prior to pruning.  
+#| label: fig-tree-stagec-full
+#| lightbox:
+#| 
+data(stagec)
+head(stagec)
+
+progstat <- factor(stagec$pgstat, levels = 0:1, labels = c("No", "Prog"))
+eetfac <- factor(stagec$eet, levels=1:2, labels=c("No, Yes"))
+
+set.seed(543)
+cfit <- rpart(progstat ~ age + eetfac + g2 + grade + gleason + ploidy,
+              data = stagec, 
+              method = 'class')
+print(cfit)
+
+rpart.plot(cfit, roundint=FALSE)
+
+```
+
+@fig-tree-stagec-full shows the full tree fit to the data prior to pruning. The 
+initial split is on the `grade` variable. Note that on the right hand side of
+the tree, at depth 2, the qualitative input variable `ploidy` is split into 
+two groups: the left branch contains levels diploid and tetraploid, the right
+branch aneuploid. This confirms DNA ploidy as a major predictor variable in this
+study. From the `rpart` longintro vignette:
+
+>*For diploid and tetraploid tumors, the flow cytometry method was also able 
+to estimate the percent of tumor cells in a G2 (growth) stage of their cell cycle; 
+G2% is systematically missing for most aneuploid tumors.*
+
+
+The boxes annotating the nodes contain three pieces of information: 
+
+- The representative value (majority vote) in the node; this is the predicted
+category for the node. For example, there are
+92 patients who did not progress and 54 patients who progressed. The majority
+vote in the root node would be no progression.
+
+- The proportion of events in the node. For example, in the first node that
+proportion is 54/146 = 0.37. There are 61 observations where `grade < 2.5`, 9 of 
+these progressed. That leads to the terminal node on the far left of the tree:
+its majority vote is no progression, 9/61 = 0.15 and 42\% of the observations
+fall into this node.
+
+- The percentage of observations covered by the node.
+
+This numeric breakdown can be seen easily from the printed tree:
+
+```{r}
+cfit
+```
+
+
+To prune the tree we print the CP table and plot the results including the
+1-SE reference line.
+
+```{r}
+printcp(cfit)
+plotcp(cfit)
+```
+
+The optimal tree is a tree with 5 nodes (4 splits). A tree with 6 splits
+has the same cross-validation error and standard error. We choose the simpler
+tree (@fig-tree-stagec-pruned).
+
+```{r, fig.align="center", out.width="80%"}
+#| fig.cap: Classification tree for stagec data after pruning.
+#| label: fig-tree-stagec-pruned
+#| lightbox:
+#| 
+rpart.plot(prune(cfit,cp=0.027778), roundint=FALSE)
+```
+
+
