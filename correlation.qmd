@@ -121,6 +121,8 @@ water company than in homes supplied by the Lambeth water company.
 
 ---
 
+### Corrrelation Coefficient
+
 The strength of the correlation between continuous attributes is measured by the 
 **correlation coefficient**, which ranges from -1 to 1. Both of these extremes are called 
 perfect correlations and happen when all points fall on a perfect line, without 
@@ -163,6 +165,100 @@ r <- cor(x,y)
 plot(x,y,las=1,bty="l")
 text(x=-0.8,y=3,labels=paste("Correlation coefficient:",round(r,4)))
 ```
+
+
+### College Rankings Data
+
+Computing correlation coefficients between the variables in a data set is 
+part of exploratory data analysis. In @sec-steps-r-eda we performed EDA for the
+College rankings data. Now let us compute the correlation coefficients.
+
+First, we grab the data from the `ISLR2` library and attach it to the `R` session.
+
+```{r, message=FALSE}
+library(ISLR2)
+data(College)
+attach(College)
+```
+
+The `cor()` function computes correlation coefficients between pairs of 
+variables or sets of variables. The next statement computes the correlation 
+between graduation rate and out-of-state tuition for the 777 colleges in the data 
+frame:
+
+```{r}
+cor(Grad.Rate, Outstate)
+```
+
+The two variables have a modest positive correlation of `{r} round(cor(Grad.Rate, Outstate),4)`.
+
+To see the correlation coefficients between graduation rates and the other numeric
+variables in the data frame, list the variable for which you want to obtain
+the correlation coefficients second:
+
+```{r}
+cor(College[,-1], Grad.Rate)
+```
+
+Because we cannot compute the correlation with a factor variable (`Private`),
+the first variable is omitted from the data frame by specifying `College[,-1]`.
+
+The graduation rates are not very strongly correlated with any of the variables.
+Note that the correlation of a variable with itself is always 1.
+
+Finally, to obtain all pairwise correlations between numeric variables in the
+data frame we request the computation of the correlation matrix. This results
+in a large 17 x 17 matrix. To help with readability the result is displayed
+with three decimal places.
+
+```{r}
+round(cor(College[,-1]),3)
+```
+
+It is much easier to see what is going on with all pairwise correlations when
+the matrix is displayed graphically. The strength and direction can be displayed
+with colors. The diagonal values can be omitted as they are known to be 1.
+
+The `corrplot` function in the package by the same name creates nice visualizations
+of correlation matrices. Before running the code in the chunk below, you will
+need to install the `corrplot` package first, unless it is already installed
+on your system:
+
+```{r, eval=FALSE}
+install.packages("corrplot")
+```
+
+Now we can compute the **heatmap** of the pairwise correlation coefficients (@fig-corrplot).
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="90%"}
+#| fig.cap: Visualization of pairwise correlations for College data. 
+#| label: fig-corrplot
+library(corrplot)
+cormat <- cor(College[,-1])
+corrplot(cormat, diag=FALSE, method="color")
+```
+
+You see high positive correlations (dark blue color) in the upper left corner of
+the heatmap. The number of applications received (`Apps`) is very highly correlated
+with the number of applications accepted (`Accept`)---this is not a big surprise.
+
+:::{.assignment}
+::::{.assignment-header}
+Assignment: College Ranking Correlations
+::::
+::::{.assignment-container}
+1. Are there surprising positive or negative correlations in the matrix?
+
+2. Which of the strong correlations are not surprising to you?
+
+3. Can you explain some of the weak (near zero) correlations?
+
+4. A relatively strong negative correlation exists between `Expend` and
+`S.F.Ratio`. A similar correlation exists between `Outstate` and `S.F.Ratio`.
+How do you interpret/explain these dependencies?
+
+::::
+:::
 
 
 ## Spurious Correlations

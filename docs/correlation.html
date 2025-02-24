@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -258,7 +292,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
-  <li><a href="#correlation-and-the-correlation-coefficient" id="toc-correlation-and-the-correlation-coefficient" class="nav-link" data-scroll-target="#correlation-and-the-correlation-coefficient"><span class="header-section-number">6.2</span> Correlation and the Correlation Coefficient</a></li>
+  <li><a href="#correlation-and-the-correlation-coefficient" id="toc-correlation-and-the-correlation-coefficient" class="nav-link" data-scroll-target="#correlation-and-the-correlation-coefficient"><span class="header-section-number">6.2</span> Correlation and the Correlation Coefficient</a>
+  <ul>
+  <li><a href="#corrrelation-coefficient" id="toc-corrrelation-coefficient" class="nav-link" data-scroll-target="#corrrelation-coefficient">Corrrelation Coefficient</a></li>
+  <li><a href="#college-rankings-data" id="toc-college-rankings-data" class="nav-link" data-scroll-target="#college-rankings-data">College Rankings Data</a></li>
+  </ul></li>
   <li><a href="#spurious-correlations" id="toc-spurious-correlations" class="nav-link" data-scroll-target="#spurious-correlations"><span class="header-section-number">6.3</span> Spurious Correlations</a>
   <ul>
   <li><a href="#coincidence" id="toc-coincidence" class="nav-link" data-scroll-target="#coincidence">Coincidence</a></li>
@@ -344,7 +382,7 @@ pint of Häagan-Dazs.<br>
 <div id="fig-lemon-acc" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lemon-acc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/spurious1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/spurious1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/spurious1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/spurious1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lemon-acc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.1: Relationship between highway fatalities and lemon imports from Mexico.
@@ -360,7 +398,7 @@ Figure&nbsp;6.1: Relationship between highway fatalities and lemon imports from 
 <div id="fig-corr-pos" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-pos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/CorrelationPositive.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/CorrelationPositive.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/CorrelationPositive.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/CorrelationPositive.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-pos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.2: Positive correlation.
@@ -370,7 +408,7 @@ Figure&nbsp;6.2: Positive correlation.
 <div id="fig-corr-neg" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-neg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/CorrelationNegative.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/CorrelationNegative.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/CorrelationNegative.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/CorrelationNegative.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-neg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6.3: Negative correlation.
@@ -478,6 +516,8 @@ Table&nbsp;6.1: Results of rating 236 experimental units by 2 raters
 </div>
 <p>Another example of cross-tabulating counts to demonstrate association is <a href="cholera.html#tbl-chol-rate2" class="quarto-xref">Table&nbsp;<span>3.2</span></a> in John Snow’s cholera study. It shows that cholera deaths are 10 times more likely to occur in homes supplied by the Southward &amp; Vauxhall water company than in homes supplied by the Lambeth water company.</p>
 <hr>
+<section id="corrrelation-coefficient" class="level3">
+<h3 class="anchored" data-anchor-id="corrrelation-coefficient">Corrrelation Coefficient</h3>
 <p>The strength of the correlation between continuous attributes is measured by the <strong>correlation coefficient</strong>, which ranges from -1 to 1. Both of these extremes are called perfect correlations and happen when all points fall on a perfect line, without variability about the line. The relationship is <strong>deterministic</strong>. Linear mathematical relationships exhibit such patterns, for example, the relationship between degree Celsius and degree Fahrenheit (<a href="#fig-fahrenheit" class="quarto-xref">Figure&nbsp;<span>6.5</span></a>): <span class="math display">\[
 ^\circ F = {^\circ C} \times \frac{9}{5}  + 32
 \]</span></p>
@@ -511,20 +551,162 @@ Figure&nbsp;6.6: Strong nonlinear relationship with small (linear) correlation c
 </div>
 </div>
 </section>
+<section id="college-rankings-data" class="level3">
+<h3 class="anchored" data-anchor-id="college-rankings-data">College Rankings Data</h3>
+<p>Computing correlation coefficients between the variables in a data set is part of exploratory data analysis. In <a href="firstStepsR.html#sec-steps-r-eda" class="quarto-xref"><span>Section 5.2.1</span></a> we performed EDA for the College rankings data. Now let us compute the correlation coefficients.</p>
+<p>First, we grab the data from the <code>ISLR2</code> library and attach it to the <code>R</code> session.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(College)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(College)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>cor()</code> function computes correlation coefficients between pairs of variables or sets of variables. The next statement computes the correlation between graduation rate and out-of-state tuition for the 777 colleges in the data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Grad.Rate, Outstate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5712899</code></pre>
+</div>
+</div>
+<p>The two variables have a modest positive correlation of 0.5713.</p>
+<p>To see the correlation coefficients between graduation rates and the other numeric variables in the data frame, list the variable for which you want to obtain the correlation coefficients second:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(College[,<span class="sc">-</span><span class="dv">1</span>], Grad.Rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    [,1]
+Apps         0.146754600
+Accept       0.067312550
+Enroll      -0.022341039
+Top10perc    0.494989235
+Top25perc    0.477281164
+F.Undergrad -0.078773129
+P.Undergrad -0.257000991
+Outstate     0.571289928
+Room.Board   0.424941541
+Books        0.001060894
+Personal    -0.269343964
+PhD          0.305037850
+Terminal     0.289527232
+S.F.Ratio   -0.306710405
+perc.alumni  0.490897562
+Expend       0.390342696
+Grad.Rate    1.000000000</code></pre>
+</div>
+</div>
+<p>Because we cannot compute the correlation with a factor variable (<code>Private</code>), the first variable is omitted from the data frame by specifying <code>College[,-1]</code>.</p>
+<p>The graduation rates are not very strongly correlated with any of the variables. Note that the correlation of a variable with itself is always 1.</p>
+<p>Finally, to obtain all pairwise correlations between numeric variables in the data frame we request the computation of the correlation matrix. This results in a large 17 x 17 matrix. To help with readability the result is displayed with three decimal places.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(College[,<span class="sc">-</span><span class="dv">1</span>]),<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Apps Accept Enroll Top10perc Top25perc F.Undergrad P.Undergrad
+Apps         1.000  0.943  0.847     0.339     0.352       0.814       0.398
+Accept       0.943  1.000  0.912     0.192     0.247       0.874       0.441
+Enroll       0.847  0.912  1.000     0.181     0.227       0.965       0.513
+Top10perc    0.339  0.192  0.181     1.000     0.892       0.141      -0.105
+Top25perc    0.352  0.247  0.227     0.892     1.000       0.199      -0.054
+F.Undergrad  0.814  0.874  0.965     0.141     0.199       1.000       0.571
+P.Undergrad  0.398  0.441  0.513    -0.105    -0.054       0.571       1.000
+Outstate     0.050 -0.026 -0.155     0.562     0.489      -0.216      -0.254
+Room.Board   0.165  0.091 -0.040     0.371     0.331      -0.069      -0.061
+Books        0.133  0.114  0.113     0.119     0.116       0.116       0.081
+Personal     0.179  0.201  0.281    -0.093    -0.081       0.317       0.320
+PhD          0.391  0.356  0.331     0.532     0.546       0.318       0.149
+Terminal     0.369  0.338  0.308     0.491     0.525       0.300       0.142
+S.F.Ratio    0.096  0.176  0.237    -0.385    -0.295       0.280       0.233
+perc.alumni -0.090 -0.160 -0.181     0.455     0.418      -0.229      -0.281
+Expend       0.260  0.125  0.064     0.661     0.527       0.019      -0.084
+Grad.Rate    0.147  0.067 -0.022     0.495     0.477      -0.079      -0.257
+            Outstate Room.Board  Books Personal    PhD Terminal S.F.Ratio
+Apps           0.050      0.165  0.133    0.179  0.391    0.369     0.096
+Accept        -0.026      0.091  0.114    0.201  0.356    0.338     0.176
+Enroll        -0.155     -0.040  0.113    0.281  0.331    0.308     0.237
+Top10perc      0.562      0.371  0.119   -0.093  0.532    0.491    -0.385
+Top25perc      0.489      0.331  0.116   -0.081  0.546    0.525    -0.295
+F.Undergrad   -0.216     -0.069  0.116    0.317  0.318    0.300     0.280
+P.Undergrad   -0.254     -0.061  0.081    0.320  0.149    0.142     0.233
+Outstate       1.000      0.654  0.039   -0.299  0.383    0.408    -0.555
+Room.Board     0.654      1.000  0.128   -0.199  0.329    0.375    -0.363
+Books          0.039      0.128  1.000    0.179  0.027    0.100    -0.032
+Personal      -0.299     -0.199  0.179    1.000 -0.011   -0.031     0.136
+PhD            0.383      0.329  0.027   -0.011  1.000    0.850    -0.131
+Terminal       0.408      0.375  0.100   -0.031  0.850    1.000    -0.160
+S.F.Ratio     -0.555     -0.363 -0.032    0.136 -0.131   -0.160     1.000
+perc.alumni    0.566      0.272 -0.040   -0.286  0.249    0.267    -0.403
+Expend         0.673      0.502  0.112   -0.098  0.433    0.439    -0.584
+Grad.Rate      0.571      0.425  0.001   -0.269  0.305    0.290    -0.307
+            perc.alumni Expend Grad.Rate
+Apps             -0.090  0.260     0.147
+Accept           -0.160  0.125     0.067
+Enroll           -0.181  0.064    -0.022
+Top10perc         0.455  0.661     0.495
+Top25perc         0.418  0.527     0.477
+F.Undergrad      -0.229  0.019    -0.079
+P.Undergrad      -0.281 -0.084    -0.257
+Outstate          0.566  0.673     0.571
+Room.Board        0.272  0.502     0.425
+Books            -0.040  0.112     0.001
+Personal         -0.286 -0.098    -0.269
+PhD               0.249  0.433     0.305
+Terminal          0.267  0.439     0.290
+S.F.Ratio        -0.403 -0.584    -0.307
+perc.alumni       1.000  0.418     0.491
+Expend            0.418  1.000     0.390
+Grad.Rate         0.491  0.390     1.000</code></pre>
+</div>
+</div>
+<p>It is much easier to see what is going on with all pairwise correlations when the matrix is displayed graphically. The strength and direction can be displayed with colors. The diagonal values can be omitted as they are known to be 1.</p>
+<p>The <code>corrplot</code> function in the package by the same name creates nice visualizations of correlation matrices. Before running the code in the chunk below, you will need to install the <code>corrplot</code> package first, unless it is already installed on your system:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"corrplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can compute the <strong>heatmap</strong> of the pairwise correlation coefficients (<a href="#fig-corrplot" class="quarto-xref">Figure&nbsp;<span>6.7</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cormat <span class="ot">&lt;-</span> <span class="fu">cor</span>(College[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cormat, <span class="at">diag=</span><span class="cn">FALSE</span>, <span class="at">method=</span><span class="st">"color"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-corrplot" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="correlation_files/figure-html/fig-corrplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.7: Visualization of pairwise correlations for College data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>You see high positive correlations (dark blue color) in the upper left corner of the heatmap. The number of applications received (<code>Apps</code>) is very highly correlated with the number of applications accepted (<code>Accept</code>)—this is not a big surprise.</p>
+<div class="assignment">
+<div class="assignment-header">
+<p>Assignment: College Ranking Correlations</p>
+</div>
+<div class="assignment-container">
+<ol type="1">
+<li><p>Are there surprising positive or negative correlations in the matrix?</p></li>
+<li><p>Which of the strong correlations are not surprising to you?</p></li>
+<li><p>Can you explain some of the weak (near zero) correlations?</p></li>
+<li><p>A relatively strong negative correlation exists between <code>Expend</code> and <code>S.F.Ratio</code>. A similar correlation exists between <code>Outstate</code> and <code>S.F.Ratio</code>. How do you interpret/explain these dependencies?</p></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
 <section id="spurious-correlations" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="spurious-correlations"><span class="header-section-number">6.3</span> Spurious Correlations</h2>
 <p>It seems obvious that just because two attributes vary with each other—are correlated—one should not infer that they are cause and effect of each other. Unfortunately, that leap of faith is often made and can lead to very problematic decisions.</p>
 <div id="fig-chocolate-corr" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/Chocolate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/Chocolate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/Chocolate.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/Chocolate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chocolate-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.7: Chocolate consumption and number of Nobel laureates.
+Figure&nbsp;6.8: Chocolate consumption and number of Nobel laureates.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-chocolate-corr" class="quarto-xref">Figure&nbsp;<span>6.7</span></a> displays the number of Nobel laureates per 10 million population against the chocolate consumption (in kg per capita and year) for various countries <span class="citation" data-cites="Messerli_2012">(<a href="references.html#ref-Messerli_2012" role="doc-biblioref">Messerli 2012</a>)</span>. An upward trend is clearly noticeable. A greater per-capita chocolate consumption is associated with a lager number of Nobel laureates. Whoa! If the two variables stand in a cause-effect relationship then we have a simple recipe to increase Nobel prizes: we all should eat more chocolate. While one can argue the benefits of chocolate for cognitive function, what we have here is a simple correlation. The two attributes, number of Nobel laureates per 10 million population and chocolate consumption per capita, are related. If one increases so does the other. But why?</p>
+<p><a href="#fig-chocolate-corr" class="quarto-xref">Figure&nbsp;<span>6.8</span></a> displays the number of Nobel laureates per 10 million population against the chocolate consumption (in kg per capita and year) for various countries <span class="citation" data-cites="Messerli_2012">(<a href="references.html#ref-Messerli_2012" role="doc-biblioref">Messerli 2012</a>)</span>. An upward trend is clearly noticeable. A greater per-capita chocolate consumption is associated with a lager number of Nobel laureates. Whoa! If the two variables stand in a cause-effect relationship then we have a simple recipe to increase Nobel prizes: we all should eat more chocolate. While one can argue the benefits of chocolate for cognitive function, what we have here is a simple correlation. The two attributes, number of Nobel laureates per 10 million population and chocolate consumption per capita, are related. If one increases so does the other. But why?</p>
 <p>This is an example of a <strong>spurious</strong> correlation. The variables are not really dependent on each other, a relationship is induced in some other way. In this particular example, the correlation was “found” by cherry-picking the data: only four years of chocolate consumption were considered on a limited number of chocolate products and no data prior to 2002 was used. The number of Nobel laureates is a cumulative measure that spans a much longer time frame.</p>
 <p>It appears that the data were organized in such a way as to suggest a relationship between the variables.</p>
 <p>You can find spurious correlations everywhere, without manipulating the data. Here are some examples and the reasons why the data appear correlated.</p>
@@ -544,11 +726,11 @@ Figure&nbsp;6.7: Chocolate consumption and number of Nobel laureates.
 <img src="images/spurious3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spurious-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.8: Spurious correlation.
+Figure&nbsp;6.9: Spurious correlation.
 </figcaption>
 </figure>
 </div>
-<p>Latent variables are often the real reason why things appear related when we deal with variables that depend on population size or common factors such as the weather or time. <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>6.8</span></a> shows the close relationship over time between the number of high school graduates and donut consumption. More donut consumption appears related to more high school graduates. Notice that we are not plotting graduation <strong>rates</strong>, these would most likely not have any relationships with donut consumption. The latent variable at work in <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>6.8</span></a> is the size of the population over time. As the population increases, more donuts are consumed and more people graduate from high school.</p>
+<p>Latent variables are often the real reason why things appear related when we deal with variables that depend on population size or common factors such as the weather or time. <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> shows the close relationship over time between the number of high school graduates and donut consumption. More donut consumption appears related to more high school graduates. Notice that we are not plotting graduation <strong>rates</strong>, these would most likely not have any relationships with donut consumption. The latent variable at work in <a href="#fig-spurious-corr" class="quarto-xref">Figure&nbsp;<span>6.9</span></a> is the size of the population over time. As the population increases, more donuts are consumed and more people graduate from high school.</p>
 <p>A similar spurious correlation is that between ice cream sales and forest fires. Both increase during the summer heat and decrease in the winter.</p>
 <p>You can imagine the horrible public policy decisions one would make by mistaken those spurious correlations for cause and effect relationships.</p>
 </section>
@@ -561,7 +743,7 @@ Figure&nbsp;6.8: Spurious correlation.
 <img src="images/Stork.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-baby-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.9: Storks and Babies
+Figure&nbsp;6.10: Storks and Babies
 </figcaption>
 </figure>
 </div>
@@ -572,19 +754,19 @@ Figure&nbsp;6.9: Storks and Babies
 <li><span class="math inline">\(S\)</span>: Number of storks in the county</li>
 <li><span class="math inline">\(B\)</span>: Number of babies born in the county</li>
 </ul>
-<p>Since it is likely that these numbers increase with the size of the county, the variables analyzed were <span class="math inline">\(Y = B/W\)</span> and <span class="math inline">\(X=S/W\)</span>, the birth rate per 10,000 women and the density of storks per 10,000 women. A plot of these variables and a smooth estimate of their trend is shown in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>6.10</span></a>.</p>
+<p>Since it is likely that these numbers increase with the size of the county, the variables analyzed were <span class="math inline">\(Y = B/W\)</span> and <span class="math inline">\(X=S/W\)</span>, the birth rate per 10,000 women and the density of storks per 10,000 women. A plot of these variables and a smooth estimate of their trend is shown in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>6.11</span></a>.</p>
 <div id="fig-stork-trend" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Storks_and_Babies.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stork-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.10: Storks and babies.
+Figure&nbsp;6.11: Storks and babies.
 </figcaption>
 </figure>
 </div>
 <p>It certainly appears that the birth rate increases with the density of storks. Could the myth be true? Is something else going on?</p>
-<p>The trend in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>6.10</span></a> is induced by expressing both variables as ratios with the same variable, <span class="math inline">\(W\)</span>, the number of women of child-bearing age. If <span class="math inline">\(S\)</span> and <span class="math inline">\(B\)</span> are unrelated, <span class="math inline">\(S/W\)</span> and <span class="math inline">\(B/W\)</span> now share information because they are expressed relative to another variable.</p>
+<p>The trend in <a href="#fig-stork-trend" class="quarto-xref">Figure&nbsp;<span>6.11</span></a> is induced by expressing both variables as ratios with the same variable, <span class="math inline">\(W\)</span>, the number of women of child-bearing age. If <span class="math inline">\(S\)</span> and <span class="math inline">\(B\)</span> are unrelated, <span class="math inline">\(S/W\)</span> and <span class="math inline">\(B/W\)</span> now share information because they are expressed relative to another variable.</p>
 <div class="assignment">
 <div class="assignment-header">
 <p>Assignment: Mozzarella and Engineering Degrees</p>
@@ -654,8 +836,8 @@ Figure&nbsp;6.10: Storks and babies.
 <section id="simpsons-paradox" class="level4">
 <h4 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s Paradox</h4>
 <p>The paradox is named after Edward Simpson who described it in a technical paper in 1951, but the phenomenon has been known much longer. It is also not a paradox as it does not lead to nonsensical outcomes or a contradiction. What we know as Simpson’s Paradox is simply the result of looking at an aspect from two viewpoints: The trend that we see in combined data can reverse when we look at the data in groups.</p>
-<p><a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>6.11</span></a> displays a scatter plot of two variables and a linear regression trend. The slope is positive, the average value of <span class="math inline">\(Y\)</span> increases with the value of <span class="math inline">\(X\)</span>.</p>
-<p>The data in <a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>6.11</span></a> consists of three groups and when the regression analysis is performed separately for each group, a different picture emerges. Within each group the regression relationship indicates a negative slope, the opposite of the trend in the ungrouped data (<a href="#fig-simpson-group" class="quarto-xref">Figure&nbsp;<span>6.12</span></a>).</p>
+<p><a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>6.12</span></a> displays a scatter plot of two variables and a linear regression trend. The slope is positive, the average value of <span class="math inline">\(Y\)</span> increases with the value of <span class="math inline">\(X\)</span>.</p>
+<p>The data in <a href="#fig-simpson-all" class="quarto-xref">Figure&nbsp;<span>6.12</span></a> consists of three groups and when the regression analysis is performed separately for each group, a different picture emerges. Within each group the regression relationship indicates a negative slope, the opposite of the trend in the ungrouped data (<a href="#fig-simpson-group" class="quarto-xref">Figure&nbsp;<span>6.13</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-simpson-all" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -664,7 +846,7 @@ Figure&nbsp;6.10: Storks and babies.
 <img src="correlation_files/figure-html/fig-simpson-all-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.11: Combined data and regression trend.
+Figure&nbsp;6.12: Combined data and regression trend.
 </figcaption>
 </figure>
 </div>
@@ -678,7 +860,7 @@ Figure&nbsp;6.11: Combined data and regression trend.
 <img src="correlation_files/figure-html/fig-simpson-group-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simpson-group-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.12: Grouped data and group-specific regression trends.
+Figure&nbsp;6.13: Grouped data and group-specific regression trends.
 </figcaption>
 </figure>
 </div>
@@ -846,14 +1028,14 @@ Table&nbsp;6.3: Application and acceptance rates at Cambridge in 1996 by STEM di
 <li>Conditions we do not know about (lurking factors)</li>
 </ol>
 <p>The fertilizer treatments fall into the first category. We can apply parts of the field and apply fertilizer A to it, other parts receive fertilizer B, and so on. Suppose that the field is large and sloped and we suspect a gradient in soil nutrients and water. This falls into the second category. We do not create or manipulate the soil and water conditions, but we are aware of them. They are a confounding factor. All other potential influences of poppy growth fall into the third category.</p>
-<p><a href="#fig-rcbd-poppies" class="quarto-xref">Figure&nbsp;<span>6.13</span></a> displays a popular layout for running such a fertilizer experiment in agricultural science. It is called a randomized complete block design (RCBD). The experimental area is divided up into separate blocks, in this case four of them.</p>
+<p><a href="#fig-rcbd-poppies" class="quarto-xref">Figure&nbsp;<span>6.14</span></a> displays a popular layout for running such a fertilizer experiment in agricultural science. It is called a randomized complete block design (RCBD). The experimental area is divided up into separate blocks, in this case four of them.</p>
 <div id="fig-rcbd-poppies" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rcbd-poppies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/RandomizedBlocks.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="images/RandomizedBlocks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a>
+<a href="images/RandomizedBlocks.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="images/RandomizedBlocks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd-poppies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.13: Experimental layout for poppy experiment.
+Figure&nbsp;6.14: Experimental layout for poppy experiment.
 </figcaption>
 </figure>
 </div>
@@ -901,10 +1083,10 @@ Figure&nbsp;6.13: Experimental layout for poppy experiment.
 <div id="fig-ear-length" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ear-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/EarLength.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="images/EarLength.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+<a href="images/EarLength.jpg" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="images/EarLength.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ear-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.14: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.
+Figure&nbsp;6.15: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.
 </figcaption>
 </figure>
 </div>
@@ -972,7 +1154,7 @@ The determination about lower IQs in children was based primarily on epidemiolog
 <img src="images/Junior_Seau.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-junior-seau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.15: Junior Seau playing for the New England Patriots. Source: <a href="https://en.wikipedia.org/wiki/Junior_Seau">Wikipedia</a>
+Figure&nbsp;6.16: Junior Seau playing for the New England Patriots. Source: <a href="https://en.wikipedia.org/wiki/Junior_Seau">Wikipedia</a>
 </figcaption>
 </figure>
 </div>
@@ -993,9 +1175,9 @@ Figure&nbsp;6.15: Junior Seau playing for the New England Patriots. Source: <a h
 <span class="glightbox-desc lightbox-desc-1">Figure&nbsp;6.1: Relationship between highway fatalities and lemon imports from Mexico.</span>
 <span class="glightbox-desc lightbox-desc-2">Figure&nbsp;6.2: Positive correlation.</span>
 <span class="glightbox-desc lightbox-desc-3">Figure&nbsp;6.3: Negative correlation.</span>
-<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;6.7: Chocolate consumption and number of Nobel laureates.</span>
-<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;6.13: Experimental layout for poppy experiment.</span>
-<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;6.14: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;6.8: Chocolate consumption and number of Nobel laureates.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;6.14: Experimental layout for poppy experiment.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;6.15: Ear length. From <span class="citation" data-cites="Heathcote1995">Heathcote (<a href="references.html#ref-Heathcote1995" role="doc-biblioref">1995</a>)</span>.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Benson_et_al" class="csl-entry" role="listitem">
@@ -1604,7 +1786,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

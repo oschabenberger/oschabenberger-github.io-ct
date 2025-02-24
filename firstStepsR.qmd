@@ -177,7 +177,7 @@ U.S. The data frame contains the following variables:
 
 : Variables in `College` data set {.striped}
 
-### Exploratory Data Analysis
+### Exploratory Data Analysis {#sec-steps-r-eda}
 
 **Exploratory Data Analysis** (EDA) is the "first date with the data." 
 EDA consists of computing summary statistics of the variables, visualizing
@@ -224,6 +224,8 @@ data you did not have before?
 
 
 ## R Resources
+
+- [W3 Schools Intro to R](https://www.w3schools.com/r/r_intro.asp)
 
 - [R for Data Science, 2nd ed.](https://r4ds.hadley.nz/) [@Wickham_RDS]. 
 

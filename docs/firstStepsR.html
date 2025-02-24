@@ -271,7 +271,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#college-data" id="toc-college-data" class="nav-link" data-scroll-target="#college-data"><span class="header-section-number">5.2</span> College Data</a>
   <ul>
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#sec-steps-r-eda" id="toc-sec-steps-r-eda" class="nav-link" data-scroll-target="#sec-steps-r-eda">Exploratory Data Analysis</a></li>
   </ul></li>
   <li><a href="#r-resources" id="toc-r-resources" class="nav-link" data-scroll-target="#r-resources"><span class="header-section-number">5.3</span> R Resources</a></li>
   </ul>
@@ -344,7 +344,7 @@ TL;DR What you Need
 <div id="fig-rstudio-ide" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rstudio-ide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/RStudio.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/RStudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-ide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: RStudio IDE
@@ -495,8 +495,8 @@ Figure&nbsp;5.3: Contents of a .R script file
 </tr>
 </tbody>
 </table>
-<section id="exploratory-data-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<section id="sec-steps-r-eda" class="level3">
+<h3 class="anchored" data-anchor-id="sec-steps-r-eda">Exploratory Data Analysis</h3>
 <p><strong>Exploratory Data Analysis</strong> (EDA) is the “first date with the data.” EDA consists of computing summary statistics of the variables, visualizing their distribution and exploring relationships between the variables. The goal of EDA is to develop understanding of the data we are dealing with and to suggest interesting questions and subsequent analyses.</p>
 <p>EDA can also reveal issues with data quality, for example, data entry errors, outliers, or unobserved (missing) values.</p>
 <div class="assignment">
@@ -524,6 +524,7 @@ Figure&nbsp;5.3: Contents of a .R script file
 <section id="r-resources" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="r-resources"><span class="header-section-number">5.3</span> R Resources</h2>
 <ul>
+<li><p><a href="https://www.w3schools.com/r/r_intro.asp">W3 Schools Intro to R</a></p></li>
 <li><p><a href="https://r4ds.hadley.nz/">R for Data Science, 2nd ed.</a> <span class="citation" data-cites="Wickham_RDS">(<a href="references.html#ref-Wickham_RDS" role="doc-biblioref">Wickham, Cetinkaya-Rundel, and Grolemund 2023</a>)</span>.</p></li>
 <li><p><a href="http://adv-r.had.co.nz/">Advanced R</a> <span class="citation" data-cites="Wickham_AdvR">(<a href="references.html#ref-Wickham_AdvR" role="doc-biblioref">Wickham 2019</a>)</span>.</p></li>
 <li><p><a href="https://mdsr-book.github.io/mdsr3e/">Modern Data Science with R, 2nd ed.</a> <span class="citation" data-cites="Baumer_etal">(<a href="references.html#ref-Baumer_etal" role="doc-biblioref">Baumer, Kaplan, and Horton 2021</a>)</span>.</p></li>
@@ -1145,7 +1146,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -117,3 +117,16 @@ College[which((Grad.Rate > 100) & (Private=="Yes")),]$Grad.Rate <- 100
 
 # We could set the value to a "missing value", marking it as unobserved
 College[which((Grad.Rate > 100) & (Private=="Yes")),]$Grad.Rate <- NA
+
+
+# #####################################################
+# Box plots to visualize the distribution of variables
+
+# All variables
+boxplot(College)
+# Single variables
+boxplot(Expend)
+boxplot(Outstate,ylab="Outstate")
+# Formula expression to get separate boxplots
+boxplot(Grad.Rate ~ Private)
+boxplot(Expend ~ Private)
