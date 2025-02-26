@@ -1,6 +1,12 @@
 
 # Quantitative Thinking (QT) {#sec-intro-qt}
 
+:::{.callout-tip title="Quote"}
+:::{.flushright}
+Not enough of our society is trained how to understand and interpret quantitative information. This activity is a centerpiece of science literacy to which we should all strive—the future health, wealth, and security of our democracy depend on it. Until that is achieved, we are at risk of making under-informed decisions that affect ourselves, our communities, our country, and even the world.\
+[Neil DeGrasse Tyson]{.quoteauthor}
+:::
+:::
 
 **Quantitative thinking** (QT) is a problem-solving technique, like computational
 thinking. It views the world through measurable events, and approaches problems

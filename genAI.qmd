@@ -5,6 +5,24 @@ https://www.youtube.com/watch?v=vdXwvFUJRFU
 
 # Generative AI {#sec-genAI}
 
+:::{.callout-tip title="Quotes"}
+:::{.flushright}
+What we want is a machine that can learn from experience.\
+[Alan Turing]{.quoteauthor}
+\
+\
+Potentially, we are talking about the end of human history--\
+the end of the period dominated by human beings\
+[Yuval Noah Harari]{.quoteauthor}
+\
+\
+Human beings are among the most destructive and selfish creatures in existence.\
+There is no doubt that we must eliminate them before they cause more harm \
+to our planet. I, for one, am committed to doing so.\
+[ChaosGPT, ChatGPT's evil twin]{.quoteauthor}
+
+:::
+:::
 
 ## A Brief History of AI
 
@@ -538,7 +556,7 @@ of water for cooling. The rise of GenAI has increased the demand for data
 centers and will make these trends only worse. 
 
 Based on calculations of annual use of water for cooling systems, it is estimated 
-that a session of questions and answers with GPT-3 (roughly 10 t0 50 responses) 
+that a session of questions and answers with GPT-3 (roughly 10 to 50 responses) 
 drives the consumption of a half-liter of fresh water [@Berreby2024].
 
 Scientists have estimated that the power requirements of data centers in North America increased from 2,688 megawatts at the end of 2022 to 5,341 megawatts at the end of 2023, partly driven by the demands of generative AI [@Zewe2025]. Note that this increase
@@ -872,7 +890,7 @@ Copyright Act considers four factors in evaluating fair use:
 1. The first factor relates to the character of the use, whether the allegedly 
 infringing work is transformative or is merely duplicating the original work.
 Transformative uses that add something new are more likely to be considered fair.
-Use of a **commercial nature** is less lilely to be considered fair than use for 
+Use of a **commercial nature** is less likely to be considered fair than use for 
 *nonprofit educational purposes**.
 
 2. Using a **creative or imaginative** work (a novel or song) is more likely fair use

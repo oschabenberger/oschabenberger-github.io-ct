@@ -1,5 +1,24 @@
 # Computational Thinking (CT) {#sec-intro-ct}
 
+<!---
+Wing's paper on CT
+https://people.cs.vt.edu/~kafura/CS6604/Papers/CT-What-And-Why.pdf
+--->
+
+:::{.callout-tip title="Quotes"}
+:::{.flushright}
+Computational thinking is not just or all about computer science. The educational benefits of
+being able to think computationally--starting with the use of abstractions--enhance and reinforce
+intellectual skills, and thus can be transferred to any domain.\
+[Jeanette Wing, Computational Thinking--What and Why?]{.quoteauthor}
+\
+\
+Computational thinking is predominant in the world today, driving the worst trends\
+in our society and interactions, and must be opposed by a real systemic literacy.\
+[James Bridle, New Dark Age: Technology and the End of the Future]{.quoteauthor}
+:::
+:::
+
 In the broad sense, **computational thinking** (CT) is a problem-solving methodology
 that develops solutions for complex problems by breaking them down into individual
 steps. Well, are not most problems solved this way? Actually, yes. We all apply
@@ -12,6 +31,10 @@ software and hardware. The term *computational* in CT derives from the fact that
 the methodology is based on core principles of computer science. It does not mean
 that all CT problems are solved through coding. It means to solve problems by
 thinking like a computer scientists. 
+
+According to @Wing_2011, computational thinking describes the mental activity in 
+formulating a problem to admit a computational solution. The solution can be carried 
+out by a human, a machine, or both together. 
 
 ## Elements of CT
 
@@ -305,6 +328,13 @@ Computational thinking as a methodology is applied nowadays in almost any domain
 and to many problems. Decomposing a problem into parts, recognizing patterns,
 abstracting the problem essentials and capturing them in an algorithm is an
 effective approach to deal with many problems. 
+
+Computational thinking is becoming the new literacy of the 21st century because
+it enables you to bend computation to your needs [@Wing_2011]. It has begun to
+influence disciplines and professions beyond science and engineering. 
+Algorithmic medicine, computational archaeology, computational economics, 
+computational finance, computation and journalism, computational law, 
+computational social science, and digital humanities are now areas of active study.
 
 The rise of computational thinking is also due to the fact that many more problems 
 are solved through software and computing today than in the past. We have become 

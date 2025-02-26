@@ -1,6 +1,17 @@
 
 # Case Study: 1854 Cholera Outbreak in Soho, London {#sec-cholera}
 
+:::{.callout-tip title="Quote"}
+::: {.flushright}
+It used to be generally assumed, that if cholera were a catching or communicable disease,
+it must spread \
+by effiuvia given off from the patient into the surrounding air, 
+and inhaled by others into the lungs. \
+This assumption led to very conflicting opinions respecting the disease.\
+[John Snow, On the Mode of Communication of Cholera]{.quoteauthor}
+:::
+:::
+
 ## Two Snows
 
 In 1854, a severe outbreak of cholera occurred near Broad Street in Soho, London,
@@ -46,7 +57,9 @@ with residents. Investigating on the ground, he found that nearly all deaths
 were in the vicinity of the Broad Street Pump or by people who had consumed water 
 from the pump [@Snow1855, p.47]:
 
->*It will be observed that the deaths either very much diminished, or ceased altogether, at every point where it becomes decidedly nearer to send to another pump than to the one in Broad street. It may also be noticed that the deaths are most numerous near to the pump where the water could be more readily obtained.*
+:::{.quote}
+It will be observed that the deaths either very much diminished, or ceased altogether, at every point where it becomes decidedly nearer to send to another pump than to the one in Broad street. It may also be noticed that the deaths are most numerous near to the pump where the water could be more readily obtained.
+:::
 
 He persuaded local authorities to remove the handle from the pump to prevent access
 to the water. The mortality rate declined after that, but it is believed that the
@@ -130,7 +143,9 @@ receiving water from either company were indistinguishable; in statistical terms
 they were comparable. The only thing that differentiated the two groups was the
 water supplier. @Snow1855 [p. 75] wrote 
 
->*In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies...As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer.*
+:::{.quote}
+In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies...As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer.
+:::
 
 @tbl-chol-rate is based on @Snow1855 [p. 80] and covers the period from 
 January 1 to December 12, 1853. The cholera death rate on a 

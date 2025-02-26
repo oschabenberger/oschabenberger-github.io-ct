@@ -24,12 +24,12 @@ book:
     - datascience.qmd
     - firstStepsR.qmd
     - correlation.qmd
+    - predictions.qmd
 #    - analysis.qmd
-    - dataliteracy.qmd
+#    - dataliteracy.qmd
     - life_algorithms.qmd
     - genAI.qmd
     - intuition.qmd
-    - predictions.qmd
     - references.qmd
   #  - notes.qmd
     

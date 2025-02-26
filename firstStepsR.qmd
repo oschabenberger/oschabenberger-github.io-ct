@@ -2,6 +2,22 @@
 
 # First Steps in `R` {#sec-steps-r}
 
+:::{.callout-tip title="Quotes"}
+:::{.flushright}
+Learning to write programs stretches your mind, and helps you think better, creates \
+a way of thinking about things that I think is helpful in all domains.\
+[Bill Gates, Co-founder of Microsoft]{.quoteauthor}
+\
+\
+The function of good software is to make the complex appear to be simple.\
+[Grady Booch, Chief Scientist for Software Engineering at IBM Research]{.quoteauthor}
+\
+\
+My former manager: "If you write code, you write bugs."\
+Me: "I write a lot of code."
+:::
+:::
+
 ## Getting Started with R {#sec-getting-started-R}
 
 ::: {.callout-tip title="TL;DR What you Need" collapse="true"}

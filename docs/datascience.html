@@ -213,8 +213,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,12 +233,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -262,12 +256,14 @@ window.Quarto = {
   <ul>
   <li><a href="#sec-data-science-signal-noise" id="toc-sec-data-science-signal-noise" class="nav-link" data-scroll-target="#sec-data-science-signal-noise">Signal and Noise</a></li>
   <li><a href="#choosing-a-model" id="toc-choosing-a-model" class="nav-link" data-scroll-target="#choosing-a-model">Choosing a Model</a></li>
-  <li><a href="#regression-and-classification" id="toc-regression-and-classification" class="nav-link" data-scroll-target="#regression-and-classification">Regression and Classification</a>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a>
   <ul class="collapse">
+  <li><a href="#regression-and-classification" id="toc-regression-and-classification" class="nav-link" data-scroll-target="#regression-and-classification">Regression and classification</a></li>
   <li><a href="#predictions-as-surrogates" id="toc-predictions-as-surrogates" class="nav-link" data-scroll-target="#predictions-as-surrogates">Predictions as surrogates</a></li>
-  </ul></li>
   <li><a href="#generalization" id="toc-generalization" class="nav-link" data-scroll-target="#generalization">Generalization</a></li>
-  <li><a href="#sec-data-science-models-wrong" id="toc-sec-data-science-models-wrong" class="nav-link" data-scroll-target="#sec-data-science-models-wrong">All Models are Wrong</a></li>
+  <li><a href="#sec-data-science-models-wrong" id="toc-sec-data-science-models-wrong" class="nav-link" data-scroll-target="#sec-data-science-models-wrong">All Models are wrong</a></li>
+  </ul></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -494,16 +490,19 @@ Figure&nbsp;4.4: Monthly SOI data from 1951 to mid-2023 according to NOAA.
 <h3 class="anchored" data-anchor-id="choosing-a-model">Choosing a Model</h3>
 <p>Selecting the right type of model is a critical step in any data science project. There are many choices based on input data, learning methodology and analysis category. <a href="#fig-proj-dsmodels" class="quarto-xref">Figure&nbsp;<span>4.5</span></a> is an attempt at structuring the input, algorithm, and output components of a model in the data science context. The diagram is complex and yet woefully incomplete and is intended to give you an idea of the diversity of methods and the many ways we can look at things. For example, in discussing input data we could highlight how data are stored, how fast it is moving, the degree to which the data is structured, the data types, and so forth. There are many other categorizations of data one could have listed.</p>
 <p>The categorization of algorithms leaves out some approaches to learning from data to keep things (relatively) simple. Volumes of books and papers have been written about every item in the list of algorithms and many algorithms are represented by a single entry. Multi-layer networks, for example, include artificial neural networks, deep networks such as convolutional and recurrent networks, and transformer architectures such as GPT.</p>
-<div id="fig-proj-dsmodels" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Structuring and categorizing input, algorithm, and output in data science models.">
+<div id="fig-proj-dsmodels" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" alt="Structuring and categorizing input, algorithm, and output in data science models." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-proj-dsmodels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/DataScienceModels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/DataScienceModels.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Structuring and categorizing input, algorithm, and output in data science models."></a>
+<a href="images/DataScienceModels.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/DataScienceModels.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Structuring and categorizing input, algorithm, and output in data science models."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-proj-dsmodels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.5: Structuring and categorizing input, algorithm, and output in data science models.
 </figcaption>
 </figure>
 </div>
+</section>
+<section id="supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h3>
 <p>Arguably the most important class of algorithms learning from data is <strong>supervised learning</strong>. The name originates in thinking of learning in an environment that is supervised by a teacher. The teacher asks questions for which they know the correct answer (the ground truth) and judge a student’s response to the questions. The goal is to increase students’ knowledge as measured by the quality of their answers. But we do not want students to just memorize answers, we want to teach them to be problem solvers, to apply the knowledge to new problems, to generalize.</p>
 <p>Supervised learning is characterized by the presence of a <strong>target variable</strong>, also called a dependent variable, response variable, or output variable. This is the attribute about which we wish to draw conclusions. For example, to predict the probability that someone contacting customer support will later fill out a survey, the target variable is whether they responded to the survey request or not. To model the strength of drywall a target variable might be the force required to pull a nail from the board.</p>
 <p>Other variables in our data set, beside the target variable, are potentially <strong>input variables</strong> to our model. In modeling the nail pull strength of drywall input variables might be the thickness of the board, the moisture, the chemistry of the gypsum, characteristics of the manufacturing environment, and so forth.</p>
@@ -536,13 +535,43 @@ Figure&nbsp;4.6: Labeling images prior to training an image processing network. 
 <li>The values of the target variable are the the correct answers.</li>
 <li>The input variables represent the information used by the students to answer the questions.</li>
 </ul>
-</section>
-<section id="regression-and-classification" class="level3">
-<h3 class="anchored" data-anchor-id="regression-and-classification">Regression and Classification</h3>
+<section id="regression-and-classification" class="level4">
+<h4 class="anchored" data-anchor-id="regression-and-classification">Regression and classification</h4>
 <p>Within the supervised learning category <strong>regression</strong> and <strong>classification</strong> models are the most important model types.</p>
 <p>In a <strong>regression</strong> context we are interested in the relationship between the mean of a target variable and the inputs. The goal is to make predictions about the mean of the target variable when the input variables take on certain values.</p>
 <p>In a <strong>classification</strong> context the target variable is categorical (see <a href="quant.html#sec-data-types" class="quarto-xref"><span>Section 2.4</span></a>), for example, makes of cars, names of fruit, object categories on images, or the 10,000 words in a dictionary. Based on the values of input variables we wish to classify a new observation into one of the possible categories. For example, we measure health attributes such as LDL, weight, age, etc. along with the target variable, whether someone is at low, medium, or high risk of developing coronary heart disease. The process of training the model involves data from people with confirmed low, medium, and high risk of heart disease. Based on the classification model so developed, a physician can classify a new patient as low, medium, or high risk based on information about their LDL, weight, age, etc.</p>
 <p>The term <strong>prediction</strong> is common to describe the outcome of applying a regression model or a classification model. In the former case we make a prediction of a numeric attribute. In the latter we predict which of the possible categories an observation belongs to.</p>
+<p>The process of prediction is fundamental to both types of applications. Consider you are presented with a handwritten digit and you have trained a classification model in digit detection. The algorithm does not actually say which of the ten digits it was presented with. The algorithm computes a vector of 10 quantities each between 0 and 1, and subject to the constraint that they sum to 1.</p>
+<p>Here is the vector for one observation <span class="math display">\[
+[0.00000, 0.00001, 0.00001, 0.00003, 0.00000, 0.00000, 0.00000, 0.99994, 0.00000, 0.00001]
+\]</span></p>
+<p>and here is the vector for another observation</p>
+<p><span class="math display">\[
+[0.00056, 0.00002, 0.00000, 0.00001, 0.00424, 0.18760, 0.74695, 0.00001, 0.00616, 0.05446]
+\]</span></p>
+<p>The first element of the vector corresponds to digit 0, the second to digit 1, and so on. Considering the first vector, how would you convert the numbers into a classification? Since the numbers are between 0 and 1, and sum to 1, it is tempting to interpret them as probabilities. The overwhelming evidence points at the 8<sup>th</sup> position in the vector with a large <em>probability</em> of 0.99994. The algorithm is almost certain that the digit is a “7”.</p>
+<p>In the second case we see more of a spread in the probabilities. Digit “5” is considered quite likely (probability 0.1876). Digit “6” has the highest probability (0.74695) and “9” also has a non-zero probability (0.05446). The rule that classifies an observation into the category with the highest probability would assign the label “6” to the second observation.</p>
+<div id="fig-lenet-pred" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lenet-pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/LeNetPredictions.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/LeNetPredictions.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lenet-pred-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Digit classifications.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-lenet-pred" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> shows the actual and classified digits for nine data points. The vectors shown above correspond to the probabilities for the images in the upper left and lower right corners. We are not surprised that the algorithm classified the first observation as a “7”. We are also not surprised that the sloppy “5” in the lower right corner was mistaken for a “6” (which had the second largest probability).</p>
+<p>The point of this example is twofold:</p>
+<ol type="1">
+<li><p>The process of classifying something through a statistical algorithm often goes first through a process of predicting a measure of confidence or likelihood associated with the possible outcomes. We then classify the observation into the category that has the highest probability. This is known as the <strong>Bayes Rule</strong> of classification and it can be shown to be optimal in the sense of achieving the greatest accuracy.</p></li>
+<li><p>When making predictions we need to think in terms of probabilities and uncertainties. Ultimately, the classification model will spit out one category and we interpret this as “the model says the digit is a 7”. In the case of the first observation, there is not much uncertainty in the prediction, as the model deems other choices very unlikely. In the second case we should appreciate that the algorithm decided on a “5”, but also that there is uncertainty in the prediction. We only know that the algorithm got it right because we know the author of the digit was writing a “5” (the label). The algorithm will get a certain proportion of cases wrong, this is known as the <strong>mis-classification rate</strong>. As <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span> puts it,</p></li>
+</ol>
+<div class="quote">
+<p>Our brains, wired to detect patterns, are always looking for a signal,<br>
+when instead we should appreciate how noisy the data is.</p>
+</div>
+</section>
 <section id="predictions-as-surrogates" class="level4">
 <h4 class="anchored" data-anchor-id="predictions-as-surrogates">Predictions as surrogates</h4>
 <p>In <a href="quant.html#sec-intro-surrogacy" class="quarto-xref"><span>Section 2.6</span></a> we introduced the concept of a surrogate or proxy variable that takes the place of another variable that is difficult to measure.</p>
@@ -553,18 +582,18 @@ Figure&nbsp;4.6: Labeling images prior to training an image processing network. 
 <p>Example: Measuring Fitness</p>
 </div>
 <div class="example-container">
-<p>One method of quantifying the aerobic fitness of athletes is through testing their aerobic capacity under stress (<a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>). These measurements are time consuming and expensive.</p>
+<p>One method of quantifying the aerobic fitness of athletes is through testing their aerobic capacity under stress (<a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>). These measurements are time consuming and expensive.</p>
 <div id="fig-aerobic-fit" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/AerobicCapacity.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aerobic-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.7: Measuring aerobic capacity.
+Figure&nbsp;4.8: Measuring aerobic capacity.
 </figcaption>
 </figure>
 </div>
-<p>Imagine that you conduct a study in which a number of athletes are subjected to aerobic capacity tests on a machine similar to that shown in <a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>. In addition to measuring their aerobic capacity, you also measure simple-to-obtain attributes such as heart rate, rest pulse, run pulse, distance run, etc.</p>
+<p>Imagine that you conduct a study in which a number of athletes are subjected to aerobic capacity tests on a machine similar to that shown in <a href="#fig-aerobic-fit" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>. In addition to measuring their aerobic capacity, you also measure simple-to-obtain attributes such as heart rate, rest pulse, run pulse, distance run, etc.</p>
 <p>Next you develop a model that can predict aerobic capacity from the easy-to-measure attributes. If that model works well, you can predict the aerobic capacity of an athlete by obtaining their heart rate, pulse, rest pulse, etc. The prediction from that model is a surrogate for the unobserved aerobic fitness measurement.</p>
 <p>This is an example of a <strong>regression model</strong>.</p>
 <p>We incur the expense of measuring the difficult attribute (aerobic fitness) for the study participants only. The model derived from that data can be applied to athletes who did not participate in the study. The prediction from the model provides a quick-and-cheap surrogate value in lieu of going through the trouble of putting every athlete through a fitness stress testing procedure.</p>
@@ -580,9 +609,8 @@ Figure&nbsp;4.7: Measuring aerobic capacity.
 </div>
 </div>
 </section>
-</section>
-<section id="generalization" class="level3">
-<h3 class="anchored" data-anchor-id="generalization">Generalization</h3>
+<section id="generalization" class="level4">
+<h4 class="anchored" data-anchor-id="generalization">Generalization</h4>
 <p>Our teacher has the noble goal of not just drilling the correct answers but to turn the students into problem solvers who can apply concepts to solve new questions. What is the parallel of this concept in supervised machine learning?</p>
 <p>Suppose we can quantify the quality of a student’s answer, for example by using a metric that increases the further their answer is of the mark. When an answer is correct, the metric returns 0. When should the teacher stop teaching? When all the students can answer all the questions correctly? At this point our metric across the training questions would be zero. The teacher has done a good job training students on that set of questions, but have they learned to solve new, previously unseen, problems?</p>
 <p>We need to throw in some new problems and measure how well the students do on those. Getting great answers (small discrepancy metric) on new questions shows that the students can apply the learned concepts to new problems. They are able to <strong>generalize</strong>. Recall from <a href="intro.html" class="quarto-xref"><span>Chapter 1</span></a> that generalization is one of the steps in computational thinking, just prior to algorithm design. In data science, the process of training a model leads to an algorithm that can perform the analytic goal. The way in which the model is trained ensures that the algorithm generalizes well to new observations, those not in the training data.</p>
@@ -592,7 +620,7 @@ Figure&nbsp;4.7: Measuring aerobic capacity.
 <p>Example: Melanoma Incidences</p>
 </div>
 <div class="example-container">
-<p>The data displayed in <a href="#fig-melanoma-data" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> are from the Connecticut Tumor Registry and represent age-adjusted numbers of melanoma incidences per 100,000 people for the 37 years from 1936 to 1972 <span class="citation" data-cites="Houghton_1980">(<a href="references.html#ref-Houghton_1980" role="doc-biblioref">Houghton, Flannery, and Viola 1980</a>)</span>.</p>
+<p>The data displayed in <a href="#fig-melanoma-data" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> are from the Connecticut Tumor Registry and represent age-adjusted numbers of melanoma incidences per 100,000 people for the 37 years from 1936 to 1972 <span class="citation" data-cites="Houghton_1980">(<a href="references.html#ref-Houghton_1980" role="doc-biblioref">Houghton, Flannery, and Viola 1980</a>)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-melanoma-data" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -601,14 +629,14 @@ Figure&nbsp;4.7: Measuring aerobic capacity.
 <img src="datascience_files/figure-html/fig-melanoma-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-melanoma-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.8: Incidences of melanoma per 100,000 people from 1936 to 1972
+Figure&nbsp;4.9: Incidences of melanoma per 100,000 people from 1936 to 1972
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>There is noise and signal in the data. While the data points do not fall on a perfect trend line, there is a general upward trend in the number of melanoma incidences per 100,000 over the 37-year period. There is also a shorter-term oscillation around the overall trend.</p>
-<p><a href="#fig-melanoma-smooth" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> shows the data and four possible models to capture the signal in the data. The solid black line tries to capture the overall trend. While this model might be OK to describe the trend over 30+ years, it is <strong>underfit</strong> with respect to the shorter oscillations of the incidence rate. The dotted (red), dashed (blue), and dot-dashed (dark green) lines try to capture these shorter-term signals in the data. The green line appears <strong>overfit</strong>, it follows the observed data too closely, almost interpolating the dots. The other two lines fall somewhere between the two extreme models.</p>
+<p><a href="#fig-melanoma-smooth" class="quarto-xref">Figure&nbsp;<span>4.10</span></a> shows the data and four possible models to capture the signal in the data. The solid black line tries to capture the overall trend. While this model might be OK to describe the trend over 30+ years, it is <strong>underfit</strong> with respect to the shorter oscillations of the incidence rate. The dotted (red), dashed (blue), and dot-dashed (dark green) lines try to capture these shorter-term signals in the data. The green line appears <strong>overfit</strong>, it follows the observed data too closely, almost interpolating the dots. The other two lines fall somewhere between the two extreme models.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-melanoma-smooth" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
@@ -617,7 +645,7 @@ Figure&nbsp;4.8: Incidences of melanoma per 100,000 people from 1936 to 1972
 <img src="datascience_files/figure-html/fig-melanoma-smooth-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-melanoma-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.9: Models of different degree of smoothness for the Melanoma data.
+Figure&nbsp;4.10: Models of different degree of smoothness for the Melanoma data.
 </figcaption>
 </figure>
 </div>
@@ -628,8 +656,8 @@ Figure&nbsp;4.9: Models of different degree of smoothness for the Melanoma data.
 </div>
 <hr>
 </section>
-<section id="sec-data-science-models-wrong" class="level3">
-<h3 class="anchored" data-anchor-id="sec-data-science-models-wrong">All Models are Wrong</h3>
+<section id="sec-data-science-models-wrong" class="level4">
+<h4 class="anchored" data-anchor-id="sec-data-science-models-wrong">All Models are wrong</h4>
 <p>George E.P. Box is credited with coining the much-used phrase “all models are wrong, but some are useful”. The phrase appears partially (“all models are wrong”) twice in his 1976 paper on <a href="http://www-sop.inria.fr/members/Ian.Jermyn/philosophy/writings/Boxonmaths.pdf">Science and Statistics</a> <span class="citation" data-cites="GEPBox1976">(<a href="references.html#ref-GEPBox1976" role="doc-biblioref">Box 1976</a>)</span>:</p>
 <blockquote class="blockquote">
 <p><em>Since all models are wrong the scientist cannot obtain a “correct” one by excessive elaboration.</em></p>
@@ -681,10 +709,24 @@ Figure&nbsp;4.9: Models of different degree of smoothness for the Melanoma data.
 <p>We can even run an experiment with a particular coin and flip it 100 times to get an estimate of the parameter. If it lands on Heads 45 times out of 100 tosses, then the probability of Heads is 0.45.</p>
 </div>
 </div>
+</section>
+</section>
+<section id="unsupervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h3>
+<p>Unsupervised learning does not utilize a target variable; hence it cannot predict or classify observations. However, we are still interested in discovering structure, patterns, and relationships in the data.</p>
+<p>The term unsupervised refers to the fact that we no longer know the ground truth because there is no target variable. Hence the concept of a teacher who knows the correct answers and supervises the learning progress of the student does not apply. In unsupervised learning there are no clear error metrics by which to judge the quality of an analysis, which explains the proliferation of unsupervised methods and the reliance on heuristics. For example, a 5-means cluster analysis will find five groups of observations in the data, whether this is the correct number or not, and it is up to us to interpret what differentiates the groups and to assign group labels.</p>
+<p>Often, unsupervised learning is used in an <strong>exploratory</strong> fashion, improving our understanding of the joint distributional properties of the data and the relationships in the data. The findings then help lead us toward supervised approaches.</p>
+<p>A coarse categorization of unsupervised learning techniques also hints at their application:</p>
+<ul>
+<li><p><strong>Association analysis</strong>: which values of the variables tend to occur together in the data? An application is market basket analysis, where the data represent items in a shopping cart (or a basket in the market). If items frequently appear together, bread and butter, or beer and chips, for example, then maybe they should be located close together in the store. Association analysis is also useful to build recommender systems: shoppers who bought this item also bought the following items <span class="math inline">\(\ldots\)</span></p></li>
+<li><p><strong>Cluster analysis</strong>: can variables be used to grouped data into sets such that the observations within a set are more similar to each other than they are to observations in other sets? An application of clustering is the grouping of customers into segments. Segmentation analysis is behind loyalty programs, lower APRs for customers with good credit rating, and churn models.</p></li>
+<li><p><strong>Dimension reduction</strong>: can we transform the input variables into a smaller set of data without losing relevant information? Applications of dimension reduction are in high-dimensional problems where the number of inputs is large relative to the number of observations. In problems with wide data, the number of inputs <span class="math inline">\(p\)</span> can be much larger than the number of observations, which eliminates many traditional methods of analysis from consideration.</p></li>
+</ul>
 
 
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">Figure&nbsp;4.5: Structuring and categorizing input, algorithm, and output in data science models.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;4.7: Digit classifications.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-GEPBox1976" class="csl-entry" role="listitem">
@@ -1283,7 +1325,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

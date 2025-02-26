@@ -122,6 +122,13 @@ $presentation-h1-text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb,
     text-shadow: 1px 1px 1px $col-vt-maroon;
 }
 
+.quoteauthor {
+    color: $col-vt-maroon;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-style: normal;
+}
+
 .centered {
     color: $col-vt-orange;
     font-size: 1.1em;

@@ -5,8 +5,10 @@
 ::: {.flushright}
 We love to predict things---and we aren't very good at it.\
 [Nate Silver, The Signal and the Noise]{.quoteauthor}\
+\
 It is difficult to predict, especially the future.\
 [Niels Bohr]{.quoteauthor}\
+\
 The best way to predict the future is to create it.\
 [Peter Drucker, often attributed to Abraham Lincoln]{.quoteauthor}
 :::
@@ -14,18 +16,18 @@ The best way to predict the future is to create it.\
 
 ## Introduction {#sec-predict-intro}
 
-In *The Signal and the Noise*, @Silver2012 [p.52] cites a study at the University of
+In *The Signal and the Noise*, @Silver2012 [p. 52] cites a study at the University of
 Pennsylvania that found when political scientists claim that a political outcome
-had *no* chance of occurring, it happened about 15\% of the time. And of the absolutely
+had **no chance** of occurring, it happened about 15\% of the time. And of the absolutely
 sure things they proclaimed, 25\% failed to occur. Now we know that
-predictions are themselves uncertain, that is why polling results have a margin
+predictions are themselves uncertain, that is why polling results have margins
 of error. But when you predict that something has a zero chance of happening,
 then you ought to be pretty confident in that, the margin of error should be 
-small, definitely not more than 15\%.
+small, definitely not 15\%.
 
 This is an example of a prediction that is not very good. 
 
-If a plane had a 29\% of crashing, you would consider the 
+If a plane had a 29\% of crashing, you would probably consider the 
 risk of flying too high and stay on the ground. In the run-up to the 2016
 presidential election, FiveThirtyEight predicted a 71\% chance for Clinton to
 win the Electoral College and a 29\% chance for Trump to win. This was a much
@@ -35,32 +37,39 @@ models that treated the Clinton victory as a near certainty.
 
 @Silver2012 points out
 
->"Most people fail to recognize how much easier it is to understand and event
-after the fact when you have all the evidence at your disposal. [] But making 
+:::{.quote}
+Most people fail to recognize how much easier it is to understand an event
+after the fact when you have all the evidence at your disposal. [...] But making 
 better *first guesses* under conditions of uncertainty is an entirely different
-enterprise than second-guessing."
+enterprise than second-guessing.
+:::
 
+It is much easier to sift through intelligence after a terrorist attack and to
+point out what was missed than it is finding the signals in the cacophony of 
+data before the attack.
 
-Sometimes we predict things more accurately (small margin of error in the prediction) 
-but we do not believe it or act on it. Predictions that contradict our intuition
-or preferred narrative can be ignored or explained away. Our personal judgment
-is not as good as you might think. We tend to overvalue our own opinion and this
-trend increases the more we know. 80\% of doctors believe they are in the top 20\% of
-their profession. More than half of them are clearly wrong.
+It seems that we make a lot of predictions and are not very good at it.
+And even if our predictions are spot-on, we might not act on them or ignore them.
+Predictions that contradict our intuition or preferred narrative can be ignored 
+or explained away. Our personal judgment is not as good as you might think. We 
+tend to overvalue our own opinion and this trend increases the more we know. 
+80% of doctors believe they are in the top 20% of their profession. More than 
+half of them are clearly wrong!
 
 So when a prediction does not come true, does the fault lie with the model of the 
-world or the world itself? If there is a 80\% chance of rain tomorrow, then you
+world or the world itself? If there is a 80% chance of rain tomorrow, then you
 might see sunny skies. If, in fact, the long run ratio of days that have sunny
-skies when the forecast calls for an 80\% chance of rain is 1 in 5, then the 
-forecast model is correct. Compare the scenario to the following:
+skies when the forecast calls for an 80% chance of rain is 1 in 5, then the 
+forecast model is correct. We cannot fault the model that calls for a 80% chance
+of rain for the occasional sunny skies. 
 
-In the build-up of the the 2008 financial crisis, Standard 
-\& Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, 
-meaning that there is only a 0.12 probability that they would fail to pay out [@Silver2012, p. 20].
-In reality, of the AAA-rated CDOS, 28\% defaulted. Had the world of financial 
-markets drastically changed to bring about such a massive change in default 
-rates (200x!)? Or is it more likely, that the default models of the rating agencies
-were wrong? It was the latter.
+Now compare this scenario to the following. In the build-up of the the 2008 
+financial crisis, Standard \& Poor gave CDOs, a type of mortgage-backed securities, 
+a stellar AAA credit rating, meaning that there is only a 0.12 probability that 
+they would fail to pay out [@Silver2012, p. 20]. In reality, of the AAA-rated 
+CDOS, 28% defaulted. Had the world of financial markets drastically changed to 
+bring about such a massive change in default rates (200x!)? Or is it more likely, 
+that the default models of the rating agencies were wrong? It was the latter.
 
 ---
 
@@ -70,15 +79,33 @@ likely to get caught behind a school bus. We probably make this choice instincti
 without much deliberation, based on experience, instantaneously processing information
 about the time of day, weather, etc.
 
-You might choose Netflix over Paramount+
-one evening because you think it is more likely that you'll find content that
-interests you. This is also a prediction problem.
-A company offers a customer a discount because it predicts that
-without an incentive the customer might leave for a competitor. Information about
-the weather consists of a status report of current conditions and a **forecast**.
+You might choose Netflix over Paramount+ one evening because you think it is more 
+likely that you'll find content that interests you. This is also a prediction problem.
+A company offers a customer a discount because it predicts that without an incentive 
+the customer might leave for a competitor. Information about the weather consists 
+of a status report of current conditions and a **forecast**.
+
+:::{.assignment}
+::::{.assignment-header}
+Exercise: Predictions in Real Life
+::::
+::::{.assignment-container}
+Predictions are everywhere. We make them, consciously or subconsciously all the 
+time. The human brain is a highly efficient pattern matching machine and we
+constantly make predictions about the world based on the patterns we receive.
+For example, in solving a jigsaw puzzle you match the pattern of pieces not
+yet placed against the pattern you need. Pieces are evaluated by predicting whether
+they fit the area you are working on.
+
+1. List examples where you conduct and/or act on predictions during the day.
+
+2. Can you identify examples where someone else's prediction (a company, a friend,
+the government, ...) is applied to you?
+::::
+:::
 
 :::{.callout-note title="Prediction and Forecast"}
-Technically, a prediction and a forecast are different things. In statistics,
+Technically, a **prediction** and a **forecast** are different things. In statistics,
 a prediction results from the application of a model to data. If the data falls
 outside of the range of observed training data, then it is referred to as a
 forecast, in particular when the prediction is about a future event.
@@ -92,188 +119,466 @@ weather based on meteorological models.
 In seismology, the distinction between prediction and forecast is taken very seriously.
 A prediction of an earthquake is a specific statement about when and where it will
 strike. A forecast, on the other hand is a statement of probability: *there is a
-60\% chance of an earthquake in Northern Italy over the next fifty years*. Leaning
+60% chance of an earthquake in Northern Italy over the next fifty years*. Leaning
 on this distinction, the U.S. Geological Service party line is that earthquakes 
 cannot be predicted.
-
-For the purpose of our discussion here, predicting and forecasting are 
-interchangeable.
 :::
 
-## Supervised and Unsupervised Learning
-
-Making predictions is probably the fundamental task of algorithms that process
-data by training some form of model. Statistical learning techniques can be categorized
-in broad strokes into **supervised** and **unsupervised** methods. The name stems
-from the concept of students learning in the presence of a teacher. In supervised
-learning the teacher knows the correct answer to problems, and can measure the
-discrepancy between truth and a student's answer. In unsupervised learning there
-is no teacher to guide the quality of the answer. Instead, the student is trying
-to find patterns and associations in the data. 
-
-The two primary tasks in supervised learning are predictions and classifications.
-Classification problems involve assigning an observation to one of a set of possible
-outcome categories, for example, whether an animal is healthy or diseased, or 
-choosing a word from a dictionary, or which one of the digits 0--9 a handwriting
-sample represents. Prediction in the sense of supervised learning is making a 
-statement about the average of an attribute, for example, the monthly revenue
-or the weight of an animal.
-
-We go on this detour of supervised/unsupervised learning and of prediction/classification
-to uncover that the process of prediction is fundamental to all these applications.
-Consider you are presented with a handwritten digit and you have trained a classification
-model in digit detection. The algorithm does not actually say which of the ten
-digits it was presented with. The algorithm will compute a vector of 10 quantities
-each between 0 and 1, and subject to the constraint that they sum to 1.
-
-Here is the vector for one observation
-$$
-[0.00000, 0.00001, 0.00001, 0.00003, 0.00000, 0.00000, 0.00000, 0.99994, 0.00000, 0.00001]
-$$
-
-and here is the vector for another observation
-
-$$
- [0.00056, 0.00002, 0.00000, 0.00001, 0.00424, 0.74695, 0.18760, 0.00001, 0.00616, 0.05446]
-$$
-
-The first element of the vector corresponds to digit 0, the second to digit 1,
-and so on. Considering the first vector, how would you convert the numbers
-into a classification? Since the numbers are between 0 and 1, and sum to 1, it
-is tempting to interpret them as probabilities. The overwhelming evidence 
-points at the 8^th^ position in the vector with a large *probability* of 0.99994.
-The algorithm is almost certain that the digit is a "7". 
-
-In the second case we see more of a spread in the probabilities. Digit "5" is 
-considered most likely (probability 0.74695), but other digits also have a non-zero
-probability ("6" and "9"). Given the large probability for "6" we would probably
-classify the digit as a six.
-
-![Digit classifications.](images/LeNetPredictions.png){#fig-lenet-pred fig-align="center" width=75% .lightbox}
-
-@fig-lenet-pred shows the actual and classified digits for nine data points.
-The vectors shown above correspond to the probabilities for the images in the
-upper left and lower right corners. We are not surprised that the algorithm
-classified the first observation as a "7". We are also not surprised that the 
-sloppy "5" in the lower right corner could be mistaken for a "6" (which had the
-second largest probability).
-
-The point of this example is twofold:
-
-1. The process of classifying something through a statistical algorithm often 
-goes first through a process of predicting a measure of confidence or likelihood 
-associated with the possible outcomes. We then classify the observation into the 
-category that has the highest probability. This is known as the **Bayes Rule** of 
-classification and it can be shown to be optimal in the sense of achieving the 
-greatest accuracy.
-
-2. When making predictions we need to think in terms of probabilities and 
-uncertainties. Ultimately, the classification model will spit out one category 
-and we interpret this as "the model says the digit is a seven". In the case of
-the first observation, there is not much uncertainty with the prediction, as
-the model deems other choices very unlikely. In the second case we should 
-appreciate that the algorithm decided on a "5", but also that there is uncertainty
-in the prediction. We only know that the algorithm got it right  because we 
-know the author of the digit was writing a "5" (the label). As @Silver2012 puts
-it,
-
->*Our brains, wired to detect patterns, are always looking for a signal, when 
-instead we should appreciate how noisy the data is.*
-
-A common task in unsupervised learning is finding patterns in the data that
-allow us to group the observations. The algorithm finds that observations are
-somehow similar and dissimilar based on their attributes. This process is called
-a **cluster analysis** and the result are a certain number of clusters formed from
-the training data. If a new observation comes along, we can assign it to one of
-the clusters by applying the clustering model. We predict which of the clusters
-the observation is closest to in the sense of the model. Again, prediction is
-the fundamental task by which we draw conclusions about new observations.
-
----
-
-Predictions are everywhere. We make them, consciously or subconsciously all the 
-time. The human brain is a highly efficient pattern matching machine and we
-constantly make predictions about the world based on the patterns we receive.
+For the purpose of our discussion here, predicting and forecasting are 
+interchangeable. The predictions that matter here are those derived from 
+modeling data. In other words, we try to make predictive statements about 
+phenomena by quantifying and building computational algorithms.
 Predictions are at the heart of data processing, whether it is for the purpose
 of forecasting, classifying, or clustering (grouping). 
 
-
-
 ## Bad Predictions
 
-@Silver2012 [p.20] summarizes the attributes bad predictions have in common:
+What do bad predictions have in common? @Silver2012 [p. 20] lists some attributes
+of bad predictions:
 
-* Focus on the signals that tell a story abou the world as we would like it to
+1. Focus on the signals that tell a story about the world as we would like it to
 be, not how it really is.
-* Ignore the risks that are most difficult to measure, although they pose the 
+2. Ignore the risks that are most difficult to measure, although they pose the 
 greatest risk to our well-being.
-* Make approximations and assumptions that are much cruder than we realize.
-* Dislike (abhor) uncertainty, even if it is an integral part of the problem.
+3. Make approximations and assumptions that are much cruder than we realize.
+4. Dislike (abhor) uncertainty, even if it is an integral part of the problem.
 
 
-## Predicting versus Measuring
+If we want predictions based on modeling data avoid these mistakes we need to
 
-* Destructive tests
-* Expensive tests
-* Future performance
+1. Build models that are useful abstractions, not too complicated and not too
+simple
+2. Find the signal that the data is trying to convey about the problem under
+study, allowing for generalization beyond the data at hand.
+3. Be honest about the quality of the data and the limitations to capture complex
+systems through quantification.
+4. Quantify the uncertainty in the conclusions drawn from the model.
 
 
-## Things that are Notoriously Difficult to Predict
+## Difficult to Predict
 
-### Noisy Systems, Sparse Data
+This sounds good and is a noble undertaking. Unfortunately, some things are 
+notoriously difficult to predict. 
 
-* Low signal-to-noise ratio
+- **Chaotic systems** like the weather or economy that resist manipulation. 
+Fortunately, we have much experience in predicting the weather, it is a daily 
+exercise with lots of data to fall back on. 
 
-### Chaotic Systems
+- **Noisy systems** are difficult to predict because they have a low 
+signal-to-noise ratio. Data collected in the social sciences often suffers from 
+high variability, humans are a very variable bunch. 
 
-* Weather
-* Economy
-
-### Complex Systems
-
-Complex systems are those governed by the interaction of many separate individual
-parts. They can seem at once very predictable and very unpredictable. The laws
-governing earth quakes are well understood and the long-term frequency of 
-a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are 
-not very good at predicting earthquake activity.
-
-Complex systems periodically
+- **Complex systems** are those governed by the interaction of many separate 
+individual parts. They can seem at once very predictable and very unpredictable. 
+The laws governing earth quakes are well understood and the long-term frequency 
+of a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are 
+not very good at predicting  earthquake activity. Complex systems periodically
 undergo violent and highly nonlinear phase changes from orderly to chaotic and 
 back again. Bubbles in the economy and significant weather events such as hurricanes, 
 tornadoes, or tsunamis are examples.
 
+- **Nonlinear growth systems**. When growth is linear we have a good handle on 
+describing and modeling change. When growth is nonlinear, for example,
+exponential, predicting outcomes is much more difficult. Small deviations 
+in the model today translate into massive discrepancies in the future. Infectious
+diseases are a good example.
 
-* Earthquakes
+- **Feedback systems**. In systems with feedback loops the act of predicting
+can change the system being predicted. Economic predictions can change the way 
+people behave and that can affect the outcome of the prediction itself. 
+**Self-fulfilling** predictions, where the prediction reinforces the outcome,
+are common in political polling. A poll showing a candidate surging can cause 
+voters to switch to the candidate from ideologically similar candidates. Or it 
+can make undecided voters to finally get off the fence.
+A **self-cancelling** prediction works the opposite way, it undermines itself. 
+When GPS systems became more commonplace, drivers were guided to routes which 
+the systems thought had less traffic. If the systems cannot adjust in real time 
+to the actual traffic density, the guidance can result in more traffic on the 
+suggested routes.
 
-### Nonlinear or Exponential Growth
-
-* Infectious diseases
-
-### Systems with Feedback Loops
-
-The act of predicting can change the system being predicted. Economic predictions
-can change the way people have and that can affect the outcome of the prediction
-itself. Those changes can make the prediction more accurate or less accurate. 
-
-Self-fulfilling predictions, where the prediction reinforces the outcome,
-are common in political polling. A poll showing a
-candidate surging can cause voters to switch to the candidate from ideologically
-similar candidates. Or it can make undecided voters to finally get off the fence.
-
-Another example of a self-fulfilling prediction is when increased media coverage
+An example of a self-fulfilling prediction is when increased media coverage
 of a medical condition leads to increased diagnosis of the condition. Not just
 because the condition is more prevalent, but because of increased attention people
 are more likely to identify symptoms and are doctors are more likely to diagnose
 them. The rise of autism diagnoses in the U.S. from 1992 to 2008 correlates highly 
 with the media coverage of autism [@Silver2012, p. 218].
 
-When the police increase presence in an area where crime rate is believed to be
-high, they will report more incidences because of their presence and that will
-in turn increase the crime rate. 
+:::{.assignment}
+::::{.assignment-header}
+Assignment: Self-fulfilling Predictions
+::::
+::::{.assignment-container}
+Discuss how increasing police presence in areas where the crime rate is 
+believed to be high is a system with feedback loop. Is it self-fulfilling
+or self-cancelling?
+::::
+:::
 
-A self-cancelling prediction works the opposite way, it undermines itself. When GPS
-systems became more commonplace, drivers were guided to routes which the systems
-thought had less traffic. If the systems cannot adjust in real time to the actual
-traffic density, the guidance can result in more traffic on the suggested routes.
+## The Bias--Variance Tradeoff
+
+Recall the antidotes for bad predictions:
+
+1. Build models that are useful abstractions, not too complicated and not too
+simple
+2. Find the signal that the data is trying to convey about the problem under
+study, allowing for generalization beyond the data at hand.
+3. Be honest about the quality of the data and the limitations to capture complex
+systems through quantification.
+4. Quantify the uncertainty in the conclusions drawn from the model.
+
+Let's focus on the first two.
+
+### A Simulated Data Set
+
+Suppose that one hundred observations on variables $Y$ and $X$ are sampled from a
+population. We suspect that the variables are related and wish to predict the
+difficult-to-measure attribute $Y$ from the easy-to-measure attribute $X$.
+Figure @fig-gendata1 displays the data for the random sample, inspired by
+[Notes on Predictive Modeling](https://bookdown.org/egarpor/PM-UC3M/) by
+Eduardo García-Portugués at Carlos III University of Madrid.
+
+```{r, echo=FALSE}
+set.seed(12345)
+n <- 100
+eps <- rnorm(n, sd = 2)
+m <- function(x) x^2 * cos(x)
+X <- rnorm(n, sd = 2)
+Y <- m(X) + eps
+xGrid <- seq(-5, 6, l = 250)
+```
+
+```{r, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: 100 observations sampled from a population where $Y$ and $X$ are related.
+#| label: fig-gendata1
+plot(X, Y, las=1, bty="l")
+rug(X, side = 1); 
+rug(Y, side = 2)
+#lines(xGrid, m(xGrid), col = "black",lwd=1.5)
+```
+
+There is noise in the data but there is also a signal. How should we go about
+extracting the signal. @fig-gendata-fit1 shows three possible models for the 
+signal.
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: Observed data and three possible models for the signal.
+#| label: fig-gendata-fit1
+#| 
+l_01 <- loess(Y ~ X,degree=1, span=0.075)
+l_03 <- loess(Y ~ X,degree=1, span=0.3)
+l_09 <- loess(Y ~ X,degree=1, span=0.9)
+
+plot(X,Y,las=1, bty="l")
+lines(xGrid,
+      predict(l_01, newdata=data.frame("X"=xGrid)), 
+      col="darkgreen", 
+      lty="dashed",
+      lwd=2)
+lines(xGrid,
+      predict(l_03, newdata=data.frame("X"=xGrid)), 
+      col="red", 
+      lty="dotted",
+      lwd=2)
+lines(xGrid,
+      predict(l_09, newdata=data.frame("X"=xGrid)), 
+      col="blue", 
+      lty="solid",
+      lwd=2)
+
+```
+
+The three models differ in their degree of **smoothness**. The solid (blue) line
+is the most smooth, followed by the dotted (red) line. The dashed (green) line is
+the least smooth, it follows the observed data points most closely. The solid (blue)
+line is probably not a good representation of the signal, it does not capture 
+the trend in the data for small or large values. This model exhibits **bias**; 
+it overestimates for small values of $X$ and underestimates for large values of
+$X$. On the other hand, the dashed (green) model exhibits a lot of **variability**.
+
+The question in modeling these data becomes: what is the appropriate degree of smoothness?
+In the extreme case where the model interpolates the observed data points the 
+model reproduces the 100 data points. Such a model fits the observed data really
+well but you can imagine that it does not generalize well to a new data point
+that was not used in training the model.
+
+### More Simulations
+
+The concept of bias and variability of a model relate not to the behavior of
+the model for the sample data at hand, although in practical applications this
+is all we have to judge a model. Conceptually we imagine repeating the process
+that generated the sample. Imagine that we draw two more sets of 100 observations
+each. Now we have 300 observations, 3 sets of 100 each. @fig-gendata2 overlays
+the three samples.
+
+
+```{r, echo=FALSE}
+m <- function(x) x^2 * cos(x)
+eps2 <- rnorm(n, sd = 2)
+X2 <- rnorm(n, sd = 2)
+Y2 <- m(X) + eps2
+
+eps3 <- rnorm(n, sd = 2)
+X3 <- rnorm(n, sd = 2)
+Y3 <- m(X) + eps3
+```
+
+```{r, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: Three realizations of 100 observations each.
+#| label: fig-gendata2
+plot(X, Y, las=1, bty="l", col="black", pch=1., ylim=c(-16,18))
+points(X2,Y2, col="red", pch=2)
+points(X3,Y3, col="blue", pch=3)
+```
+
+The process of fitting the three models displayed in @fig-gendata-fit1 can now
+be repeated for the two other samples. @fig-gendata-fit2_1 displays the three
+versions of the solid (blue) model. @fig-gendata-fit2_1 displays the three
+versions of the dotted (red) model and @fig-gendata-fit2_3 the versions of the
+dashed (green) model.
+
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The solid (blue) model fit to each of the three samples.
+#| label: fig-gendata-fit2_1
+#| 
+l_09 <- loess(Y ~ X,degree=1, span=0.9)
+l_092 <- loess(Y2 ~ X2,degree=1, span=0.9)
+l_093 <- loess(Y3 ~ X3,degree=1, span=0.9)
+
+plot(x=xGrid,
+     y=predict(l_09, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="blue", 
+     lty="solid",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid,
+      predict(l_093, newdata=data.frame("X3"=xGrid)), 
+      col="blue", 
+      lty="solid",
+      lwd=2)
+lines(xGrid,
+      predict(l_092, newdata=data.frame("X2"=xGrid)), 
+      col="blue", 
+      lty="solid",
+      lwd=2)
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The dotted (red) model fit to each of the three samples.
+#| label: fig-gendata-fit2_2
+#| 
+l_03 <- loess(Y ~ X,degree=1, span=0.3)
+l_032 <- loess(Y2 ~ X2,degree=1, span=0.3)
+l_033 <- loess(Y3 ~ X3,degree=1, span=0.3)
+
+plot(x=xGrid,
+     y=predict(l_03, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="red", 
+     lty="dotted",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid,
+      predict(l_033, newdata=data.frame("X3"=xGrid)), 
+      col="red", 
+      lty="dotted",
+      lwd=2)
+lines(xGrid,
+      predict(l_032, newdata=data.frame("X2"=xGrid)), 
+      col="red", 
+      lty="dotted",
+      lwd=2)
+
+```
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The dashed (green) model fit to each of the three samples.
+#| label: fig-gendata-fit2_3
+#| 
+l_01 <- loess(Y ~ X,degree=1, span=0.075)
+l_012 <- loess(Y2 ~ X2,degree=1, span=0.075)
+l_013 <- loess(Y3 ~ X3,degree=1, span=0.075)
+
+plot(x=xGrid,
+     y=predict(l_01, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="darkgreen", 
+     lty="dashed",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid,
+      predict(l_013, newdata=data.frame("X3"=xGrid)), 
+      col="darkgreen", 
+      lty="dashed",
+      lwd=2)
+lines(xGrid,
+      predict(l_012, newdata=data.frame("X2"=xGrid)), 
+      col="darkgreen", 
+      lty="dashed",
+      lwd=2)
+```
+
+Comparing the same model type for the three sets of 100 observations, it is clear
+that the blue model shows the most stability from set to set, the green model 
+shows the least stability (most variability), and the red model falls between
+the two.
+
+We also see now why the highly variable green model would not generalize well 
+to a new observation. It follows the training data too closely and is sensitive
+to small changes in the data. 
+
+### The True Model
+
+Since this is a simulation study we have the benefit of knowing the underlying
+signal around which the data were generated. This is the same signal for all 
+three sets of 100 observations and we can compare the models in @fig-gendata-fit2_1
+through @fig-gendata-fit2_3 against the true model (@fig-gendata-fit3_1 through
+@fig-gendata-fit3_3)
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The solid (blue) model fit to each of the three samples and the true signal.
+#| label: fig-gendata-fit3_1
+#| 
+
+plot(x=xGrid,
+     y=predict(l_09, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="blue", 
+     lty="solid",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid, m(xGrid), col = "black",lwd=1.5)
+lines(xGrid,
+      predict(l_093, newdata=data.frame("X3"=xGrid)), 
+      col="blue", 
+      lty="solid",
+      lwd=2)
+lines(xGrid,
+      predict(l_092, newdata=data.frame("X2"=xGrid)), 
+      col="blue", 
+      lty="solid",
+      lwd=2)
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The dashed (green) model fit to each of the three samples and the true signal.
+#| label: fig-gendata-fit3_2
+#| 
+plot(x=xGrid,
+     y=predict(l_03, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="red", 
+     lty="dotted",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid, m(xGrid), col = "black",lwd=1.5)
+lines(xGrid,
+      predict(l_033, newdata=data.frame("X3"=xGrid)), 
+      col="red", 
+      lty="dotted",
+      lwd=2)
+lines(xGrid,
+      predict(l_032, newdata=data.frame("X2"=xGrid)), 
+      col="red", 
+      lty="dotted",
+      lwd=2)
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The dashed (green) model fit to each of the three samples and the true signal.
+#| label: fig-gendata-fit3_3
+#| 
+
+plot(x=xGrid,
+     y=predict(l_01, newdata=data.frame("X"=xGrid)), 
+     xlab="X",
+     ylab="Y",
+     type="l",
+     las=1,
+     bty="l",
+     col="darkgreen", 
+     lty="dashed",
+     lwd=2,
+     ylim=c(-16,18))
+lines(xGrid, m(xGrid), col = "black",lwd=1.5)
+lines(xGrid,
+      predict(l_013, newdata=data.frame("X3"=xGrid)), 
+      col="darkgreen", 
+      lty="dashed",
+      lwd=2)
+lines(xGrid,
+      predict(l_012, newdata=data.frame("X2"=xGrid)), 
+      col="darkgreen", 
+      lty="dashed",
+      lwd=2)
+```
+
+Against the backdrop of the true signal, the solid (blue) and dashed (green) 
+models do not look good. The former is biased, it is not sufficiently flexible
+to capture the signal. The latter is too flexible and overfits the signal.
+
+### In Practice
+
+The simulation is unrealistic for two reasons: 
+
+- we do not know the true signal in practice, otherwise there would not be a modeling problem.
+- we have only a single sample of $n$ observations and cannot study the behavior
+of the model under repetition of the data collection process.
+
+The considerations are the same, however. We do not want a model that has too
+much variability or a model that has too much bias. Somehow, the two need to be
+balanced. Mathematically, the measure that combines bias and variability is
+the **mean squared error** (MSE). Without going into the derivation, we note that 
+the MSE is computed as 
+$$
+\text{MSE} = \text{Variance} + \text{Bias}^2
+$$
+
+The mean squared error is the sum of the variance and the squared bias. We
+want the MSE to be small. 
+
+In statistics, the tension between bias and variance is frequently resolved with
+the following rationale: we try to avoid biased estimators and require that
+models are unbiased. Then, among the choices of unbiased models we pick the one
+that has the smallest variability.
+
+That is a reasonable approach, but it is possible that a model with some bias
+has a lower MSE if its variability is much lower. 
+
+When dealing with a single sample we can map the concept of variability of a model
+to the flexibility of the model. A model that is very flexible and can follow 
+the data closely tends to have low bias and high variability. On the other hand,
+a model that is rigid tends to high bias and low variability. The solid (blue)
+model falls into the high-bias-and-low-variability category and the dashed (green)
+model falls into the low-bias-and-high-variability category.
+
+What is known as the **bias--variance tradeoff** in data science is finding models 
+that lead to a small MSE by having low bias and moderate variability.
+
+
 
 

@@ -213,8 +213,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,12 +233,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -299,8 +293,33 @@ window.Quarto = {
 </header>
 
 
+<!---
+Wing's paper on CT
+https://people.cs.vt.edu/~kafura/CS6604/Papers/CT-What-And-Why.pdf
+--->
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="flushright">
+<p>Computational thinking is not just or all about computer science. The educational benefits of being able to think computationally–starting with the use of abstractions–enhance and reinforce intellectual skills, and thus can be transferred to any domain.<br>
+<span class="quoteauthor">Jeanette Wing, Computational Thinking–What and Why?</span><br>
+<br>
+Computational thinking is predominant in the world today, driving the worst trends<br>
+in our society and interactions, and must be opposed by a real systemic literacy.<br>
+<span class="quoteauthor">James Bridle, New Dark Age: Technology and the End of the Future</span></p>
+</div>
+</div>
+</div>
 <p>In the broad sense, <strong>computational thinking</strong> (CT) is a problem-solving methodology that develops solutions for complex problems by breaking them down into individual steps. Well, are not most problems solved this way? Actually, yes. We all apply computational thinking methodology every day. As we will see in the example below, cooking a pot of soup involves computational thinking.</p>
 <p>In the narrow sense, computational thinking is problem solving by expressing the solution in such a way that it can be implemented through a computer—using software and hardware. The term <em>computational</em> in CT derives from the fact that the methodology is based on core principles of computer science. It does not mean that all CT problems are solved through coding. It means to solve problems by thinking like a computer scientists.</p>
+<p>According to <span class="citation" data-cites="Wing_2011">Wing (<a href="references.html#ref-Wing_2011" role="doc-biblioref">2011</a>)</span>, computational thinking describes the mental activity in formulating a problem to admit a computational solution. The solution can be carried out by a human, a machine, or both together.</p>
 <section id="elements-of-ct" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="elements-of-ct"><span class="header-section-number">1.1</span> Elements of CT</h2>
 <p>What is that like? The five elements of computational thinking are</p>
@@ -335,7 +354,7 @@ Solution looking for a problem
 <div id="fig-firstcar" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/FirstAutomobile.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+<a href="images/FirstAutomobile.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="images/FirstAutomobile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-firstcar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Benz Patent-Motorwagen, the first automobile.
@@ -421,7 +440,7 @@ Figure&nbsp;1.3: Decomposing a 12 x 8 rectangle into six 4 x 4 squares to genera
 <div id="fig-soup-recipe" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="images/PumpkinSoupRecipe.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="images/PumpkinSoupRecipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soup-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
@@ -541,6 +560,7 @@ Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
 <section id="sec-intro-ct-importance" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="sec-intro-ct-importance"><span class="header-section-number">1.3</span> Importance of CT</h2>
 <p>Computational thinking as a methodology is applied nowadays in almost any domain and to many problems. Decomposing a problem into parts, recognizing patterns, abstracting the problem essentials and capturing them in an algorithm is an effective approach to deal with many problems.</p>
+<p>Computational thinking is becoming the new literacy of the 21st century because it enables you to bend computation to your needs <span class="citation" data-cites="Wing_2011">(<a href="references.html#ref-Wing_2011" role="doc-biblioref">Wing 2011</a>)</span>. It has begun to influence disciplines and professions beyond science and engineering. Algorithmic medicine, computational archaeology, computational economics, computational finance, computation and journalism, computational law, computational social science, and digital humanities are now areas of active study.</p>
 <p>The rise of computational thinking is also due to the fact that many more problems are solved through software and computing today than in the past. We have become very good at capturing the essential details of processes and phenomena through <strong>models</strong>, which by their very nature are abstractions of the prevailing patterns in those processes. And the implementation of the models frequently involves the design and deployment of algorithms.</p>
 <p>Financial analysts make investment decisions based on mathematical models of market behavior. Banks decide whether to award a loan based on statistical models for the probability of loan default. Insurance premiums are based on risk models. A healthcare provider chooses a treatment plan based on assessment of risk factors and predictions of disease progression, based on medical knowledge and models that describe patient outcomes.</p>
 <p>In 2011, Mark Andreessen of VC firm Andreessen-Horowitz (known as a16z) declared</p>
@@ -557,7 +577,7 @@ Figure&nbsp;1.4: A recipe for pumpkin soup is an algorithm.
 <div id="fig-nobel-physics" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizePhysics.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizePhysics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="images/NobelPrizePhysics.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-physics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics
@@ -567,7 +587,7 @@ Figure&nbsp;1.5: 2024 Nobel Prize winners in Physics
 <div id="fig-nobel-chemistry" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/NobelPrizeChemistry.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
+<a href="images/NobelPrizeChemistry.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="images/NobelPrizeChemistry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nobel-chemistry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.6: 2024 Nobel Prize winners in Chemistry
@@ -631,6 +651,9 @@ Kroese, Jasper. 2020. <span>“Companies Are Brilliantly Solving the Wrong Probl
 </div>
 <div id="ref-Tent2006" class="csl-entry" role="listitem">
 Tent, M. B. W. 2006. <em>The Prince of Mathematics: Carl Friedrich Gauss</em>. CRC Press, Boca Raton, FL.
+</div>
+<div id="ref-Wing_2011" class="csl-entry" role="listitem">
+Wing, Jeanette M. 2011. <em>Research Notebook: Computational Thinking–What and Why?</em> Carnegie Mellon Univeristy School of Computer Science. <a href="https://people.cs.vt.edu/~kafura/CS6604/Papers/CT-What-And-Why.pdf">https://people.cs.vt.edu/~kafura/CS6604/Papers/CT-What-And-Why.pdf</a>.
 </div>
 </div>
 </section>
@@ -1215,7 +1238,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

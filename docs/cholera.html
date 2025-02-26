@@ -213,8 +213,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataliteracy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Literacy</span></span></a>
+  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,12 +233,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./intuition.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantitative Intuition and Problem Solving</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./predictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Making Predictions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -290,6 +284,24 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled" title="Quote">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quote
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="flushright">
+<p>It used to be generally assumed, that if cholera were a catching or communicable disease, it must spread<br>
+by effiuvia given off from the patient into the surrounding air, and inhaled by others into the lungs.<br>
+This assumption led to very conflicting opinions respecting the disease.<br>
+<span class="quoteauthor">John Snow, On the Mode of Communication of Cholera</span></p>
+</div>
+</div>
+</div>
 <section id="two-snows" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="two-snows"><span class="header-section-number">3.1</span> Two Snows</h2>
 <p>In 1854, a severe outbreak of cholera occurred near Broad Street in Soho, London, killing over 600 people. The outbreak was studied by John Snow, considered one of the founders of modern epidemiology. No, not the Jon Snow you might be thinking of, Lord Commander of the Night Watch (<a href="#fig-jon-snow" class="quarto-xref">Figure&nbsp;<span>3.1 (b)</span></a>), but the John Snow in <a href="#fig-john-snow" class="quarto-xref">Figure&nbsp;<span>3.1 (a)</span></a>.</p>
@@ -347,9 +359,9 @@ Figure&nbsp;3.2: John Snow’s original cholera map from Soho, London in 1854.
 <section id="sec-cholera-data" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-cholera-data"><span class="header-section-number">3.3</span> Data Validation</h2>
 <p>Talking to residents, Snow identified the public water pump on Broad Street to be the source of the outbreak. He failed to identify <em>the germ</em> under the microscope but came to the conclusion based on the pattern in the data and conversations with residents. Investigating on the ground, he found that nearly all deaths were in the vicinity of the Broad Street Pump or by people who had consumed water from the pump <span class="citation" data-cites="Snow1855">(<a href="references.html#ref-Snow1855" role="doc-biblioref">Snow 1855, 47</a>)</span>:</p>
-<blockquote class="blockquote">
-<p><em>It will be observed that the deaths either very much diminished, or ceased altogether, at every point where it becomes decidedly nearer to send to another pump than to the one in Broad street. It may also be noticed that the deaths are most numerous near to the pump where the water could be more readily obtained.</em></p>
-</blockquote>
+<div class="quote">
+<p>It will be observed that the deaths either very much diminished, or ceased altogether, at every point where it becomes decidedly nearer to send to another pump than to the one in Broad street. It may also be noticed that the deaths are most numerous near to the pump where the water could be more readily obtained.</p>
+</div>
 <p>He persuaded local authorities to remove the handle from the pump to prevent access to the water. The mortality rate declined after that, but it is believed that the outbreak was already in decline as people had fled the area.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Removing the handle">
 <div class="callout-header d-flex align-content-center">
@@ -385,9 +397,9 @@ Removing the handle
 <section id="john-snows-experiment" class="level3">
 <h3 class="anchored" data-anchor-id="john-snows-experiment">John Snow’s “Experiment”</h3>
 <p>He studied the cholera incidences among recipients of water from two water supply companies. The Lambeth company used water from the River Thames drawn upriver from sewage discharge and the Southwark &amp; Vauxhall company drew water below the discharge. Snow also established that for all intents and purposes the households receiving water from either company were indistinguishable; in statistical terms they were comparable. The only thing that differentiated the two groups was the water supplier. <span class="citation" data-cites="Snow1855">Snow (<a href="references.html#ref-Snow1855" role="doc-biblioref">1855, 75</a>)</span> wrote</p>
-<blockquote class="blockquote">
-<p><em>In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies…As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer.</em></p>
-</blockquote>
+<div class="quote">
+<p>In many cases a single house has a supply different from that on either side. Each company supplies both rich and poor, both large houses and small; there is no difference in the condition or occupation of the persons receiving the water of the different companies…As there is no difference whatever either in the houses or the people receiving the supply of the two Water Companies, or in any of the physical conditions with which they are surrounded, it is obvious that no experiment could have been devised which would more thoroughly test the effect of water supply on the progress of Cholera than this, which circumstances placed ready made before the observer.</p>
+</div>
 <p><a href="#tbl-chol-rate" class="quarto-xref">Table&nbsp;<span>3.1</span></a> is based on <span class="citation" data-cites="Snow1855">Snow (<a href="references.html#ref-Snow1855" role="doc-biblioref">1855, 80</a>)</span> and covers the period from January 1 to December 12, 1853. The cholera death rate on a per 10,000 house basis is almost 14 times higher in households supplied by Southwark &amp; Vauxhall compared to those who received their water from Lambeth.</p>
 <div id="tbl-chol-rate" class="striped quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1072,7 +1084,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

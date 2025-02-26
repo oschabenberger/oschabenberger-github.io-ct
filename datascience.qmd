@@ -343,6 +343,8 @@ architectures such as GPT.
 
 ![Structuring and categorizing input, algorithm, and output in data science models.](images/DataScienceModels.png){#fig-proj-dsmodels .lightbox fig-alt="Structuring and categorizing input, algorithm, and output in data science models." fig-align="center"}
 
+### Supervised Learning
+
 Arguably the most important class of algorithms learning from data is **supervised
 learning**. The name originates in thinking of learning in an environment that is 
 supervised by a teacher. The teacher asks questions for which they know the correct 
@@ -398,7 +400,7 @@ to the problem of building a machine learning model through supervised learning.
 - The input variables represent the information used by the students to answer the 
 questions. 
 
-### Regression and Classification
+#### Regression and classification
 
 Within the supervised learning category **regression** and **classification**
 models are the most important model types. 
@@ -423,6 +425,70 @@ The term **prediction** is common to describe the outcome of applying a regressi
 model or a classification model. In the former case we make a prediction 
 of a numeric attribute. In the latter we predict which of the possible categories
 an observation belongs to.
+
+The process of prediction is fundamental to both types of applications.
+Consider you are presented with a handwritten digit and you have trained a classification
+model in digit detection. The algorithm does not actually say which of the ten
+digits it was presented with. The algorithm computes a vector of 10 quantities
+each between 0 and 1, and subject to the constraint that they sum to 1.
+
+Here is the vector for one observation
+$$
+[0.00000, 0.00001, 0.00001, 0.00003, 0.00000, 0.00000, 0.00000, 0.99994, 0.00000, 0.00001]
+$$
+
+and here is the vector for another observation
+
+$$
+ [0.00056, 0.00002, 0.00000, 0.00001, 0.00424, 0.18760, 0.74695, 0.00001, 0.00616, 0.05446]
+$$
+
+The first element of the vector corresponds to digit 0, the second to digit 1,
+and so on. Considering the first vector, how would you convert the numbers
+into a classification? Since the numbers are between 0 and 1, and sum to 1, it
+is tempting to interpret them as probabilities. The overwhelming evidence 
+points at the 8^th^ position in the vector with a large *probability* of 0.99994.
+The algorithm is almost certain that the digit is a "7". 
+
+In the second case we see more of a spread in the probabilities. Digit "5" is 
+considered quite likely (probability 0.1876). Digit "6" has the highest probability
+(0.74695) and "9" also has a non-zero probability (0.05446). The rule that 
+classifies an observation into the category with the highest probability would
+assign the label "6" to the second observation.
+
+![Digit classifications.](images/LeNetPredictions.png){#fig-lenet-pred fig-align="center" width=75% .lightbox}
+
+@fig-lenet-pred shows the actual and classified digits for nine data points.
+The vectors shown above correspond to the probabilities for the images in the
+upper left and lower right corners. We are not surprised that the algorithm
+classified the first observation as a "7". We are also not surprised that the 
+sloppy "5" in the lower right corner was mistaken for a "6" (which had the
+second largest probability).
+
+The point of this example is twofold:
+
+1. The process of classifying something through a statistical algorithm often 
+goes first through a process of predicting a measure of confidence or likelihood 
+associated with the possible outcomes. We then classify the observation into the 
+category that has the highest probability. This is known as the **Bayes Rule** of 
+classification and it can be shown to be optimal in the sense of achieving the 
+greatest accuracy.
+
+2. When making predictions we need to think in terms of probabilities and 
+uncertainties. Ultimately, the classification model will spit out one category 
+and we interpret this as "the model says the digit is a 7". In the case of
+the first observation, there is not much uncertainty in the prediction, as
+the model deems other choices very unlikely. In the second case we should 
+appreciate that the algorithm decided on a "5", but also that there is uncertainty
+in the prediction. We only know that the algorithm got it right  because we 
+know the author of the digit was writing a "5" (the label). The algorithm
+will get a certain proportion of cases wrong, this is known as the **mis-classification
+rate**. As @Silver2012 puts it,
+
+:::{.quote}
+Our brains, wired to detect patterns, are always looking for a signal,\
+when instead we should appreciate how noisy the data is.
+:::
 
 #### Predictions as surrogates
 
@@ -495,7 +561,7 @@ destroying the board.
 :::
 
 
-### Generalization
+#### Generalization
 
 Our teacher has the noble goal of not just drilling the correct answers but to
 turn the students into problem solvers who can apply concepts to solve new
@@ -604,7 +670,7 @@ tradeoff** in data science.
 
 ---
 
-### All Models are Wrong {#sec-data-science-models-wrong}
+#### All Models are wrong {#sec-data-science-models-wrong}
 
 George E.P. Box is credited with coining the much-used phrase “all models are wrong, 
 but some are useful”. The phrase appears partially (“all models are wrong”) twice 
@@ -741,3 +807,45 @@ then the probability of Heads is 0.45.
 :::
 
 
+### Unsupervised Learning
+
+Unsupervised learning does not utilize a target variable; hence it cannot predict 
+or classify observations. However, we are still interested in discovering structure, 
+patterns, and relationships in the data.
+
+The term unsupervised refers to the fact that we no longer know the ground truth
+because there is no target variable. Hence the concept of a teacher who knows the
+correct answers and supervises the learning progress of the student does not apply.
+In unsupervised learning there are no clear error metrics by which to judge the 
+quality of an analysis, which explains the proliferation of unsupervised methods 
+and the reliance on heuristics. For example, a 5-means cluster analysis will 
+find five groups of observations in the data, whether this is the correct number or not, and
+it is up to us to interpret what differentiates the groups and to assign group 
+labels.
+
+Often, unsupervised learning is used in an **exploratory** fashion, improving our 
+understanding of the joint distributional properties of the data and the relationships 
+in the data. The findings then help lead us toward supervised approaches.
+
+A coarse categorization of unsupervised learning techniques also hints at their application:
+
+- **Association analysis**: which values of the variables tend to occur together 
+in the data? An application is market basket analysis, where the data represent
+items in a shopping cart (or a basket in the market). If items frequently 
+appear together, bread and butter, or beer and chips, for example, then maybe they 
+should be located close together in the store. Association analysis is also useful 
+to build recommender systems: shoppers who bought this item also bought the 
+following items $\ldots$
+
+- **Cluster analysis**: can variables be used to grouped data into
+sets such that the observations within a set are more similar to each other than 
+they are to observations in other sets? An application of clustering is the grouping 
+of customers into segments. Segmentation analysis is behind loyalty programs, lower 
+APRs for customers with good credit rating, and churn models.
+
+- **Dimension reduction**: can we transform the input variables into 
+a smaller set of data without losing relevant information? Applications of dimension
+reduction are in high-dimensional problems where the number of inputs is large 
+relative to the number of observations. In problems with wide data, the number 
+of inputs $p$ can be much larger than the number of observations, which eliminates 
+many traditional methods of analysis from consideration.
