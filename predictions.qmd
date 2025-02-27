@@ -33,7 +33,8 @@ presidential election, FiveThirtyEight predicted a 71\% chance for Clinton to
 win the Electoral College and a 29\% chance for Trump to win. This was a much
 higher chance of a Trump victory than the 1\% to 15\% chance many other models 
 produced. As it turned out, the FiveThirtyEight model was much better than the
-models that treated the Clinton victory as a near certainty. 
+models that treated the Clinton victory as a near certainty. But both models
+were wrong about the outcome of the election.
 
 @Silver2012 points out
 
@@ -47,6 +48,8 @@ enterprise than second-guessing.
 It is much easier to sift through intelligence after a terrorist attack and to
 point out what was missed than it is finding the signals in the cacophony of 
 data before the attack.
+
+---
 
 It seems that we make a lot of predictions and are not very good at it.
 And even if our predictions are spot-on, we might not act on them or ignore them.
@@ -65,11 +68,11 @@ of rain for the occasional sunny skies.
 
 Now compare this scenario to the following. In the build-up of the the 2008 
 financial crisis, Standard \& Poor gave CDOs, a type of mortgage-backed securities, 
-a stellar AAA credit rating, meaning that there is only a 0.12 probability that 
-they would fail to pay out [@Silver2012, p. 20]. In reality, of the AAA-rated 
-CDOS, 28% defaulted. Had the world of financial markets drastically changed to 
-bring about such a massive change in default rates (200x!)? Or is it more likely, 
-that the default models of the rating agencies were wrong? It was the latter.
+a stellar AAA credit rating, meaning that there is only a 0.0012 probability that 
+they would fail to pay out over the next 5 years [@Silver2012, p. 20]. In reality, 
+28% of the AAA-rated CDOS defaulted. Had the world of financial markets drastically 
+changed to bring about such a massive change in default rates (200x!)? Or is it 
+more likely that the default models of the rating agencies were wrong? It was the latter.
 
 ---
 
@@ -79,11 +82,12 @@ likely to get caught behind a school bus. We probably make this choice instincti
 without much deliberation, based on experience, instantaneously processing information
 about the time of day, weather, etc.
 
-You might choose Netflix over Paramount+ one evening because you think it is more 
-likely that you'll find content that interests you. This is also a prediction problem.
-A company offers a customer a discount because it predicts that without an incentive 
-the customer might leave for a competitor. Information about the weather consists 
-of a status report of current conditions and a **forecast**.
+You might choose Netflix over Paramount+ one evening because you think (predict!) it is more 
+likely that you'll find content that interests you. This is a prediction problem.
+You are also on the receiving end of predictions every day. A company offers you a
+discount because it predicts that without an incentive you might shop at a
+competitor. We are being served weather forecasts (predictions!) on the local
+news and apps every day.
 
 :::{.assignment}
 ::::{.assignment-header}
@@ -117,7 +121,7 @@ football game based on gut feeling or allegiance to a team, but we *forecast* th
 weather based on meteorological models.
 
 In seismology, the distinction between prediction and forecast is taken very seriously.
-A prediction of an earthquake is a specific statement about when and where it will
+The prediction of an earthquake is a specific statement about when and where it will
 strike. A forecast, on the other hand is a statement of probability: *there is a
 60% chance of an earthquake in Northern Italy over the next fifty years*. Leaning
 on this distinction, the U.S. Geological Service party line is that earthquakes 
@@ -133,8 +137,8 @@ of forecasting, classifying, or clustering (grouping).
 
 ## Bad Predictions
 
-What do bad predictions have in common? @Silver2012 [p. 20] lists some attributes
-of bad predictions:
+If we are not good at predicting, can we learn from what bad predictions have in 
+common? @Silver2012 [p. 20] lists some attributes of bad predictions:
 
 1. Focus on the signals that tell a story about the world as we would like it to
 be, not how it really is.
@@ -144,7 +148,7 @@ greatest risk to our well-being.
 4. Dislike (abhor) uncertainty, even if it is an integral part of the problem.
 
 
-If we want predictions based on modeling data avoid these mistakes we need to
+If we want to avoid these mistakes with predictions based on modeling data we need to
 
 1. Build models that are useful abstractions, not too complicated and not too
 simple
@@ -170,7 +174,7 @@ high variability, humans are a very variable bunch.
 
 - **Complex systems** are those governed by the interaction of many separate 
 individual parts. They can seem at once very predictable and very unpredictable. 
-The laws governing earth quakes are well understood and the long-term frequency 
+The laws governing earthquakes are well understood and the long-term frequency 
 of a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are 
 not very good at predicting  earthquake activity. Complex systems periodically
 undergo violent and highly nonlinear phase changes from orderly to chaotic and 
@@ -199,7 +203,7 @@ suggested routes.
 An example of a self-fulfilling prediction is when increased media coverage
 of a medical condition leads to increased diagnosis of the condition. Not just
 because the condition is more prevalent, but because of increased attention people
-are more likely to identify symptoms and are doctors are more likely to diagnose
+are more likely to identify symptoms and doctors are more likely to diagnose
 them. The rise of autism diagnoses in the U.S. from 1992 to 2008 correlates highly 
 with the media coverage of autism [@Silver2012, p. 218].
 
@@ -219,7 +223,7 @@ or self-cancelling?
 Recall the antidotes for bad predictions:
 
 1. Build models that are useful abstractions, not too complicated and not too
-simple
+simple.
 2. Find the signal that the data is trying to convey about the problem under
 study, allowing for generalization beyond the data at hand.
 3. Be honest about the quality of the data and the limitations to capture complex
@@ -247,26 +251,28 @@ Y <- m(X) + eps
 xGrid <- seq(-5, 6, l = 250)
 ```
 
-```{r, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
+```{r, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: 100 observations sampled from a population where $Y$ and $X$ are related.
 #| label: fig-gendata1
+#| lightbox:
+#| 
 plot(X, Y, las=1, bty="l")
 rug(X, side = 1); 
 rug(Y, side = 2)
-#lines(xGrid, m(xGrid), col = "black",lwd=1.5)
 ```
 
-There is noise in the data but there is also a signal. How should we go about
-extracting the signal. @fig-gendata-fit1 shows three possible models for the 
-signal.
+There is noise in the data but there is also a signal, a systematic change in
+$Y$ with $X$. How should we go about extracting the signal? @fig-gendata-fit1 
+shows three possible models for the signal.
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: Observed data and three possible models for the signal.
 #| label: fig-gendata-fit1
+#| lightbox:
 #| 
 l_01 <- loess(Y ~ X,degree=1, span=0.075)
 l_03 <- loess(Y ~ X,degree=1, span=0.3)
-l_09 <- loess(Y ~ X,degree=1, span=0.9)
+l_10 <- loess(Y ~ X,degree=1, span=1)
 
 plot(X,Y,las=1, bty="l")
 lines(xGrid,
@@ -280,7 +286,7 @@ lines(xGrid,
       lty="dotted",
       lwd=2)
 lines(xGrid,
-      predict(l_09, newdata=data.frame("X"=xGrid)), 
+      predict(l_10, newdata=data.frame("X"=xGrid)), 
       col="blue", 
       lty="solid",
       lwd=2)
@@ -289,26 +295,32 @@ lines(xGrid,
 
 The three models differ in their degree of **smoothness**. The solid (blue) line
 is the most smooth, followed by the dotted (red) line. The dashed (green) line is
-the least smooth, it follows the observed data points most closely. The solid (blue)
+the least smooth, it follows the observed data points more closely. The solid (blue)
 line is probably not a good representation of the signal, it does not capture 
 the trend in the data for small or large values. This model exhibits **bias**; 
 it overestimates for small values of $X$ and underestimates for large values of
 $X$. On the other hand, the dashed (green) model exhibits a lot of **variability**.
 
 The question in modeling these data becomes: what is the appropriate degree of smoothness?
-In the extreme case where the model interpolates the observed data points the 
+In one extreme case the model interpolates the observed data points the 
 model reproduces the 100 data points. Such a model fits the observed data really
 well but you can imagine that it does not generalize well to a new data point
-that was not used in training the model.
+that was not used in training the model. Such a model is said to be **overfitting**
+the data. The dashed (green) line in @fig-gendata-fit1 approaches this extreme.
+
+In another extreme case, the model is too rigid and does not extract sufficient
+signal from the noise. Such a model is said to be **underfitting** the data.
+The solid (blue) line in @fig-gendata-fit1 is likely a case in point.
 
 ### More Simulations
 
-The concept of bias and variability of a model relate not to the behavior of
+The concept of model bias and model variability relates not to the behavior of
 the model for the sample data at hand, although in practical applications this
-is all we have to judge a model. Conceptually we imagine repeating the process
+is all we have to judge a model. Conceptually, we imagine repeating the process
 that generated the sample. Imagine that we draw two more sets of 100 observations
 each. Now we have 300 observations, 3 sets of 100 each. @fig-gendata2 overlays
-the three samples.
+the three samples an identifies observations belonging to the same sample with
+colors and symbols.
 
 
 ```{r, echo=FALSE}
@@ -325,6 +337,8 @@ Y3 <- m(X) + eps3
 ```{r, fig.align="center", out.width="90%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: Three realizations of 100 observations each.
 #| label: fig-gendata2
+#| lightbox:
+#| 
 plot(X, Y, las=1, bty="l", col="black", pch=1., ylim=c(-16,18))
 points(X2,Y2, col="red", pch=2)
 points(X3,Y3, col="blue", pch=3)
@@ -337,16 +351,17 @@ versions of the dotted (red) model and @fig-gendata-fit2_3 the versions of the
 dashed (green) model.
 
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: The solid (blue) model fit to each of the three samples.
 #| label: fig-gendata-fit2_1
+#| lightbox:
 #| 
-l_09 <- loess(Y ~ X,degree=1, span=0.9)
-l_092 <- loess(Y2 ~ X2,degree=1, span=0.9)
-l_093 <- loess(Y3 ~ X3,degree=1, span=0.9)
+l_10 <- loess(Y ~ X,degree=1, span=1)
+l_102 <- loess(Y2 ~ X2,degree=1, span=1)
+l_103 <- loess(Y3 ~ X3,degree=1, span=1)
 
 plot(x=xGrid,
-     y=predict(l_09, newdata=data.frame("X"=xGrid)), 
+     y=predict(l_10, newdata=data.frame("X"=xGrid)), 
      xlab="X",
      ylab="Y",
      type="l",
@@ -357,21 +372,22 @@ plot(x=xGrid,
      lwd=2,
      ylim=c(-16,18))
 lines(xGrid,
-      predict(l_093, newdata=data.frame("X3"=xGrid)), 
+      predict(l_103, newdata=data.frame("X3"=xGrid)), 
       col="blue", 
       lty="solid",
       lwd=2)
 lines(xGrid,
-      predict(l_092, newdata=data.frame("X2"=xGrid)), 
+      predict(l_102, newdata=data.frame("X2"=xGrid)), 
       col="blue", 
       lty="solid",
       lwd=2)
 ```
 
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: The dotted (red) model fit to each of the three samples.
 #| label: fig-gendata-fit2_2
+#| lightbox:
 #| 
 l_03 <- loess(Y ~ X,degree=1, span=0.3)
 l_032 <- loess(Y2 ~ X2,degree=1, span=0.3)
@@ -401,9 +417,10 @@ lines(xGrid,
 
 ```
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: The dashed (green) model fit to each of the three samples.
 #| label: fig-gendata-fit2_3
+#| lightbox:
 #| 
 l_01 <- loess(Y ~ X,degree=1, span=0.075)
 l_012 <- loess(Y2 ~ X2,degree=1, span=0.075)
@@ -449,13 +466,13 @@ three sets of 100 observations and we can compare the models in @fig-gendata-fit
 through @fig-gendata-fit2_3 against the true model (@fig-gendata-fit3_1 through
 @fig-gendata-fit3_3)
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: The solid (blue) model fit to each of the three samples and the true signal.
 #| label: fig-gendata-fit3_1
+#| lightbox:
 #| 
-
 plot(x=xGrid,
-     y=predict(l_09, newdata=data.frame("X"=xGrid)), 
+     y=predict(l_10, newdata=data.frame("X"=xGrid)), 
      xlab="X",
      ylab="Y",
      type="l",
@@ -467,21 +484,22 @@ plot(x=xGrid,
      ylim=c(-16,18))
 lines(xGrid, m(xGrid), col = "black",lwd=1.5)
 lines(xGrid,
-      predict(l_093, newdata=data.frame("X3"=xGrid)), 
+      predict(l_103, newdata=data.frame("X3"=xGrid)), 
       col="blue", 
       lty="solid",
       lwd=2)
 lines(xGrid,
-      predict(l_092, newdata=data.frame("X2"=xGrid)), 
+      predict(l_102, newdata=data.frame("X2"=xGrid)), 
       col="blue", 
       lty="solid",
       lwd=2)
 ```
 
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
-#| fig.cap: The dashed (green) model fit to each of the three samples and the true signal.
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
+#| fig.cap: The dotted (red) model fit to each of the three samples and the true signal.
 #| label: fig-gendata-fit3_2
+#| lightbox:
 #| 
 plot(x=xGrid,
      y=predict(l_03, newdata=data.frame("X"=xGrid)), 
@@ -508,11 +526,11 @@ lines(xGrid,
 ```
 
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="75%", fig.asp=0.8, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width="65%", fig.asp=0.8, echo=FALSE}
 #| fig.cap: The dashed (green) model fit to each of the three samples and the true signal.
 #| label: fig-gendata-fit3_3
+#| lightbox:
 #| 
-
 plot(x=xGrid,
      y=predict(l_01, newdata=data.frame("X"=xGrid)), 
      xlab="X",
@@ -545,39 +563,387 @@ to capture the signal. The latter is too flexible and overfits the signal.
 
 The simulation is unrealistic for two reasons: 
 
-- we do not know the true signal in practice, otherwise there would not be a modeling problem.
-- we have only a single sample of $n$ observations and cannot study the behavior
+- We do not know the true signal in practice, otherwise there would not be a modeling problem.
+- We have only a single sample of $n$ observations and cannot study the behavior
 of the model under repetition of the data collection process.
+
+#### The mean squared error
 
 The considerations are the same, however. We do not want a model that has too
 much variability or a model that has too much bias. Somehow, the two need to be
 balanced. Mathematically, the measure that combines bias and variability is
 the **mean squared error** (MSE). Without going into the derivation, we note that 
-the MSE is computed as 
+the MSE can be decomposed as  
 $$
 \text{MSE} = \text{Variance} + \text{Bias}^2
 $$
 
-The mean squared error is the sum of the variance and the squared bias. We
+The mean squared error is the sum of the variance and the squared bias. And we
 want the MSE to be small. 
 
 In statistics, the tension between bias and variance is frequently resolved with
 the following rationale: we try to avoid biased estimators and require that
-models are unbiased. Then, among the choices of unbiased models we pick the one
-that has the smallest variability.
+models are unbiased. Then, among the choices of unbiased models, we pick the one
+that has the smallest variability. That is a reasonable approach, but it is possible 
+that a model with some bias has a lower MSE if its variability is much lower. 
+In other words, we might find a model that performs better--in the sense of a lower
+MSE--by allowing some bias if the model has low variability.
 
-That is a reasonable approach, but it is possible that a model with some bias
-has a lower MSE if its variability is much lower. 
+When dealing with a single sample we can generally connect the concepts of bias 
+and variability of a model to the flexibility of the model. A model that is highly 
+flexible and can follow the data closely tends to have low bias and high variability. 
+On the other hand, a model that is rigid (inflexible) tends to exhibit high bias and 
+low variability. The solid (blue) model falls into the high-bias-and-low-variability 
+category and the dashed (green) model falls into the low-bias-and-high-variability 
+category.
 
-When dealing with a single sample we can map the concept of variability of a model
-to the flexibility of the model. A model that is very flexible and can follow 
-the data closely tends to have low bias and high variability. On the other hand,
-a model that is rigid tends to high bias and low variability. The solid (blue)
-model falls into the high-bias-and-low-variability category and the dashed (green)
-model falls into the low-bias-and-high-variability category.
+Finding models that exhibit a small MSE by having low bias and moderate variability
+is known as the **bias--variance tradeoff** in data science.
 
-What is known as the **bias--variance tradeoff** in data science is finding models 
-that lead to a small MSE by having low bias and moderate variability.
+#### A further complication
+
+It seems that finding a good predictive model then boils down to minimizing the
+mean squared error. Based on a set of data and a model, the mean squared error
+can be estimated as the average squared deviation between the observed values
+and the values predicted under the model:
+$$
+\widehat{\text{MSE}} = \frac{1}{n} \sum (\text{Observed} - \text{Predicted})^2
+$${#eq-MSE-estimate}
+
+The notation $\widehat{\text{MSE}}$, placing a "hat" (caret) on top of a statistic,
+means that this is an estimate of a quantity. We cannot typically calculate the 
+real MSE of a model, it depends on parameters we do not know. But we can compute
+an estimate of the MSE based on @eq-MSE-estimate.
+
+So it seems that we can overcome the problem of not knowing the real MSE by
+estimating it. However, there is one more complication. As the flexibility of
+the model increases, the difference between observed and predicted values can be
+made arbitrarily small. A model that interpolates the data points has an estimated
+MSE of zero. If we were to choose to minimize @eq-MSE-estimate, we would end up
+with highly variable models. And this defeats the purpose.
+
+The remedy is to compute the estimated MSE not by comparing observed and 
+predicted values based on the values in the **training** data set, but to predict
+the values of observations that did not participate in training the model. This
+**test** data appears to the algorithm as new data it has not seen before and is
+a true measure for how well the model generalizes:
+
+$$
+\widehat{\text{MSE}}_\text{Test} = \frac{1}{m} \sum (\text{Observed} - \text{Predicted})^2
+$${#eq-MSE-test-estimate}
+
+The main difference between @eq-MSE-estimate and @eq-MSE-test-estimate is that
+the former is computed based on the $n$ observations in the training data and 
+the latter is computed based on $m$ observations in a separate test data set. We
+refer to mean squared errors calculated on test data sets as the **test error**.
+
+#### Cross-validation
+
+Because it is expensive to collect a separate data set to compute the test error 
+the collected data is often split randomly into a training set and a test set.
+For example, you might use split the data 50:50 or 80:20 or 90:10 into training:test
+sets. If you have a lot of data, then splitting into separate training and test sets
+is reasonable. 
+
+There is a clever way in which the same observations can be used sometimes for
+training and sometimes for testing, that uses the collected information more
+economically. This is called **cross-validation**.
+
+During cross-validation, an observation is either part of the test set or
+part of the training set. The process repeats until each observation was used
+once in a test set. One technique of cross-validation randomly assigns observations
+to one of $k$ groups, called **folds**. @fig-CV-5 is an example of creating 5 folds
+from 100 observation for 5-fold cross-validation.
+
+![Example of 5-fold cross-validation for 100 observations. Numbers in the cells represent observation numbers. The records were randomly arranged prior to assigning the folds.](images/five_fold_CV.png){#fig-CV-5 fig-align="center" width=75%}
+
+The numbers in the cells of @fig-CV-5 are the observation numbers. For example,
+the first fold includes observations #4, #16, #90, etc. The second fold includes
+observations #31, #94, #38, etc.
+
+The process of calculating the test error through $k$-fold cross-validation 
+is as follows:
+
+1. Set aside the data in the first fold. It serves as the test data. 
+2. Fit the model to the remaining data.
+3. Using the model trained in step 2., predict the values in the test data and
+calculate the test error
+4. Return the set-aside fold to the training data and set aside the next fold as
+the test data. 
+Return to step 2. and continue until each fold has been set aside once.
+
+At the end of the $k$-fold cross-validation procedure, the model has been trained 
+$k$ times, and we have $k$ estimates of the test error, one for each of the folds.
+These test errors are then combined into one overall test error.
+
+## Putting It All Together
+
+Let us now put together everything we have covered in this chapter about building a
+predictive model based on data for the simulated data set in @fig-gendata1 using
+computational and quantitative thinking.
+
+- We build a model that captures the relationship between $Y$ and $X$.
+
+- The result should be an algorithm that we can use to predict $Y$ based on 
+values of $X$ ($Y$ is the target variable, $X$ is the input variable).
+
+- The model should generalize well to new observations, that is, it should not
+overfit or underfit. Use cross-validation to determine the appropriate amount
+of flexibility in the model.
+
+### Creating the Data (Quantification)
+
+The following `R` code creates the data frame shown in @fig-gendata1.
+
+```{r}
+set.seed(12345)                     # <1>
+n <- 100                            # <2>
+eps <- rnorm(n, sd = 2)             # <3>
+X <- rnorm(n, sd = 2)               # <4>
+Y <- X^2 * cos(X) + eps             # <5>
+
+simData <- data.frame(X=X, Y=Y)     # <6>
+```
+1. Setting a seed for the random number generator ensures that the program generates
+the same values every time it is run. The value for the seed is chosen here as `12345` 
+and can be any integer.
+2. The number of observations drawn is set to $n = 100$.
+3. `eps` is a vector of Gaussian (normal) random variables with mean 0 and variance 4 (std. dev 2). 
+This represents the noise in the system.
+4. The values of $X$ are drawn randomly from a Gaussian distribution with mean 0 and variance 4
+5. The signal is $x^2 \, \cos(x)$. The noise (`eps`) is added to the signal.
+6. A data frame is constructed from X and Y.
+
+### Cross-validating the Model
+
+The steps of training the model and selecting the best flexibility by cross-validation
+can be done in a single computational step using the `train` function in the 
+`caret` package. We need to decide on the general family of model we are going
+to entertain. Here we choose what is known as a **regression spline**. These
+model the relationship between two variables and their flexibility is governed
+by a single parameter, called the **degrees of freedom** of the model. With 
+increasing degrees of freedom the models become more flexible. Cross-validation
+is used to determine the best value for the degree of freedom parameter in this
+model family.
+
+```{r, message=FALSE, warning=FALSE}
+library(caret)          # <1>
+
+cv_results <- train(Y ~ X,                   # <2>
+                    data     =simData,       # <3>
+                    method   ="gamSpline",   # <4>
+                    tuneGrid =data.frame(df=seq(2, 25, by=1)),      # <5>
+                    trControl=trainControl(method="cv", number=10)) # <6>
+
+```
+
+1. The `caret` library is loaded into the `R` session. If `caret` is not yet
+installed in your system, execute the command `install.packages("caret")` once 
+from the Console prompt.
+2. The `train()` function in the `caret` library is called. `Y ~ X` specifies
+the model we wish to train. The target variable is placed on the left side of the
+`~` symbol and the input variable is placed on the right side.
+3. The data frame where the variables in the model specifications can be found.
+4. The `method=` parameter specifies the model family we wish to train. `gamTrain`
+is the specification for the regression spline family.
+5. The `tuneGrid` parameter provides a list of the values to be considered in
+the cross-validation. We vary only the degrees of freedom parameter (`df`) of the
+`gamSpline` function and we evaluate all values from 2 to 25.
+6. The `trControl=` parameter specifies the computational nuances of the `train`
+function. Here we choose 10-fold cross-validation.
+
+After running the code above we can examine the results:
+
+``` {r}
+print(cv_results)
+```
+
+The output lists the values of the cross-validation parameter (`df`) along with 
+three statistics computed for each. The statistic of interest to us is `RMSE`,
+the cross-validation root mean square error, the square root of our measure of 
+test error. Note that `caret` reports the square root of the $\widehat{\text{MSE}}_\text{Test}$. 
+In order to find the df with the smallest test error it does not matter whether
+we look at $\widehat{\text{MSE}}_\text{Test}$ or its square root. The minimum
+is achieved at the same value.
+
+We can see that the smallest value in the `RMSE` column occurs at `df`=14.
+This is confirmed in the sentence at the bottom of the output.
+
+It is customary to graph the cross-validation criterion (`RMSE`) against the
+values of the parameter. @fig-gendata-cv shows a typical pattern. The test
+error decreases to an optimal value and increases afterwards.
+
+```{r, fig.align="center", out.width="75%"}
+#| fig.cap: Cross-validation root mean squared error as a function of model flexibility (degrees of freedom).
+#| label: fig-gendata-cv
+plot(cv_results)
+```
+
+### Training the Final Model
+
+One final step remains. Now that we have chosen df=14 as the optimal parameter
+for this combination of data set and class of model, we train the model with
+those degrees of freedom on all the data to obtain the final model.
+
+```{r}
+
+final_model <- train(Y ~ X,                   
+                     data     =simData,       
+                     method   ="gamSpline",   
+                     tuneGrid =data.frame(df=cv_results$bestTune[1]),   # <1>
+                     trControl=trainControl(method="none"))             # <2>
+```
+1. Instead of a list of `df` values, we now pass only one value. The best
+value from cross-validation was stored automatically in the `bestTune` field
+of the result object in the previous step.
+2. Instead of cross-validation we request `none` as the training nuance. `train`
+will simply train the requested model on the data frame.
+
+### Making a Prediction
+
+Suppose we want to predict $Y$ (or more precisely the mean of $Y$) for a 
+series of $X$ values, say from $-5$ to $6$. 
+
+Computing the predicted values is easy with the `predict` function in `R`. You
+simply pass it the model object and a data frame with the values for which 
+you need predictions.
+
+```{r}
+xGrid <- data.frame(X=seq(-5, 6, length.out = 250))  # <1>
+predvals <- predict(final_model,newdata=xGrid)       # <2>
+
+predvals[1:10]   # <3>
+```
+1. Create a data frame with 250 values for $X$ ranging from $-5$ to $6$.
+2. Compute the 250 predicted values.
+3. Display the first 10 predicted values.
+
+At this point we would like to see how the predicted values of the signal 
+compare to the observed noisy data. @fig-gendata-final-spline overlays the
+predicted values and the data. Also displayed is the true signal. The model
+derived from the data does an excellent job capturing the signal without
+following the data points too closely or being too inflexible.
+
+```{r, fig.align="center", out.width="65%", fig.asp=0.8}
+#| fig.cap: Predictions of the cross-validated spline model and observed data.
+#| label: fig-gendata-final-spline
+#| lightbox:
+
+plot(simData$X, simData$Y, 
+     type="p", 
+     las =1,
+     bty ="l",
+     xlab="X",
+     ylab="Y")
+lines(xGrid$X,predvals,col="red",lwd=2)
+lines(xGrid$X,m(xGrid$X),col="black",lwd=2,lty="dashed")
+legend("topleft",
+       legend=c("Cross-validated","True"),
+       lty   =c("solid","dashed"),
+       col   =c("red","black"),
+       lwd   =2)
+```
+
+### Quantifying Uncertainty
+
+Recall the fourth antidote against bad predictions:
+
+4. Quantify the uncertainty in the conclusions drawn from the model.
+
+Conceptually, we think of the bias and variability of the model under repetition
+of the data collection. In an earlier section we looked at models for three
+data sets of 100 observations each. There are several factors contributing to
+our uncertainty about the predicted values in this analysis.
+
+We are not sure whether the regression spline is the correct model family to
+capature the relationship between $Y$ and $X$. Although the results of the 
+cross-validation and the comparison with the true signal (which in practice we
+would not know) give us comfort that this model family does a good job here.
+
+The second source of uncertainty comes from the fact that there is noise in
+the data. As we saw earlier, another set of data drawn from the same process
+gives slightly different data points that lead to a different best model. 
+Fortunately, we can quantify this uncertainty by computing **confidence intervals**
+for the predicted values.
+
+A 95% confidence interval for a parameter is a range that with 95% probability
+will cover the value of the parameter. For example, a 95% confidence interval
+for the predicted value at $X=2.5$ is the range into which the mean value of
+$Y$ will fall in 95% of the sample repetitions. 
+
+The `predict` functions in `R` can compute the basic ingredients for 
+confidence intervals for many models. Unfortunately, the `predict.train` function
+invoked by `caret` cannot do this. However, since we know that we fit a `gamSpline`
+model, and the `predict.Gam` function does compute the uncertainty of the 
+predicted values for the values in the training data, we can repeat the 
+final model fit with `gam` and use its `predict` function:
+
+```{r}
+library(gam)   # <1>
+
+final <- gam(Y ~ s(X,df=14), data=simData)  # <2>
+
+predvals <- predict(final,se.fit=TRUE) # <3>
+
+round(predvals$fit[1:10],4)                     # <4>
+
+round(predvals$se.fit[1:10],4)                  # <5>
+```
+1. Load the `gam` library.
+2. Fit the final model with the `gam` function. `Y ~ s(X,df=14)` is the formulation
+for a regression spline model with 14 degrees of freedom.
+3. Compute the predicted values and request that the standard errors of the
+predicted values are also computed.
+4. The predicted values for the first 10 observations.
+5. The standard errors of the predicted values for the first 10 observations.
+
+For example, the first predicted value is `{r} round(predvals$fit[1],4)` with
+a standard error of `{r} round(predvals$se.fit[1],4)`.
+
+To compute the 95% confidence interval for the predicted values, add and subtract
+`qnorm(0.975)` times the standard error from the predicted value. This is done
+in the following code and the results are plotted.
+
+```{r, fig.align="center", out.width="8k5%", fig.asp=0.8}
+#| fig.cap: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.
+#| label: fig-gendata-final-spline2
+#| lightbox:
+
+pred_df <- data.frame(X=simData$X, 
+                      pred=predvals$fit,
+                      se=predvals$se.fit)
+pred_df_sorted <- pred_df[order(pred_df$X),]
+pred_df_sorted$ci_up <- pred_df_sorted$pred + qnorm(0.975)*pred_df_sorted$se
+pred_df_sorted$ci_lo <- pred_df_sorted$pred - qnorm(0.975)*pred_df_sorted$se
+
+plot(simData$X, simData$Y, 
+     type="p", 
+     las =1,
+     bty ="l",
+     xlab="X",
+     ylab="Y")
+lines(xGrid$X,m(xGrid$X),col="black",lwd=2,lty="dashed")
+lines(pred_df_sorted$X,
+      pred_df_sorted$pred,col="red",lwd=2)
+lines(pred_df_sorted$X,
+      pred_df_sorted$ci_up,col="blue",lty="dotted",lwd=1.5)
+lines(pred_df_sorted$X,
+      pred_df_sorted$ci_lo,col="blue",lty="dotted",lwd=1.5)
+```
+
+The confidence intervals (dotted blue) are tracing the predicted values and
+are narrower in the center of the $X$-data than near the edges. The further out
+we move the more uncertain our predictions will be.
+The dashed black line shows the true signal in the data, the 95% confidence
+interval covers it.
+
+
+
+
+
+
+
+
 
 
 

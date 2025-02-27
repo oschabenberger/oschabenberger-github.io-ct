@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -63,6 +97,9 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -256,7 +293,20 @@ window.Quarto = {
   <li><a href="#a-simulated-data-set" id="toc-a-simulated-data-set" class="nav-link" data-scroll-target="#a-simulated-data-set">A Simulated Data Set</a></li>
   <li><a href="#more-simulations" id="toc-more-simulations" class="nav-link" data-scroll-target="#more-simulations">More Simulations</a></li>
   <li><a href="#the-true-model" id="toc-the-true-model" class="nav-link" data-scroll-target="#the-true-model">The True Model</a></li>
-  <li><a href="#in-practice" id="toc-in-practice" class="nav-link" data-scroll-target="#in-practice">In Practice</a></li>
+  <li><a href="#in-practice" id="toc-in-practice" class="nav-link" data-scroll-target="#in-practice">In Practice</a>
+  <ul class="collapse">
+  <li><a href="#the-mean-squared-error" id="toc-the-mean-squared-error" class="nav-link" data-scroll-target="#the-mean-squared-error">The mean squared error</a></li>
+  <li><a href="#a-further-complication" id="toc-a-further-complication" class="nav-link" data-scroll-target="#a-further-complication">A further complication</a></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-validation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">7.5</span> Putting It All Together</a>
+  <ul>
+  <li><a href="#creating-the-data-quantification" id="toc-creating-the-data-quantification" class="nav-link" data-scroll-target="#creating-the-data-quantification">Creating the Data (Quantification)</a></li>
+  <li><a href="#cross-validating-the-model" id="toc-cross-validating-the-model" class="nav-link" data-scroll-target="#cross-validating-the-model">Cross-validating the Model</a></li>
+  <li><a href="#training-the-final-model" id="toc-training-the-final-model" class="nav-link" data-scroll-target="#training-the-final-model">Training the Final Model</a></li>
+  <li><a href="#making-a-prediction" id="toc-making-a-prediction" class="nav-link" data-scroll-target="#making-a-prediction">Making a Prediction</a></li>
+  <li><a href="#quantifying-uncertainty" id="toc-quantifying-uncertainty" class="nav-link" data-scroll-target="#quantifying-uncertainty">Quantifying Uncertainty</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -309,18 +359,19 @@ The best way to predict the future is to create it.<br>
 <h2 data-number="7.1" class="anchored" data-anchor-id="sec-predict-intro"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>In <em>The Signal and the Noise</em>, <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 52</a>)</span> cites a study at the University of Pennsylvania that found when political scientists claim that a political outcome had <strong>no chance</strong> of occurring, it happened about 15% of the time. And of the absolutely sure things they proclaimed, 25% failed to occur. Now we know that predictions are themselves uncertain, that is why polling results have margins of error. But when you predict that something has a zero chance of happening, then you ought to be pretty confident in that, the margin of error should be small, definitely not 15%.</p>
 <p>This is an example of a prediction that is not very good.</p>
-<p>If a plane had a 29% of crashing, you would probably consider the risk of flying too high and stay on the ground. In the run-up to the 2016 presidential election, FiveThirtyEight predicted a 71% chance for Clinton to win the Electoral College and a 29% chance for Trump to win. This was a much higher chance of a Trump victory than the 1% to 15% chance many other models produced. As it turned out, the FiveThirtyEight model was much better than the models that treated the Clinton victory as a near certainty.</p>
+<p>If a plane had a 29% of crashing, you would probably consider the risk of flying too high and stay on the ground. In the run-up to the 2016 presidential election, FiveThirtyEight predicted a 71% chance for Clinton to win the Electoral College and a 29% chance for Trump to win. This was a much higher chance of a Trump victory than the 1% to 15% chance many other models produced. As it turned out, the FiveThirtyEight model was much better than the models that treated the Clinton victory as a near certainty. But both models were wrong about the outcome of the election.</p>
 <p><span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012</a>)</span> points out</p>
 <div class="quote">
 <p>Most people fail to recognize how much easier it is to understand an event after the fact when you have all the evidence at your disposal. […] But making better <em>first guesses</em> under conditions of uncertainty is an entirely different enterprise than second-guessing.</p>
 </div>
 <p>It is much easier to sift through intelligence after a terrorist attack and to point out what was missed than it is finding the signals in the cacophony of data before the attack.</p>
+<hr>
 <p>It seems that we make a lot of predictions and are not very good at it. And even if our predictions are spot-on, we might not act on them or ignore them. Predictions that contradict our intuition or preferred narrative can be ignored or explained away. Our personal judgment is not as good as you might think. We tend to overvalue our own opinion and this trend increases the more we know. 80% of doctors believe they are in the top 20% of their profession. More than half of them are clearly wrong!</p>
 <p>So when a prediction does not come true, does the fault lie with the model of the world or the world itself? If there is a 80% chance of rain tomorrow, then you might see sunny skies. If, in fact, the long run ratio of days that have sunny skies when the forecast calls for an 80% chance of rain is 1 in 5, then the forecast model is correct. We cannot fault the model that calls for a 80% chance of rain for the occasional sunny skies.</p>
-<p>Now compare this scenario to the following. In the build-up of the the 2008 financial crisis, Standard &amp; Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, meaning that there is only a 0.12 probability that they would fail to pay out <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 20</a>)</span>. In reality, of the AAA-rated CDOS, 28% defaulted. Had the world of financial markets drastically changed to bring about such a massive change in default rates (200x!)? Or is it more likely, that the default models of the rating agencies were wrong? It was the latter.</p>
+<p>Now compare this scenario to the following. In the build-up of the the 2008 financial crisis, Standard &amp; Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, meaning that there is only a 0.0012 probability that they would fail to pay out over the next 5 years <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 20</a>)</span>. In reality, 28% of the AAA-rated CDOS defaulted. Had the world of financial markets drastically changed to bring about such a massive change in default rates (200x!)? Or is it more likely that the default models of the rating agencies were wrong? It was the latter.</p>
 <hr>
 <p>We predict all the time. On the drive to work we choose this route over that route because we predict it has less traffic, fewer red lights, or we are less likely to get caught behind a school bus. We probably make this choice instinctively, without much deliberation, based on experience, instantaneously processing information about the time of day, weather, etc.</p>
-<p>You might choose Netflix over Paramount+ one evening because you think it is more likely that you’ll find content that interests you. This is also a prediction problem. A company offers a customer a discount because it predicts that without an incentive the customer might leave for a competitor. Information about the weather consists of a status report of current conditions and a <strong>forecast</strong>.</p>
+<p>You might choose Netflix over Paramount+ one evening because you think (predict!) it is more likely that you’ll find content that interests you. This is a prediction problem. You are also on the receiving end of predictions every day. A company offers you a discount because it predicts that without an incentive you might shop at a competitor. We are being served weather forecasts (predictions!) on the local news and apps every day.</p>
 <div class="assignment">
 <div class="assignment-header">
 <p>Exercise: Predictions in Real Life</p>
@@ -345,21 +396,21 @@ Prediction and Forecast
 <div class="callout-body-container callout-body">
 <p>Technically, a <strong>prediction</strong> and a <strong>forecast</strong> are different things. In statistics, a prediction results from the application of a model to data. If the data falls outside of the range of observed training data, then it is referred to as a forecast, in particular when the prediction is about a future event.</p>
 <p>Forecasting is also referred to as planning in the presence of uncertainty, taking a systematic, methodological approach. Predicting, on the other hand is any proclamation about things we do not know yet. We <em>predict</em> the outcome of a football game based on gut feeling or allegiance to a team, but we <em>forecast</em> the weather based on meteorological models.</p>
-<p>In seismology, the distinction between prediction and forecast is taken very seriously. A prediction of an earthquake is a specific statement about when and where it will strike. A forecast, on the other hand is a statement of probability: <em>there is a 60% chance of an earthquake in Northern Italy over the next fifty years</em>. Leaning on this distinction, the U.S. Geological Service party line is that earthquakes cannot be predicted.</p>
+<p>In seismology, the distinction between prediction and forecast is taken very seriously. The prediction of an earthquake is a specific statement about when and where it will strike. A forecast, on the other hand is a statement of probability: <em>there is a 60% chance of an earthquake in Northern Italy over the next fifty years</em>. Leaning on this distinction, the U.S. Geological Service party line is that earthquakes cannot be predicted.</p>
 </div>
 </div>
 <p>For the purpose of our discussion here, predicting and forecasting are interchangeable. The predictions that matter here are those derived from modeling data. In other words, we try to make predictive statements about phenomena by quantifying and building computational algorithms. Predictions are at the heart of data processing, whether it is for the purpose of forecasting, classifying, or clustering (grouping).</p>
 </section>
 <section id="bad-predictions" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="bad-predictions"><span class="header-section-number">7.2</span> Bad Predictions</h2>
-<p>What do bad predictions have in common? <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 20</a>)</span> lists some attributes of bad predictions:</p>
+<p>If we are not good at predicting, can we learn from what bad predictions have in common? <span class="citation" data-cites="Silver2012">Silver (<a href="references.html#ref-Silver2012" role="doc-biblioref">2012, 20</a>)</span> lists some attributes of bad predictions:</p>
 <ol type="1">
 <li>Focus on the signals that tell a story about the world as we would like it to be, not how it really is.</li>
 <li>Ignore the risks that are most difficult to measure, although they pose the greatest risk to our well-being.</li>
 <li>Make approximations and assumptions that are much cruder than we realize.</li>
 <li>Dislike (abhor) uncertainty, even if it is an integral part of the problem.</li>
 </ol>
-<p>If we want predictions based on modeling data avoid these mistakes we need to</p>
+<p>If we want to avoid these mistakes with predictions based on modeling data we need to</p>
 <ol type="1">
 <li>Build models that are useful abstractions, not too complicated and not too simple</li>
 <li>Find the signal that the data is trying to convey about the problem under study, allowing for generalization beyond the data at hand.</li>
@@ -373,11 +424,11 @@ Prediction and Forecast
 <ul>
 <li><p><strong>Chaotic systems</strong> like the weather or economy that resist manipulation. Fortunately, we have much experience in predicting the weather, it is a daily exercise with lots of data to fall back on.</p></li>
 <li><p><strong>Noisy systems</strong> are difficult to predict because they have a low signal-to-noise ratio. Data collected in the social sciences often suffers from high variability, humans are a very variable bunch.</p></li>
-<li><p><strong>Complex systems</strong> are those governed by the interaction of many separate individual parts. They can seem at once very predictable and very unpredictable. The laws governing earth quakes are well understood and the long-term frequency of a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are not very good at predicting earthquake activity. Complex systems periodically undergo violent and highly nonlinear phase changes from orderly to chaotic and back again. Bubbles in the economy and significant weather events such as hurricanes, tornadoes, or tsunamis are examples.</p></li>
+<li><p><strong>Complex systems</strong> are those governed by the interaction of many separate individual parts. They can seem at once very predictable and very unpredictable. The laws governing earthquakes are well understood and the long-term frequency of a magnitude 6.5 earthquake in Los Angeles can be estimated well. But we are not very good at predicting earthquake activity. Complex systems periodically undergo violent and highly nonlinear phase changes from orderly to chaotic and back again. Bubbles in the economy and significant weather events such as hurricanes, tornadoes, or tsunamis are examples.</p></li>
 <li><p><strong>Nonlinear growth systems</strong>. When growth is linear we have a good handle on describing and modeling change. When growth is nonlinear, for example, exponential, predicting outcomes is much more difficult. Small deviations in the model today translate into massive discrepancies in the future. Infectious diseases are a good example.</p></li>
 <li><p><strong>Feedback systems</strong>. In systems with feedback loops the act of predicting can change the system being predicted. Economic predictions can change the way people behave and that can affect the outcome of the prediction itself. <strong>Self-fulfilling</strong> predictions, where the prediction reinforces the outcome, are common in political polling. A poll showing a candidate surging can cause voters to switch to the candidate from ideologically similar candidates. Or it can make undecided voters to finally get off the fence. A <strong>self-cancelling</strong> prediction works the opposite way, it undermines itself. When GPS systems became more commonplace, drivers were guided to routes which the systems thought had less traffic. If the systems cannot adjust in real time to the actual traffic density, the guidance can result in more traffic on the suggested routes.</p></li>
 </ul>
-<p>An example of a self-fulfilling prediction is when increased media coverage of a medical condition leads to increased diagnosis of the condition. Not just because the condition is more prevalent, but because of increased attention people are more likely to identify symptoms and are doctors are more likely to diagnose them. The rise of autism diagnoses in the U.S. from 1992 to 2008 correlates highly with the media coverage of autism <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 218</a>)</span>.</p>
+<p>An example of a self-fulfilling prediction is when increased media coverage of a medical condition leads to increased diagnosis of the condition. Not just because the condition is more prevalent, but because of increased attention people are more likely to identify symptoms and doctors are more likely to diagnose them. The rise of autism diagnoses in the U.S. from 1992 to 2008 correlates highly with the media coverage of autism <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 218</a>)</span>.</p>
 <div class="assignment">
 <div class="assignment-header">
 <p>Assignment: Self-fulfilling Predictions</p>
@@ -391,7 +442,7 @@ Prediction and Forecast
 <h2 data-number="7.4" class="anchored" data-anchor-id="the-biasvariance-tradeoff"><span class="header-section-number">7.4</span> The Bias–Variance Tradeoff</h2>
 <p>Recall the antidotes for bad predictions:</p>
 <ol type="1">
-<li>Build models that are useful abstractions, not too complicated and not too simple</li>
+<li>Build models that are useful abstractions, not too complicated and not too simple.</li>
 <li>Find the signal that the data is trying to convey about the problem under study, allowing for generalization beyond the data at hand.</li>
 <li>Be honest about the quality of the data and the limitations to capture complex systems through quantification.</li>
 <li>Quantify the uncertainty in the conclusions drawn from the model.</li>
@@ -405,7 +456,7 @@ Prediction and Forecast
 <div id="fig-gendata1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<a href="predictions_files/figure-html/fig-gendata1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="predictions_files/figure-html/fig-gendata1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.1: 100 observations sampled from a population where <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are related.
@@ -414,13 +465,13 @@ Figure&nbsp;7.1: 100 observations sampled from a population where <span class="m
 </div>
 </div>
 </div>
-<p>There is noise in the data but there is also a signal. How should we go about extracting the signal. <a href="#fig-gendata-fit1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows three possible models for the signal.</p>
+<p>There is noise in the data but there is also a signal, a systematic change in <span class="math inline">\(Y\)</span> with <span class="math inline">\(X\)</span>. How should we go about extracting the signal? <a href="#fig-gendata-fit1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows three possible models for the signal.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-gendata-fit1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="predictions_files/figure-html/fig-gendata-fit1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.2: Observed data and three possible models for the signal.
@@ -429,18 +480,19 @@ Figure&nbsp;7.2: Observed data and three possible models for the signal.
 </div>
 </div>
 </div>
-<p>The three models differ in their degree of <strong>smoothness</strong>. The solid (blue) line is the most smooth, followed by the dotted (red) line. The dashed (green) line is the least smooth, it follows the observed data points most closely. The solid (blue) line is probably not a good representation of the signal, it does not capture the trend in the data for small or large values. This model exhibits <strong>bias</strong>; it overestimates for small values of <span class="math inline">\(X\)</span> and underestimates for large values of <span class="math inline">\(X\)</span>. On the other hand, the dashed (green) model exhibits a lot of <strong>variability</strong>.</p>
-<p>The question in modeling these data becomes: what is the appropriate degree of smoothness? In the extreme case where the model interpolates the observed data points the model reproduces the 100 data points. Such a model fits the observed data really well but you can imagine that it does not generalize well to a new data point that was not used in training the model.</p>
+<p>The three models differ in their degree of <strong>smoothness</strong>. The solid (blue) line is the most smooth, followed by the dotted (red) line. The dashed (green) line is the least smooth, it follows the observed data points more closely. The solid (blue) line is probably not a good representation of the signal, it does not capture the trend in the data for small or large values. This model exhibits <strong>bias</strong>; it overestimates for small values of <span class="math inline">\(X\)</span> and underestimates for large values of <span class="math inline">\(X\)</span>. On the other hand, the dashed (green) model exhibits a lot of <strong>variability</strong>.</p>
+<p>The question in modeling these data becomes: what is the appropriate degree of smoothness? In one extreme case the model interpolates the observed data points the model reproduces the 100 data points. Such a model fits the observed data really well but you can imagine that it does not generalize well to a new data point that was not used in training the model. Such a model is said to be <strong>overfitting</strong> the data. The dashed (green) line in <a href="#fig-gendata-fit1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> approaches this extreme.</p>
+<p>In another extreme case, the model is too rigid and does not extract sufficient signal from the noise. Such a model is said to be <strong>underfitting</strong> the data. The solid (blue) line in <a href="#fig-gendata-fit1" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> is likely a case in point.</p>
 </section>
 <section id="more-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="more-simulations">More Simulations</h3>
-<p>The concept of bias and variability of a model relate not to the behavior of the model for the sample data at hand, although in practical applications this is all we have to judge a model. Conceptually we imagine repeating the process that generated the sample. Imagine that we draw two more sets of 100 observations each. Now we have 300 observations, 3 sets of 100 each. <a href="#fig-gendata2" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> overlays the three samples.</p>
+<p>The concept of model bias and model variability relates not to the behavior of the model for the sample data at hand, although in practical applications this is all we have to judge a model. Conceptually, we imagine repeating the process that generated the sample. Imagine that we draw two more sets of 100 observations each. Now we have 300 observations, 3 sets of 100 each. <a href="#fig-gendata2" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> overlays the three samples an identifies observations belonging to the same sample with colors and symbols.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-gendata2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<a href="predictions_files/figure-html/fig-gendata2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="predictions_files/figure-html/fig-gendata2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.3: Three realizations of 100 observations each.
@@ -455,7 +507,7 @@ Figure&nbsp;7.3: Three realizations of 100 observations each.
 <div id="fig-gendata-fit2_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit2_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit2_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit2_1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="predictions_files/figure-html/fig-gendata-fit2_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit2_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.4: The solid (blue) model fit to each of the three samples.
@@ -469,7 +521,7 @@ Figure&nbsp;7.4: The solid (blue) model fit to each of the three samples.
 <div id="fig-gendata-fit2_2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit2_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit2_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit2_2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="predictions_files/figure-html/fig-gendata-fit2_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit2_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.5: The dotted (red) model fit to each of the three samples.
@@ -483,7 +535,7 @@ Figure&nbsp;7.5: The dotted (red) model fit to each of the three samples.
 <div id="fig-gendata-fit2_3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit2_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit2_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit2_3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="predictions_files/figure-html/fig-gendata-fit2_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit2_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.6: The dashed (green) model fit to each of the three samples.
@@ -503,7 +555,7 @@ Figure&nbsp;7.6: The dashed (green) model fit to each of the three samples.
 <div id="fig-gendata-fit3_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit3_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit3_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit3_1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="predictions_files/figure-html/fig-gendata-fit3_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit3_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.7: The solid (blue) model fit to each of the three samples and the true signal.
@@ -517,10 +569,10 @@ Figure&nbsp;7.7: The solid (blue) model fit to each of the three samples and the
 <div id="fig-gendata-fit3_2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit3_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit3_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit3_2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="predictions_files/figure-html/fig-gendata-fit3_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit3_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.8: The dashed (green) model fit to each of the three samples and the true signal.
+Figure&nbsp;7.8: The dotted (red) model fit to each of the three samples and the true signal.
 </figcaption>
 </figure>
 </div>
@@ -531,7 +583,7 @@ Figure&nbsp;7.8: The dashed (green) model fit to each of the three samples and t
 <div id="fig-gendata-fit3_3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-fit3_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="predictions_files/figure-html/fig-gendata-fit3_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+<a href="predictions_files/figure-html/fig-gendata-fit3_3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="predictions_files/figure-html/fig-gendata-fit3_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-fit3_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.9: The dashed (green) model fit to each of the three samples and the true signal.
@@ -546,19 +598,399 @@ Figure&nbsp;7.9: The dashed (green) model fit to each of the three samples and t
 <h3 class="anchored" data-anchor-id="in-practice">In Practice</h3>
 <p>The simulation is unrealistic for two reasons:</p>
 <ul>
-<li>we do not know the true signal in practice, otherwise there would not be a modeling problem.</li>
-<li>we have only a single sample of <span class="math inline">\(n\)</span> observations and cannot study the behavior of the model under repetition of the data collection process.</li>
+<li>We do not know the true signal in practice, otherwise there would not be a modeling problem.</li>
+<li>We have only a single sample of <span class="math inline">\(n\)</span> observations and cannot study the behavior of the model under repetition of the data collection process.</li>
 </ul>
-<p>The considerations are the same, however. We do not want a model that has too much variability or a model that has too much bias. Somehow, the two need to be balanced. Mathematically, the measure that combines bias and variability is the <strong>mean squared error</strong> (MSE). Without going into the derivation, we note that the MSE is computed as <span class="math display">\[
+<section id="the-mean-squared-error" class="level4">
+<h4 class="anchored" data-anchor-id="the-mean-squared-error">The mean squared error</h4>
+<p>The considerations are the same, however. We do not want a model that has too much variability or a model that has too much bias. Somehow, the two need to be balanced. Mathematically, the measure that combines bias and variability is the <strong>mean squared error</strong> (MSE). Without going into the derivation, we note that the MSE can be decomposed as<br>
+<span class="math display">\[
 \text{MSE} = \text{Variance} + \text{Bias}^2
 \]</span></p>
-<p>The mean squared error is the sum of the variance and the squared bias. We want the MSE to be small.</p>
-<p>In statistics, the tension between bias and variance is frequently resolved with the following rationale: we try to avoid biased estimators and require that models are unbiased. Then, among the choices of unbiased models we pick the one that has the smallest variability.</p>
-<p>That is a reasonable approach, but it is possible that a model with some bias has a lower MSE if its variability is much lower.</p>
-<p>When dealing with a single sample we can map the concept of variability of a model to the flexibility of the model. A model that is very flexible and can follow the data closely tends to have low bias and high variability. On the other hand, a model that is rigid tends to high bias and low variability. The solid (blue) model falls into the high-bias-and-low-variability category and the dashed (green) model falls into the low-bias-and-high-variability category.</p>
-<p>What is known as the <strong>bias–variance tradeoff</strong> in data science is finding models that lead to a small MSE by having low bias and moderate variability.</p>
+<p>The mean squared error is the sum of the variance and the squared bias. And we want the MSE to be small.</p>
+<p>In statistics, the tension between bias and variance is frequently resolved with the following rationale: we try to avoid biased estimators and require that models are unbiased. Then, among the choices of unbiased models, we pick the one that has the smallest variability. That is a reasonable approach, but it is possible that a model with some bias has a lower MSE if its variability is much lower. In other words, we might find a model that performs better–in the sense of a lower MSE–by allowing some bias if the model has low variability.</p>
+<p>When dealing with a single sample we can generally connect the concepts of bias and variability of a model to the flexibility of the model. A model that is highly flexible and can follow the data closely tends to have low bias and high variability. On the other hand, a model that is rigid (inflexible) tends to exhibit high bias and low variability. The solid (blue) model falls into the high-bias-and-low-variability category and the dashed (green) model falls into the low-bias-and-high-variability category.</p>
+<p>Finding models that exhibit a small MSE by having low bias and moderate variability is known as the <strong>bias–variance tradeoff</strong> in data science.</p>
+</section>
+<section id="a-further-complication" class="level4">
+<h4 class="anchored" data-anchor-id="a-further-complication">A further complication</h4>
+<p>It seems that finding a good predictive model then boils down to minimizing the mean squared error. Based on a set of data and a model, the mean squared error can be estimated as the average squared deviation between the observed values and the values predicted under the model: <span id="eq-MSE-estimate"><span class="math display">\[
+\widehat{\text{MSE}} = \frac{1}{n} \sum (\text{Observed} - \text{Predicted})^2
+\tag{7.1}\]</span></span></p>
+<p>The notation <span class="math inline">\(\widehat{\text{MSE}}\)</span>, placing a “hat” (caret) on top of a statistic, means that this is an estimate of a quantity. We cannot typically calculate the real MSE of a model, it depends on parameters we do not know. But we can compute an estimate of the MSE based on <a href="#eq-MSE-estimate" class="quarto-xref">Equation&nbsp;<span>7.1</span></a>.</p>
+<p>So it seems that we can overcome the problem of not knowing the real MSE by estimating it. However, there is one more complication. As the flexibility of the model increases, the difference between observed and predicted values can be made arbitrarily small. A model that interpolates the data points has an estimated MSE of zero. If we were to choose to minimize <a href="#eq-MSE-estimate" class="quarto-xref">Equation&nbsp;<span>7.1</span></a>, we would end up with highly variable models. And this defeats the purpose.</p>
+<p>The remedy is to compute the estimated MSE not by comparing observed and predicted values based on the values in the <strong>training</strong> data set, but to predict the values of observations that did not participate in training the model. This <strong>test</strong> data appears to the algorithm as new data it has not seen before and is a true measure for how well the model generalizes:</p>
+<p><span id="eq-MSE-test-estimate"><span class="math display">\[
+\widehat{\text{MSE}}_\text{Test} = \frac{1}{m} \sum (\text{Observed} - \text{Predicted})^2
+\tag{7.2}\]</span></span></p>
+<p>The main difference between <a href="#eq-MSE-estimate" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> and <a href="#eq-MSE-test-estimate" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> is that the former is computed based on the <span class="math inline">\(n\)</span> observations in the training data and the latter is computed based on <span class="math inline">\(m\)</span> observations in a separate test data set. We refer to mean squared errors calculated on test data sets as the <strong>test error</strong>.</p>
+</section>
+<section id="cross-validation" class="level4">
+<h4 class="anchored" data-anchor-id="cross-validation">Cross-validation</h4>
+<p>Because it is expensive to collect a separate data set to compute the test error the collected data is often split randomly into a training set and a test set. For example, you might use split the data 50:50 or 80:20 or 90:10 into training:test sets. If you have a lot of data, then splitting into separate training and test sets is reasonable.</p>
+<p>There is a clever way in which the same observations can be used sometimes for training and sometimes for testing, that uses the collected information more economically. This is called <strong>cross-validation</strong>.</p>
+<p>During cross-validation, an observation is either part of the test set or part of the training set. The process repeats until each observation was used once in a test set. One technique of cross-validation randomly assigns observations to one of <span class="math inline">\(k\)</span> groups, called <strong>folds</strong>. <a href="#fig-CV-5" class="quarto-xref">Figure&nbsp;<span>7.10</span></a> is an example of creating 5 folds from 100 observation for 5-fold cross-validation.</p>
+<div id="fig-CV-5" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CV-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/five_fold_CV.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CV-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.10: Example of 5-fold cross-validation for 100 observations. Numbers in the cells represent observation numbers. The records were randomly arranged prior to assigning the folds.
+</figcaption>
+</figure>
+</div>
+<p>The numbers in the cells of <a href="#fig-CV-5" class="quarto-xref">Figure&nbsp;<span>7.10</span></a> are the observation numbers. For example, the first fold includes observations #4, #16, #90, etc. The second fold includes observations #31, #94, #38, etc.</p>
+<p>The process of calculating the test error through <span class="math inline">\(k\)</span>-fold cross-validation is as follows:</p>
+<ol type="1">
+<li>Set aside the data in the first fold. It serves as the test data.</li>
+<li>Fit the model to the remaining data.</li>
+<li>Using the model trained in step 2., predict the values in the test data and calculate the test error</li>
+<li>Return the set-aside fold to the training data and set aside the next fold as the test data. Return to step 2. and continue until each fold has been set aside once.</li>
+</ol>
+<p>At the end of the <span class="math inline">\(k\)</span>-fold cross-validation procedure, the model has been trained <span class="math inline">\(k\)</span> times, and we have <span class="math inline">\(k\)</span> estimates of the test error, one for each of the folds. These test errors are then combined into one overall test error.</p>
+</section>
+</section>
+</section>
+<section id="putting-it-all-together" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">7.5</span> Putting It All Together</h2>
+<p>Let us now put together everything we have covered in this chapter about building a predictive model based on data for the simulated data set in <a href="#fig-gendata1" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> using computational and quantitative thinking.</p>
+<ul>
+<li><p>We build a model that captures the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>.</p></li>
+<li><p>The result should be an algorithm that we can use to predict <span class="math inline">\(Y\)</span> based on values of <span class="math inline">\(X\)</span> (<span class="math inline">\(Y\)</span> is the target variable, <span class="math inline">\(X\)</span> is the input variable).</p></li>
+<li><p>The model should generalize well to new observations, that is, it should not overfit or underfit. Use cross-validation to determine the appropriate amount of flexibility in the model.</p></li>
+</ul>
+<section id="creating-the-data-quantification" class="level3">
+<h3 class="anchored" data-anchor-id="creating-the-data-quantification">Creating the Data (Quantification)</h3>
+<p>The following <code>R</code> code creates the data frame shown in <a href="#fig-gendata1" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> X<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">cos</span>(X) <span class="sc">+</span> eps</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>simData <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X=</span>X, <span class="at">Y=</span>Y)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Setting a seed for the random number generator ensures that the program generates the same values every time it is run. The value for the seed is chosen here as <code>12345</code> and can be any integer.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">The number of observations drawn is set to <span class="math inline">\(n = 100\)</span>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3"><code>eps</code> is a vector of Gaussian (normal) random variables with mean 0 and variance 4 (std. dev 2). This represents the noise in the system.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="4">The values of <span class="math inline">\(X\)</span> are drawn randomly from a Gaussian distribution with mean 0 and variance 4</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="5">The signal is <span class="math inline">\(x^2 \, \cos(x)\)</span>. The noise (<code>eps</code>) is added to the signal.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="6">A data frame is constructed from X and Y.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="cross-validating-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="cross-validating-the-model">Cross-validating the Model</h3>
+<p>The steps of training the model and selecting the best flexibility by cross-validation can be done in a single computational step using the <code>train</code> function in the <code>caret</code> package. We need to decide on the general family of model we are going to entertain. Here we choose what is known as a <strong>regression spline</strong>. These model the relationship between two variables and their flexibility is governed by a single parameter, called the <strong>degrees of freedom</strong> of the model. With increasing degrees of freedom the models become more flexible. Cross-validation is used to determine the best value for the degree of freedom parameter in this model family.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">train</span>(Y <span class="sc">~</span> X,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data     =</span>simData,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method   =</span><span class="st">"gamSpline"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tuneGrid =</span><span class="fu">data.frame</span>(<span class="at">df=</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">25</span>, <span class="at">by=</span><span class="dv">1</span>)),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-2-7" class="code-annotation-target"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trControl=</span><span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"cv"</span>, <span class="at">number=</span><span class="dv">10</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">The <code>caret</code> library is loaded into the <code>R</code> session. If <code>caret</code> is not yet installed in your system, execute the command <code>install.packages("caret")</code> once from the Console prompt.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="2">The <code>train()</code> function in the <code>caret</code> library is called. <code>Y ~ X</code> specifies the model we wish to train. The target variable is placed on the left side of the <code>~</code> symbol and the input variable is placed on the right side.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="3">The data frame where the variables in the model specifications can be found.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="4">The <code>method=</code> parameter specifies the model family we wish to train. <code>gamTrain</code> is the specification for the regression spline family.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="5">The <code>tuneGrid</code> parameter provides a list of the values to be considered in the cross-validation. We vary only the degrees of freedom parameter (<code>df</code>) of the <code>gamSpline</code> function and we evaluate all values from 2 to 25.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="7" data-code-annotation="6">The <code>trControl=</code> parameter specifies the computational nuances of the <code>train</code> function. Here we choose 10-fold cross-validation.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>After running the code above we can examine the results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cv_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized Additive Model using Splines 
+
+100 samples
+  1 predictor
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 90, 91, 89, 89, 90, 89, ... 
+Resampling results across tuning parameters:
+
+  df  RMSE      Rsquared   MAE     
+   2  3.948383  0.2468568  3.021822
+   3  3.583394  0.4016653  2.751121
+   4  3.264671  0.5176447  2.559835
+   5  2.967739  0.5996185  2.371416
+   6  2.732739  0.6454729  2.218233
+   7  2.573920  0.6688788  2.107661
+   8  2.474458  0.6808445  2.036267
+   9  2.413180  0.6873204  2.001114
+  10  2.375289  0.6911981  1.983925
+  11  2.351995  0.6938019  1.976452
+  12  2.338419  0.6957038  1.971334
+  13  2.331878  0.6970928  1.970695
+  14  2.330844  0.6979920  1.971182
+  15  2.334393  0.6984189  1.972935
+  16  2.342029  0.6983416  1.975561
+  17  2.353220  0.6978141  1.978418
+  18  2.367892  0.6968446  1.981459
+  19  2.385770  0.6954992  1.984928
+  20  2.406903  0.6938330  1.990501
+  21  2.431180  0.6919134  1.998484
+  22  2.458785  0.6897954  2.007296
+  23  2.489828  0.6875293  2.017593
+  24  2.524311  0.6851669  2.028585
+  25  2.562596  0.6827171  2.041443
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was df = 14.</code></pre>
+</div>
+</div>
+<p>The output lists the values of the cross-validation parameter (<code>df</code>) along with three statistics computed for each. The statistic of interest to us is <code>RMSE</code>, the cross-validation root mean square error, the square root of our measure of test error. Note that <code>caret</code> reports the square root of the <span class="math inline">\(\widehat{\text{MSE}}_\text{Test}\)</span>. In order to find the df with the smallest test error it does not matter whether we look at <span class="math inline">\(\widehat{\text{MSE}}_\text{Test}\)</span> or its square root. The minimum is achieved at the same value.</p>
+<p>We can see that the smallest value in the <code>RMSE</code> column occurs at <code>df</code>=14. This is confirmed in the sentence at the bottom of the output.</p>
+<p>It is customary to graph the cross-validation criterion (<code>RMSE</code>) against the values of the parameter. <a href="#fig-gendata-cv" class="quarto-xref">Figure&nbsp;<span>7.11</span></a> shows a typical pattern. The test error decreases to an optimal value and increases afterwards.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-gendata-cv" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gendata-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="predictions_files/figure-html/fig-gendata-cv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.11: Cross-validation root mean squared error as a function of model flexibility (degrees of freedom).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="training-the-final-model" class="level3">
+<h3 class="anchored" data-anchor-id="training-the-final-model">Training the Final Model</h3>
+<p>One final step remains. Now that we have chosen df=14 as the optimal parameter for this combination of data set and class of model, we train the model with those degrees of freedom on all the data to obtain the final model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">train</span>(Y <span class="sc">~</span> X,                   </span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data     =</span>simData,       </span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method   =</span><span class="st">"gamSpline"</span>,   </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">tuneGrid =</span><span class="fu">data.frame</span>(<span class="at">df=</span>cv_results<span class="sc">$</span>bestTune[<span class="dv">1</span>]),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trControl=</span><span class="fu">trainControl</span>(<span class="at">method=</span><span class="st">"none"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">Instead of a list of <code>df</code> values, we now pass only one value. The best value from cross-validation was stored automatically in the <code>bestTune</code> field of the result object in the previous step.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="2">Instead of cross-validation we request <code>none</code> as the training nuance. <code>train</code> will simply train the requested model on the data frame.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="making-a-prediction" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-prediction">Making a Prediction</h3>
+<p>Suppose we want to predict <span class="math inline">\(Y\)</span> (or more precisely the mean of <span class="math inline">\(Y\)</span>) for a series of <span class="math inline">\(X\)</span> values, say from <span class="math inline">\(-5\)</span> to <span class="math inline">\(6\)</span>.</p>
+<p>Computing the predicted values is easy with the <code>predict</code> function in <code>R</code>. You simply pass it the model object and a data frame with the values for which you need predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>xGrid <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="at">length.out =</span> <span class="dv">250</span>))</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>predvals <span class="ot">&lt;-</span> <span class="fu">predict</span>(final_model,<span class="at">newdata=</span>xGrid)</span>
+<span id="annotated-cell-6-3"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>predvals[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">Create a data frame with 250 values for <span class="math inline">\(X\)</span> ranging from <span class="math inline">\(-5\)</span> to <span class="math inline">\(6\)</span>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="2">Compute the 250 predicted values.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="4" data-code-annotation="3">Display the first 10 predicted values.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6         7         8 
+-2.658016 -2.947193 -3.236370 -3.525547 -3.814724 -4.103901 -4.393078 -4.682255 
+        9        10 
+-4.971432 -5.260609 </code></pre>
+</div>
+</div>
+<p>At this point we would like to see how the predicted values of the signal compare to the observed noisy data. <a href="#fig-gendata-final-spline" class="quarto-xref">Figure&nbsp;<span>7.12</span></a> overlays the predicted values and the data. Also displayed is the true signal. The model derived from the data does an excellent job capturing the signal without following the data points too closely or being too inflexible.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(simData<span class="sc">$</span>X, simData<span class="sc">$</span>Y, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"p"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span><span class="dv">1</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">bty =</span><span class="st">"l"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"X"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Y"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xGrid<span class="sc">$</span>X,predvals,<span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xGrid<span class="sc">$</span>X,<span class="fu">m</span>(xGrid<span class="sc">$</span>X),<span class="at">col=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="st">"dashed"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"Cross-validated"</span>,<span class="st">"True"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty   =</span><span class="fu">c</span>(<span class="st">"solid"</span>,<span class="st">"dashed"</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">col   =</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"black"</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd   =</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-gendata-final-spline" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gendata-final-spline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-final-spline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.12: Predictions of the cross-validated spline model and observed data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="quantifying-uncertainty" class="level3">
+<h3 class="anchored" data-anchor-id="quantifying-uncertainty">Quantifying Uncertainty</h3>
+<p>Recall the fourth antidote against bad predictions:</p>
+<ol start="4" type="1">
+<li>Quantify the uncertainty in the conclusions drawn from the model.</li>
+</ol>
+<p>Conceptually, we think of the bias and variability of the model under repetition of the data collection. In an earlier section we looked at models for three data sets of 100 observations each. There are several factors contributing to our uncertainty about the predicted values in this analysis.</p>
+<p>We are not sure whether the regression spline is the correct model family to capature the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. Although the results of the cross-validation and the comparison with the true signal (which in practice we would not know) give us comfort that this model family does a good job here.</p>
+<p>The second source of uncertainty comes from the fact that there is noise in the data. As we saw earlier, another set of data drawn from the same process gives slightly different data points that lead to a different best model. Fortunately, we can quantify this uncertainty by computing <strong>confidence intervals</strong> for the predicted values.</p>
+<p>A 95% confidence interval for a parameter is a range that with 95% probability will cover the value of the parameter. For example, a 95% confidence interval for the predicted value at <span class="math inline">\(X=2.5\)</span> is the range into which the mean value of <span class="math inline">\(Y\)</span> will fall in 95% of the sample repetitions.</p>
+<p>The <code>predict</code> functions in <code>R</code> can compute the basic ingredients for confidence intervals for many models. Unfortunately, the <code>predict.train</code> function invoked by <code>caret</code> cannot do this. However, since we know that we fit a <code>gamSpline</code> model, and the <code>predict.Gam</code> function does compute the uncertainty of the predicted values for the values in the training data, we can repeat the final model fit with <code>gam</code> and use its <code>predict</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gam)</span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>final <span class="ot">&lt;-</span> <span class="fu">gam</span>(Y <span class="sc">~</span> <span class="fu">s</span>(X,<span class="at">df=</span><span class="dv">14</span>), <span class="at">data=</span>simData)</span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-5" class="code-annotation-target"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>predvals <span class="ot">&lt;-</span> <span class="fu">predict</span>(final,<span class="at">se.fit=</span><span class="cn">TRUE</span>)</span>
+<span id="annotated-cell-8-6"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-8-7" class="code-annotation-target"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(predvals<span class="sc">$</span>fit[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],<span class="dv">4</span>)</span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-8-9" class="code-annotation-target"><a href="#annotated-cell-8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(predvals<span class="sc">$</span>se.fit[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],<span class="dv">4</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">Load the <code>gam</code> library.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="2">Fit the final model with the <code>gam</code> function. <code>Y ~ s(X,df=14)</code> is the formulation for a regression spline model with 14 degrees of freedom.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="3">Compute the predicted values and request that the standard errors of the predicted values are also computed.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="7" data-code-annotation="4">The predicted values for the first 10 observations.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="9" data-code-annotation="5">The standard errors of the predicted values for the first 10 observations.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1       2       3       4       5       6       7       8       9      10 
+ 0.2388 -2.4706  0.5433 -5.7746  0.5378 -0.0852  0.4096 -9.5366  0.4262  0.0101 
+ [1] 0.6535 0.7064 0.7128 0.8453 0.6418 0.6865 0.7142 0.8642 0.5838 0.6757</code></pre>
+</div>
+</div>
+<p>For example, the first predicted value is 0.2388 with a standard error of 0.6535.</p>
+<p>To compute the 95% confidence interval for the predicted values, add and subtract <code>qnorm(0.975)</code> times the standard error from the predicted value. This is done in the following code and the results are plotted.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X=</span>simData<span class="sc">$</span>X, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">pred=</span>predvals<span class="sc">$</span>fit,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">se=</span>predvals<span class="sc">$</span>se.fit)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pred_df_sorted <span class="ot">&lt;-</span> pred_df[<span class="fu">order</span>(pred_df<span class="sc">$</span>X),]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pred_df_sorted<span class="sc">$</span>ci_up <span class="ot">&lt;-</span> pred_df_sorted<span class="sc">$</span>pred <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>pred_df_sorted<span class="sc">$</span>se</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pred_df_sorted<span class="sc">$</span>ci_lo <span class="ot">&lt;-</span> pred_df_sorted<span class="sc">$</span>pred <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>pred_df_sorted<span class="sc">$</span>se</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(simData<span class="sc">$</span>X, simData<span class="sc">$</span>Y, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"p"</span>, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span><span class="dv">1</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">bty =</span><span class="st">"l"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"X"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Y"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xGrid<span class="sc">$</span>X,<span class="fu">m</span>(xGrid<span class="sc">$</span>X),<span class="at">col=</span><span class="st">"black"</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="st">"dashed"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(pred_df_sorted<span class="sc">$</span>X,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      pred_df_sorted<span class="sc">$</span>pred,<span class="at">col=</span><span class="st">"red"</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(pred_df_sorted<span class="sc">$</span>X,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      pred_df_sorted<span class="sc">$</span>ci_up,<span class="at">col=</span><span class="st">"blue"</span>,<span class="at">lty=</span><span class="st">"dotted"</span>,<span class="at">lwd=</span><span class="fl">1.5</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(pred_df_sorted<span class="sc">$</span>X,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      pred_df_sorted<span class="sc">$</span>ci_lo,<span class="at">col=</span><span class="st">"blue"</span>,<span class="at">lty=</span><span class="st">"dotted"</span>,<span class="at">lwd=</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-gendata-final-spline2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gendata-final-spline2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-final-spline2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.13: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The confidence intervals (dotted blue) are tracing the predicted values and are narrower in the center of the <span class="math inline">\(X\)</span>-data than near the edges. The further out we move the more uncertain our predictions will be. The dashed black line shows the true signal in the data, the 95% confidence interval covers it.</p>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;7.1: 100 observations sampled from a population where <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are related.</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;7.2: Observed data and three possible models for the signal.</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;7.3: Three realizations of 100 observations each.</span>
+<span class="glightbox-desc lightbox-desc-4">Figure&nbsp;7.4: The solid (blue) model fit to each of the three samples.</span>
+<span class="glightbox-desc lightbox-desc-5">Figure&nbsp;7.5: The dotted (red) model fit to each of the three samples.</span>
+<span class="glightbox-desc lightbox-desc-6">Figure&nbsp;7.6: The dashed (green) model fit to each of the three samples.</span>
+<span class="glightbox-desc lightbox-desc-7">Figure&nbsp;7.7: The solid (blue) model fit to each of the three samples and the true signal.</span>
+<span class="glightbox-desc lightbox-desc-8">Figure&nbsp;7.8: The dotted (red) model fit to each of the three samples and the true signal.</span>
+<span class="glightbox-desc lightbox-desc-9">Figure&nbsp;7.9: The dashed (green) model fit to each of the three samples and the true signal.</span>
+<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;7.12: Predictions of the cross-validated spline model and observed data.</span>
+<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;7.13: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.</span>
+</div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Silver2012" class="csl-entry" role="listitem">
 Silver, Nate. 2012. <em>The Signal and the Noise: Why so Many Predictions Fail–but Some Don’t</em>. Penguin Books.
@@ -1147,6 +1579,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 
