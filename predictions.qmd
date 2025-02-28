@@ -70,7 +70,7 @@ Now compare this scenario to the following. In the build-up of the the 2008
 financial crisis, Standard \& Poor gave CDOs, a type of mortgage-backed securities, 
 a stellar AAA credit rating, meaning that there is only a 0.0012 probability that 
 they would fail to pay out over the next 5 years [@Silver2012, p. 20]. In reality, 
-28% of the AAA-rated CDOS defaulted. Had the world of financial markets drastically 
+28% of the AAA-rated CDOs defaulted. Had the world of financial markets drastically 
 changed to bring about such a massive change in default rates (200x!)? Or is it 
 more likely that the default models of the rating agencies were wrong? It was the latter.
 
@@ -662,7 +662,7 @@ the first fold includes observations #4, #16, #90, etc. The second fold includes
 observations #31, #94, #38, etc.
 
 The process of calculating the test error through $k$-fold cross-validation 
-is as follows:
+is as follows (@fig-cv-scheme):
 
 1. Set aside the data in the first fold. It serves as the test data. 
 2. Fit the model to the remaining data.
@@ -671,6 +671,8 @@ calculate the test error
 4. Return the set-aside fold to the training data and set aside the next fold as
 the test data. 
 Return to step 2. and continue until each fold has been set aside once.
+
+![$k$-fold cross-validation scheme.](images/Crossvalidation.png){#fig-cv-scheme fig-align="center" width=50% .lightbox}
 
 At the end of the $k$-fold cross-validation procedure, the model has been trained 
 $k$ times, and we have $k$ estimates of the test error, one for each of the folds.

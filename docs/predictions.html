@@ -368,7 +368,7 @@ The best way to predict the future is to create it.<br>
 <hr>
 <p>It seems that we make a lot of predictions and are not very good at it. And even if our predictions are spot-on, we might not act on them or ignore them. Predictions that contradict our intuition or preferred narrative can be ignored or explained away. Our personal judgment is not as good as you might think. We tend to overvalue our own opinion and this trend increases the more we know. 80% of doctors believe they are in the top 20% of their profession. More than half of them are clearly wrong!</p>
 <p>So when a prediction does not come true, does the fault lie with the model of the world or the world itself? If there is a 80% chance of rain tomorrow, then you might see sunny skies. If, in fact, the long run ratio of days that have sunny skies when the forecast calls for an 80% chance of rain is 1 in 5, then the forecast model is correct. We cannot fault the model that calls for a 80% chance of rain for the occasional sunny skies.</p>
-<p>Now compare this scenario to the following. In the build-up of the the 2008 financial crisis, Standard &amp; Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, meaning that there is only a 0.0012 probability that they would fail to pay out over the next 5 years <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 20</a>)</span>. In reality, 28% of the AAA-rated CDOS defaulted. Had the world of financial markets drastically changed to bring about such a massive change in default rates (200x!)? Or is it more likely that the default models of the rating agencies were wrong? It was the latter.</p>
+<p>Now compare this scenario to the following. In the build-up of the the 2008 financial crisis, Standard &amp; Poor gave CDOs, a type of mortgage-backed securities, a stellar AAA credit rating, meaning that there is only a 0.0012 probability that they would fail to pay out over the next 5 years <span class="citation" data-cites="Silver2012">(<a href="references.html#ref-Silver2012" role="doc-biblioref">Silver 2012, 20</a>)</span>. In reality, 28% of the AAA-rated CDOs defaulted. Had the world of financial markets drastically changed to bring about such a massive change in default rates (200x!)? Or is it more likely that the default models of the rating agencies were wrong? It was the latter.</p>
 <hr>
 <p>We predict all the time. On the drive to work we choose this route over that route because we predict it has less traffic, fewer red lights, or we are less likely to get caught behind a school bus. We probably make this choice instinctively, without much deliberation, based on experience, instantaneously processing information about the time of day, weather, etc.</p>
 <p>You might choose Netflix over Paramount+ one evening because you think (predict!) it is more likely that you’ll find content that interests you. This is a prediction problem. You are also on the receiving end of predictions every day. A company offers you a discount because it predicts that without an incentive you might shop at a competitor. We are being served weather forecasts (predictions!) on the local news and apps every day.</p>
@@ -641,13 +641,23 @@ Figure&nbsp;7.10: Example of 5-fold cross-validation for 100 observations. Numbe
 </figure>
 </div>
 <p>The numbers in the cells of <a href="#fig-CV-5" class="quarto-xref">Figure&nbsp;<span>7.10</span></a> are the observation numbers. For example, the first fold includes observations #4, #16, #90, etc. The second fold includes observations #31, #94, #38, etc.</p>
-<p>The process of calculating the test error through <span class="math inline">\(k\)</span>-fold cross-validation is as follows:</p>
+<p>The process of calculating the test error through <span class="math inline">\(k\)</span>-fold cross-validation is as follows (<a href="#fig-cv-scheme" class="quarto-xref">Figure&nbsp;<span>7.11</span></a>):</p>
 <ol type="1">
 <li>Set aside the data in the first fold. It serves as the test data.</li>
 <li>Fit the model to the remaining data.</li>
 <li>Using the model trained in step 2., predict the values in the test data and calculate the test error</li>
 <li>Return the set-aside fold to the training data and set aside the next fold as the test data. Return to step 2. and continue until each fold has been set aside once.</li>
 </ol>
+<div id="fig-cv-scheme" class="lightbox quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cv-scheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/Crossvalidation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="images/Crossvalidation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cv-scheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.11: <span class="math inline">\(k\)</span>-fold cross-validation scheme.
+</figcaption>
+</figure>
+</div>
 <p>At the end of the <span class="math inline">\(k\)</span>-fold cross-validation procedure, the model has been trained <span class="math inline">\(k\)</span> times, and we have <span class="math inline">\(k\)</span> estimates of the test error, one for each of the folds. These test errors are then combined into one overall test error.</p>
 </section>
 </section>
@@ -787,7 +797,7 @@ The final value used for the model was df = 14.</code></pre>
 </div>
 <p>The output lists the values of the cross-validation parameter (<code>df</code>) along with three statistics computed for each. The statistic of interest to us is <code>RMSE</code>, the cross-validation root mean square error, the square root of our measure of test error. Note that <code>caret</code> reports the square root of the <span class="math inline">\(\widehat{\text{MSE}}_\text{Test}\)</span>. In order to find the df with the smallest test error it does not matter whether we look at <span class="math inline">\(\widehat{\text{MSE}}_\text{Test}\)</span> or its square root. The minimum is achieved at the same value.</p>
 <p>We can see that the smallest value in the <code>RMSE</code> column occurs at <code>df</code>=14. This is confirmed in the sentence at the bottom of the output.</p>
-<p>It is customary to graph the cross-validation criterion (<code>RMSE</code>) against the values of the parameter. <a href="#fig-gendata-cv" class="quarto-xref">Figure&nbsp;<span>7.11</span></a> shows a typical pattern. The test error decreases to an optimal value and increases afterwards.</p>
+<p>It is customary to graph the cross-validation criterion (<code>RMSE</code>) against the values of the parameter. <a href="#fig-gendata-cv" class="quarto-xref">Figure&nbsp;<span>7.12</span></a> shows a typical pattern. The test error decreases to an optimal value and increases afterwards.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -797,7 +807,7 @@ The final value used for the model was df = 14.</code></pre>
 <img src="predictions_files/figure-html/fig-gendata-cv-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.11: Cross-validation root mean squared error as a function of model flexibility (degrees of freedom).
+Figure&nbsp;7.12: Cross-validation root mean squared error as a function of model flexibility (degrees of freedom).
 </figcaption>
 </figure>
 </div>
@@ -859,7 +869,7 @@ Figure&nbsp;7.11: Cross-validation root mean squared error as a function of mode
 -4.971432 -5.260609 </code></pre>
 </div>
 </div>
-<p>At this point we would like to see how the predicted values of the signal compare to the observed noisy data. <a href="#fig-gendata-final-spline" class="quarto-xref">Figure&nbsp;<span>7.12</span></a> overlays the predicted values and the data. Also displayed is the true signal. The model derived from the data does an excellent job capturing the signal without following the data points too closely or being too inflexible.</p>
+<p>At this point we would like to see how the predicted values of the signal compare to the observed noisy data. <a href="#fig-gendata-final-spline" class="quarto-xref">Figure&nbsp;<span>7.13</span></a> overlays the predicted values and the data. Also displayed is the true signal. The model derived from the data does an excellent job capturing the signal without following the data points too closely or being too inflexible.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(simData<span class="sc">$</span>X, simData<span class="sc">$</span>Y, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"p"</span>, </span>
@@ -878,10 +888,10 @@ Figure&nbsp;7.11: Cross-validation root mean squared error as a function of mode
 <div id="fig-gendata-final-spline" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-final-spline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="predictions_files/figure-html/fig-gendata-final-spline-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-final-spline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.12: Predictions of the cross-validated spline model and observed data.
+Figure&nbsp;7.13: Predictions of the cross-validated spline model and observed data.
 </figcaption>
 </figure>
 </div>
@@ -966,10 +976,10 @@ Figure&nbsp;7.12: Predictions of the cross-validated spline model and observed d
 <div id="fig-gendata-final-spline2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gendata-final-spline2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+<a href="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="predictions_files/figure-html/fig-gendata-final-spline2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gendata-final-spline2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.13: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.
+Figure&nbsp;7.14: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.
 </figcaption>
 </figure>
 </div>
@@ -988,8 +998,9 @@ Figure&nbsp;7.13: Predictions and confidence intervals of the cross-validated sp
 <span class="glightbox-desc lightbox-desc-7">Figure&nbsp;7.7: The solid (blue) model fit to each of the three samples and the true signal.</span>
 <span class="glightbox-desc lightbox-desc-8">Figure&nbsp;7.8: The dotted (red) model fit to each of the three samples and the true signal.</span>
 <span class="glightbox-desc lightbox-desc-9">Figure&nbsp;7.9: The dashed (green) model fit to each of the three samples and the true signal.</span>
-<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;7.12: Predictions of the cross-validated spline model and observed data.</span>
-<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;7.13: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.</span>
+<span class="glightbox-desc lightbox-desc-10">Figure&nbsp;7.11: <span class="math inline">\(k\)</span>-fold cross-validation scheme.</span>
+<span class="glightbox-desc lightbox-desc-11">Figure&nbsp;7.13: Predictions of the cross-validated spline model and observed data.</span>
+<span class="glightbox-desc lightbox-desc-12">Figure&nbsp;7.14: Predictions and confidence intervals of the cross-validated spline model and observed data. The black line is the true signal in the data.</span>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Silver2012" class="csl-entry" role="listitem">
@@ -1579,7 +1590,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
