@@ -94,6 +94,7 @@ know that. Their behavior is governed by the following rules:
 
 How do you guard the criminals and stop them from escaping?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 Imagine there is only a single criminal, $n=1$. Since he/she would definitely be shot at
 during an escape, they would face certain death and not escape. 
@@ -109,6 +110,7 @@ How does this generalize to larger groups of criminals? Assign a number from 1 t
 $n$ to the criminals and tell them that should any subgroup of them try to escape,
 the one with the highest number in the group will be shot.
 :::
+--->
 
 ## Three Jars
 
@@ -121,6 +123,7 @@ Your task is to assign the labels correctly to the jars.
 What is the smallest number of fruit you have to choose in order to correctly
 label the three jars?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 You choose one fruit from the jar that is labeled incorrectly as "Apples &
@@ -129,6 +132,7 @@ otherwise it is the jar with the oranges. Now you have two jars left whose
 labels just need to be flipped since you were told that all three jars are 
 labeled incorrectly.
 :::
+--->
 
 ## Pattern Recognition \#1
 
@@ -139,6 +143,7 @@ the last equation.
 
 ![Can you solve this?](images/LogicPuzzle1.png){#fig-math-puzzle1 fig-align="center" width=50%}
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 We need to find a pattern that expresses the operations in terms of familiar algebra.
@@ -158,6 +163,7 @@ This, by the way, is not the only solution. There are other patterns that will
 lead to a different result for the last row. Those patterns are equally valid.
 Can you find another pattern that yields a solution?
 :::
+--->
 
 ## Pattern Recognition \#2
 
@@ -177,6 +183,7 @@ $$
 
 What is the next number in the sequence?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 What is the pattern in the sequence of numbers? 
 
@@ -194,6 +201,7 @@ $$
 13112221
 $$
 :::
+--->
 
 ## Birthday Problem
 
@@ -201,7 +209,7 @@ This is a classical problem in probability, and a popular one because it is
 relatable yet somewhat counterintuitive. The probability is higher than what 
 most people expect. It goes like this: 
 
->What is the probability that in a group of $n$ randomly chosen people, at least two share the same birthday?
+What is the probability that in a group of $n$ randomly chosen people, at least two share the same birthday?
 
 "Birthday" is meant as one of 365 days of the year, not adjusting for leap years.
 Also, we are not taking the birth year into account. A birthday for the purpose
@@ -213,6 +221,7 @@ least two shared birthdays is also relatable.
 
 How likely do you think at least two people share a birthday in a group of 23?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The probability of at least two shared birthdays in a group of 23 is about 0.5;
@@ -281,7 +290,7 @@ birthday_prob(50)
 birthday_prob(100)
 ```
 :::
-
+--->
 
 ## Minimum Cuts
 
@@ -292,8 +301,9 @@ end of each day.
 
 ![A gold bar that needs to be cut up.](images/GoldBar.png){#fig-gold-bar fig-align="center" width=50%}
 
->What is the minimum number of cuts that allow you to pay the consultant every day?
+What is the minimum number of cuts that allow you to pay the consultant every day?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 You need only two cuts to cut the gold bar into three pieces of sizes 1/5, 1/5,
@@ -310,6 +320,7 @@ Then you pay the consultant as follows:
 - Day 4: give them a 1/5 gold bar
 - Day 5: give them the second 1/5 gold bar
 :::
+--->
 
 ## When to Choose the Ticket
 
@@ -328,6 +339,7 @@ person that drew the "Last Seat" by checking their slip.
 Here is the question: if you have your choice to pick first, second, last, or 
 at any particular position in the queue, which position would you choose?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 It does not matter when you draw the paper if the pieces were properly shuffled.
@@ -339,6 +351,7 @@ Note that this would be different if passengers would announce the result of
 their draws before the next draw. The conditional probability of choosing the 
 "Last Seat" slip on the next draw increases with every bank slip that preceded.
 :::
+--->
 
 ## How Many Squares on a Chessboard
 
@@ -347,6 +360,7 @@ A chess board is made up of eight rows and columns of black and white positions
 
 ![Chess board.](images/Chessboard.png){#fig-chessboard fig-align="center" width=50%}
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The quick answer is $8 \times 8 = 64$ squares. However, that is only part of the
@@ -362,6 +376,7 @@ $$
 8^2 + 7^2 + 6^2 + 5^2 + 4^2 + 3^2 + 2^2 + 1^2 = 204
 $$
 :::
+--->
 
 ## Book Sorting
 
@@ -385,6 +400,7 @@ Since you add only one book to the box for every two books you remove, the box
 will eventually be empty. What is the type of the last book in the box? Is it 
 a fiction or a non-fiction book?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The number of books in the bin goes down by one with each cycle: two books are
@@ -401,6 +417,7 @@ that after each cycle the number of NF books remains an odd number. It can never
 be an even number. Which leads to the conclusion that if there is only one 
 book left in the bin it must be a non-fiction book.
 :::
+--->
 
 ## Inverted Triangle
 
@@ -409,6 +426,7 @@ an upside-down triangle by moving only 3 coins?
 
 ![Inverting the coin triangle.](images/CoinTrianglePuzzle.png){#fig-coin-triangle fig-align="center" width=75%}
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The solution is shown in @fig-coin-solution. First, focus on the seven coins in
@@ -417,6 +435,7 @@ they do not need to move at all. We can focus on the three coins at the edges.
 
 ![Moving the three coins.](images/CoinTrianglePuzzleSolution.png){#fig-coin-solution fig-align="center" width=75%}
 :::
+--->
 
 ## The Spare Tire
 
@@ -430,6 +449,7 @@ All tires, including the spare (S) have the same life expectancy of 30,000 miles
 
 ![Tire life before driving the first mile.](images/TirePuzzleSolution1.png){#fig-tire-solution1 fig-align="center" width=50%}
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The maximum total distance the five tires could travel before they are all worn
@@ -455,6 +475,7 @@ it is worn out. The other tires still have 7,500 miles of life to go.
 ![Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles](images/TirePuzzleSolution2.png){#fig-tire-solution2 fig-align="center" width=75% .lightbox}
 
 :::
+--->
 
 ## Robot Triangle
 
@@ -466,6 +487,7 @@ that any two robots will collide?
 
 ![Robot triangle.](images/RobotTrianglePuzzle.png){#fig-robot-triangle fig-align="center" width=75%}
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 Each robot has two possible movements, so there are a total of 2 x 2 x 2 = 8 
@@ -479,6 +501,7 @@ Any other choice of movements will result in at least one collision. So the
 probability of any collision if the robots choose their movements at random is
 6/8 = 3/4. There is a 75\% chance that any two robots will collide.
 :::
+--->
 
 ## Truth Telling
 
@@ -493,6 +516,7 @@ Consider the following three statements:
 
 Who is telling the truth and who is lying?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 This puzzle is related to the robot movement in that there are $2^3 = 8$
@@ -526,7 +550,7 @@ is consistent with what we already found.
 
 Conclusion: Only Brian is truthful.
 :::
-
+--->
 
 ## Clock Made With Matches
 
@@ -534,6 +558,7 @@ You have two wooden sticks and a box of matches. When a sticks is lit it
 will burn completely in exactly one hour. How do you use these ingredients to 
 measure exactly 45 minutes?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 Light the first stick on one end and light the second stick on both ends. 
@@ -549,6 +574,7 @@ When the first stick is completely burned down, 45 minutes will have passed (@fi
 
 ![After 30 minutes, light the other end of the first stick.](images/StickPuzzle2.png){#fig-stick-puzzle2 fig-align="center" width=75%}
 :::
+--->
 
 ## Two Stacks of Cards
 
@@ -557,8 +583,8 @@ second stack contains two regular 52-card decks, thus has 104 cards.
 Both stacks are shuffled well. You choose two cards in sequence and you win if 
 they are both red. Would you prefer to choose from the 52-card stack or the 
 104-card stack?
-
-
+ 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 You want to choose from the larger stack. The probability to draw two red cards
 in sequence from a stack of $n$ cards (with $n/2$ red ones) is
@@ -573,6 +599,7 @@ $$
 
 There is a slightly higher chance to draw two red cards from the larger stack.
 :::
+--->
 
 ## Rapid Fire
 
@@ -580,6 +607,7 @@ Cowboy Billy carries a Colt single action 6 shooter revolver. When he fires all
 6 shots in a row, the time between the first bullet and the last is 60 seconds. 
 How long would it take him to fire 3 shots?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 It will take him 24 seconds to fire three shots. Wait, what?
 
@@ -592,6 +620,7 @@ Another way of thinking about this is the distance at which fence posts are
 placed. In a fence with six posts, the first one is at 0/5^th^ total distance, 
 the second post is located 1/5^th^ of the total distance, and so on.
 :::
+--->
 
 ## Crossing the River
 
@@ -602,6 +631,7 @@ left alone with the chicken it will eat it. If the chicken is left alone with
 the grain, it will eat it. How can the farmer cross the river and bring home
 the fox, the chicken, and the grain?
 
+<!---
 ::: {.callout-tip title="Solution" collapse=true}
 This will take several trips across the river:
 
@@ -618,3 +648,4 @@ The trick is to take one item---here, the chicken---back and forth to make sure
 it is not alone with the item it would destroy.
 
 :::
+--->
