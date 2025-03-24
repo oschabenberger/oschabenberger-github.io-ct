@@ -417,7 +417,7 @@ problem solving.
 
 2. **Critical problems**: crises that are self-evident, and we are hoping someone
 knows how to sort them out. These problems require *commanders* who know the 
-solution, are decisice, and direct and coerce others.
+solution, are decisive, and direct and coerce others.
 
 3. **Wicked problems**: problems we do not know how to fix. Solving wicked problems
 requires *leaders* who recognize their own limits and the wicked nature of the 

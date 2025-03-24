@@ -1,0 +1,327 @@
+---
+title: "Regression"
+author: "Oliver Schabenberger"
+date: "March 19, 2025"
+output: 
+  pdf_document: default
+  html_document:
+    df_print: paged
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+library(knitr)
+
+knitr::opts_chunk$set(echo=TRUE, warning=F, message=F, fig.asp=0.7, cache=FALSE)
+
+# List of required packages
+required_packages <- c(
+  "corrplot",
+  "leaps"
+)
+
+# Function to install packages if they don't exist
+install_if_missing <- function(package_name) {
+  if (!requireNamespace(package_name, quietly = TRUE)) {
+    cat(paste("Installing package:", package_name, "\n"))
+    install.packages(package_name)
+  }
+  library(package_name, character.only = TRUE)
+}
+
+# Install and load all required packages
+for (pkg in required_packages) {
+  install_if_missing(pkg)
+}
+```
+
+
+## Fitness
+
+Aerobic capacity is the ability of the heart and lungs to provide the body with oxygen. It
+is a measure of fitness and expressed as the oxygen intake in ml per kg body weight per
+minute. Other variables that measure fitness or that are correlated with fitness are
+easier to obtain, for example, the time to run a given distance or the heart rate while
+running.
+
+Measurements were made on 31 men involved in a physical fitness course at N.C.State Univ.
+The variables are
+
+-   **Age**: age in years
+-   **Weight**: weight in kg
+-   **Oxygen**: oxygen intake rate (ml per kg body weight per minute)
+-   **RunTime**: time to run 1.5 miles (minutes)
+-   **RestPulse**: heart rate while resting
+-   **RunPulse**: heart rate while running (same time Oxygen rate measured)
+-   **MaxPulse**: maximum heart rate recorded while running
+
+In other words, the difficult-to-measure oxygen intake was measured along with other, more
+easily attainable, variables.
+
+### The Data
+
+```{r fitness}
+fitness <- read.csv("../data/fitness.csv")
+dim(fitness)
+head(fitness) 
+tail(fitness)
+sum(is.na(fitness))
+```
+
+The `str()` function gives us a quick view of the structure of the data frame. For each
+variable in the data frame it lists the name, variable type and the first few
+observations.
+
+```{r fitness_str}
+str(fitness)
+summary(fitness$Weight)  
+```
+
+### Visualizations
+
+The `pairs()` function in `R` creates a scatterplot matrix, a matrix of $(x,y)$ scatter
+plots where each variable is plotted against each other variable:
+
+```{r fitness2}
+pairs(fitness)
+```
+
+You can limit the number of variables in the scatterplot matrix with the `~ x + y + ...`
+syntax. The following command produces a scatterplot matrix of the inputs related to pulse
+measurement.
+
+```{r fitness3}
+pairs(~ Oxygen + RestPulse + RunPulse + MaxPulse + RunTime, data=fitness)
+pairs(~ Oxygen + Age + Weight, data=fitness)
+```
+
+We can customize the plot by putting histograms on the diagonal and adding a
+non-parametric smoother (LOESS). The `panel.smooth` function is built in but the
+`panel.hist` function needs to be added (see help for `pairs()`).
+
+```{r fitness4}
+panel.hist <- function(x, ...)
+{
+    usr <- par("usr")
+    par(usr = c(usr[1:2], 0, 1.5) )
+    h <- hist(x, plot = FALSE)
+    breaks <- h$breaks 
+    nB <- length(breaks)
+    y <- h$counts
+    y <- y/max(y)
+    rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
+pairs(~ Oxygen + Weight + RunTime + RestPulse, data=fitness, 
+      panel=panel.smooth, 
+      diag.panel=panel.hist,
+      bg="light blue")
+```
+
+
+```{r corr_plot}
+library("corrplot")
+corrplot(cor(fitness), method = "circle", diag=FALSE, tl.col="black")
+```
+    
+### Questions
+
+-   Is this a supervised or unsupervised analytic problem?
+-   If supervised, which variable is the target (dependent variable, output) and why?
+-   For the chosen target variable, how would you approach the following questions
+    -   Which variables relate most strongly to the target?
+    -   Which variables would you include into a model that predicts the target?
+    -   How would you measure the ability of a model to predict the target for a new
+        observation (an individual who did not participate in the study)?
+    -   Before you apply the model to that individual, which questions would you ask?
+
+### A linear regression
+
+Let's perform a linear regression analysis with target `Oxygen` and `Runtime`
+$$
+\text{Oxygen} = \beta_0 + \beta_1 \text{Runtime}
+$$
+
+```{r fitness_lm}
+linreg <- lm(Oxygen ~ RunTime, data=fitness)
+summary(linreg)
+```
+
+The predicted equation is
+$$
+\text{Oxygen} = 82.4218 - 3.3106*\text{RunTime}
+$$
+
+```{r fit_plot}
+plot(fitness$RunTime,fitness$Oxygen)
+abline(coef(linreg))
+```
+
+
+### Multiple Linear Regression
+
+```{r}
+mlr <- lm(Oxygen ~ RunTime + RunPulse + MaxPulse, data=fitness)
+summary(mlr)
+```
+
+
+### Variable Selection
+
+``` {r}
+library(leaps)
+
+regfit.all <- regsubsets(Oxygen ~ ., 
+                         data=fitness, 
+                         method="exhaustive", 
+                         nvmax=NULL)
+s_all <- summary(regfit.all)
+s_all
+
+s_all$cp
+s_all$bic
+s_all$adjr2
+```
+
+How many models are there with 0, 1, 2, 3, ... input variables for p=6:
+
+``` {r}
+choose(6,0)
+choose(6,1)
+choose(6,2)
+choose(6,3)
+choose(6,4)
+choose(6,5)
+choose(6,6)
+```
+
+The total number of models you can build with p=6 input variables is
+
+```{r}
+2^6
+```
+
+
+
+```{r}
+par(mfrow=c(1,3))
+
+plot(s_all$cp, ylab="Cp", xlab="# of predictors", type="b")
+idxcp <- which.min(s_all$cp) 
+points(idxcp, s_all$cp[idxcp], pch=4, cex=3, col="red")
+
+plot(s_all$bic, ylab="BIC", xlab="# of predictors", type="b")
+idxbic <- which.min(s_all$bic) 
+points(idxbic, s_all$bic[idxbic], pch=4, cex=3, col="red")
+
+plot(s_all$adjr2, ylab="Adj. R^2", xlab="# of predictors", type="b")
+idxr2 <- which.max(s_all$adjr2) 
+points(idxr2, s_all$adjr2[idxr2], pch=4, cex=3, col="red")
+
+mtext("All Subset Regression", side = 3, line = -2, outer = TRUE)
+```
+
+### Forward Selection
+
+``` {r forward_selection}
+regfit.forw <- regsubsets(Oxygen ~ ., 
+                          data=fitness, 
+                          method="forward", 
+                          nvmax=NULL)
+s_forw <- summary(regfit.forw)
+s_forw
+
+s_forw$cp
+s_forw$bic
+s_forw$adjr2
+```
+
+
+```{r Credit_plots_forw, echo=FALSE}
+par(mfrow=c(1,3))
+
+plot(s_forw$cp, ylab="Cp", xlab="# of predictors", type="b")
+idxcp <- which.min(s_forw$cp) 
+points(idxcp,s_forw$cp[idxcp], pch=4, cex=3, col="red")
+
+plot(s_forw$bic, ylab="BIC", xlab="# of predictors", type="b")
+idxbic <- which.min(s_forw$bic) 
+points(idxbic,s_forw$bic[idxbic], pch=4, cex=3, col="red")
+
+plot(s_forw$adjr2, ylab="Adj. R^2", xlab="# of predictors", type="b")
+idxr2 <- which.max(s_forw$adjr2) 
+points(idxr2,s_forw$adjr2[idxr2], pch=4, cex=3, col="red")
+
+mtext("Forward Selection", side=3, line= -2, outer=TRUE)
+```
+
+### Backward Selection (Backward Elimination)
+
+``` {r backward_selection}
+regfit.back <- regsubsets(Oxygen ~ ., 
+                          data=fitness, 
+                          method="backward", 
+                          nvmax=NULL)
+s_back <- summary(regfit.back)
+s_back
+
+s_back$cp
+s_back$bic
+s_back$adjr2
+```
+
+
+```{r Credit_plots_back, echo=FALSE}
+par(mfrow=c(1,3))
+
+plot(s_back$cp, ylab="Cp", xlab="# of predictors", type="b")
+idxcp <- which.min(s_back$cp) 
+points(idxcp,s_back$cp[idxcp], pch=4, cex=3, col="red")
+
+plot(s_back$bic, ylab="BIC", xlab="# of predictors", type="b")
+idxbic <- which.min(s_back$bic) 
+points(idxbic,s_back$bic[idxbic], pch=4, cex=3, col="red")
+
+plot(s_back$adjr2, ylab="Adj. R^2", xlab="# of predictors", type="b")
+idxr2 <- which.max(s_back$adjr2) 
+points(idxr2,s_back$adjr2[idxr2], pch=4, cex=3, col="red")
+
+mtext("Backward Elimination", side=3, line= -2, outer=TRUE)
+```
+
+
+### Stepwise Selection
+
+``` {r seqrep_selection}
+regfit.step <- regsubsets(Oxygen ~ ., 
+                          data=fitness, 
+                          method="seqrep", 
+                          nvmax=NULL)
+s_step <- summary(regfit.step)
+s_step
+
+s_step$cp
+s_step$bic
+s_step$adjr2
+```
+
+```{r Credit_plots_step, echo=FALSE}
+par(mfrow=c(1,3))
+
+plot(s_step$cp, ylab="Cp", xlab="# of predictors", type="b")
+idxcp <- which.min(s_step$cp) 
+points(idxcp,s_step$cp[idxcp], pch=4, cex=3, col="red")
+
+plot(s_step$bic, ylab="BIC", xlab="# of predictors", type="b")
+idxbic <- which.min(s_step$bic) 
+points(idxbic,s_step$bic[idxbic], pch=4, cex=3, col="red")
+
+plot(s_step$adjr2, ylab="Adj. R^2", xlab="# of predictors", type="b")
+idxr2 <- which.max(s_step$adjr2) 
+points(idxr2,s_step$adjr2[idxr2], pch=4, cex=3, col="red")
+
+mtext("Stepwise Selection", side = 3, line = -2, outer = TRUE)
+```
+

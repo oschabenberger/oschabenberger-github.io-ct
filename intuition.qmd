@@ -94,7 +94,6 @@ know that. Their behavior is governed by the following rules:
 
 How do you guard the criminals and stop them from escaping?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 Imagine there is only a single criminal, $n=1$. Since he/she would definitely be shot at
 during an escape, they would face certain death and not escape. 
@@ -110,7 +109,6 @@ How does this generalize to larger groups of criminals? Assign a number from 1 t
 $n$ to the criminals and tell them that should any subgroup of them try to escape,
 the one with the highest number in the group will be shot.
 :::
---->
 
 ## Three Jars
 
@@ -123,7 +121,6 @@ Your task is to assign the labels correctly to the jars.
 What is the smallest number of fruit you have to choose in order to correctly
 label the three jars?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 You choose one fruit from the jar that is labeled incorrectly as "Apples &
@@ -132,7 +129,49 @@ otherwise it is the jar with the oranges. Now you have two jars left whose
 labels just need to be flipped since you were told that all three jars are 
 labeled incorrectly.
 :::
---->
+
+## The Two Door Problem (New)
+
+This puzzle has many variations: 
+
+* You are walking in the desert and come to a fork in the road. Choose the wrong
+road and you will get lost in the desert. Choose the right road and you will
+reach the destination.
+* You have to choose between two doors, one leads to a good outcome, the other
+leads to a bad outcome you want to avoid at all cost.
+* You are trapped in a room with two doors, only one leads to freedom.
+
+The trick is that each door or fork in the road is guarded by a separate guard. One of the
+guards is a liar who never tells the truth, the other guard always tells the truth.
+And, you get to ask **only one** question. What question do you ask to reveal 
+the right door (assuming you want to get to a good outcome)?
+
+::: {.callout-tip title="Solution" collapse=true}
+You should ask the following question of **either** of the guards:
+
+:::{.quote}
+If I would ask the other guard which road leads to my destination, what would
+they say?
+:::
+
+A variation for other setups would be "If I would ask the other guard which door leads to freedom, ..."
+
+Then, when you hear the answer, choose the **opposite** road or door.
+
+Why does this work?
+Regardless of which guard you ask you get the wrong answer, pointing out the
+fork in the road or the door you want to avoid.
+
+If you ask the guard who never lies, he knows that the liar would point you to 
+the wrong road. Since he speaks the truth, he will tell you that the other guard
+will lead you to the wrong road.
+
+If you ask the guard who always lies, he knows the other guard would point you 
+to the correct road. But since he always lies, he will tell you that the other
+guard will point you at the wrong road.
+
+Either way, the answer will be the road or door to avoid.
+:::
 
 ## Pattern Recognition \#1
 
@@ -143,7 +182,6 @@ the last equation.
 
 ![Can you solve this?](images/LogicPuzzle1.png){#fig-math-puzzle1 fig-align="center" width=50%}
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 We need to find a pattern that expresses the operations in terms of familiar algebra.
@@ -163,7 +201,7 @@ This, by the way, is not the only solution. There are other patterns that will
 lead to a different result for the last row. Those patterns are equally valid.
 Can you find another pattern that yields a solution?
 :::
---->
+
 
 ## Pattern Recognition \#2
 
@@ -183,7 +221,6 @@ $$
 
 What is the next number in the sequence?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 What is the pattern in the sequence of numbers? 
 
@@ -201,7 +238,78 @@ $$
 13112221
 $$
 :::
---->
+
+## Pattern Recognition \#3 (New)
+
+This could be called a math puzzle but it is just as much---maybe more---a 
+pattern recognition puzzle. Consider the 4 statements:
+
+$$
+\begin{align*}
+5^a &= 6\\
+6^b &= 7\\
+7^c &= 8\\
+8^d &= 625
+\end{align*}
+$$
+Given these statements, can you find
+$$
+\sqrt{abcd} = ??
+$$
+
+
+::: {.callout-tip title="Solution" collapse=true}
+Trying to solve this by brute force is going to be tricky,  
+$a \log(5) = \log(6)$, $b \log(6) = \log(7)$, and so forth.
+
+But by simply substituting the left hand side of the previous equation
+into the next equation we get:
+$$
+6^b = (5^a)^b = 5^{a\times b}=7
+$$
+Continuing along those lines we arrive at
+$$
+8^d = 5^{a \times b \times c \times d} = 625
+$$
+Now we know $abcd = 4$ and $\sqrt{abcd} = 2$.
+:::
+
+## Pattern Recognitiion \#4 (New)
+
+@fig-rect-puzzle shows a matrix with 9 cells and eight of the cell values.
+Can you determine the relationship between the cells and their values to
+determine the value in the missing cell?
+
+
+![Rectangle with numbers. What is the number in the missing cell?](images/MathPuzzleRectangle.png){#fig-rect-puzzle fig-align=center width=75%}
+
+::: {.callout-tip title="Solution" collapse=true}
+Start by looking at the numbers in rows and columns, focusing on complete rows
+and columns. In the first colunm the numbers 7, 49, 46 do not stand in a 
+discernible relationship. It is easier for the numbers in the first row,
+going left to right:
+$$
+7 + 9 = 16 \qquad 16 + 8 = 24
+$$
+In the third column we see a similar pattern
+$$
+24 + 7 = 31 \qquad 31 + 6 = 37
+$$
+
+In the last row, going left to right, the pattern is
+$$
+46 - 4 = 42 \qquad 42 - 5 = 37
+$$
+If the left-to-right pattern uses subtraction, the right-to-left pattern in the
+row uses addition:
+$$
+37 + 5 = 42 \qquad 42 + 4 = 46
+$$
+@fig-rect-puzzle2 shows the numbers added to the previous cell when you navigate
+the matrix in a clock-wise pattern. The missing value is thus 51.
+
+![Walking the cells clockise](images/MathPuzzleRectangleSolution.png){#fig-rect-puzzle2 fig-align=center width=75%}
+:::
 
 ## Birthday Problem
 
@@ -221,7 +329,6 @@ least two shared birthdays is also relatable.
 
 How likely do you think at least two people share a birthday in a group of 23?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The probability of at least two shared birthdays in a group of 23 is about 0.5;
@@ -290,7 +397,7 @@ birthday_prob(50)
 birthday_prob(100)
 ```
 :::
---->
+
 
 ## Minimum Cuts
 
@@ -303,7 +410,6 @@ end of each day.
 
 What is the minimum number of cuts that allow you to pay the consultant every day?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 You need only two cuts to cut the gold bar into three pieces of sizes 1/5, 1/5,
@@ -320,7 +426,7 @@ Then you pay the consultant as follows:
 - Day 4: give them a 1/5 gold bar
 - Day 5: give them the second 1/5 gold bar
 :::
---->
+
 
 ## When to Choose the Ticket
 
@@ -332,14 +438,13 @@ The papers are folded and shuffled in the bucket.
 
 The standby passengers queue and each passenger gets to pick one piece of paper
 without replacement---that is, they keep the slip and do not return it to the 
-bucket. Also they cannot unfold and look at the slip until all of them re drawn.
+bucket. Also they cannot unfold and look at the slip until all of them are drawn.
 After the last slip is drawn the standby passengers announce who is the lucky 
 person that drew the "Last Seat" by checking their slip.
 
 Here is the question: if you have your choice to pick first, second, last, or 
 at any particular position in the queue, which position would you choose?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 It does not matter when you draw the paper if the pieces were properly shuffled.
@@ -351,7 +456,7 @@ Note that this would be different if passengers would announce the result of
 their draws before the next draw. The conditional probability of choosing the 
 "Last Seat" slip on the next draw increases with every bank slip that preceded.
 :::
---->
+
 
 ## How Many Squares on a Chessboard
 
@@ -360,7 +465,6 @@ A chess board is made up of eight rows and columns of black and white positions
 
 ![Chess board.](images/Chessboard.png){#fig-chessboard fig-align="center" width=50%}
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The quick answer is $8 \times 8 = 64$ squares. However, that is only part of the
@@ -376,7 +480,7 @@ $$
 8^2 + 7^2 + 6^2 + 5^2 + 4^2 + 3^2 + 2^2 + 1^2 = 204
 $$
 :::
---->
+
 
 ## Book Sorting
 
@@ -400,7 +504,6 @@ Since you add only one book to the box for every two books you remove, the box
 will eventually be empty. What is the type of the last book in the box? Is it 
 a fiction or a non-fiction book?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The number of books in the bin goes down by one with each cycle: two books are
@@ -408,16 +511,16 @@ removed from the bin, one book is added. How does this affect the number of
 fiction and non-fiction books that remain?
 
 Let's see how the number of non-fiction books in the bin changes in cases 1.--3. 
-In the first case, there is no change. In the second case, the number of non-fiction
-books goes down by 2. In the third case, the number of non-fiction books also
-does not change: one is removed, one is added.
+In the first case, the number of non-fiction
+books goes down by 2. In the second case, there is no change. In the third case, 
+the number of non-fiction books also does not change: one is removed, one is added.
 
 Since the number of NF books initially is an odd number, 17, we can conclude 
 that after each cycle the number of NF books remains an odd number. It can never
 be an even number. Which leads to the conclusion that if there is only one 
 book left in the bin it must be a non-fiction book.
 :::
---->
+
 
 ## Inverted Triangle
 
@@ -426,7 +529,6 @@ an upside-down triangle by moving only 3 coins?
 
 ![Inverting the coin triangle.](images/CoinTrianglePuzzle.png){#fig-coin-triangle fig-align="center" width=75%}
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The solution is shown in @fig-coin-solution. First, focus on the seven coins in
@@ -435,7 +537,7 @@ they do not need to move at all. We can focus on the three coins at the edges.
 
 ![Moving the three coins.](images/CoinTrianglePuzzleSolution.png){#fig-coin-solution fig-align="center" width=75%}
 :::
---->
+
 
 ## The Spare Tire
 
@@ -449,7 +551,6 @@ All tires, including the spare (S) have the same life expectancy of 30,000 miles
 
 ![Tire life before driving the first mile.](images/TirePuzzleSolution1.png){#fig-tire-solution1 fig-align="center" width=50%}
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 The maximum total distance the five tires could travel before they are all worn
@@ -473,9 +574,8 @@ each leg of 7,500 miles. The right rear tire comes off after the fourth leg,
 it is worn out. The other tires still have 7,500 miles of life to go.
 
 ![Remaining tire life after 7,500, 15,000, 22,50, and 30,000 miles., miles](images/TirePuzzleSolution2.png){#fig-tire-solution2 fig-align="center" width=75% .lightbox}
-
 :::
---->
+
 
 ## Robot Triangle
 
@@ -487,7 +587,6 @@ that any two robots will collide?
 
 ![Robot triangle.](images/RobotTrianglePuzzle.png){#fig-robot-triangle fig-align="center" width=75%}
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 Each robot has two possible movements, so there are a total of 2 x 2 x 2 = 8 
@@ -501,7 +600,7 @@ Any other choice of movements will result in at least one collision. So the
 probability of any collision if the robots choose their movements at random is
 6/8 = 3/4. There is a 75\% chance that any two robots will collide.
 :::
---->
+
 
 ## Truth Telling
 
@@ -516,7 +615,7 @@ Consider the following three statements:
 
 Who is telling the truth and who is lying?
 
-<!---
+
 ::: {.callout-tip title="Solution" collapse=true}
 
 This puzzle is related to the robot movement in that there are $2^3 = 8$
@@ -550,7 +649,7 @@ is consistent with what we already found.
 
 Conclusion: Only Brian is truthful.
 :::
---->
+
 
 ## Clock Made With Matches
 
@@ -558,7 +657,6 @@ You have two wooden sticks and a box of matches. When a sticks is lit it
 will burn completely in exactly one hour. How do you use these ingredients to 
 measure exactly 45 minutes?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 
 Light the first stick on one end and light the second stick on both ends. 
@@ -574,7 +672,6 @@ When the first stick is completely burned down, 45 minutes will have passed (@fi
 
 ![After 30 minutes, light the other end of the first stick.](images/StickPuzzle2.png){#fig-stick-puzzle2 fig-align="center" width=75%}
 :::
---->
 
 ## Two Stacks of Cards
 
@@ -584,7 +681,6 @@ Both stacks are shuffled well. You choose two cards in sequence and you win if
 they are both red. Would you prefer to choose from the 52-card stack or the 
 104-card stack?
  
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 You want to choose from the larger stack. The probability to draw two red cards
 in sequence from a stack of $n$ cards (with $n/2$ red ones) is
@@ -599,7 +695,7 @@ $$
 
 There is a slightly higher chance to draw two red cards from the larger stack.
 :::
---->
+
 
 ## Rapid Fire
 
@@ -607,7 +703,6 @@ Cowboy Billy carries a Colt single action 6 shooter revolver. When he fires all
 6 shots in a row, the time between the first bullet and the last is 60 seconds. 
 How long would it take him to fire 3 shots?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 It will take him 24 seconds to fire three shots. Wait, what?
 
@@ -620,18 +715,17 @@ Another way of thinking about this is the distance at which fence posts are
 placed. In a fence with six posts, the first one is at 0/5^th^ total distance, 
 the second post is located 1/5^th^ of the total distance, and so on.
 :::
---->
+
 
 ## Crossing the River
 
-A farmer is on his way back from the market, with him he has a fox, a chicken 
+A farmer is on his way back from the market, with him he has a fox, a chicken, 
 and some grain. To get home he needs to cross a river using a small boat that can
 accommodate only him and one of the other items. Unfortunately, if the fox is 
 left alone with the chicken it will eat it. If the chicken is left alone with 
 the grain, it will eat it. How can the farmer cross the river and bring home
 the fox, the chicken, and the grain?
 
-<!---
 ::: {.callout-tip title="Solution" collapse=true}
 This will take several trips across the river:
 
@@ -648,4 +742,195 @@ The trick is to take one item---here, the chicken---back and forth to make sure
 it is not alone with the item it would destroy.
 
 :::
---->
+
+## When is My Birthday?
+
+Someone told me that two days ago, they were 19 years old. But next year, 
+they will celebrate their 22nd birthday. 
+
+When is their birthday and when did they make that statement?
+
+::: {.callout-tip title="Solution" collapse=true}
+Their birthday must be December 31 and they made the statement on January 1
+of the year they were 20 years old. Two days ago was December 30, and they were
+19 years old. They turned 20 on December 1, they will turn 21 of December 31 of
+this year and 22 on December 31 of next year.
+:::
+
+## Ten Coins (New)
+
+You have ten coins in front of you, but you cannot see whether heads or tails
+are up on any of them. You are being told that five of them show heads, five
+of them show tails (@fig-coin-puzzle).
+
+![Setup of the coin puzzle](images/CoinPuzzle.png){#fig-coin-puzzle fig-align=center width=75%}
+
+Without looking at the face of the coins, your task is to divide the coins
+into two groups, each contains the same number of heads. The number of heads in 
+each group does not have to be five. For example, you can end
+up with two groups, each of which contains 2 heads. Or two groups, each of 
+which contains 3 heads. You cannot look at the coins but you can flip any coin
+as many times as you like.
+
+::: {.callout-tip title="Solution" collapse=true}
+Make two groups of five coins each. Whatever the number of heads or tails within
+the two groups, you know that originally five of the coins showed head.
+Now take the coins in one of the groups and turn them all over (@fig-coin-puzzle2). 
+Voilà.
+
+![Solution of the coin puzzle](images/CoinPuzzleSolution.png){#fig-coin-puzzle2 fig-align=center width=75%}
+
+:::
+
+## Russian Roulette (New)
+
+You are engaged in a *game* of Russian Roulette with a six shooter. One bullet
+is placed in a chamber, the chamber is spun, and your opponent pulls the trigger.
+The gun does not fire. Now it is your turn and before you pull the trigger you
+are given the choice to spin the chamber one more time or leave the gun as is.
+
+How do you decide?
+
+::: {.callout-tip title="Solution" collapse=true}
+You should spin the chamber again, because it will give a 1/6 chance to fire
+the bullet. If you leave the gun as is, because the gun did not previously
+fire, you have a 1/5 chance to fire the bullet. 
+
+By spinning the chamber you have a higher likelihood to live after the shot.
+:::
+
+## Russian Roulette Again (New)
+
+This is the same setup as the previous problem. But now there are two bullets
+in **consecutive** chambers of the gun. The first shot does not go off and it is 
+your turn to pull the trigger. Should you spin the chamber first?
+
+::: {.callout-tip title="Solution" collapse=true}
+If the chamber is spun, the probability to fire a bullet is 2/6 = 1/3.
+Since the previous shot did not go off, you know that the chamber is in one
+of four possible positions (@fig-gun-puzzle). One of those positions will be followed by a bullet
+in the chamber---the probability of a shot going off is 1/4. 
+
+Because 1/4 is less than 1/3 you do not want to spin the chamber again.
+
+![Chamber configurations after the first trigger pull. Black dot marks the hammer and the arrow the chamber rotation.](images/GunPuzzle.png){#fig-gun-puzzle fig-align=center width=75%}
+:::
+
+## Cat and Mouse (New)
+
+If five cats catch five mice in five minutes, how long does it take one cat to 
+catch a mouse?
+
+::: {.callout-tip title="Solution" collapse=true}
+Five minutes. 
+:::
+
+## Glass (Barrel) Half Full or Half Empty? (New)
+
+Two merchants quarrel about how much wine is left in a barrel that has no lid.
+The first merchant peers into the barrel and says "It is more than half full."
+The second merchant lookls into the barrel and says "Nonsense, it is more than
+half empty."
+
+How do you determine which merchant is correct?
+
+::: {.callout-tip title="Solution" collapse=true}
+Tip the barrel on its edge until the liquid comes up to the edge of the barrel.
+If you can see the bottom of the barrel, it is more than half empty. If you
+cannot see the bottom of the barrel, it is more than half full.
+:::
+
+
+## What is the Word? (New)
+
+A teacher writes six words on a board:
+
+:::{.quote}
+cat $\quad$ dog $\quad$ has $\quad$ max $\quad$ dim $\quad$ tag
+:::
+
+The teacher chooses one of the words and writes each letter of the word on a 
+separate piece of paper. Three students, Tobias, Julian, and Amelie receive
+one of the papers each. These students are known to do well on their logic
+exams. The teacher asks
+
+"Tobias, do you know the word?"
+
+Tobias replies immediately, "Yes, I do."
+
+The teacher then asks 
+
+"Julian, do you know the word?"
+
+He thinks for a moment and replies, "Yes, I do."
+
+The teacher then asks
+
+"Amelie, do you know the word?"
+
+She thinks for a moment and replies, "Yes, I do."
+
+Which of the six words did the teacher choose?
+
+::: {.callout-tip title="Solution" collapse=true}
+The word is **dog**.
+
+Since Tobias knew immediately what the word was he must have received one of
+the unique letters that identifies a word:
+
+:::{.quote}
+c o h s x i
+:::
+
+This eliminates **tag** as a possibility. 
+Having heard Tobias' answer, Julian now looks at the remaining unique letters 
+that are left among the words
+
+:::{.quote}
+~~c~~at $\qquad$ d~~o~~g $\qquad$ ~~h~~a~~s~~ $\qquad$ ma~~x~~ $\qquad$ d~~i~~m
+:::
+
+This list is 
+
+:::{.quote}
+t g h s
+:::
+
+because "a", "d", and "m" appear more than once and the other letters were
+eliminated because Tobias knew immediately what the word was. Notice that "h"
+and "s" are still in the list because if Tobias had received "s", "h" would still
+be a possible letter and vice versa.
+
+This eliminates **max** and **dim** from consideration.
+Based on the remaining unique letters and the piece of paper he received Julian
+can now figure out the word.
+
+Amelie narrows it down the same way. Among the remaining words,
+
+:::{.quote}
+~~c~~ a ~~t~~ $\qquad$   d ~~o~~ ~~g~~  $\qquad$  ~~h~~a~~s~~
+:::
+
+there are only two letters left to consider, "a", and "d".
+The letter "a" appears in multiple words so it cannot be it; the only unique
+letter left is "d". The other letters are either not unique or were in the initial 
+list based on which Tobias knew immediately what the word was and in the list 
+eliminated by Julian.
+
+Tobias had received the letter "o", Julian had received the letter "g", and
+Amelie had received the letter "d".
+:::
+
+## Ducks in a Row (New)
+
+There are two ducks in front of a duck, two ducks behind a duck, and a duck in 
+the middle. How many ducks are there?
+
+::: {.callout-tip title="Solution" collapse=true}
+There are three ducks (@fig-three-ducks). 
+
+![Three ducks in a row](images/ThreeDucks.png){#fig-three-ducks fig-align=center width=50%}
+
+Two ducks are in front of the last duck.
+Two ducks are behind the first duck. There is one duck in the middle.
+:::

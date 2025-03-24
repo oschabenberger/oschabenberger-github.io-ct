@@ -3,7 +3,7 @@ title: "Case Study: 1854 Cholera Outbreak"
 subtitle: "Computational and Quantitative Thinking"
 author: "Oliver Schabenberger"
 institute: "Academy of Data Science, Virginia Tech"
-date: "03/17/2025"
+date: "03/18/2025"
 date-format: long
 format: 
   revealjs:
@@ -103,12 +103,15 @@ near to the pump where the water could be more readily obtained."
 
 ## How Can John Snow Explain the Outliers?
 
+<br/>
+<br/>
+
 :::{.definition}
 ::::{.definition-header}
 Definition: Outlier
 ::::
 ::::{.definition-container}
-An **outlier** is an observation that is unusual compared to the rest of the observation.\
+An **outlier** is an observation that is unusual compared to the rest of the observations.\
 An outlier does not conform with a model that applies to the majority of the data points.
 ::::
 :::
@@ -281,7 +284,8 @@ As there is no difference whatever either in the houses or the people receiving 
 
 -  The cholera death rate on a per 10,000 house basis is 14 times higher in households supplied by 
 Southwark \& Vauxhall compared to those who received their water from Lambeth.
-- In all of London there were 322,576 houses and 563 deaths during that period.
+- In all of London there were 322,576 houses and 563 deaths during that period 
+(17.4 deaths per 10,000 houses).
 
 ## What Did He Find?
 

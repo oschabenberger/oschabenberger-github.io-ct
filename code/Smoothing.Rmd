@@ -1,0 +1,312 @@
+---
+title: "Smoothing Data"
+author: "Oliver Schabenberger"
+date: "March 7, 2025"
+output: 
+  pdf_document: default
+  html_document:
+    df_print: paged
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+```{r setup, include=FALSE}
+options(width=80)
+library(knitr)
+library(dplyr)
+
+knitr::opts_chunk$set(echo=TRUE, warning=F, message=F, fig.asp=0.7, cache=FALSE)
+
+# List of required packages
+required_packages <- c(
+  "KernSmooth",
+  "caret",
+  "splines",
+  "Rfast",
+  "lubridate"
+)
+
+# Function to install packages if they don't exist
+install_if_missing <- function(package_name) {
+  if (!requireNamespace(package_name, quietly = TRUE)) {
+    cat(paste("Installing package:", package_name, "\n"))
+    install.packages(package_name)
+  }
+  library(package_name, character.only = TRUE)
+}
+
+# Install and load all required packages
+for (pkg in required_packages) {
+  install_if_missing(pkg)
+}
+```
+
+## Melanoma Data
+
+The following data from the Connecticut Tumor Registry presents 
+age-adjusted numbers of melanoma incidences per 100,000 people for the 37 years 
+from 1936 to 1972 (Houghton, Flannery, and Viola 1980).
+These data are used in the Getting Started example of the SAS PROC LOESS documentation.
+
+``` {r}
+melanoma <- read.csv("../data/melanoma.csv")
+head(melanoma)
+```
+
+
+``` {r}
+plot(x=melanoma$year,
+     y=melanoma$incidences,
+     ylab="Incidences",
+     xlab="Year",
+     bty="l",
+     las=1,
+     ylim=c(0,6))
+```
+
+
+### $k$-Nearest Neighbor ($k$-NN) Analysis
+
+The `Rfast` package provides functions `knn()` and `knn.cv()` and can perform 
+$k$-NN for regression and for classification. There are also `knn()` and `knn.cv()` 
+functions in the base `class` package that comes with `R`. If you are working with 
+the `Rfast` library, make sure that you are calling the intended functions, e.g., 
+`Rfast::knn()`. `class::knn()` is only for classification models.
+
+```{r}
+library(Rfast)
+kreg <- Rfast::knn(xnew=as.matrix(melanoma$year),
+                   y   =melanoma$incidences,
+                   x   =as.matrix(melanoma$year),
+                   k   =c(2,10,20),
+                   type="R") # "R" for regression, "C" for classification
+kreg
+```
+
+``` {r}
+plot(x=melanoma$year,
+     y=melanoma$incidences,
+     main="5-NN, 10-NN, and 20-NN predictions",
+     ylab="Incidences",
+     xlab="Year",
+     bty="l",
+     las=1,,
+     ylim=c(0,6))
+lines(melanoma$year,kreg[,1],type="l",lwd=2,lty="solid" ,col="red")
+lines(melanoma$year,kreg[,2],type="l",lwd=2,lty="dashed",col="blue")
+lines(melanoma$year,kreg[,3],type="l",lwd=2,lty="dotted",col="black")
+legend("topleft",
+       legend=c("5-NN","10-NN","20-NN"),
+       col=c("red","blue","black"),
+       lty=c("solid","dashed","dotted"),lwd=2)
+
+```
+
+
+### $k$-NN Regression with Cross-validation
+
+```{r}
+kcv <- Rfast::knn.cv(nfolds=10,   # set it to n for LOOCV
+                     seed  =456,    # can also use set.seed() before call
+                     y     =melanoma$incidences,
+                     x     =as.matrix(melanoma$year),
+                     k     =seq(3,20,1),
+                     type  ="R"
+                     )
+kcv
+
+```
+
+```{r}
+plot(x=seq(3,20,1),
+     y=kcv$crit,
+     type="b",
+     ylab="CV-MSE",
+     xlab="k",
+     main="10-fold cross-validation for k")
+
+abline(h=min(kcv$crit),col="red",lty="dashed")
+```
+
+### Global and Local Models
+
+```{r}
+slr <- lm(incidences ~ year, data=melanoma)
+
+loess <- loess(incidences ~ year, data=melanoma, degree=2, span=0.4)
+
+slr_pred <- predict(slr,newdata=melanoma)
+loess_pred <- predict(loess)
+```
+
+```{r}
+plot(x=melanoma$year,
+     y=melanoma$incidences,
+     main="Global and local regression model",
+     ylab="Incidences",
+     xlab="Year",
+     bty="l",
+     las=1,
+     ylim=c(0,6))
+
+lines(x=melanoma$year,y=slr_pred,lty="solid",lwd=1.5)
+lines(x=melanoma$year,y=loess_pred,lty="dotted",lwd=2.0)
+
+```
+
+
+## Simulated Data
+
+The following is taken from the course Predictive Modeling at 
+University of Madrid: https://bookdown.org/egarpor/PM-UC3M/
+
+```{r}
+# Generate some data
+set.seed(12345)
+n <- 100
+eps <- rnorm(n, sd = 2)
+m <- function(x) x^2 * cos(x)
+# m <- function(x) x - x^2 # Other possible regression function, works
+# equally well
+X <- rnorm(n, sd = 2)
+Y <- m(X) + eps
+xGrid <- seq(-5, 6, l = 250)
+```
+
+```{r, out.width="60%", fig.asp=0.8}
+plot(X, Y, las=1, bty="l",
+     main="True Regression Function and Simulated Data")
+rug(X, side = 1); 
+rug(Y, side = 2)
+lines(xGrid, m(xGrid), col = "black",lwd=1.5)
+```
+
+
+### `caret` package for training / cross-validation (loess & spline)
+
+#### Fitting a Loess model
+
+``` {r loess_caret}
+df <- data.frame(cbind(Y,X))
+
+model <- caret::train(Y ~ X, 
+                      data     =df,
+                      method   ="gamLoess", 
+                      tuneGrid =expand.grid(span = 0.2, degree=1), 
+                      trControl=trainControl(method = "none"))
+```
+
+```{r, out.width="60%", fig.asp=0.8}
+
+plot(X, Y, main="LOESS degree 1, span=0.2",las=1, bty="l")
+lines(xGrid,predict(model, newdata=data.frame("X"=xGrid)), col="red", lwd=2)
+```
+
+#### 10-fold cross validation for loess model
+
+``` {r loess_k_10}
+set.seed(3678)
+
+ctrl <- trainControl(method = "cv", number = 10)
+grid <- expand.grid(span = seq(0.1, 0.9, len = 40), degree = 1)
+
+model <- train(incidences ~ year, 
+               data     =melanoma, 
+               method   ="gamLoess", 
+               tuneGrid =grid, 
+               trControl=ctrl)
+
+print(model)
+plot(model)
+min(model$results$RMSE)
+```
+
+#### LOOCV for loess
+
+``` {r loess_loocv}
+ctrl <- trainControl(method = "LOOCV")
+grid <- expand.grid(span = seq(0.1, 0.9, len = 40), degree = 1)
+
+model <- train(incidences ~ year, 
+               data     =melanoma, 
+               method   ="gamLoess", 
+               tuneGrid =grid, 
+               trControl=ctrl)
+
+print(model)
+plot(model)
+```
+
+
+
+#### Smoothing splines 
+
+```{r}
+smspl <- smooth.spline(y=Y,
+                       x=X,
+                       cv=TRUE)
+pred_smspl <- predict(smspl,xGrid)
+```
+
+
+``` {r, out.width="60%", fig.asp=0.8}
+plot(X, Y, las=1, bty="l")
+rug(X, side= 1); 
+rug(Y, side= 2)
+lines(xGrid, m(xGrid), col = "black", lwd=2, lty="dashed")
+lines(pred_smspl$x, pred_smspl$y,col="red"  ,lwd=1.5)
+
+legend("top", 
+       legend = c("True regression function", 
+                  "Smoothing Spline w/ CV"),
+       lwd = 1.5, 
+       col = c("black","red"),
+       lty =c("dashed","solid"))
+```
+
+
+### Apple Share Price Data
+
+```{r}
+library(lubridate)
+weekly <- read.csv(file="../data/AppleSharesWeekly.csv")
+head(weekly)
+
+weekly$date <- make_date(weekly$year,weekly$month,weekly$day)
+```
+
+The `smooth.spline` function in `R` computes smoothing splines and selects the 
+smoothing parameter (the penalty hyperparameter) by leave-one-out cross-validation. 
+It should be noted that `smooth.spline` by default does **not** place knots at all 
+unique $x$ values, but places evenly-spaced knots, their number is a function 
+of the unique number of $x$-values. You can change this behavior by setting 
+`all.knots=TRUE`, which is what we want to do here.
+
+```{r}
+smspl_a <- smooth.spline(y        =weekly$Close,
+                         x        =weekly$date,
+                         all.knots=TRUE,
+                         cv       =TRUE)
+smspl_a
+```
+
+The cross-validation leads to a PRESS criterion of 2.5449
+and equivalent degrees of freedom of 607.35. The regularization 
+penalized the spline from 1461 interior knots to the equivalent of a spline with 
+about 610 knots. The smoothing parameter `spar` has a substantial value of 
+0.39417.
+
+```{r, fig.asp=0.7, fig.align="center", out.width="90%"}
+plot(weekly$date,
+     weekly$Close,
+     type="l",las=1,bty="l",
+     ylab="Closing Price",
+     xlab="Date")
+lines(smspl_a$x,smspl_a$y,col="red", lwd=1)
+
+legend("topleft",legend=c("all.knots = T (1,461)","all.knots = F (154)"),
+       col=c("red","blue"),lwd=1)
+
+```
+

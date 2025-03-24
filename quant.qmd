@@ -406,7 +406,7 @@ at the Cleveland Clinic, I am in the overweight range.
 BMI is used widely by medical professionals. People with low values might be at
 risk for developing anemia, osteoporosis, infertility, malnutrition, and a 
 weakened immune system. High values can indicate a higher risk for heart disease,
-high blood pressure, type 2 diabetes, gallstones, osteoarthritis, sleep apenea,
+high blood pressure, type 2 diabetes, gallstones, osteoarthritis, sleep apnea,
 depression, and certain cancers. 
 
 Geez. It seems that unless you are in the optimal BMI range you are either bound

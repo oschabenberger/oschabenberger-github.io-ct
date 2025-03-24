@@ -33,7 +33,7 @@ format:
 
 :::{.centered}
 Correlation describes the relationship (association) between things.
-A persons weight is correlated with their height; taller people tend to be heavier.
+A person's weight is correlated with their height; taller people tend to be heavier.
 \
 \
 Causation is the situation when one factor is the result of another.
@@ -158,7 +158,7 @@ by one damage category).
 | Lambeth | 26,107 | 98 | 37 |
 | Rest of London | 256,423 | 1,422 | 55|
 
-: Cholera incidences and rates during the first seven weeks of the outbreak. The death rate in the rest of London was reported as 59 in Table IX of @Snow1855, but calculates to 55 deaths per 10,000. {.striped}
+: Cholera incidences and rates during the first seven weeks of the outbreak. {.striped}
 
 
 ## Correlation Coefficient is about Linear Relationships
@@ -216,7 +216,7 @@ text(x=-0.8,y=3,labels=paste("Correlation coefficient:",round(r,4)),cex=1.5)
 
 * [A is correlated with (or caused by) B]{.maroon} 
 
-* [C is correlated (or caused by) B]{.maroon}
+* [C is correlated with (or caused by) B]{.maroon}
 
 * [Plotting A versus C indicates a correlation due to the latent variable B]{.maroon}
 
@@ -270,6 +270,12 @@ Neyman (1952) published data on 54 counties that comprises the following attribu
 ## Establishing Causality
 
 
+* [The Holy Grail in Science]{.maroon}
+
+* [Causality Proves]{.maroon}
+
+
+
 ## Why is Establishing Causality Difficult?
 
 :::{.incremental .highlight-last}
@@ -278,10 +284,14 @@ Neyman (1952) published data on 54 counties that comprises the following attribu
 <br/>There is variability in the population
 <br/>The cause does not trigger an effect every time, it increases the likelihood
 that an effect occurs
+<br/>
+<br/>
 
 * [Confounding Factors]{.maroon}
-<br/>affect both the factor and the effect
-<br/>can mask or distort the effect of variables
+<br/>Affect both the factor and the effect
+<br/>Can mask or distort the effect of variables
+<br/>
+<br/>
 
 * [Experimentation often not possible]{.maroon}
 <br/>Some systems cannot be manipulated (weather, economy)
@@ -304,11 +314,12 @@ analysis separately for each age group
 <br/>Allow random selection or assignment to balance out the effects of
 the confounding variables.
 
+<!---
 ## Dealing with Confounders--Adjustment
 
 
 ## Dealing with Confounders--Stratification
-
+--->
 
 ## Simpson's Paradox
 
@@ -319,6 +330,28 @@ and analyzing it in groups.
 <br/>
 
 . . .
+
+![The overall trend between X and Y.](../images/SimpsonAll.png){#fig-simp-all fig-align=center width=65%}
+
+
+## Simpson's Paradox
+
+:::{.maroon}
+The apparent contradiction of conclusions drawn when analyzing data as a whole
+and analyzing it in groups.
+:::
+<br/>
+
+![The groupwise trends between X and Y.](../images/SimpsonGroup.png){#fig-simp-all fig-align=center width=65%}
+
+
+## Simpson's Paradox
+
+:::{.maroon}
+The apparent contradiction of conclusions drawn when analyzing data as a whole
+and analyzing it in groups.
+:::
+<br/>
 
 :::{.columns}
 ::::{.column width=50%}
@@ -346,8 +379,6 @@ table shows data by STEM discipline
 
 . . .
  
-<br/>
-
 |        | Women     |            |         | Men | | | 
 |--------|---:|---:|---:|---:|---:|---:|
 |        |**Applied**| **Accepted**| **\%** | **Applied** | **Accepted** | **\%**|
@@ -358,8 +389,23 @@ table shows data by STEM discipline
 | Veterinary Medicine | 338 | 53 | [16\%]{.maroon} | 180 |  22 | [12\%]{.orange}|
 
 
+## Explanation
 
-## Assignment
+- Women were more likely to apply for subjects that have high application numbers 
+and are more difficult to get in. 
+
+- 64% of the applications from women went to Medicine and Veterinary Medicine 
+(416 + 338 out of 1,184). 
+
+- Only 30% of the male applications went to those subjects. 
+
+- Men applied disproportionately more to Engineering, which has a higher 
+acceptance rate than the other STEM disciplines. 
+
+- The lower overall admission rate for women is the result in women applying in 
+larger numbers to STEM disciplines that are difficult to get into.
+
+## Exercise
 
 :::{.assignment}
 ::::{.assignment-header}
@@ -379,7 +425,6 @@ or correlation?
 4. How do you interpret the fact that the study did not analyze data from the U.S.?
 Does that affect whether the results are applicable to U.S. children?
 5. Can you think of confounding factors that limit transfer of the results to the U.S?
-6. Are you surprised that there is no evidence of adverse effects on adults?
 ::::
 :::
 
@@ -517,7 +562,7 @@ kind of men would you recruit for the study?
 
 ## Hill's Criteria
 
-* [After Sir Author Bradford Hill]{.maroon}
+* [Named after Sir Author Bradford Hill]{.maroon}
 <br/>Part of the research team that linked smoking to lung cancer
 <br/>Established nine criteria to establish causality involving environmental exposure.
 
@@ -537,7 +582,20 @@ support of the causal hypothesis (provides strong evidence).
 9. **Analogy**: Scientists can use prior knowledge and patterns to infer similar causal associations.
 :::
 
-## Assignment 
+## Junior Seau
+
+Tiaina Baul "Junior" Seau was an outstanding linebacker who played in the National
+Football League for 20 years, mostly with the San Diego Chargers and also the
+Miami Dolphins and New England Patriots. 
+
+Junior Seau committed suicide in 2012 by shooting himself in the chest. 
+
+An autopsy confirmed that Junior Seau had suffered from chronic traumatic encephalopahty
+(CTE) believed due to repeated head trauma he experienced as a football player.
+
+![Junior Seau playing for the New England Patriots. Source: [Wikipedia](https://en.wikipedia.org/wiki/Junior_Seau)](../images/Junior_Seau.jpeg){fig-align="center" width=35%}
+
+## Assignment or Essay
 
 :::{.assignment}
 ::::{.assignment-header}
@@ -546,7 +604,7 @@ Causal Link between RHI and CTE
 ::::{.assignment-container}
 Read the article by Nowinski et al. about the causal relationship between
 repeated head impacts (RHI) and chronic traumatic encephalopathy (CTE) at 
-[this link](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.938163/full)
+[this link](https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.938163/full).
 
 It appears that the causal link between the two was settled throughout the 20^th^ 
 century and later questioned again.

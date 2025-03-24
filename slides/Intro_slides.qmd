@@ -7,6 +7,8 @@ date: "03/17/2025"
 date-format: long
 format: 
   revealjs:
+      link-external-icon: true
+      link-external-newwindow: true
       embed-resources: true
       css: slides_styles.css
       title-slide-attributes:
@@ -37,6 +39,8 @@ that develops solutions for complex problems by breaking them down into individu
 steps.
 :::
 
+
+
 ## Elements of Computational Thinking {.incremental}
 
 ::: {.incremental .highlight-last}
@@ -60,9 +64,22 @@ steps.
 
 - [What problem are we solving?]{.maroon}
 
-Difference between solving a problem and building a solution looking for a problem.
+Difference between solving a problem and building a solution looking for a problem.\
+Not all future applications were known when Karl Benz built the first car.
 
 ![Benz Patent-Motorwagen, the first automobile.](../images/FirstAutomobile.png){#fig-benz width=30%}
+
+
+## Step 1. Problem Definition
+
+[Juicero]{.maroon}
+
+* Single-serve coffee maker experience in a $699 fruit juicer.
+* The Guardian: "An example of the Silicon Valley culture to raise large amounts 
+of money for solutions to problems that do not exist." 
+
+![The $699 Juicero juicer.](../images/Juicero.png){#fig-juicero fig-align=center width=25%}
+
 
 ## Step 2. Decomposition (Factoring) {.scrollable}
 
@@ -156,6 +173,7 @@ We have ingredients and a stove but have never prepared this kind of soup before
 
 What are the manageable parts of the problem?
 
+:::{.incremental}
 - [Ingredients]{.maroon}: Identify the key ingredients required for the soup.
 <br/>
   Pumpkin\
@@ -181,11 +199,13 @@ What are the manageable parts of the problem?
 - [Final Steps]{.maroon}: Focus on finishing touches.
   Garnish (optional)\
   Serve and taste for seasoning adjustments
+:::
 
 ### Pattern
 
 What are the similar elements or repeating steps in the problem?
 
+:::{.incremental}
 - [Common cooking steps]{.maroon}
 <br/>Many soups follow a similar structure: sautéing vegetables, 
 adding liquid, simmering, and then blending or pureeing.
@@ -198,6 +218,7 @@ remains the same.
 - [Timing patterns]{.maroon}
 <br/>There’s a pattern to the cooking times: first sautéing for 
 a few minutes, then simmering the soup for about 20-30 minutes, followed by blending.
+:::
 
 ### Generalization
 
@@ -205,6 +226,7 @@ We can generalize (abstract) the process of making pumpkin soup into a more
 general recipe for making any pureed vegetable soup, regardless of the specific
 ingredients.
 
+:::{.incremental}
 - [Essential components]{.maroon}\
   A base (onions, garlic, or other aromatics)\
   A main vegetable (in this case, pumpkin)\
@@ -217,6 +239,7 @@ ingredients.
   3. Simmer until the vegetable is tender.
   4. Blend until smooth.
   5. Adjust seasoning and add cream if desired.
+:::
 
 ### Algorithm
 
@@ -280,16 +303,17 @@ finally works and can be widely delivered at global scale."
 [Mark Andreessen of VC firm Andreessen-Horowitz (2011)]{style="font-size: 0.8em; color: #01364C;"}
 :::
 
+. . . 
 
-- The largest book seller is a software company (Amazon)
+- The largest **book seller** is a software company (Amazon)
 
-- The largest provider of video services is a software company (Netflix)
+- The largest provider of **video services** is a software company (Netflix)
 
-- The most important recruiting company is a software company (LinkedIn)
+- The most important **recruiting** company is a software company (LinkedIn)
 
-- Some of the best movies are created by a software company (Pixar)
+- Some of the best **movies** are created by a software company (Pixar)
 
-- Music is recorded, stored, distributed, and made audible through software
+- **Music** is recorded, stored, distributed, and made audible through software
 
 - Other examples of software replacing analog/physical things....
 
@@ -308,6 +332,77 @@ the world works.
 ## 2024 Nobel Prizes (Physics & Chemistry) 
 
 ![2024 Nobel Prize winners in Chemistry](../images/NobelPrizeChemistry.png){#fig-nobel-chemistry fig-align="center" width=90% .lightbox}
+
+## Wicked Problems
+
+Not all problems are made the same. Simple problems can be dealt with by 
+*linear thinking*: here is a problem, this is the solution, and the problem goes
+away. Grint (2022) distinguishes between three types of problems:
+
+[1. Tame problems]{.maroon}
+<br/>We know how to fix the problem with standard operating 
+procedures (SOPs). 
+<br/>Require **managers** to perform or delegate the 
+problem solving.
+<br/>
+<br/>
+
+[2. Critical problems]{.maroon}
+<br/>Crises that are self-evident, and we are hoping someone
+knows how to sort them out. 
+<br/>Require **commanders** who know the 
+solution, are decisive, and direct and coerce others.
+<br/>
+<br/>
+
+[3. Wicked problems]{.maroon}
+<br/>Problems we do not know how to fix. 
+<br/>Require **leaders** who recognize their own limits and the wicked nature of the 
+problem.
+<br/>
+
+## Exercise: Wicked Problems
+
+:::{.assignment}
+::::{.assignment-header}
+COVID-19
+::::
+::::{.assignment-container}
+A single situation can have overlapping problem types and call for a 
+combination of decision styles to deal with it. The Covid-19 pandemic is a case 
+in point. 
+
+* Which sub-problems of solving the COVID-19 pandemic are **tame**, **critical**,
+and **wicked**?
+
+Think about vaccine development, vaccine distribution, isolation, social distancing,
+mask wearing, etc.\
+Where does culture place in this?
+
+::::
+:::
+
+## Wicked Problems
+
+Hoban (2023) gives three guidelines for dealing with wicked problems:
+
+[1. Do no harm]{.maroon}
+<br/>Do nothing that has a chance of doing catastrophic harm. 
+<br/>Do not attempt to change the entire system at once.
+<br/>
+<br/>
+
+[2. Find where you are]{.maroon}
+<br/>You are somewhere in the middle of the problem. 
+<br/>Every actor who wants to influence the system is part of the system.
+<br/>
+<br/>
+
+[3. Creativity through constraints]{.maroon}
+<br/>Just like the rules of a game force you to innovate within the constraints of the rules, \
+know what you can and cannot do. 
+<br/>Humans not being able to fly or breath underwater are wicked problems. 
+Knowing that we cannot solve them by flapping our arms or by growing gills identifies constraints that point in the direction of a solution.
 
 
 # Quantitative Thinking (QT)
@@ -328,6 +423,26 @@ The [purpose]{style="color: Maroon; font-weight: bold;"} of quantification is to
 
 The [result]{style="color: Maroon; font-weight: bold;"} is data in its many forms.
 
+## Benefits of Quantification
+
+. . .
+
+- [Make information amenable to mathematical and statistical operations]{.maroon}
+
+- [Express relationships]{.maroon}
+<br/>Ranking, ordering
+<br/>Measuring proximity
+
+- [Standardization]{.maroon}
+<br/>Reduces concepts to their essence
+<br/>Allows us to make better decisions
+<br/>
+
+:::{.quote}
+Many a statistic is false on its face. It gets by only because the \
+magic of numbers brings about a suspension of common sense.\
+[Huff (1954), *How to Lie with Statistics*]{.quoteauthor}
+:::
 
 ## Easy/Difficult To Quantify
 
@@ -348,11 +463,9 @@ The [result]{style="color: Maroon; font-weight: bold;"} is data in its many form
 - [Difficult to Quantify]{.maroon}
 
     - Attributes that escape precise measurements (happiness)
-    - Difficult to define (trust)
+    - Difficult to define, subjective, abstract
     - Inconsistent views, context-dependent
-    - Subjective attributes (introversion)
-    - Abstract concepts (individualism)
-
+    
  
 ## Difficult to Quantify {.scrollable}
  
@@ -403,7 +516,7 @@ Net Promoter Score (NPS): Are my customers satisfied and are they loyal?
 NPS is considered by many **the gold standard** customer experience metric.
 It rests on a single question:\
 
-:::{.maroonc}
+:::{.centered}
 "How likely are you to recommend the company products or services?"
 :::
 
@@ -414,7 +527,7 @@ NPS calculation (@fig-nps):
 detractors (0--6).
 - NPS = %Promoters - %Detractors
 
-![Net promoter score](../images/NetPromoterScore.png){#fig-nps fig-align="center" width=35%}
+![Net promoter score](../images/NetPromoterScore.png){#fig-nps fig-align="center" width=35% .lightbox}
 ::::
 :::
 
@@ -443,7 +556,7 @@ younger or older consumers to have higher/lower NPS?
 ::::
 :::
 
-## Assignment
+## Exercise
 
 :::{.assignment}
 ::::{.assignment-header}
@@ -500,6 +613,87 @@ Which indicators are lagging, which are leading?
 ::::
 :::
 
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Body Mass Index (BMI)
+::::
+::::{.assigmment-container}
+BMI is a medical screening tool for certain health conditions.
+Colloquially, it is understood as a measure of "fatness". In most people, 
+BMI only **correlates** with body fat. BMI has become the standard indicator
+for obesity.
+
+$$
+\text{BMI} = \frac{\text{Weight in kg}}{(\text{Height in m})^2}
+$$
+
+$$
+ \text{BMI} = \frac{\text{Weight in lbs} \times 703}{(\text{Height in inches})^2}
+ $$
+ 
+In my case (6'3" tall, 208 lbs), the BMI is (208 x 703)/(75^2) = 25.9.
+Compare to [BMI charts](https://my.clevelandclinic.org/health/articles/9464-body-mass-index-bmi).
+
+**Low BMI**: risk for developing anemia, osteoporosis, infertility, malnutrition, and a 
+weakened immune system
+
+**High BMI**: higher risk for heart disease, high blood pressure, type 2 diabetes, 
+gallstones, osteoarthritis, sleep apnea, depression, and certain cancers
+
+::::
+:::
+
+## Body Mass Index is Widely Used
+
+:::{.quote}
+It’s important to remember that you could have any of the above health conditions 
+without having a high BMI. Similarly, you could have a high BMI without having 
+any of these conditions.\
+\
+The standard BMI chart has limitations for various reasons. Because of this, \
+it’s important to not put too much emphasis on your BMI.\
+[Cleveland Clinic]{.quoteauthor}
+:::
+
+. . .
+
+:::{.quote}
+Current BMI-based measures of obesity can both underestimate and overestimate
+adiposity and provide inadequate information about health at the individual level, 
+which undermines medically-sound approaches to health care and policy.\
+[Rubino 2025, The Lancet]{.quoteauthor}
+:::
+
+. . .
+
+:::{.quote}
+BMI is bogus. BMI does not tell you anything about the health of a person.\
+[Business Insider, 2025]{.quoteauthor}
+:::
+
+## How BMI Was Developed
+
+- [Adolphe Quetelet (1796--1847)]{.maroon}
+<br/>Belgian statistician, mathematician, and astronomer
+<br/>Invented the BMI, originally called the **Quetelet Index**
+
+- [Goals]{.maroon}
+<br/>Quantify a population according to its person's weight
+<br/>Distribution of physical attributes to determine *l’homme moyen*, the average man
+
+- [The Data]{.maroon}
+<br/>A sample of French and Scottish people in the 19^th^ century
+
+. . .
+
+:::{.centered}
+It is quite a stretch to extrapolate from studying the distribution of personal
+attributes in a 19^th^ century population--without any medical context--to a near 
+universal measure of obesity. There is no association of BMI with health and
+no association with the individual.
+:::
 
 
 ## Surrogates {.scrollable}
@@ -533,12 +727,18 @@ difficult-to-measure attribute.
 
 ## Issues with Surrogates
 
-- They might not capture all factors influencing the attribute of interest.
+- [Might not capture all factors influencing the attribute]{.maroon}
+<br/>
+<br/>
 
-- They can lead to oversimplification and misinterpretation.
+- [Can lead to oversimplification and misinterpretation]{.maroon}
+<br/>
+<br/>
 
-- The surrogate might not measure what is most relevant. For example, standardized
-test scores do not measure critical thinking.
+- [Might not measure what is most relevant]{.maroon}
+<br/>Standardized test scores do not measure critical thinking.
+<br/>
+<br/>
 
 - [Can lead to surrogation]{.maroon}
 <br/>**Surrogation** occurs when people or organizations substitute a metric for the 
@@ -546,16 +746,31 @@ underlying concept or goal that the metric is intended to represent. Instead of
 treating the metric as a proxy or tool to measure progress, they treat it as the 
 ultimate goal itself. The metric has become the goal.
 
-- [Examples of surrogation]{.maroon}
-    - Standardized test scores are a surrogate for student achievement, surrogation
+
+## Examples of Surrogation
+
+- [Standardized test scores]{.orange} are a surrogate for student achievement, surrogation
 means to focus on driving up the test scores rather than focusing on driving
 actual student achievement.  
-    - Surrogation of net promoter scores occurs when 
+<br/>
+<br/>
+
+
+- Surrogation of [net promoter scores]{.orange} occurs when 
 companies focus on driving up NPS by only asking customers who repeatedly 
 buy their product
-    - Sales people are incentivized on number of deals or deal volume (revenue).
+<br/>
+<br/>
+
+- [Sales people]{.orange} are incentivized on number of deals or deal volume (revenue).
 The real goal is to drive success for the company. The incentives lead to deals
 that are good for the sales people ("making their number") and bad for the company.
+<br/>
+<br/>
+
+- Colleges are focusing on improving the surrogates that are proxies for 
+educational excellence in [college ranking]{.orange} systems.
+
 
 ## Types of Data
 
@@ -571,36 +786,49 @@ The number of possible values is countable, even if infinite.
     - Categorical Variables\
      also called **qualitative** variables
     
-## Discrete Variables
+## Discrete--Count Variables
 
-- [Count Variables]{.maroon}
-<br/>The values are true counts, obtained by enumeration. There are two types of counts:
+<br/>
+<br/>
 
-    - **Counts per unit**\
+[The values are true counts, obtained by enumeration. \
+There are two types of counts:]{.maroon}
+
+- **Counts per unit**\
     The count relates to a unit of measurement, e.g., 
     the number of fish caught per day, the number of customer complaints per 
     quarter, the number of chocolate chips per cookie, the number of cancer 
     incidences per 100,000.
 
-    - **Proportions (Counts out of a total)**\
+<br/>
+
+- **Proportions (Counts out of a total)**\
     The count can be converted to a proportion by dividing it with a maximum value. 
     Examples are the number of heads out of 10 coin tosses, the number of rats
     out of 20 developing cancer.
 
-- [Categorical Variables]{.maroon}
-<br/>The values consist of **labels**, even if numbers are used for labeling.
+## Discrete--Categorical Variables
 
-    - **Nominal variables**\
+<br/>
+<br/>
+
+[The values consist of **labels**, even if numbers are used for labeling]{.maroon}
+
+- **Nominal variables**\
     The labels are unordered, for example the 
     variable "fruit" takes on the values "apple", "peach", "tomato" 
     (yes, tomatoes are fruit but do not belong in fruit salad).
 
-    - **Ordinal variables**\
+<br/>
+
+- **Ordinal variables**\
     The category labels can be arranged in a natural 
     order in a lesser-greater sense. Examples are 1---5 star reviews or ratings 
     of severity ("mild", "modest", "severe").
 
-    - **Binary variables**\
+<br/>
+
+- **Binary variables**\
     Take on exactly two values (dead/alive, Yes/No, 1/0, fraud/not fraud, 
     diseased/not diseased)
 
@@ -621,12 +849,11 @@ Types of Variables
     - Continuous 
 
 2. What are the data types of the following:
-    - number of meals served in the cafeteria
     - number of meals served in the cafeteria per day
-    - proportion of meals not finished
+    - number of lunches by PGS students
     - marital status
     - tensile strength of a material
-    - percentage of patients who show side effects
+    - percentage of patients in a clinical trial who show side effects
     - percentage of income spent on food and housing
 :::
 ::::

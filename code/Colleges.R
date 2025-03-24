@@ -8,20 +8,30 @@
 
 library(ISLR2)
 data(College)
+attach(College)
 
 head(College)
 
 # Compute simple summary statistics for all variables in the data frame
 summary(College)
+
 apply(College[,-1],2,mean)
 apply(College[,-1],2,sd)
+
+x1 = rep(1,10)
+x1
+sd(x1)
+
+sd(rep(1,10))
+x2 <- seq(1,10)
+x2
+sd(x2)
 
 # attach() attaches a data frame to the search path of the environment
 # After attaching, you can refer directly to the variables in the data
 # frame. For example, to compute the average graduation rate without
 # attaching the command would be mean(College$Grad.Rate), after attaching
 # the command is simpler: mean(Grad.Rate)
-attach(College)
 
 mean(Grad.Rate)
 
@@ -34,7 +44,7 @@ College[which.max(Room.Board),]
 College[which.max(Grad.Rate),]
 
 # Which colleges have graduation rates above 95%?
-College[which(Grad.Rate > 95),]
+College[which(Grad.Rate >= 100),]
 
 # Are there public universities with a graduation rate above 95%?
 College[which((Grad.Rate > 95) & (Private=="No")),]
@@ -54,8 +64,8 @@ legend("topright", legend=c("Public", "Private"), col=c(1,2), pch=1)
 College[which(F.Undergrad > 25000 & Private=="Yes"),]
 
 
-#Create histograms of the out-of-state tuition and compare private and public 
-#colleges.
+# Create histograms of the out-of-state tuition and compare private and public 
+# colleges.
 
 hist(Outstate[Private=="Yes"], col="powderblue")
 hist(Outstate[Private=="No"], col="pink", add=TRUE)
@@ -124,8 +134,10 @@ College[which((Grad.Rate > 100) & (Private=="Yes")),]$Grad.Rate <- NA
 
 # All variables
 boxplot(College)
+
 # Single variables
-boxplot(Expend)
+boxplot(College$Expend)
+
 boxplot(Outstate,ylab="Outstate")
 # Formula expression to get separate boxplots
 boxplot(Grad.Rate ~ Private)

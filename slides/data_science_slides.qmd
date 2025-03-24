@@ -21,7 +21,7 @@ format:
       preview-links: true
       theme: [default, slides_custom.scss] # moon
       logo: ../slides_images/VTBanner.png
-      footer: "UH 2514: Correlation and Causation"
+      footer: "UH 2514: Data Science"
       css: slides_styles.css
       execute:
         echo: false
@@ -44,7 +44,7 @@ uncertainty.
 
 :::{.incremental .highlight-last}
 * [Computational Thinking]{.maroon}
-<br/>A problem-solving methodology]
+<br/>A problem-solving methodology
 <br/>Break complex problems into manageable parts
 <br/>Find patterns and relationships among the parts
 <br/>Generalize solutions as repeatable series of steps  
@@ -126,6 +126,64 @@ solving the problems through data science?
 :::
 :::
 
+## Uncertainty
+
+:::{.centered}
+Data science means solving real-world problems using computation\
+and automation in the presence of uncertainty.
+:::
+
+<br/>
+[Where does uncertainty come from?]{.maroon}
+
+. . .
+
+- Natural variability
+- Measurement error
+- Sampling observations
+- Random assignment of treatments
+- Incompleteness of models
+
+## Uncertainty--College Data
+
+```{r, echo=TRUE}
+library(ISLR2)
+data(College)
+
+apply(College[,-1], 2, mean)
+
+```
+
+```{r, echo=TRUE}
+apply(College[,-1], 2, sd)
+```
+
+```{r, echo=TRUE}
+
+x1 <- rep(1,10)
+x2 <- seq(1,10)
+
+x1
+x2
+
+sd(x1)
+sd(x2)
+```
+
+
+## Uncertainty--College Data {.scrollable}
+
+```{r, echo=TRUE, fig.align="center", out.width="60%"}
+boxplot(College$Outstate)
+```
+
+## Uncertainty--College Data {.scrollable}
+
+```{r, echo=TRUE, fig.align="center", out.width="60%"}
+# Formula expression to get separate boxplots
+boxplot(College$Grad.Rate ~ College$Private)
+boxplot(College$Expend ~ College$Private)
+```
 
 ## Data Science Models 
 
@@ -201,15 +259,16 @@ attach(theop)
 
 ```{r, echo=FALSE, fig.align="center", fig.asp=0.7, out.width="50%"}
 #| fig.cap: Theophylline concentration over time in two groups of patients.
+#| lightbox:
 plot(time,conc, 
      ylab="Concentration",
      xlab="Time (hrs)",
      pch=group, 
-     col=group,cex=0.8, las=1,bty="l")
+     col=group,cex=1.4, las=1,bty="l")
 gr <- unique(theop$group)
 legend("topright",
        legend=c("Group 1","Group 2"),
-       cex=0.8,
+       cex=1.4,
        pch=gr,col=gr)
 ```
 ::::
@@ -313,6 +372,25 @@ the board surface and core.
 ::::
 :::
 
+## Exercise
+
+:::{.assignment}
+::::{.assignment-header}
+Aerobic Fitness
+::::
+::::{.assignment-container}
+One method of quantifying the aerobic fitness of athletes is through testing
+their aerobic capacity under stress. These measurements are
+time consuming and expensive.
+
+![](../images/AerobicCapacity.jpeg){fig-align="center" width=50%}
+
+How can we make the prediction of aerobic fitness of athletes less expensive
+and time consuming by using a data science model?
+
+::::
+:::
+
 ## Labeling
 
 * The values of the target variable are also called the **labels** in machine learning. 
@@ -322,7 +400,7 @@ the board surface and core.
 ![](../images/image_labeling.webp){fig-align="center" width=60%}
 
 
-## Supervised Learning Goals. 
+## Supervised Learning Goals
 
 <br/>
 
@@ -498,8 +576,6 @@ An $R_0$ of
 other individuals. In the absence of vaccines or quarantines, any disease with
 $R_0 > 1$ will eventually spread to the entire population.
 
-- Discuss whether the assumptions of the SIR model apply to the COVID-19 pandemic.
-
 - What could be reasons why epidemiologists hold on to a SIR model even if one 
 or more of its assumptions are violated?
 
@@ -534,14 +610,14 @@ Modeling Coin Flips
 ::::{.assignment-container}
 Goal: predict whether a coin, when flipped, lands on Heads or Tails.
 
-Approach 1: Develop a mathematical model that captures the forces acting on
+**Approach 1**: Develop a mathematical model that captures the forces acting on
 the coin
 
 - What are the inputs you consider for this model?
 - Are you building one big model or a combination of sub-models?
 - What are assumptions you are making? 
 
-Approach 2: Develop a stochastic model to predict coin flips.
+**Approach 2**: Develop a stochastic model to predict coin flips.
 
 - What are the assumptions of this model?
 - What are the unknowns (parameters) in the model?
